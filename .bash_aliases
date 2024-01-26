@@ -42,7 +42,6 @@ alias hg="kitten hyperlinked_grep"
 
 # 切换目录快捷键
 alias gC="cd $HOME/.config"
-alias gc="cd $HOME/.dotfiles"
 alias gD="cd $HOME/下载"
 alias gH="cd $HOME/.config/hypr"
 alias gp="cd $HOME/图片"
