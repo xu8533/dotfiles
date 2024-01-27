@@ -1,0 +1,102 @@
+let g:fzf_colors = { 'fg': ['fg', 'Normal'], 'bg': ['bg', 'Normal'], 'preview-bg': ['bg', 'NormalFloat'], 'hl': ['fg', 'Comment'],  'fg+': ['fg', 'CursorLine', 'CursorColumn', 'Normal'], 'bg+': ['bg', 'CursorLine', 'CursorColumn'],  'hl+': ['fg', 'Statement'],  'info': ['fg', 'PreProc'], 'border': ['fg', 'Ignore'],  'prompt': ['fg', 'Conditional'], 'pointer': ['fg', 'Exception'], 'marker': ['fg', 'Keyword'], 'spinner': ['fg', 'Label'], 'header': ['fg', 'Comment'] }
+sonokai:
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+    --color=fg:#e1e3e4,bg:#2b2d3a,hl:#7e8294
+	--color=fg+:#e1e3e4,bg+:#333648,hl+:#fb617e
+	--color=info:#fb617e,prompt:#fb617e,pointer:#fb617e
+	--color=marker:#fb617e,spinner:#bb97ee,header:#7e8294
+	--color=border:#7e8294,preview-bg:#363a4e
+	'
+
+sonokai-andromeda:
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+	--color=fg:#e1e3e4,bg:#2b2d3a,hl:#9ed06c
+	--color=fg+:#e1e3e4,bg+:#333648,hl+:#9ed06c
+	--color=info:#edc763,prompt:#fb617e,pointer:#6dcae8
+	--color=marker:#6dcae8,spinner:#edc763,header:#6dcae8
+    --color=border:#7e8294
+	'
+sonokai-atlantis:
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+    --color=fg:#e1e3e4,bg:#2a2f38,hl:#9dd274
+	--color=fg+:#e1e3e4,bg+:#333846,hl+:#9dd274
+	--color=info:#eacb64,prompt:#ff6578,pointer:#72cce8
+	--color=marker:#72cce8,spinner:#eacb64,header:#72cce8
+    --color=border:#828a9a
+	'
+sonokai-shusia:
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+    --color=fg:#e3e1e4,bg:#2d2a2e,hl:#9ecd6f
+	--color=fg+:#e3e1e4,bg+:#37343a,hl+:#9ecd6f
+	--color=info:#e5c463,prompt:#f85e84,pointer:#7accd7
+	--color=marker:#7accd7,spinner:#e5c463,header:#7accd7
+    --color=border:#848089
+	'
+sonokai-maia:
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+    --color=fg:#e1e2e3,bg:#273136,hl:#9cd57b
+	--color=fg+:#e1e2e3,bg+:#313b42,hl+:#9cd57b
+	--color=info:#e3d367,prompt:#f76c7c,pointer:#78cee9
+	--color=marker:#78cee9,spinner:#e3d367,header:#78cee9
+    --color=border:#82878b
+	'
+sonokai-espresso:
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+    --color=fg:#e4e3e1,bg:#312c2b,hl:#a6cd77
+	--color=fg+:#e4e3e1,bg+:#393230,hl+:#a6cd77
+	--color=info:#f0c66f,prompt:#f86882,pointer:#81d0c9
+	--color=marker:#81d0c9,spinner:#f0c66f,header:#81d0c9
+    --color=border:#90817b
+	'
+
+everforest-dark:
+everforest-soft:
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+    --color=fg:#d3c6aa,bg:#333c43,hl:#a7c080
+	--color=fg+:#d3c6aa,bg+:#3a464c,hl+:#83c092
+	--color=info:#83c092,prompt:#e69875,pointer:#7fbbb3
+	--color=marker:#dbbc7f,spinner:#dbbc7f,header:#859289
+    --color=border:#859289
+	'
+everforest-medium:
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+    --color=fg:#d3c6aa,bg:#2d353b,hl:#a7c080
+	--color=fg+:#d3c6aa,bg+:#343f44,hl+:#83c092
+	--color=info:#83c092,prompt:#e69875,pointer:#7fbbb3
+	--color=marker:#dbbc7f,spinner:#dbbc7f,header:#859289
+    --color=border:#859289
+	'
+everforest-hard:
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+    --color=fg:#d3c6aa,bg:#272e33,hl:#a7c080
+	--color=fg+:#d3c6aa,bg+:#2e383c,hl+:#83c092
+	--color=info:#83c092,prompt:#e69875,pointer:#7fbbb3
+	--color=marker:#dbbc7f,spinner:#dbbc7f,header:#859289
+    --color=border:#859289
+	'
+
+everforest-light:
+everforest-soft:
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+    --color=fg:#5c6a72,bg:#f3ead3,hl:#8da101
+	--color=fg+:#5c6a72,bg+:#eae4ca,hl+:#35a77c
+	--color=info:#35a77c,prompt:#f57d26,pointer:#3a94c5
+	--color=marker:#dfa000,spinner:#dfa000,header:#939f91
+    --color=border:#939f91
+	'
+everforest-medium:
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+    --color=fg:#5c6a72,bg:#fdf6e3,hl:#8da101
+	--color=fg+:#5c6a72,bg+:#f4f0d9,hl+:#35a77c
+	--color=info:#35a77c,prompt:#f57d26,pointer:#3a94c5
+	--color=marker:#dfa000,spinner:#dfa000,header:#939f91
+    --color=border:#939f91
+	'
+everforest-hard:
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+    --color=fg:#5c6a72,bg:#fffbef,hl:#8da101
+	--color=fg+:#5c6a72,bg+:#f8f5e4,hl+:#35a77c
+	--color=info:#35a77c,prompt:#f57d26,pointer:#3a94c5
+	--color=marker:#dfa000,spinner:#dfa000,header:#939f91
+    --color=border:#939f91
+	'
