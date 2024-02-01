@@ -1,0 +1,10 @@
+{
+  "custom/power": {
+    "format": "  ",
+    // "on-click": "bash ~/.config/rofi/powermenu/type-5/powermenu.sh"
+    // "on-click": "wlogout --layout $HOME/.config/wlogout/layout_3 --css $HOME/.config/wlogout/style_3.css"
+    // "on-click": "wlogout --layout $HOME/.config/wlogout/layout_4 --css $HOME/.config/wlogout/style_4.css"
+    "on-click": "~/.config/hypr/scripts/logoutlaunch.sh 1"
+    // "on-click": "~/.config/hypr/scripts/logoutlaunch.sh 2"
+  }
+}

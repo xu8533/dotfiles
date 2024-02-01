@@ -1,0 +1,19 @@
+{
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon}  {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{time} {icon}",
+    "format-icons": ["", "", "", "", ""],
+    "format-time": "{H}小时{M}分钟",
+    "tooltip": "true",
+    "tooltip-format": "电量: {capacity}%\n时间: {timeTo}",
+    "tooltip-format-charging": "剩余电量: {capacity}%\n充满时间: {timeTo}",
+    "tooltip-format-discharging": "剩余电量: {capacity}%\n剩余时间: {time}"
+  }
+}

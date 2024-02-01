@@ -1,0 +1,48 @@
+{
+  "hyprland/workspaces": {
+    "persistent-workspaces": {
+      "*": 10 // 10 workspaces by default on every monitor
+    },
+    "sort-by-number": true,
+    "on-click": "activate",
+    "disable-scroll": false,
+    "all-outputs": false,
+    "active-only": false,
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1",
+    "format": "{icon}",
+    "format-icons": {
+      "1": "壹",
+      "2": "贰",
+      "3": "叁",
+      "4": "肆",
+      "5": "伍",
+      "6": "陆",
+      "7": "柒",
+      "8": "捌",
+      "9": "玖",
+      "10": "零",
+      // "10": "拾",
+      // "media": "",
+      "media": "",
+      "network": "󰲐",
+      "office": "󰏆",
+      // "active": "",
+      // "default": ""
+      "urgent": ""
+    }
+  }
+}
+// "urgent": "",
+// "focused": "",
+// "default": ""
+//            "1": "<span color=\"#D8DEE9\">壹</span>",
+//            "2": "<span color=\"#88C0D0\">贰</span>",
+//            "3": "<span color=\"#A3BE8C\">叁</span>",
+//            "4": "<span color=\"#ed6d3d\">肆</span>",
+//            "5": "<span color=\"#b1d5c8\">伍</span>",
+//            "6": "<span color=\"#a9be7b\">陆</span>",
+//            "7": "<span color=\"#87c0ca\">柒</span>",
+//            "8": "<span color=\"#9aa7b1\">捌</span>",
+//            "9": "<span color=\"#c12c1f\">玖</span>",
+//            "10": "<span color=\"#6b5458\">拾</span>",

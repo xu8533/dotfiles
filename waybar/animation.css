@@ -1,0 +1,49 @@
+@keyframes battery-charging {
+  to {
+    background-color: #00953e;
+    color: #3f3f3c;
+  }
+}
+
+@keyframes battery-warning {
+  to {
+    background-color: #eda01f;
+    color: #3f3f3c;
+  }
+}
+
+@keyframes battery-cirtical {
+  to {
+    background-color: #bc3823;
+    color: #b5e8e0;
+  }
+}
+
+@keyframes blink {
+  to {
+    /* background-color: #bf616a; */
+    background-color: #bc3823;
+    color: #b5e8e0;
+  }
+}
+
+@keyframes network-disconnected {
+  to {
+    background-color: #e5a84b;
+    color: #beb1aa;
+  }
+}
+
+@keyframes network-diabled {
+  to {
+    background-color: #c12c1f;
+    color: #beb1aa;
+  }
+}
+
+@keyframes network-linked {
+  to {
+    background-color: #779649;
+    color: #beb1aa;
+  }
+}

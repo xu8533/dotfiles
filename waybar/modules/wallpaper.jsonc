@@ -1,0 +1,8 @@
+{
+  "custom/wallpaper": {
+    // "format": " ",
+    "format": "󰏘",
+    "on-click": "bash $HOME/.config/hypr/scripts/randwall.sh",
+    "on-click-right": "bash $HOME/.config/hypr/scripts/randwall.sh"
+  }
+}
