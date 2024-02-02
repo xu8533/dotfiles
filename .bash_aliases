@@ -49,4 +49,4 @@ alias gp='cd $HOME/图片'
 # alias gw='cd $HOME/图片/Wallpapers'
 #
 # git bare裸库，用于配置文件管理
-# alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
