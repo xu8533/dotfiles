@@ -1,7 +1,0 @@
-{
-  "custom/launcher": {
-    "format": " ",
-    "on-click": "$HOME/.config/rofi/scripts/launcher_t6",
-    "on-click-right": "killall rofi"
-  }
-}

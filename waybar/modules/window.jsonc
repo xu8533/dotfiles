@@ -1,7 +1,0 @@
-{
-  "hyprland/window": {
-    "format": "{}",
-    "max-length": 30,
-    "tooltip": false
-  }
-}
