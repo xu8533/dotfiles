@@ -1,0 +1,36 @@
+{
+  "clock": {
+    "format": "{:%H:%M}  ",
+    "format-alt": "{:%EY年%Om月%Od日, %H时%M分, %A} ",
+    "tooltip-format": "<big>{:L%Y年%B 第%OV周}</big>\n<span size='14pt' font='WenQuanYi Zen Hei Mono'><tt>{calendar}</tt></span>",
+    // "tooltip-format": "<big>{:L%Y年%B 第%OV周}</big>\n<tt><small>{calendar}</small></tt>",
+    "timezone": "Asia/Shanghai",
+    "locale": "zh_CN.UTF-8",
+    "calendar": {
+      // "mode": "year",
+      "mode": "month",
+      // "mode-mon-col": 3,
+      // "weeks-pos"     : "right",
+      "on-scroll": 1,
+      "on-click-right": "mode",
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        // "days": "<span color='#ecc6d9'>{}</span>",
+        // "weeks": "<span color='#99ffdd'><b>W{:%V}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#75c1c4'><b><u>{}</u></b></span>"
+      }
+    },
+    // "today-format": "<span color='#ff6699'><b><u>{}</u></b></span>",
+    // "format-calendar": "<span color='#ecc6d9'><b>{}</b></span>",
+    // "format-calendar-weeks": "<span color='#99ffdd'><b>W{:%V}</b></span>",
+    // "format-calendar-weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+    "actions": {
+      "on-click-right": "mode",
+      "on-click-forward": "tz_up",
+      "on-click-backward": "tz_down",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "tooltip": false,
+    "all-outputs": "false",
+    // "icon-size": 40,
+    // "icon-theme": "ePapirus",
+    "icon-theme": "mate",
+    "tooltip-format": "{title}",
+    "on-click": "activate",
+    "on-click-middle": "close",
+    "ignore-list": ["Alacritty", "kitty"]
+  }
+}

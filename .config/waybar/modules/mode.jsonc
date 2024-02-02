@@ -1,0 +1,5 @@
+{
+  "hyprland/mode": {
+    "format": "<span style=\"italic\">{}</span>"
+  }
+}

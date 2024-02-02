@@ -1,0 +1,45 @@
+pd_host = "localhost"
+mpd_port = "6600"
+mpd_music_dir = "/media/数据/音乐/"
+
+##### timeouts and delays #####
+mpd_crossfade_time = "2"
+playlist_disable_highlight_delay = "3"
+message_delay_time = "2"
+
+##### visualizer settins #####
+visualizer_fifo_path = "/tmp/mpd.fifo"
+visualizer_output_name = "visualizer"
+visualizer_sync_interval = "1"
+visualizer_type = "wave" (spectrum/wave)
+visualizer_color = "red,yellow,green,cyan,blue,red,yellow,green,cyan,blue,red,yellow,green,cyan,blue,red"
+
+song_status_format = "$2%a $7• $4%t $7• $3%b {}$7• $5%y$7"
+now_playing_prefix = "$b$8»$2»$4»$3» "
+now_playing_suffix = "$/b"
+playlist_display_mode = "columns" (classic/columns)
+autocenter_mode = "yes"
+progressbar_look = "─╼·"
+header_visibility = "no"
+statusbar_visibility = "yes"
+titles_visibility = "no"
+cyclic_scrolling = "yes"
+
+jump_to_now_playing_song_at_start = "yes"
+display_bitrate = "yes"
+ignore_leading_the = "yes"
+mouse_support = "yes"
+enable_window_title = "no"
+external_editor = "vim"
+use_console_editor = "yes"
+
+##### colors definitions #####
+empty_tag_color = "red"
+header_window_color = "cyan"
+volume_color = "red"
+state_line_color = "cyan"
+color1 = "default"
+color2 = "green"
+progressbar_color = "cyan"
+statusbar_color = "cyan"
+alternative_ui_separator_color = "cyan"

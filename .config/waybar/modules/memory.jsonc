@@ -1,0 +1,9 @@
+{
+  "memory": {
+    "interval": 30,
+    "format": " {}%",
+    "max-length": 10,
+    "tooltip": true,
+    "tooltip-format": "已使用: {used:0.1f}G\n未使用: {avail:0.1f}G\n总内存: {total:0.1f}G\n使用率: {percentage}%"
+  }
+}

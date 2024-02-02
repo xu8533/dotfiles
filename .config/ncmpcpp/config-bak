@@ -1,0 +1,43 @@
+mpd_host = "localhost"
+mpd_port = "6600"
+ncmpcpp_directory = "~/.ncmpcpp"
+lyrics_directory = "~/.ncmpcpp/lyrics"
+mpd_music_dir = "/media/数据/音乐/"
+mouse_list_scroll_whole_page = "yes"
+lines_scrolled = "1"
+allow_for_physical_item_deletion = yes
+startup_screen = playlist
+screen_switcher_mode = playlist, visualizer
+startup_slave_screen = visualizer
+startup_slave_screen_focus = yes
+locked_screen_width_part = 60
+
+
+visualizer_data_source = "/tmp/mpd.fifo"
+visualizer_output_name = "my_fifo"
+visualizer_in_stereo = "no"
+visualizer_fps = 30
+visualizer_color ="white"
+visualizer_type = "spectrum"
+# visualizer_look = "  "
+visualizer_look = "▋▋"
+visualizer_spectrum_smooth_look = yes
+
+progressbar_look = "▃▃▃"
+progressbar_color = "black"
+progressbar_elapsed_color = "green"
+statusbar_color = "5"
+
+now_playing_prefix = "$b$8 ➥ "
+now_playing_suffix = "$8$/b"
+
+header_visibility = no
+statusbar_visibility = yes
+user_interface = classic
+autocenter_mode = yes
+empty_tag_color = "black"
+main_window_color = "default"
+centered_cursor = "yes"
+enable_window_title = "yes"
+playlist_display_mode = "classic"
+song_list_format = "$8

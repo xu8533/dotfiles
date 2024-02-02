@@ -1,0 +1,211 @@
+// Load with --load-config examples/2.jsonc
+// Note that you must replace the image path to an existing image to display it.
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+      "type": "auto",
+      "source": "/home/xujian/图片/Wallpapers/flowers-minimal-5y-2560x1440.jpg",
+      "width": 28,
+      "height": 12
+  },
+  // "separate": true,
+  "display": {
+    "separator": "   ",
+    "color": {
+      "keys": "magenta"
+    }
+  },
+  "modules": [
+    {
+      "type": "custom", // HardwareStart
+      "format": "├────────────────── \u001b[1m硬件信息\u001b[0m ────────────────┤"
+    },
+    {
+      "type": "host",
+      "key": "  ",
+      "keyColor": "yellow"
+    },
+    {
+      "type": "cpu",
+      "key": "  ",
+      "keyColor": "yellow"
+    },
+    {
+      "type": "gpu",
+      "key": "  󰠰",
+      "keyColor": "yellow"
+    },
+    {
+      "type": "disk",
+      "key": "  ",
+      "keyColor": "yellow"
+    },
+    {
+      "type": "memory",
+      "key": "  󰑭",
+      "keyColor": "yellow"
+    },
+    // {
+    //   "type": "swap",
+    //   "key": "  󰓡",
+    //   "keyColor": "yellow"
+    // },
+    {
+      "type": "display",
+      "key": "  󰍹",
+      "keyColor": "yellow"
+    },
+    {
+      "type": "brightness",
+      "key": "  󰃞",
+      "keyColor": "yellow"
+    },
+    {
+      "type": "battery",
+      "key": "  ",
+      "keyColor": "yellow"
+    },
+    {
+      "type": "poweradapter",
+      "key": "  ",
+      "keyColor": "yellow"
+    },
+    {
+      "type": "bluetooth",
+      "key": "  ",
+      "keyColor": "yellow"
+    },
+    {
+      "type": "sound",
+      "key": "  ",
+      "keyColor": "yellow"
+    },
+    // {
+    // "type": "gamepad",
+    // "key": "  "
+    // },
+    {
+      "type": "custom", // SoftwareStart
+      "format": "├────────────────── \u001b[1m软件信息\u001b[0m ────────────────┤"
+    },
+    {
+      "type": "title",
+      "key": "  ",
+      "format": "{1}@{2}",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "os",
+      "key": "  ", // Just get your distro's logo off nerdfonts.com
+      "keyColor": "magenta"
+    },
+    {
+      "type": "kernel",
+      "key": "  ",
+      "format": "{1} {2}",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "lm",
+      "key": "  󰧨",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "de",
+      "key": "  ",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "wm",
+      "key": "  ",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "shell",
+      "key": "  ",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "terminal",
+      "key": "  ",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "terminalfont",
+      "key": "  ",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "theme",
+      "key": "  󰉼",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "icons",
+      "key": "  󰀻",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "wallpaper",
+      "key": "  󰸉",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "packages",
+      "key": "  󰏖",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "uptime",
+      "key": "  󰅐",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "media",
+      "key": "  󰝚",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "localip",
+      "key": "  󰩟",
+      "compact": true,
+      "keyColor": "magenta"
+    },
+    // {
+      // "type": "publicip",
+      // "key": "  󰩠",
+      // "compact": true,
+      // "keyColor": "magenta"
+    // },
+    {
+      "type": "wifi",
+      "key": "  ",
+      "format": "{4}", // ssid
+      "keyColor": "magenta"
+    },
+    {
+      "type": "locale",
+      "key": "  ",
+      "keyColor": "bright_magenta"
+    },
+    {
+      "type": "custom", // InformationEnd
+      "format": "└────────────────────────────────────────────┘"
+    },
+    {
+      "type": "colors",
+      "paddingLeft": 2,
+      // "symbol": "circle"
+      // "symbol": "block"
+      "symbol": "diamond"
+      // "symbol": "star"
+      // "symbol": "square"
+      // "symbol": "triangle"
+    }
+    // {
+    //     "type": "custom",
+    //     "key": "",
+    //     "format": "\u001b[31m███\u001b[32m███\u001b[33m███\u001b[34m███\u001b[35m███\u001b[36m███"
+    // }
+  ]
+}
