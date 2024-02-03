@@ -1,4 +1,4 @@
-#### <font color="#2874af"> 个人配置文件 </font>
+#### <font color=#2874af>个人配置文件</font>
 
 **my dotfiles, hyprland, eww, waybar, neovim**
 <img align="center" src="previews/screenshot_2024-02-03_16:50:43.png">
