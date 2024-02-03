@@ -20,9 +20,9 @@
   font-size: 18px;
   transition: none;
   color: rgba(183, 199, 65, 0.99);
-  /* background-color: transparent; */
   /* background-color: rgba(124, 70, 34, 0.8); */
-  background-color: rgba(110, 22, 80, 0.7);
+  /* background-color: rgba(110, 22, 80, 0.7); */
+  background-color: rgba(190, 77, 97, 0.8);
 }
 
 window#waybar {
@@ -36,22 +36,6 @@ window#waybar.empty #window {
 window#waybar.hidden {
   opacity: 0.2;
 }
-
-/* window#waybar.kitty { */
-/*     background-color: #111111; */
-/*     color: #ffffff; */
-/* } */
-/**/
-/* window#waybar.Chromium { */
-/*     background-color: #eeeeee; */
-/*     color: #000000; */
-/* } */
-
-/* .modules-center { */
-/*     margin: 2px 0 0 5px; */
-/* 	border-radius: 30px; */
-/* 	background-color: rgba(0,119,179,0.6); */
-/* } */
 
 tooltip {
   /* border-radius: 15px; */
@@ -68,70 +52,69 @@ tooltip {
   /* font-style: italic; */
   font-style: normal;
   color: rgba(191, 229, 35, 0.9);
-  /* border-color: #11111b; */
-  /* background-color: rgba(0, 0, 0, 0.5); */
   background-color: rgba(144, 55, 84, 0.95);
   /* background-color: rgba(18, 52, 96, 0.8); */
-  /* background-color: transparent; */
 }
 
 #workspaces {
   margin-top: 3px;
+  margin-bottom: 2px;
   margin-left: 12px;
   margin-right: 12px;
-  font-size: 6px;
-  margin-bottom: 2px;
+  font-size: 8px;
   border-radius: 10px;
   background-color: transparent;
   transition: none;
 }
 
 #workspaces button {
-  /* box-shadow: rgba(0, 0, 0, 0.116) 2px 2px 5px 2px; */
+  color: #cba6f7;
+  background-color: #f8f7f0;
   box-shadow: inset 0 -3px transparent;
-  background-color: #fff;
-  border: none;
+  border-bottom-style: outset;
+  border-width: 4px;
+  border-color: rgba(64, 152, 199, 0.98);
   border-radius: 15px;
-  margin-right: 10px;
+  margin-right: 8px;
   padding-top: 3px;
   padding-bottom: 2px;
   padding-right: 6px;
   padding-left: 6px;
   font-weight: bolder;
-  color: #cba6f7;
+  font-size: 18px;
 }
 
 #workspaces button.active {
+  border-bottom-style: outset;
+  border-width: 4px;
+  border-color: rgba(219, 75, 51, 0.99);
+  /* border-color: rgba(255, 0, 0, 0.99); */
   padding-right: 20px;
-  box-shadow: rgba(0, 0, 0, 0.288) 2px 2px 5px 2px;
-  border: none;
   padding-left: 20px;
-  padding-bottom: 3px;
+  padding-bottom: 2px;
   background-color: rgb(202, 158, 230);
-  /* background: linear-gradient(45deg, rgba(202,158,230,1) 0%, rgba(245,194,231,1) 43%, rgba(180,190,254,1) 80%, rgba(137,180,250,1) 100%);  */
-  /* background-size: 300% 300%; */
-  /* animation: gradient 10s ease infinite; */
-  color: #fff;
+  color: #f8f7f0;
 }
 
-/* #workspaces button.empty { */
-/*   padding-right: 20px; */
-/*   box-shadow: rgba(0, 0, 0, 0.288) 2px 2px 5px 2px; */
-/*   border: none; */
-/*   padding-left: 20px; */
-/*   padding-bottom: 3px; */
-/*   background-color: rgb(202, 158, 230); */
-/*    background: linear-gradient(45deg, rgba(202,158,230,1) 0%, rgba(245,194,231,1) 43%, rgba(180,190,254,1) 80%, rgba(137,180,250,1) 100%);  */
-/*    background-size: 300% 300%; */
-/*    animation: gradient 10s ease infinite; */
-/*   color: #fff; */
+#workspaces button.empty {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #c5b8a8;
+  color: rgba(202, 158, 230, 0.95);
+  background-color: transparent;
+}
+
+/*  #workspaces button.visible {  */
+/*    color: rgba(248, 247, 240, 0.9);  */
+/*    color: rgba(23, 84, 56, 1);  */
+/*    background-color: transparent;  */
 /* } */
 
 button {
   box-shadow: inset 0 -3px transparent;
   /* Avoid rounded borders under each button name */
   border: none;
-  /* border-radius: 0; */
+  border-radius: 0;
 }
 
 button:hover {
@@ -337,11 +320,11 @@ button:hover {
   /* background: rgba(41, 128, 185, 0); */
 }
 
-#tray>.passive {
+#tray > .passive {
   -gtk-icon-effect: dim;
 }
 
-#tray>.needs-attention {
+#tray > .needs-attention {
   -gtk-icon-effect: highlight;
   background-color: #eb4d4b;
 }
@@ -354,7 +337,7 @@ button:hover {
   padding-right: 5px;
   border-radius: 10px;
   transition: none;
-  color: #89dceb;
+  color: #00adb0;
   background-color: rgba(1, 0, 0, 0);
 }
 
@@ -470,11 +453,10 @@ button:hover {
   min-width: 16px;
 }
 
-#keyboard-state>label {
+#keyboard-state > label {
   padding: 0 5px;
 }
 
-#keyboard-state>label.locked {
+#keyboard-state > label.locked {
   background: rgba(0, 0, 0, 0.2);
 }
-
