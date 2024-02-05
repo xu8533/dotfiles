@@ -250,11 +250,12 @@
 #define MAX_THICKNESS 6
 
 /* base color to use, distance from center will multiply the RGB components */
-#define BASE_COLOR vec4(0.7, 0.2, 0.45, 1)
+/* #define BASE_COLOR vec4(0.7, 0.2, 0.45, 1)
+#define BASE_COLOR #b8482c
 
 /* amplitude */
 #define AMPLIFY 500
 
 /* outline color */
-#define OUTLINE vec4(0.15, 0.15, 0.15, 1)
-
+/* #define OUTLINE vec4(0.15, 0.15, 0.15, 1)
+#define OUTLINE #b8482c
