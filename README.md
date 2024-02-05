@@ -5,4 +5,4 @@
 <img align="center" src="previews/screenshot_2024-02-04_02:09:08.png">
 <img align="center" src="previews/screenshot_2024-02-02_23:45:26.png">
 
-**Window Manager**[hyprland](https://www.hyprland.org/)
+**Window Manager:**[hyprland](https://www.hyprland.org/)
