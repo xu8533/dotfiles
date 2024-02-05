@@ -183,8 +183,3 @@ systemctl --user restart mpd
 
 # 加载自定义shell函数
 [ -f ~/.bash_func ] && source ~/.bash_func
-
-# 加载dotbare插件
-# [ -f ~/.dotbare/dotbare.plugin.bash ] && source ~/.dotbare/dotbare.plugin.bash
-export DOTBARE_DIR="$HOME/.dotfiles"
-export DOTBARE_TREE="$HOME"
