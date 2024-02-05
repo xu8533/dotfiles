@@ -21,8 +21,8 @@
   transition: none;
   color: rgba(183, 199, 65, 0.99);
   /* background-color: rgba(124, 70, 34, 0.8); */
-  /* background-color: rgba(110, 22, 80, 0.7); */
-  background-color: rgba(190, 77, 97, 0.8);
+  background-color: rgba(110, 22, 80, 0.7);
+  /* background-color: rgba(190, 77, 97, 0.8); */
 }
 
 window#waybar {
