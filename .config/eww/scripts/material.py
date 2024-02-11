@@ -72,7 +72,7 @@ def get_colors_from_color(color, scheme):
 
 
 def generate_wallpaper(color):
-    img = Image.new("RGB", (1920, 1080), color)
+    img = Image.new("RGB", (2160, 1440), color)
     img.save(WALLPAPER_PATH)
 
 
