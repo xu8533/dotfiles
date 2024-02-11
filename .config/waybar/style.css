@@ -33,6 +33,11 @@ window#waybar.empty #window {
   background-color: transparent;
 }
 
+window#waybar.empty {
+  border: none;
+  background-color: transparent;
+}
+
 window#waybar.hidden {
   opacity: 0.2;
 }
@@ -88,11 +93,10 @@ tooltip {
   border-bottom-style: outset;
   border-width: 4px;
   border-color: rgba(219, 75, 51, 0.99);
-  /* border-color: rgba(255, 0, 0, 0.99); */
   padding-right: 20px;
   padding-left: 20px;
   padding-bottom: 2px;
-  background-color: rgb(202, 158, 230);
+  background-color: rgba(202, 158, 230, 0.98);
   color: #f8f7f0;
 }
 
@@ -102,6 +106,13 @@ tooltip {
   border-color: #c5b8a8;
   color: rgba(202, 158, 230, 0.95);
   background-color: transparent;
+}
+
+#workspaces button:hover {
+  background: lightblue;
+  color: #131313;
+  border: none;
+  font-style: oblique;
 }
 
 /*  #workspaces button.visible {  */
