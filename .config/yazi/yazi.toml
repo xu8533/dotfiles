@@ -1,3 +1,7 @@
+# A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
+# If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
+"$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
+
 [manager]
 ratio          = [ 1, 4, 3 ]
 sort_by        = "modified"
@@ -9,9 +13,12 @@ show_hidden    = false
 show_symlink   = true
 
 [preview]
-tab_size        = 2
+tab_size        = 1
 max_width       = 600
 max_height      = 900
+image_filter	= "triangle"
+image_quality   = 75
+sixel_fraction  = 15
 cache_dir       = ""
 ueberzug_scale  = 1
 ueberzug_offset = [ 0, 0, 0, 0 ]
@@ -22,10 +29,9 @@ edit = [
 	{ exec = 'code "%*"',    orphan = true, for = "windows" },
 ]
 open = [
-	# { exec = 'xdg-open "$@"',             desc = "Open", for = "linux" },
-	{ exec = 'imv "$@"',             desc = "Open", for = "linux" },
-	{ exec = 'open "$@"',                 desc = "Open", for = "macos" },
-	{ exec = 'start "%1"', orphan = true, desc = "Open", for = "windows" }
+	{ exec = 'imv "$@"',					desc = "Open", for = "linux" },
+	{ exec = 'open "$@"',					desc = "Open", for = "macos" },
+	{ exec = 'start "%1"', orphan = true, 	desc = "Open", for = "windows" }
 ]
 reveal = [
 	{ exec = 'open -R "$1"',                       desc = "Reveal", for = "macos" },
@@ -68,8 +74,8 @@ rules = [
 ]
 
 [tasks]
-micro_workers    = 5
-macro_workers    = 10
+micro_workers    = 10
+macro_workers    = 25
 bizarre_retry    = 5
 image_alloc      = 536870912  # 512MB
 image_bound      = [ 0, 0 ]
@@ -78,40 +84,40 @@ suppress_preload = false
 [plugin]
 
 preloaders = [
-	{ name = "*", cond = "!mime", exec = "mime.lua", multi = true, prio = "high" },
+	{ name = "*", cond = "!mime", exec = "mime", multi = true, prio = "high" },
 	# Image
-	{ mime = "image/vnd.djvu", exec = "noop.lua" },
-	{ mime = "image/*",        exec = "image.lua" },
+	{ mime = "image/vnd.djvu", exec = "noop" },
+	{ mime = "image/*",        exec = "image" },
 	# Video
-	{ mime = "video/*", exec = "video.lua" },
+	{ mime = "video/*", exec = "video" },
 	# PDF
-	{ mime = "application/pdf", exec = "pdf.lua" },
+	{ mime = "application/pdf", exec = "pdf" },
 ]
 previewers = [
 	{ name = "*/", exec = "folder.lua", sync = true },
 	# Code
-	{ mime = "text/*",                 exec = "code.lua" },
-	{ mime = "*/xml",                  exec = "code.lua" },
-	{ mime = "*/javascript",           exec = "code.lua" },
-	{ mime = "*/x-wine-extension-ini", exec = "code.lua" },
+	{ mime = "text/*",                 exec = "code" },
+	{ mime = "*/xml",                  exec = "code" },
+	{ mime = "*/javascript",           exec = "code" },
+	{ mime = "*/x-wine-extension-ini", exec = "code" },
 	# JSON
-	{ mime = "application/json", exec = "json.lua" },
+	{ mime = "application/json", exec = "json" },
 	# Image
-	{ mime = "image/vnd.djvu", exec = "noop.lua" },
-	{ mime = "image/*",        exec = "image.lua" },
+	{ mime = "image/vnd.djvu", exec = "noop" },
+	{ mime = "image/*",        exec = "image" },
 	# Video
-	{ mime = "video/*", exec = "video.lua" },
+	{ mime = "video/*", exec = "video" },
 	# PDF
-	{ mime = "application/pdf", exec = "pdf.lua" },
+	{ mime = "application/pdf", exec = "pdf" },
 	# Archive
-	{ mime = "application/zip",             exec = "archive.lua" },
-	{ mime = "application/gzip",            exec = "archive.lua" },
-	{ mime = "application/x-tar",           exec = "archive.lua" },
-	{ mime = "application/x-bzip",          exec = "archive.lua" },
-	{ mime = "application/x-bzip2",         exec = "archive.lua" },
-	{ mime = "application/x-7z-compressed", exec = "archive.lua" },
-	{ mime = "application/x-rar",           exec = "archive.lua" },
-	{ mime = "application/xz",              exec = "archive.lua" },
+	{ mime = "application/zip",             exec = "archive" },
+	{ mime = "application/gzip",            exec = "archive" },
+	{ mime = "application/x-tar",           exec = "archive" },
+	{ mime = "application/x-bzip",          exec = "archive" },
+	{ mime = "application/x-bzip2",         exec = "archive" },
+	{ mime = "application/x-7z-compressed", exec = "archive" },
+	{ mime = "application/x-rar",           exec = "archive" },
+	{ mime = "application/xz",              exec = "archive" },
 ]
 
 [input]
