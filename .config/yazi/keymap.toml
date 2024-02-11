@@ -74,8 +74,8 @@ keymap = [
 	{ on = [ "s" ],         exec = "search fd",                                            desc = "名字搜索，使用fd做后端" },
 	{ on = [ "S" ],         exec = "search rg",                                            desc = "搜索文件内容, 使用ripgrep做后端" },
 	{ on = [ "<C-s>" ],     exec = "search none",                                          desc = "取消正在进行的搜索" },
-	{ on = [ "z" ],         exec = "jump zoxide",                                          desc = "切换目录, 使用zoxide做后端" },
-	{ on = [ "Z" ],         exec = "jump fzf",                                             desc = "切换目录或定位文件, 使用fzf做后端" },
+	{ on = [ "Z" ],         exec = "jump zoxide",                                          desc = "切换目录, 使用zoxide做后端" },
+	{ on = [ "z" ],         exec = "jump fzf",                                             desc = "切换目录或定位文件, 使用fzf做后端" },
 
 	# Linemode
 	{ on = [ "m", "s" ], exec = "linemode size",        desc = "Set linemode to size" },
@@ -135,19 +135,19 @@ keymap = [
 	{ on = [ "w" ], exec = "tasks_show", desc = "显示任务管理器" },
 
 	# Goto
-	{ on = [ "g", "c" ],       exec = "cd ~/.config",     desc = "进入config目录" },
-	{ on = [ "g", "d" ],       exec = "cd ~/下载",		  desc = "进入下载目录" },
-	{ on = [ "g", "D" ],       exec = "cd ~/文档",		  desc = "进入文档目录" },
-	{ on = [ "g", "e" ],       exec = "cd ~/桌面",		  desc = "进入桌面目录" },
-	{ on = [ "g", "h" ],       exec = "cd ~",             desc = "进入HOME目录" },
-	{ on = [ "g", "M" ],       exec = "cd ~/音乐",		  desc = "进入音乐目录" },
-	{ on = [ "g", "m" ],       exec = "cd /media/数据/音乐/",		  desc = "进入音乐目录" },
-	{ on = [ "g", "p" ],       exec = "cd ~/图片",		  desc = "进入图片目录" },
-	{ on = [ "g", "s" ],       exec = "cd ~/.dotfiles",     desc = "进入config目录" },
-	{ on = [ "g", "t" ],       exec = "cd /tmp",          desc = "进入tmp目录" },
-	{ on = [ "g", "v" ],       exec = "cd ~/视频",		  desc = "进入视频目录" },
-	{ on = [ "g", "w" ],       exec = "cd ~/图片/Wallpapers",          desc = "进入壁纸目录" },
-	{ on = [ "g", "<Space>" ], exec = "cd --interactive", desc = "请输入想要进入的目录" },
+	{ on = [ "g", "c" ],       exec = "cd ~/.config",				desc = "进入config目录" },
+	{ on = [ "g", "d" ],       exec = "cd ~/下载",		  			desc = "进入下载目录" },
+	{ on = [ "g", "D" ],       exec = "cd ~/文档",		  			desc = "进入文档目录" },
+	{ on = [ "g", "e" ],       exec = "cd ~/桌面",		  			desc = "进入桌面目录" },
+	{ on = [ "g", "h" ],       exec = "cd ~",             			desc = "进入HOME目录" },
+	{ on = [ "g", "M" ],       exec = "cd ~/音乐",		  			desc = "进入音乐目录" },
+	{ on = [ "g", "m" ],       exec = "cd /media/数据/音乐/",		desc = "进入音乐目录" },
+	{ on = [ "g", "p" ],       exec = "cd ~/图片",					desc = "进入图片目录" },
+	{ on = [ "g", "s" ],       exec = "cd ~/.dotfiles",   			desc = "进入config目录" },
+	{ on = [ "g", "t" ],       exec = "cd /tmp",          			desc = "进入tmp目录" },
+	{ on = [ "g", "v" ],       exec = "cd ~/视频",		  			desc = "进入视频目录" },
+	{ on = [ "g", "w" ],       exec = "cd ~/图片/Wallpapers",       desc = "进入壁纸目录" },
+	{ on = [ "g", "<Space>" ], exec = "cd --interactive",			desc = "请输入想要进入的目录" },
 
 	# Help
 	{ on = [ "~" ], exec = "help", desc = "打开帮助" },
@@ -202,12 +202,12 @@ keymap = [
 	{ on = [ "<Esc>" ],   exec = "escape",         desc = "回退normal模式, 或者取消输入" },
 
 	# Mode
-	{ on = [ "i" ], exec = "insert",                              desc = "进入insert模式" },
-	{ on = [ "a" ], exec = "insert --append",                     desc = "进入append模式" },
-	{ on = [ "I" ], exec = [ "move -999", "insert" ],             desc = "进入insert模式, 并移动到文件顶部" },
-	{ on = [ "A" ], exec = [ "move 999", "insert --append" ],     desc = "进入append模式, 并移动到文件底部" },
-	{ on = [ "v" ], exec = "visual",                              desc = "进入visual模式" },
-	{ on = [ "V" ], exec = [ "move -999", "visual", "move 999" ], desc = "进入visual模式并全选" },
+	{ on = [ "i" ], exec = "insert",										desc = "进入insert模式" },
+	{ on = [ "a" ], exec = "insert --append",                     			desc = "进入append模式" },
+	{ on = [ "I" ], exec = [ "move -999999", "insert" ],          			desc = "进入insert模式, 并移动到文件顶部" },
+	{ on = [ "A" ], exec = [ "move 999999", "insert --append" ],  			desc = "进入append模式, 并移动到文件底部" },
+	{ on = [ "v" ], exec = "visual",                              			desc = "进入visual模式" },
+	{ on = [ "V" ], exec = [ "move -999999", "visual", "move 999" ],		desc = "进入visual模式并全选" },
 
 	# Character-wise movement
 	{ on = [ "h" ],       exec = "move -1", desc = "向后移动一个字符" },
@@ -236,10 +236,10 @@ keymap = [
 	{ on = [ "<C-d>" ],       exec = "backspace --under", desc = "删除光标处字符" },
 
 	# Kill
-	{ on = [ "<C-u>" ], exec = "kill bol",      desc = "Kill backwards to the BOL" },
-	{ on = [ "<C-k>" ], exec = "kill eol",      desc = "Kill forwards to the EOL" },
-	{ on = [ "<C-w>" ], exec = "kill backward", desc = "Kill backwards to the start of the current word" },
-	{ on = [ "<A-d>" ], exec = "kill forward",  desc = "Kill forwards to the end of the current word" },
+	{ on = [ "<C-u>" ], exec = "kill bol",      desc = "删除到行首" },
+	{ on = [ "<C-k>" ], exec = "kill eol",      desc = "删除到行尾" },
+	{ on = [ "<C-w>" ], exec = "kill backward", desc = "删除到单词开始" },
+	{ on = [ "<A-d>" ], exec = "kill forward",  desc = "删除到单词结尾" },
 
 	# Cut/Yank/Paste
 	{ on = [ "d" ], exec = "delete --cut",                              desc = "剪切选择的字符" },
@@ -247,9 +247,9 @@ keymap = [
 	{ on = [ "c" ], exec = "delete --cut --insert",                     desc = "替换选择的字符" },
 	{ on = [ "C" ], exec = [ "delete --cut --insert", "move 999" ],     desc = "替换到行尾" },
 	{ on = [ "x" ], exec = [ "delete --cut", "move 1 --in-operating" ], desc = "剪切当前字符" },
-	{ on = [ "y" ], exec = "yank",           desc = "复制" },
-	{ on = [ "p" ], exec = "paste",          desc = "向前粘贴" },
-	{ on = [ "P" ], exec = "paste --before", desc = "向后粘贴" },
+	{ on = [ "y" ], exec = "yank",										desc = "复制" },
+	{ on = [ "p" ], exec = "paste",          							desc = "向前粘贴" },
+	{ on = [ "P" ], exec = "paste --before", 							desc = "向后粘贴" },
 
 	# Undo/Redo
 	{ on = [ "u" ],     exec = "undo", desc = "撤销" },
@@ -262,16 +262,13 @@ keymap = [
 [completion]
 
 keymap = [
-	{ on = [ "<C-q>" ], exec = "close",          desc = "取消补全" },
-	{ on = [ "<Tab>" ], exec = "close --submit", desc = "确认补全" },
-
-	{ on = [ "<C-p>" ], exec = "arrow -1", desc = "上移一行" },
-	{ on = [ "<C-n>" ], exec = "arrow 1",  desc = "下移一行" },
-
-	{ on = [ "<Up>" ],   exec = "arrow -1", desc = "上移一行" },
-	{ on = [ "<Down>" ], exec = "arrow 1",  desc = "下移一行" },
-
-	{ on = [ "~" ], exec = "help", desc = "打开帮助" }
+	{ on = [ "<C-q>" ], exec = "close",				desc = "取消补全" },
+	{ on = [ "<Tab>" ], exec = "close --submit", 	desc = "确认补全" },
+	{ on = [ "<C-p>" ], exec = "arrow -1",			desc = "上移一行" },
+	{ on = [ "<C-n>" ], exec = "arrow 1",  			desc = "下移一行" },
+	{ on = [ "<Up>" ],   exec = "arrow -1",			desc = "上移一行" },
+	{ on = [ "<Down>" ], exec = "arrow 1",  		desc = "下移一行" },
+	{ on = [ "~" ], exec = "help",					desc = "打开帮助" }
 ]
 
 [help]
