@@ -109,10 +109,12 @@ tooltip {
 }
 
 #workspaces button:hover {
-  background: lightblue;
+  /* background-color: lightblue; */
+  background-color: rgb(142, 175, 140);
   color: #131313;
   border: none;
   font-style: oblique;
+  font-size: 20px;
 }
 
 /*  #workspaces button.visible {  */
