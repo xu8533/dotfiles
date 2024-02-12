@@ -8,4 +8,6 @@
 <img align="center" src="previews/screenshot_2024-02-11_22:24:57.png">
 
 **my dotfiles, hyprland, eww, waybar, neovim**
-**Window Manager:** [hyprland](https://www.hyprland.org/)
+**Window Manager:** [hyprland](https://www.hyprland.org)
+**Editor:** [neovim](https://github.com/neovim/neovim)
+**Status Bar:** [waybar](https://github.com/Alexays/Waybar)
