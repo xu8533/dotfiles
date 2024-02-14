@@ -7,7 +7,15 @@
 <img align="center" src="previews/screenshot_2024-02-02_23:45:26.png">
 <img align="center" src="previews/screenshot_2024-02-11_22:24:57.png">
 
-**my dotfiles, hyprland, eww, waybar, neovim**
-**Window Manager:** [hyprland](https://www.hyprland.org)
-**Editor:** [neovim](https://github.com/neovim/neovim)
-**Status Bar:** [waybar](https://github.com/Alexays/Waybar)
+**my dotfiles, hyprland, eww, waybar, neovim, rofi**
+
+- **Window Manager:** [Hyprland](https://www.hyprland.org)
+- **OS:** [Arch Linux](https://archlinux.org)
+- **Editor:** [Neovim](https://github.com/neovim/neovim)
+- **Terminal:** 󰄛[Kitty](https://github.com/kovidgoyal/kitty)
+- **Shell:** [Bash](https://www.gnu.org/savannah-checkouts/gnu/bash/bash.html)
+- **Widgets:** 󰜬[EWW](https://github.com/elkowar/eww)
+- **Application Launcher:** 󱓞[Rofi](https://github.com/davatorium/rofi)
+- **Browser:** [Firefox](https://www.mozilla.org/en-US/firefox)
+- **File Manager:** 󰪶[Thunar](https://github.com/xfce-mirror/thunar)
+- **Status Bar:** [Waybar](https://github.com/Alexays/Waybar)
