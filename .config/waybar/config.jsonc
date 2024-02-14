@@ -6,9 +6,9 @@
   // "exclusive": true,
   // "passthrough": true,
   // "gtk-layer-shell": true,
-  "height": 0,
+  // "height": 0,
   // "width": 2000,
-  "width": 0,
+  // "width": 0,
   "include": [
     "$HOME/.config/waybar/modules/backlight.jsonc",
     "$HOME/.config/waybar/modules/battery.jsonc",

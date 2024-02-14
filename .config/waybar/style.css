@@ -4,7 +4,9 @@
 * {
   border: none;
   border-radius: 10px;
-  font-family: "JetbrainsMono Nerd Font";
+  /* font-family: "JetbrainsMono Nerd Font"; */
+  /* font-family: "NotoSansM Nerd Font Mono"; */
+  font-family: "SourceCodeVF";
   font-size: 18px;
   min-height: 10px;
 }
@@ -20,8 +22,8 @@
   font-size: 18px;
   transition: none;
   color: rgba(183, 199, 65, 0.99);
-  /* background-color: rgba(124, 70, 34, 0.8); */
   background-color: rgba(110, 22, 80, 0.7);
+  /* background-color: rgba(124, 70, 34, 0.8); */
   /* background-color: rgba(190, 77, 97, 0.8); */
 }
 
@@ -30,6 +32,7 @@ window#waybar {
 }
 
 window#waybar.empty #window {
+  border: none;
   background-color: transparent;
 }
 
@@ -43,14 +46,6 @@ window#waybar.hidden {
 }
 
 tooltip {
-  /* border-radius: 15px; */
-  /* border-width: 0px; */
-  /* border-style: solid; */
-  /* border-style: dotted; */
-  /* border-style: inset; */
-  /* border: 1px solid rgba(100, 114, 125, 0.5); */
-  /* border-color: transparent; */
-  /* transition: none; */
   font-weight: bolder;
   font-size: 20px;
   /* font-style: oblique; */
@@ -67,7 +62,7 @@ tooltip {
   margin-left: 12px;
   margin-right: 12px;
   font-size: 8px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   background-color: transparent;
   transition: none;
 }
@@ -75,7 +70,7 @@ tooltip {
 #workspaces button {
   color: #cba6f7;
   background-color: #f8f7f0;
-  box-shadow: inset 0 -3px transparent;
+  /* box-shadow: inset 0 -3px transparent; */
   border-bottom-style: outset;
   border-width: 4px;
   border-color: rgba(64, 152, 199, 0.98);
@@ -93,28 +88,36 @@ tooltip {
   border-bottom-style: outset;
   border-width: 4px;
   border-color: rgba(219, 75, 51, 0.99);
-  padding-right: 20px;
-  padding-left: 20px;
+  padding-right: 18px;
+  padding-left: 18px;
   padding-bottom: 2px;
   background-color: rgba(202, 158, 230, 0.98);
-  color: #f8f7f0;
+  color: rgba(248, 247, 240, 0.99);
+  font-size: 18px;
 }
 
 #workspaces button.empty {
   border-style: solid;
-  border-width: 1px;
+  border-width: 0px;
   border-color: #c5b8a8;
+  border-radius: 15px;
   color: rgba(202, 158, 230, 0.95);
   background-color: transparent;
 }
 
 #workspaces button:hover {
   /* background-color: lightblue; */
-  background-color: rgb(142, 175, 140);
+  background-color: rgb(76, 117, 72);
   color: #131313;
+  /* color: rgb(151, 50, 72); */
+  box-shadow: inset 0 -3px transparent;
   border: none;
-  font-style: oblique;
-  font-size: 20px;
+  font-style: normal;
+  font-size: 36px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 /*  #workspaces button.visible {  */
@@ -124,7 +127,7 @@ tooltip {
 /* } */
 
 button {
-  box-shadow: inset 0 -3px transparent;
+  /* box-shadow: inset 0 -3px transparent; */
   /* Avoid rounded borders under each button name */
   border: none;
   border-radius: 0;
@@ -192,9 +195,9 @@ button:hover {
 #pulseaudio {
   margin-top: 6px;
   margin-left: 8px;
-  padding-left: 10px;
-  padding-right: 10px;
   margin-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 8px;
   border-radius: 10px;
   transition: none;
   color: #1a1826;
@@ -227,7 +230,7 @@ button:hover {
   animation-name: battery-charging;
   animation-duration: 1.5s;
   animation-timing-function: linear;
-  animation-iteration-count: 5;
+  animation-iteration-count: infinite;
   animation-direction: alternate;
 }
 
@@ -279,7 +282,6 @@ button:hover {
   transition: none;
   color: #161320;
   background-color: #abe9b3;
-  /*background: #1A1826;*/
 }
 
 #memory {
@@ -291,7 +293,7 @@ button:hover {
   border-radius: 10px;
   transition: none;
   color: #161320;
-  background-color: #ddb6f2;
+  background-color: rgba(221, 182, 242, 0.9);
 }
 
 #cpu {
@@ -303,7 +305,7 @@ button:hover {
   border-radius: 10px;
   transition: none;
   color: #161320;
-  background-color: #96cdfb;
+  background-color: rgba(150, 205, 251, 0.9);
 }
 
 #cava {
@@ -328,9 +330,8 @@ button:hover {
   transition: none;
   /* color: #B5E8E0; */
   /* background: #2980b9; */
-  background-color: rgba(0, 0, 0, 0);
-  border-color: rgba(96, 67, 34, 1);
-  /* background: rgba(41, 128, 185, 0); */
+background-color:rgba(213, 224, 213, 0.9);
+  /* border-color: rgba(96, 67, 34, 1); */
 }
 
 #tray > .passive {
@@ -359,7 +360,7 @@ button:hover {
   margin-top: 6px;
   margin-left: 8px;
   margin-right: 8px;
-  padding-left: 6px;
+  padding-left: 4px;
   padding-right: 8px;
   margin-bottom: 0px;
   border-radius: 10px;
@@ -372,8 +373,8 @@ button:hover {
   margin-top: 6px;
   margin-left: 8px;
   padding-left: 10px;
-  padding-right: 10px;
   margin-bottom: 0px;
+  padding-right: 14px;
   border-radius: 10px;
   transition: none;
   color: #161320;
