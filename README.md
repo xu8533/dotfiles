@@ -7,7 +7,8 @@
 <img align="center" src="previews/screenshot_2024-02-02_23:45:26.png">
 <img align="center" src="previews/screenshot_2024-02-11_22:24:57.png">
 
-- **my dotfiles, hyprland, eww, waybar, neovim**
+**my dotfiles, hyprland, eww, waybar, neovim, rofi**
+
 - **Window Manager:** [hyprland](https://www.hyprland.org)
 - **OS:** [Arch Linux](https://archlinux.org)
 - **Editor:** [neovim](https://github.com/neovim/neovim)
