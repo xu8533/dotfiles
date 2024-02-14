@@ -9,13 +9,13 @@
 
 **my dotfiles, hyprland, eww, waybar, neovim, rofi**
 
-- **Window Manager:** [hyprland](https://www.hyprland.org)
+- **Window Manager:** [Hyprland](https://www.hyprland.org)
 - **OS:** [Arch Linux](https://archlinux.org)
-- **Editor:** [neovim](https://github.com/neovim/neovim)
-- **Terminal:** 󰄛[kitty](https://github.com/kovidgoyal/kitty)
-- **Shell:** [bash](https://wiki.archlinux.org/index.php/Zsh)
-- **Widgets:** 󰜬[eww](https://github.com/elkowar/eww)
-- **Application Launcher:** 󱓞[rofi](https://github.com/davatorium/rofi)
-- **Browser:** [firefox](https://www.mozilla.org/en-US/firefox)
-- **File Manager:** 󰪶[thunar](https://github.com/xfce-mirror/thunar)
-- **Status Bar:** [waybar](https://github.com/Alexays/Waybar)
+- **Editor:** [Neovim](https://github.com/neovim/neovim)
+- **Terminal:** 󰄛[Kitty](https://github.com/kovidgoyal/kitty)
+- **Shell:** [Bash](https://www.gnu.org/savannah-checkouts/gnu/bash/bash.html)
+- **Widgets:** 󰜬[EWW](https://github.com/elkowar/eww)
+- **Application Launcher:** 󱓞[Rofi](https://github.com/davatorium/rofi)
+- **Browser:** [Firefox](https://www.mozilla.org/en-US/firefox)
+- **File Manager:** 󰪶[Thunar](https://github.com/xfce-mirror/thunar)
+- **Status Bar:** [Waybar](https://github.com/Alexays/Waybar)
