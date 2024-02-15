@@ -32,9 +32,9 @@
     "custom/launcher",
     "cpu",
     "memory",
-    "custom/media",
     "tray",
     // "wlr/taskbar",
+    // "custom/media",
     "hyprland/window"
   ],
   "modules-center": [

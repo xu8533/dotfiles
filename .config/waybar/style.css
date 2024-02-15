@@ -2,13 +2,13 @@
 @import url("animation.css");
 
 * {
-  border: none;
+  /* border: none; */
   border-radius: 10px;
   /* font-family: "JetbrainsMono Nerd Font"; */
   /* font-family: "NotoSansM Nerd Font Mono"; */
   font-family: "SourceCodeVF";
   font-size: 18px;
-  min-height: 10px;
+  min-height: 18px;
 }
 
 #window {
@@ -32,12 +32,10 @@ window#waybar {
 }
 
 window#waybar.empty #window {
-  border: none;
   background-color: transparent;
 }
 
 window#waybar.empty {
-  border: none;
   background-color: transparent;
 }
 
@@ -54,6 +52,26 @@ tooltip {
   color: rgba(191, 229, 35, 0.9);
   background-color: rgba(144, 55, 84, 0.95);
   /* background-color: rgba(18, 52, 96, 0.8); */
+  border: none;
+  border-radius: 10px;
+}
+
+tooltip label {
+  color: rgba(191, 229, 35, 0.9);
+  border-radius: 10px;
+}
+
+button {
+  /* Use box-shadow instead of border so the text isn't offset */
+  box-shadow: inset 0 -3px transparent;
+  /* Avoid rounded borders under each button name */
+  border: none;
+  border-radius: 0;
+}
+
+button:hover {
+  background: inherit;
+  box-shadow: inset 0 -3px #ffffff;
 }
 
 #workspaces {
@@ -62,7 +80,8 @@ tooltip {
   margin-left: 12px;
   margin-right: 12px;
   font-size: 8px;
-  /* border-radius: 10px; */
+  border: none;
+  border-radius: 10px;
   background-color: transparent;
   transition: none;
 }
@@ -70,7 +89,7 @@ tooltip {
 #workspaces button {
   color: #cba6f7;
   background-color: #f8f7f0;
-  /* box-shadow: inset 0 -3px transparent; */
+  box-shadow: inset 0 -3px transparent;
   border-bottom-style: outset;
   border-width: 4px;
   border-color: rgba(64, 152, 199, 0.98);
@@ -97,19 +116,18 @@ tooltip {
 }
 
 #workspaces button.empty {
-  border-style: solid;
-  border-width: 0px;
-  border-color: #c5b8a8;
-  border-radius: 15px;
+  /* border-style: solid; */
+  /* border-width: 0px; */
+  /* border-color: #c5b8a8; */
+  /* border-radius: 15px; */
+  border: none;
   color: rgba(202, 158, 230, 0.95);
   background-color: transparent;
 }
 
 #workspaces button:hover {
-  /* background-color: lightblue; */
-  background-color: rgb(76, 117, 72);
+  background-color: rgba(76, 117, 72, 1);
   color: #131313;
-  /* color: rgb(151, 50, 72); */
   box-shadow: inset 0 -3px transparent;
   border: none;
   font-style: normal;
@@ -118,24 +136,6 @@ tooltip {
   margin-right: 10px;
   padding-left: 10px;
   padding-right: 10px;
-}
-
-/*  #workspaces button.visible {  */
-/*    color: rgba(248, 247, 240, 0.9);  */
-/*    color: rgba(23, 84, 56, 1);  */
-/*    background-color: transparent;  */
-/* } */
-
-button {
-  /* box-shadow: inset 0 -3px transparent; */
-  /* Avoid rounded borders under each button name */
-  border: none;
-  border-radius: 0;
-}
-
-button:hover {
-  background: inherit;
-  box-shadow: inset 0 -3px #ffffff;
 }
 
 #network {
@@ -330,7 +330,7 @@ button:hover {
   transition: none;
   /* color: #B5E8E0; */
   /* background: #2980b9; */
-background-color:rgba(213, 224, 213, 0.9);
+  background-color: rgba(213, 224, 213, 0.9);
   /* border-color: rgba(96, 67, 34, 1); */
 }
 

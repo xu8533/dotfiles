@@ -2,7 +2,7 @@
   "clock": {
     "format": "{:%H:%M}  ",
     "format-alt": "{:%EY年%Om月%Od日, %H时%M分, %A} ",
-    "tooltip-format": "<big>{:L%Y年%B 第%OV周}</big>\n<span size='14pt' font='WenQuanYi Zen Hei Mono'><tt>{calendar}</tt></span>",
+    "tooltip-format": "<big>{:%Y年%B 第%OV周}</big>\n<span size='14pt' font='WenQuanYi Zen Hei Mono'><tt>{calendar}</tt></span>",
     // "tooltip-format": "<big>{:L%Y年%B 第%OV周}</big>\n<tt><small>{calendar}</small></tt>",
     "timezone": "Asia/Shanghai",
     "locale": "zh_CN.UTF-8",
