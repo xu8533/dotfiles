@@ -36,7 +36,7 @@ gtkTheme=Frosted-Glass
 gtkMode=light
 
 if [ ! -f $wLayout ] || [ ! -f $wlTmplt ] ; then
-    echo "ERROR: Config $1 not found..."
+    echo "错误: $1 配置未找到..."
     exit 1;
 fi
 
