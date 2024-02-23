@@ -46,7 +46,7 @@ alias gc='cd $HOME/.config'
 alias gD='cd $HOME/下载'
 alias gH='cd $HOME/.config/hypr'
 alias gp='cd $HOME/图片'
-# alias gw='cd $HOME/图片/Wallpapers'
+alias gw='cd $HOME/图片/Wallpapers'
 #
 # git bare裸库，用于配置文件管理
 alias dot-git='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
