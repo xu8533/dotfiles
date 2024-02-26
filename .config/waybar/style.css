@@ -2,25 +2,47 @@
 @import url("animation.css");
 
 * {
-  /* border: none; */
+  border: none;
   border-radius: 10px;
+  box-shadow: none;
   /* font-family: "JetbrainsMono Nerd Font"; */
   /* font-family: "NotoSansM Nerd Font Mono"; */
-  font-family: "SourceCodeVF";
+  font-family: "SourceCodeVF", "JetbrainsMono Nerd Font",
+    "NotoSansM Nerd Font Mono";
   font-size: 18px;
-  min-height: 18px;
+  min-height: 0px;
+}
+
+#backlight,
+#battery,
+#bluetooth,
+#cava,
+#clock,
+#cpu,
+#custom-launcher,
+#custom-media,
+#custom-power,
+#custom-wallpaper,
+#memory,
+#mpd,
+#window,
+#network,
+#pulseaudio,
+#tray {
+  color: #161320;
+  transition: none;
+  margin-top: 6px;
+  margin-left: 8px;
+  margin-bottom: 1px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 15px;
 }
 
 #window {
-  margin-top: 6px;
-  margin-left: 8px;
-  margin-bottom: 0px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 12px;
   border-radius: 30px;
   font-weight: bolder;
-  font-size: 18px;
-  transition: none;
   color: rgba(183, 199, 65, 0.99);
   background-color: rgba(110, 22, 80, 0.7);
   /* background-color: rgba(124, 70, 34, 0.8); */
@@ -31,11 +53,11 @@ window#waybar {
   background-color: transparent;
 }
 
-window#waybar.empty #window {
+window#waybar.empty {
   background-color: transparent;
 }
 
-window#waybar.empty {
+window#waybar.empty #window {
   background-color: transparent;
 }
 
@@ -69,27 +91,29 @@ button {
   border-radius: 0;
 }
 
-button:hover {
-  background: inherit;
-  box-shadow: inset 0 -3px #ffffff;
-}
+/* button:hover { */
+/*   background: inherit; */
+/*   box-shadow: inset 0 -3px #ffffff; */
+/* } */
 
 #workspaces {
   margin-top: 3px;
-  margin-bottom: 2px;
+  margin-bottom: 1px;
   margin-left: 12px;
   margin-right: 12px;
   font-size: 8px;
   border: none;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   background-color: transparent;
   transition: none;
+  /* opacity: 0.88; */
 }
 
 #workspaces button {
   color: #cba6f7;
   background-color: #f8f7f0;
-  box-shadow: inset 0 -3px transparent;
+  /* box-shadow: inset 0 -3px transparent; */
+  /* border: none; */
   border-bottom-style: outset;
   border-width: 4px;
   border-color: rgba(64, 152, 199, 0.98);
@@ -104,6 +128,7 @@ button:hover {
 }
 
 #workspaces button.active {
+  /* box-shadow: inset 0 -4px #4c566a; */
   border-bottom-style: outset;
   border-width: 4px;
   border-color: rgba(219, 75, 51, 0.99);
@@ -111,7 +136,7 @@ button:hover {
   padding-left: 18px;
   padding-bottom: 2px;
   background-color: rgba(202, 158, 230, 0.98);
-  color: rgba(248, 247, 240, 0.99);
+  color: rgba(248, 247, 240, 1);
   font-size: 18px;
 }
 
@@ -138,20 +163,28 @@ button:hover {
   padding-right: 10px;
 }
 
+
+
+#mode {
+  background-color: #64727d;
+  border-bottom: 3px solid #ffffff;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left>widget:first-child>#workspaces {
+  margin-left: 0px;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right>widget:last-child>#workspaces {
+  margin-right: 0px;
+}
+
 #network {
-  margin-top: 6px;
-  margin-left: 8px;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-bottom: 0px;
-  border-radius: 10px;
-  transition: none;
-  color: #161320;
   background-color: #bd93f9;
 }
 
 #network.disabled {
-  color: #161320;
   background-color: #e18a3b;
   animation-name: network-diabled;
   animation-duration: 1s;
@@ -161,7 +194,6 @@ button:hover {
 }
 
 #network.disconnected {
-  color: #161320;
   background-color: #bc3823;
   animation-name: network-disconnected;
   animation-duration: 1s;
@@ -171,7 +203,6 @@ button:hover {
 }
 
 #network.linked {
-  color: #161320;
   background-color: #bd93f9;
   animation-name: network-linked;
   animation-duration: 1s;
@@ -181,38 +212,16 @@ button:hover {
 }
 
 #bluetooth {
-  margin-top: 6px;
-  margin-left: 8px;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-bottom: 0px;
-  border-radius: 10px;
-  transition: none;
-  color: #161320;
   background-color: #ba79b1;
 }
 
 #pulseaudio {
-  margin-top: 6px;
-  margin-left: 8px;
-  margin-bottom: 0px;
   padding-left: 0px;
   padding-right: 8px;
-  border-radius: 10px;
-  transition: none;
-  color: #1a1826;
   background-color: #fae3b0;
 }
 
 #battery {
-  margin-top: 6px;
-  margin-left: 8px;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-bottom: 0px;
-  border-radius: 10px;
-  transition: none;
-  color: #161320;
   background-color: #b5e8e0;
 }
 
@@ -225,7 +234,6 @@ button:hover {
 }
 
 #battery.charging {
-  color: #161320;
   background-color: #b5e8e0;
   animation-name: battery-charging;
   animation-duration: 1.5s;
@@ -235,13 +243,11 @@ button:hover {
 }
 
 #battery.plugged {
-  color: #161320;
   background-color: #b5e8e0;
 }
 
 #battery.warning:not(.charging) {
   background-color: #b5e8e0;
-  color: #161320;
   animation-name: battery-warning;
   animation-duration: 0.5s;
   animation-timing-function: linear;
@@ -252,7 +258,6 @@ button:hover {
 
 #battery.critical:not(.charging) {
   background-color: #b5e8e0;
-  color: #161320;
   animation-name: battery-cirtical;
   animation-duration: 0.5s;
   animation-timing-function: linear;
@@ -261,135 +266,72 @@ button:hover {
 }
 
 #backlight {
-  margin-top: 6px;
-  margin-left: 8px;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-bottom: 0px;
-  border-radius: 10px;
-  transition: none;
-  color: #161320;
   background-color: #f8bd96;
 }
 
 #clock {
-  margin-top: 6px;
-  margin-left: 8px;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-bottom: 0px;
-  border-radius: 10px;
-  transition: none;
-  color: #161320;
   background-color: #abe9b3;
 }
 
 #memory {
   margin-top: 6px;
-  margin-left: 8px;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-bottom: 0px;
-  border-radius: 10px;
-  transition: none;
-  color: #161320;
+  margin-left: 4px;
+  margin-right: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 15px;
   background-color: rgba(221, 182, 242, 0.9);
 }
 
 #cpu {
-  margin-top: 6px;
-  margin-left: 8px;
-  padding-left: 10px;
-  margin-bottom: 0px;
-  padding-right: 10px;
-  border-radius: 10px;
-  transition: none;
-  color: #161320;
   background-color: rgba(150, 205, 251, 0.9);
+  margin-left: 4px;
+  margin-right: 4px;
 }
 
 #cava {
-  margin-top: 6px;
-  margin-left: 8px;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-bottom: 0px;
-  border-radius: 10px;
-  transition: none;
-  color: #161320;
   background-color: #c9cbff;
 }
 
 #tray {
-  margin-top: 6px;
-  margin-left: 8px;
-  padding-left: 10px;
-  margin-bottom: 0px;
-  padding-right: 10px;
-  border-radius: 10px;
-  transition: none;
   /* color: #B5E8E0; */
   /* background: #2980b9; */
   background-color: rgba(213, 224, 213, 0.9);
   /* border-color: rgba(96, 67, 34, 1); */
 }
 
-#tray > .passive {
+#tray>.passive {
   -gtk-icon-effect: dim;
 }
 
-#tray > .needs-attention {
+#tray>.needs-attention {
   -gtk-icon-effect: highlight;
   background-color: #eb4d4b;
 }
 
 #custom-launcher {
   font-size: 24px;
-  margin-top: 6px;
-  margin-left: 8px;
-  padding-left: 10px;
-  padding-right: 5px;
-  border-radius: 10px;
-  transition: none;
+  padding-left: 4px;
+  padding-right: 4px;
+  border-radius: 15px;
   color: #00adb0;
   background-color: rgba(1, 0, 0, 0);
 }
 
 #custom-power {
   font-size: 20px;
-  margin-top: 6px;
-  margin-left: 8px;
   margin-right: 8px;
   padding-left: 4px;
   padding-right: 8px;
-  margin-bottom: 0px;
-  border-radius: 10px;
-  transition: none;
-  color: #161320;
   background-color: #f28fad;
 }
 
 #custom-wallpaper {
-  margin-top: 6px;
-  margin-left: 8px;
-  padding-left: 10px;
-  margin-bottom: 0px;
   padding-right: 14px;
-  border-radius: 10px;
-  transition: none;
-  color: #161320;
   background-color: #c9cbff;
 }
 
 #custom-media {
-  margin-top: 6px;
-  margin-left: 8px;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-bottom: 0px;
-  border-radius: 10px;
-  transition: none;
-  /* color: #161320; */
   /* color: rgba(19, 57, 62, 90); */
   /* color: rgba(0, 110, 143, 1); */
   /* color: rgba(255, 0, 0, 80); */
@@ -425,18 +367,9 @@ button:hover {
 
 #mpd {
   padding: 0 10px;
-  border-radius: 15px;
   background-color: #cdd6f4;
   color: #516079;
   box-shadow: rgba(0, 0, 0, 0.116) 2 2 5 2px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-right: 10px;
-}
-
-#mpd {
-  background-color: #66cc99;
-  color: #2a5c45;
 }
 
 #mpd.disconnected {
@@ -467,10 +400,10 @@ button:hover {
   min-width: 16px;
 }
 
-#keyboard-state > label {
+#keyboard-state>label {
   padding: 0 5px;
 }
 
-#keyboard-state > label.locked {
+#keyboard-state>label.locked {
   background: rgba(0, 0, 0, 0.2);
 }
