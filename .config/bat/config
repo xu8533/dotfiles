@@ -22,3 +22,5 @@
 # --style="full"
 --color=always
 --map-syntax "*.ino:C++"
+
+--pager="less -FR"
