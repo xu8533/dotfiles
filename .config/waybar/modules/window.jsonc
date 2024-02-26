@@ -3,13 +3,13 @@
     // "format": "👉 {title}",
     "format": "{}",
     "max-length": 25,
-    "separate-outputs": false,
+    "separate-outputs": true,
     "rewrite": {
       "(.*) — Mozilla Firefox": "🌎 $1",
       "(.*) - Chromium": "🌎 $1",
-      // "(.*) - bash": " [$1]",
+      "(.*) - bash": " [$1]",
       "(.*) - NVIM": " $1"
     },
-    "tooltip": false
+    "tooltip": true
   }
 }
