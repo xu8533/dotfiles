@@ -1,7 +1,7 @@
 {
   "hyprland/workspaces": {
     "persistent-workspaces": {
-      "*": 10 // 10 workspaces by default on every monitor
+      "*": 10
     },
     "sort-by-number": true,
     "on-click": "activate",
@@ -23,16 +23,28 @@
       "9": "玖",
       "10": "零",
       "media": "",
-      "network": "󰲐",
+      "network": "󰩠",
       "office": "󰏆",
-      "urgent": ""
+      "urgent": "",
+      "active": " 󰮯 ",
+      "default": " ",
+      "empty": "󰧵 ",
+      "persistent": "󰧵 "
     }
+    // "window-rewrite-default": "",
+    // "window-rewrite": {
+    //   "title<.*youtube.*>": "",
+    //   "class<firefox>": "",
+    //   "class<firefox> title<.*github.*>": "",
+    //   "class<kitty>": "",
+    //   "code": "󰨞"
+    // }
   }
 }
-      // "active": "",
-      // "default": ""
-      // "10": "拾",
-      // "media": "",
+// "active": "",
+// "default": ""
+// "10": "拾",
+// "media": "",
 // "urgent": "",
 // "focused": "",
 // "default": ""
