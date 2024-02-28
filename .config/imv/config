@@ -46,14 +46,15 @@ l = pan 10 0
 
 # 图片旋转
 <Ctrl+r> = rotate by 90
-<Ctrl+e> = rotate by 10
 <Ctrl+u> = rotate by -90
-<Ctrl+i> = rotate by -10
+<Ctrl+i> = rotate by 10
+<Ctrl+e> = rotate by -10
 
 # 垂直，水平翻转
-v = flip vertical
-<backslash> = flip horizontal
 <slash> = flip horizontal
+<backslash> = flip horizontal
+<Shift+question> = flip vertical
+v = flip vertical
 
 # Other commands
 x = close
