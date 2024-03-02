@@ -2,12 +2,19 @@
 <p align="center">
   <b> ~ xu8533's configuration files ~ </b>
 </p>
+
 ### 🌟 Preview
+
+<br>
 
 <img align="center" src="previews/screenshot_2024-02-28_21:56:16.png">
 <img align="center" src="previews/screenshot_2024-02-02_23:45:26.png">
 
+<br>
+
 **hyprland, eww, waybar, neovim, rofi**
+
+<br>
 
 - **Window Manager:** [Hyprland](https://www.hyprland.org)
 - **OS:** [Arch Linux](https://archlinux.org)
