@@ -1,6 +1,6 @@
 <!-- HEADERS -->
 <p align="center">
-  <b> ~ xu8533's configuration files ~ </b>
+  <b> <font color="red"></font>~ xu8533's configuration files ~ </font></b>
 </p>
 
 ### 🌟 Preview
