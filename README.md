@@ -1,5 +1,7 @@
-### $\textcolor{#2874af}{我的hyprland配置文件}$
-
+<!-- HEADERS -->
+<p align="center">
+  <b> ~ xu8533's configuration files ~ </b>
+</p>
 ### 🌟 Preview
 
 <img align="center" src="previews/screenshot_2024-02-28_21:56:16.png">
