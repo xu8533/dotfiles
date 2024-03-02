@@ -1,14 +1,14 @@
 <!-- HEADERS -->
 <p align="center">
-  <b> <font color="red"></font>~ xu8533's configuration files ~ </font></b>
+  <b> ~ xu8533's configuration files ~ </b>
 </p>
 
 ### 🌟 Preview
 
 <br>
 
-<img align="center" src="previews/screenshot_2024-02-28_21:56:16.png">
-<img align="center" src="previews/screenshot_2024-02-02_23:45:26.png">
+<img align="center" width="75%" src="previews/screenshot_2024-02-28_21:56:16.png">
+<img align="center" width="75%" src="previews/screenshot_2024-02-02_23:45:26.png">
 
 <br>
 
