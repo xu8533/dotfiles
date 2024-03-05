@@ -6,7 +6,7 @@
 -->
 
 <p align="center">
-  <h2></h2><b> ~ xu8533's configuration files ~ </b></h2>
+  <h2><b> ~ xu8533's configuration files ~ </b></h2>
 </p>
 
 <!-- BADGES -->
@@ -24,13 +24,9 @@
 <img align="center" width="85%" src="previews/screenshot_2024-02-28_21:56:16.png">
 <img align="center" width="85%" src="previews/screenshot_2024-02-02_23:45:26.png">
 
-<br>
-
 <!-- INFORMATION -->
 
 **Compements**
-
-<br>
 
 - **Window Manager:** [Hyprland](https://www.hyprland.org)
 - **OS:** [Arch Linux](https://archlinux.org)
