@@ -1,8 +1,8 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 import gi
 
 gi.require_version("GdkPixbuf", "2.0")
-gi.require_version("Gtk", "3.0")
+gi.require_version("Gtk", "4.0")
 
 import datetime
 import json

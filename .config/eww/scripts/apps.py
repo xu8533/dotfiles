@@ -1,19 +1,22 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import glob
-import sys
-import os
 import json
+import os
 import subprocess
+import sys
+
 import gi
 
-gi.require_version("Gtk", "3.0")
+gi.require_version("Gtk", "4.0")
+
+from configparser import ConfigParser
 
 from gi.repository import Gtk
-from configparser import ConfigParser
 
 CACHE_FILE = os.path.expanduser("~/.cache/apps.json")
 DESKTOP_DIR = "/usr/share/applications"
+
 
 def get_gtk_icon(icon_name):
     theme = Gtk.IconTheme.get_default()
@@ -21,6 +24,7 @@ def get_gtk_icon(icon_name):
 
     if icon_info is not None:
         return icon_info.get_filename()
+
 
 def get_desktop_entries():
     desktop_files = glob.glob(os.path.join(DESKTOP_DIR, "*.desktop"))
@@ -43,15 +47,13 @@ def get_desktop_entries():
         }
         entries.append(entry)
 
-    
-
     return {"apps": entries, "pinned": read_cache(), "search": False, "filtered": []}
-
 
 
 def write_cache(entries):
     with open(CACHE_FILE, "w") as file:
         json.dump(entries, file, indent=2)
+
 
 def read_cache():
     empty = []
@@ -63,12 +65,13 @@ def read_cache():
             json.dump(empty, cache)
         return empty
 
+
 def filter_entries(entries, query):
     filtered_data = [
-        entry for entry in entries["apps"]
-        if query.lower() in entry["name"].lower()
+        entry for entry in entries["apps"] if query.lower() in entry["name"].lower()
     ]
     return filtered_data
+
 
 def update_eww(entries):
     subprocess.run(["eww", "update", f"apps={json.dumps(entries)}"])
@@ -76,13 +79,13 @@ def update_eww(entries):
 
 def add_pinned_entry(name, icon, desktop):
     entry = {
-            "name": name,
-            "icon": icon,
-            "desktop": desktop,
-        }
+        "name": name,
+        "icon": icon,
+        "desktop": desktop,
+    }
     cache = read_cache()
     for c in cache:
-        if c['desktop'] == desktop:
+        if c["desktop"] == desktop:
             print("App already pinned!")
             exit(1)
 
@@ -94,11 +97,11 @@ def add_pinned_entry(name, icon, desktop):
 
 def remove_pinned_entry(desktop):
     cache = read_cache()
-    pins = [entry for entry in cache if entry['desktop'] != desktop]
+    pins = [entry for entry in cache if entry["desktop"] != desktop]
     write_cache(pins)
 
     update_eww(get_desktop_entries())
-    
+
 
 if __name__ == "__main__":
     if len(sys.argv) > 2:
@@ -110,7 +113,14 @@ if __name__ == "__main__":
                 exit(0)
             entries = get_desktop_entries()
             filtered = filter_entries(entries, query)
-            update_eww({"apps": entries['apps'], "pinned": entries['pinned'], "search": True, "filtered": filtered})
+            update_eww(
+                {
+                    "apps": entries["apps"],
+                    "pinned": entries["pinned"],
+                    "search": True,
+                    "filtered": filtered,
+                }
+            )
 
         elif sys.argv[1] == "--add-pin":
             name = sys.argv[2]
@@ -124,5 +134,3 @@ if __name__ == "__main__":
     else:
         entries = get_desktop_entries()
         update_eww(entries)
-
-    
