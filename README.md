@@ -6,7 +6,7 @@
 -->
 
 <p align="center">
-  <h2><b> ~ xu8533's configuration files ~ </b></h2>
+  <h2 align="center"><b> ~ xu8533's configuration files ~ </b></h2>
 </p>
 
 <!-- BADGES -->
