@@ -19,8 +19,6 @@
 
 <!-- INFORMATION -->
 
-**Compements**
-
 ## :herb: <samp>INFORMATION</samp> <img alt="" align="right" src="https://badges.pufler.dev/visits/xu8533/dotfiles?style=for-the-badge&color=A7D9B2&logoColor=white&labelColor=1C2325"/>
 
 - **Window Manager:** [Hyprland](https://www.hyprland.org)
@@ -33,3 +31,9 @@
 - **Browser:** [Firefox](https://www.mozilla.org/en-US/firefox)
 - **File Manager:** 󰪶[Thunar](https://github.com/xfce-mirror/thunar)
 - **Status Bar:** [Waybar](https://github.com/Alexays/Waybar)
+
+<!-- SETUP -->
+
+## :wrench: <samp>SETUP</samp>
+
+## :rocket: <samp>MISCELLANEOUS</samp>
