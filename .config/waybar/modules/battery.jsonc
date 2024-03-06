@@ -12,8 +12,8 @@
     "format-icons": ["", "", "", "", ""],
     "format-time": "{H}小时{M}分钟",
     "tooltip": "true",
-    "tooltip-format": "电量: {capacity}%\n时间: {timeTo}",
-    "tooltip-format-charging": "剩余电量: {capacity}%\n充满时间: {time}",
-    "tooltip-format-discharging": "剩余电量: {capacity}%\n剩余时间: {time}"
+    "tooltip-format": "电量: {capacity}%\n时间: {timeTo}\n功耗: {power}瓦",
+    "tooltip-format-charging": "剩余电量: {capacity}%\n充满时间: {time}\n功耗: {power}瓦",
+    "tooltip-format-discharging": "剩余电量: {capacity}%\n剩余时间: {time}\n功耗: {power}瓦"
   }
 }
