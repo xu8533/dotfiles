@@ -30,7 +30,6 @@ edit = [
 ]
 open = [
 	{ exec = 'imv "$@"',					desc = "Open", for = "linux" },
-	{ exec = 'open "$@"',					desc = "Open", for = "macos" },
 	{ exec = 'start "%1"', orphan = true, 	desc = "Open", for = "windows" }
 ]
 reveal = [
@@ -48,6 +47,10 @@ play = [
 	{ exec = '''mediainfo "$1"; echo "Press enter to exit"; read''', block = true, desc = "Show media info", for = "unix" },
 ]
 
+openpdf = [
+	{ exec = 'evince "$@"',		desc = "Open pdf", for = "linux" },
+]
+
 [open]
 rules = [
 	{ name = "*/", use = [ "edit", "open", "reveal" ] },
@@ -61,6 +64,7 @@ rules = [
 	{ mime = "application/json", use = [ "edit", "reveal" ] },
 	{ mime = "*/javascript",     use = [ "edit", "reveal" ] },
 
+	{ mime = "application/pdf", use = [ "openpdf", "open" ] },
 	{ mime = "application/zip",             use = [ "extract", "reveal" ] },
 	{ mime = "application/gzip",            use = [ "extract", "reveal" ] },
 	{ mime = "application/x-tar",           use = [ "extract", "reveal" ] },
@@ -91,7 +95,7 @@ preloaders = [
 	# Video
 	{ mime = "video/*", exec = "video" },
 	# PDF
-	{ mime = "application/pdf", exec = "pdf" },
+	{ mime = "application/pdf", exec = "evince" },
 ]
 previewers = [
 	{ name = "*/", exec = "folder.lua", sync = true },
@@ -108,7 +112,7 @@ previewers = [
 	# Video
 	{ mime = "video/*", exec = "video" },
 	# PDF
-	{ mime = "application/pdf", exec = "pdf" },
+	{ mime = "application/pdf", exec = "enince-previewer" },
 	# Archive
 	{ mime = "application/zip",             exec = "archive" },
 	{ mime = "application/gzip",            exec = "archive" },
