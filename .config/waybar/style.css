@@ -7,7 +7,7 @@
   box-shadow: none;
   font-family: "SourceCodeVF", "JetbrainsMono Nerd Font",
     "NotoSansM Nerd Font Mono";
-  font-size: 18px;
+  font-size: 20px;
   min-height: 0px;
 }
 
@@ -104,7 +104,7 @@ button {
   background-color: transparent;
   transition: none;
   opacity: 1;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 #workspaces button {
