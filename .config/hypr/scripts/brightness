@@ -1,18 +1,18 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 down() {
-brillo -u 150000 -U 2
-brightness=$(light -g)
-dunstify -a "BRIGHTNESS" "Decreasing to $brightness%" -h int:value:"$brightness" -i ~/.config/dunst/assets/ui/brightness-low.svg -r 2593 -u normal
+	brillo -u 150000 -U 2
+	brightness=$(light -g)
+	dunstify -a "BRIGHTNESS" "Decreasing to $brightness%" -h int:value:"$brightness" -i ~/.config/dunst/assets/ui/brightness-low.svg -r 2593 -u normal
 }
 
 up() {
-brillo -u 150000 -A 2
-brightness=$(light -g)
-dunstify -a "BRIGHTNESS" "Increasing to $brightness%" -h int:value:"$brightness" -i ~/.config/dunst/assets/ui/brightness-high.svg -r 2593 -u normal
+	brillo -u 150000 -A 2
+	brightness=$(light -g)
+	dunstify -a "BRIGHTNESS" "Increasing to $brightness%" -h int:value:"$brightness" -i ~/.config/dunst/assets/ui/brightness-high.svg -r 2593 -u normal
 }
 
 case "$1" in
-  up) up;;
-  down) down;;
+up) up ;;
+down) down ;;
 esac
