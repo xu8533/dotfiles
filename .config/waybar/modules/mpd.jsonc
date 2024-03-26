@@ -1,15 +1,15 @@
 {
   "mpd": {
-    "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-    "format-disconnected": "连接已断开 ",
-    "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}已停止 ",
-    "unknown-tag": "N/A",
-    "interval": 2,
+    "format": "{stateIcon} {randomIcon} {artist} - {title}",
+    "format-disconnected": "已断开",
+    "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}已停止",
+    "interval": 3,
+    "timeout": 10,
     "consume-icons": {
-      "on": " "
+      "on": " " // Icon shows only when "consume" is on
     },
     "random-icons": {
-      "off": "<span color=\"#f53c3c\"></span> ",
+      "off": "<span color=\"#f53c3c\"></span> ", // Icon grayed out when "random" is off
       "on": " "
     },
     "repeat-icons": {
@@ -22,7 +22,11 @@
       "paused": "",
       "playing": ""
     },
-    "tooltip-format": "MPD已链接",
+    "on-click": "mpc -q toggle",
+    "on-scroll-up": "mpc -q prev",
+    "on-scroll-down": "mpc -q next",
+    "tooltip-format": " {artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})  ",
+    // "tooltip-format": "MPD已连接",
     "tooltip-format-disconnected": "MPD已断开"
   }
 }
