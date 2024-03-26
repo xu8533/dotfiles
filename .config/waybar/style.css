@@ -224,7 +224,11 @@ button {
 }
 
 #pulseaudio {
-  padding-left: 0px;
+  background-color: #fae3b0;
+}
+
+#pulseaudio.muted {
+  padding-left: 2px;
   padding-right: 8px;
   background-color: #fae3b0;
 }
@@ -376,7 +380,7 @@ button {
 #mpd {
   padding: 0 10px;
   background-color: #cdd6f4;
-  color: #516079;
+  color: #2b2735;
   box-shadow: rgba(0, 0, 0, 0.116) 2 2 5 2px;
 }
 
@@ -385,11 +389,15 @@ button {
 }
 
 #mpd.stopped {
-  background-color: #90b1b1;
+  background-color: #a6520a;
 }
 
 #mpd.paused {
-  background-color: #51a37a;
+  background-color: #fac03d;
+}
+
+#mpd.playing {
+  background-color: #779649;
 }
 
 #language {
