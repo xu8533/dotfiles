@@ -19,6 +19,7 @@
     "$HOME/.config/waybar/modules/launcher.jsonc",
     "$HOME/.config/waybar/modules/media.jsonc",
     "$HOME/.config/waybar/modules/memory.jsonc",
+    "$HOME/.config/waybar/modules/mpd.jsonc",
     "$HOME/.config/waybar/modules/network.jsonc",
     "$HOME/.config/waybar/modules/pulseaudio.jsonc",
     "$HOME/.config/waybar/modules/power.jsonc",
@@ -39,6 +40,7 @@
   ],
   "modules-center": [
     "hyprland/workspaces"
+    // "mpd"
   ],
   "modules-right": [
     "network",
