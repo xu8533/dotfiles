@@ -8,7 +8,7 @@
 
 configuration {
 	/*---------- General setting ----------*/
-	modi: "drun,run,filebrowser,window";
+	modi: "drun,run,filebrowser,window,ssh,combi,keys";
 	case-sensitive: false;
 	cycle: true;
 	filter: "";
@@ -16,9 +16,10 @@ configuration {
 	normalize-match: true;
 	show-icons: true;
 	icon-theme: "Papirus";
+/*	icon-theme: "Papirus-Dark";*/
 /*	cache-dir: ;*/
 	steal-focus: false;
-/*	dpi: -1;*/
+	dpi: 0;
 
 	/*---------- Matching setting ----------*/
 	matching: "normal";
@@ -62,14 +63,14 @@ configuration {
 	window-thumbnail: false;
 
 	/*---------- Combi settings ----------*/
-/*	combi-modi: "window,run";*/
-/*	combi-hide-mode-prefix: false;*/
-/*	combi-display-format: "{mode} {text}";*/
+	combi-modi: "window,run";
+	combi-hide-mode-prefix: false;
+	combi-display-format: "{mode} {text}";
 
 	/*---------- History and Sorting ----------*/
 	disable-history: false;
 	sorting-method: "normal";
-	max-history-size: 25;
+	max-history-size: 50;
 
 	/*---------- Display setting ----------*/
 	display-window: "窗口";
