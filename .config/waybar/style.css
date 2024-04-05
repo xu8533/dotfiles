@@ -55,6 +55,11 @@ window#waybar.empty {
   background-color: transparent;
 }
 
+/* 工作区没有窗口时，隐藏window模块 */
+window#waybar.empty #window {
+  background-color: transparent;
+}
+
 window#waybar.hidden {
   opacity: 0.2;
 }
