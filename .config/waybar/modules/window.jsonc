@@ -1,20 +1,23 @@
 {
   "hyprland/window": {
-    // "format": "👉 {title}",
-    "format": "{}",
+    "format": "{title}",
+    // "format": "{}",
     "max-length": 25,
     "separate-outputs": true,
     "rewrite": {
       "(.*) — Mozilla Firefox": "🌎 $1",
       "(.*) - Chromium": "🌎 $1",
       "(.*) - bash": " [$1]",
-      // "yi": "󰪶 $1",
       "(.*) - NVIM": " $1",
+      "(.*) - Obsidian (.*)": "󰠮 $1",
       "(.*)~": " 󰚺 ",
       "(.*)rofi- dmenu": " 󰅍 ",
       "(.*) - mpv": "  ",
       "(.*)musicfox": "  ",
-      "(.*)Ranger": "  "
+      "(.*)ranger": "  ",
+      "(.*)yazi": "  ",
+      "(.*)rg": "  ",
+      "(.*)yi": "  "
     },
     "tooltip": true
   }
