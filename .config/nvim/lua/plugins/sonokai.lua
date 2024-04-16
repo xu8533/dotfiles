@@ -1,12 +1,5 @@
 return {
   {
-    "AstroNvim/astroui",
-    ---@type AstroUIOpts
-    opts = {
-      colorscheme = "sonokai",
-    },
-  },
-  {
     "sainnhe/sonokai",
     init = function()
       vim.g.sonokai_style = "andromeda"
@@ -17,5 +10,12 @@ return {
       -- vim.g.sonokai_style = "maia"
       vim.g.sonokai_better_performance = 1
     end,
+  },
+  {
+    "AstroNvim/astroui",
+    ---@type AstroUIOpts
+    opts = {
+      colorscheme = "sonokai",
+    },
   },
 }
