@@ -1,25 +1,43 @@
+-- customize mason plugins
 return {
+  -- use mason-lspconfig to configure LSP installations
   {
-    "williamboman/mason.nvim",
-    cmd = {
-      "Mason",
-      "MasonInstall",
-      "MasonUninstall",
-      "MasonUninstallAll",
-      "MasonLog",
-      "MasonUpdate", -- AstroNvim extension here as well
-      "MasonUpdateAll", -- AstroNvim specific
-    },
-    opts = {
-      ui = {
-        icons = {
-          package_installed = "✓",
-          package_uninstalled = "✗",
-          package_pending = "⟳",
-        },
-      },
-    },
-    build = ":MasonUpdate",
-    config = require "plugins.configs.mason",
+    "williamboman/mason-lspconfig.nvim",
+    -- overrides `require("mason-lspconfig").setup(...)`
+    opts = function(_, opts)
+      -- add more things to the ensure_installed table protecting against community packs modifying it
+      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
+        "lua_ls",
+        "bashls",
+        "pyright",
+      })
+    end,
+    -- config = function() require "user.configs.lsp.lspconfig" end,
+  },
+  -- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
+  {
+    "jay-babu/mason-null-ls.nvim",
+    -- overrides `require("mason-null-ls").setup(...)`
+    opts = function(_, opts)
+      -- add more things to the ensure_installed table protecting against community packs modifying it
+      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
+        "prettierd",
+        "prettier",
+        "stylua",
+        "black",
+        "shfmt",
+      })
+    end,
+  },
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    -- overrides `require("mason-nvim-dap").setup(...)`
+    opts = function(_, opts)
+      -- add more things to the ensure_installed table protecting against community packs modifying it
+      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
+        "python",
+        "bash",
+      })
+    end,
   },
 }
