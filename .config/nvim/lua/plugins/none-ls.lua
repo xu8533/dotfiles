@@ -14,9 +14,11 @@ return {
       -- Set a formatter
       null_ls.builtins.formatting.stylua, -- lua formatter
       null_ls.builtins.formatting.prettier, -- shell, c formatter
-      -- null_ls.builtins.formatting.perltidy, -- perl formatter
+      null_ls.builtins.formatting.prettierd, -- css, json, yaml, java formatter
       null_ls.builtins.formatting.black, -- python formatter
       null_ls.builtins.formatting.shfmt, -- sh formatter
+      null_ls.builtins.formatting.markdownlint, -- markdown formatter
+      null_ls.builtins.formatting.tidy, -- html, xml formatter
     }
     return config -- return final config table
   end,
