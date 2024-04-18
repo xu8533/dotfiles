@@ -44,7 +44,7 @@ return {
   -- { import = "astrocommunity.markdown-and-latex.vimtex" },
   -- AI completion
   -- lsp
-  -- { import = "astrocommunity.lsp.lsp-signature-nvim" },
+  { import = "astrocommunity.lsp.lsp-signature-nvim" },
   { import = "astrocommunity.lsp.garbage-day-nvim" },
   -- note-taking
   -- { import = "astrocommunity.note-taking.neorg" },
