@@ -5,11 +5,15 @@
 ---@type LazySpec
 return {
   "AstroNvim/astrocommunity",
+  -- color
+  { import = "astrocommunity.color.ccc-nvim" },
+  { import = "astrocommunity.color.transparent-nvim" },
+  -- colorscheme
+  { import = "astrocommunity.colorscheme.bamboo-nvim" },
   { import = "astrocommunity.colorscheme.catppuccin" },
   { import = "astrocommunity.colorscheme.dracula-nvim" },
   { import = "astrocommunity.colorscheme.everforest" },
   { import = "astrocommunity.colorscheme.gruvbox-baby" },
-  { import = "astrocommunity.colorscheme.gruvbox-nvim" },
   { import = "astrocommunity.colorscheme.kanagawa-nvim" },
   { import = "astrocommunity.colorscheme.nightfox-nvim" },
   { import = "astrocommunity.colorscheme.onedarkpro-nvim" },
@@ -17,6 +21,7 @@ return {
   { import = "astrocommunity.colorscheme.rose-pine" },
   { import = "astrocommunity.colorscheme.sonokai" },
   { import = "astrocommunity.colorscheme.tokyonight-nvim" },
+  { import = "astrocommunity.colorscheme.vscode-nvim" },
   -- completion
   { import = "astrocommunity..completion.cmp-cmdline" },
   { import = "astrocommunity.completion.codeium-vim" },
@@ -31,7 +36,16 @@ return {
   -- diagnostics
   { import = "astrocommunity.diagnostics.trouble-nvim" },
   -- editing-support
+  { import = "astrocommunity.editing-support.multicursors-nvim" },
+  { import = "astrocommunity.editing-support.nvim-treesitter-context" },
   { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
+  { import = "astrocommunity.editing-support.true-zen-nvim" },
+  -- { import = "astrocommunity.editing-support.ultimate-autopair-nvim" },
+  { import = "astrocommunity.editing-support.undotree" },
+  { import = "astrocommunity.editing-support.vim-move" },
+  { import = "astrocommunity.editing-support.yanky-nvim" },
+  -- file-explorer
+  { import = "astrocommunity.file-explorer.telescope-file-browser-nvim" },
   -- git
   { import = "astrocommunity.git.diffview-nvim" },
   { import = "astrocommunity.git.octo-nvim" },
@@ -39,8 +53,8 @@ return {
   -- { import = "astrocommunity.indent.indent-blankline-nvim" },
   { import = "astrocommunity.indent.mini-indentscope" },
   -- markdown-and-latex
-  -- { import = "astrocommunity.markdown-and-latex.markdown-preview-nvim" },
   { import = "astrocommunity.markdown-and-latex.glow-nvim" },
+  { import = "astrocommunity.markdown-and-latex.markdown-preview-nvim" },
   -- { import = "astrocommunity.markdown-and-latex.vimtex" },
   -- AI completion
   -- lsp
