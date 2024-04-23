@@ -1,6 +1,6 @@
 return {
   {
-    "nvchad/nvim-colorizer.lua",
+    "NvChad/nvim-colorizer.lua",
     opts = function(_, opts)
       opts.filetypes = {
         "*",
