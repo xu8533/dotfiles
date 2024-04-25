@@ -14,7 +14,7 @@ return {
         -- MiniIndentscopeSymbol = { fg = "#002f90" },
         -- MiniIndentscopeSymbol = { fg = "#7aabf0" },
         -- MiniIndentscopeSymbol = { fg = "#97cfea" },
-        MiniIndentscopeSymbol = { fg = "#01659f" },
+        -- MiniIndentscopeSymbol = { fg = "#01659f" },
         -- MiniIndentscopeSymbol = { fg = "#3271ae" },
         -- MiniIndentscopeSymbol = { fg = "#5aa4ae" },
         -- MiniIndentscopeSymbolOff = { fg = "#7198A9" },
