@@ -51,6 +51,7 @@ return { -- override nvim-autopairs plugin
             brackets[1][1] .. brackets[1][2],
             brackets[2][1] .. brackets[2][2],
             brackets[3][1] .. brackets[3][2],
+            brackets[4][1] .. brackets[4][2],
           }, pair)
         end)
         :with_move(cond.none())
@@ -63,6 +64,7 @@ return { -- override nvim-autopairs plugin
             brackets[1][1] .. "  " .. brackets[1][2],
             brackets[2][1] .. "  " .. brackets[2][2],
             brackets[3][1] .. "  " .. brackets[3][2],
+            brackets[4][1] .. "  " .. brackets[4][2],
           }, context)
         end),
     }
@@ -81,39 +83,5 @@ return { -- override nvim-autopairs plugin
           ),
       }
     end
-    -- npairs.add_rules {
-    --   -- specify a list of rules to add
-    --   Rule(" ", " "):with_pair(function(options)
-    --     local pair = options.line:sub(options.col - 1, options.col)
-    --     return vim.tbl_contains({ "()", "[]", "{}", "<>" }, pair)
-    --   end),
-    --   Rule("( ", " )")
-    --     :with_pair(function() return false end)
-    --     :with_move(function(options) return options.prev_char:match ".%)" ~= nil end)
-    --     :use_key ")",
-    --   Rule("{ ", " }")
-    --     :with_pair(function() return false end)
-    --     :with_move(function(options) return options.prev_char:match ".%}" ~= nil end)
-    --     :use_key "}",
-    --   Rule("[ ", " ]")
-    --     :with_pair(function() return false end)
-    --     :with_move(function(options) return options.prev_char:match ".%]" ~= nil end)
-    --     :use_key "]",
-    --   Rule("< ", " >")
-    --     :with_pair(function() return false end)
-    --     :with_move(function(options) return options.prev_char:match ".%>" ~= nil end)
-    --     :use_key ">",
-    --   -- Rule("$", "$", { "tex", "latex" })
-    --   --   -- don't add a pair if the next character is %
-    --   --   :with_pair(cond.not_after_regex "%%")
-    --   --   -- don't add a pair if  the previous character is xxx
-    --   --   :with_pair(cond.not_before_regex("xxx", 3))
-    --   --   -- don't move right when repeat character
-    --   --   :with_move(cond.none())
-    --   --   -- don't delete if the next character is xx
-    --   --   :with_del(cond.not_after_regex "xx")
-    --   --   -- disable adding a newline when you press <cr>
-    --   --   :with_cr(cond.none()),
-    -- }
   end,
 }
