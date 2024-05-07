@@ -23,7 +23,7 @@ return {
   { import = "astrocommunity.colorscheme.tokyonight-nvim" },
   { import = "astrocommunity.colorscheme.vscode-nvim" },
   -- completion
-  { import = "astrocommunity..completion.cmp-cmdline" },
+  { import = "astrocommunity.completion.cmp-cmdline" },
   { import = "astrocommunity.completion.codeium-vim" },
   -- motion
   { import = "astrocommunity.motion.flash-nvim" },
@@ -83,6 +83,10 @@ return {
   { import = "astrocommunity.pack.python" },
   -- project
   { import = "astrocommunity.project.nvim-spectre" },
+  -- recipes
+  { import = "astrocommunity.recipes.telescope-nvchad-theme" },
+  -- snippets
+  -- { import = "astrocommunity.snippet.nvim-snippets" },
   -- utility
   { import = "astrocommunity.utility.noice-nvim" },
 }
