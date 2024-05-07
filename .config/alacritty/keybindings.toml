@@ -1,0 +1,24 @@
+[keyboard]
+bindings = [
+    { key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
+    { key = "L", mods = "Control|Shift", chars = "l" },
+	{ key = "C", mods = "Control|Shift", action = "Copy" },
+    { key = "V", mods = "Control|Shift", action = "Paste" },
+	{ key = "D", mods = "Control", action = "Minimize" },
+	{ key = "C", mods = "Super", action = "Quit" },
+	{ key = "Q", mods = "Control", action = "Quit" },
+	{ key = "ArrowUp", mods = "Control", action = "IncreaseFontSize" },
+	{ key = "ArrowDown", mods = "Control", action = "DecreaseFontSize" },
+	{ key = "=", mods = "Control", action = "IncreaseFontSize" },
+	{ key = "-", mods = "Control", action = "DecreaseFontSize" },
+	{ key = "0", mods = "Control", action = "ResetFontSize" },
+	{ key = "F1", action = "SearchBackward" },
+	{ key = "F2", action = "SearchForward" },
+	{ key = "F3", action = "ToggleViMode" },
+	{ key = "Enter", mods = "Super", action = "ToggleMaximized" },
+]
+
+[mouse]
+bindings = [
+{ mouse = "Right", mods = "Control", action = "Paste" },
+]
