@@ -6,6 +6,8 @@
 ---@type LazySpec
 return {
   "AstroNvim/astrolsp",
+  -- we need to use the function notation to get access to the `lspconfig` module
+  ---@param opts AstroLSPOpts
   ---@type AstroLSPOpts
   opts = {
     -- Configuration table of features provided by AstroLSP
