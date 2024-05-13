@@ -399,13 +399,13 @@ j() {
 
 # fzf主题
 # Paper color
-# export FZF_DEFAULT_OPTS='
-# 	--color=fg:#4d4d4c,bg:#eeeeee,hl:#d7005f
-# 	--color=fg+:#4d4d4c,bg+:#e8e8e8,hl+:#d7005f
-# 	--color=info:#4271ae,prompt:#8959a8,pointer:#d7005f
-# 	--color=marker:#4271ae,spinner:#4271ae,header:#4271ae
-# 	--color=preview-fg:#f4b3c2,preview-bg:#326663
-# 	--color=query:#00aaee'
+export FZF_DEFAULT_OPTS='
+	--color=fg:#4d4d4c,bg:#eeeeee,hl:#d7005f
+	--color=fg+:#fd3f7f,bg+:#eeeee8,hl+:#007175
+	--color=info:#4271ae,prompt:#8959a8,pointer:#d7005f
+	--color=marker:#4271ae,spinner:#4271ae,header:#4271ae
+	--color=preview-fg:#f4b3c2,preview-bg:#326663
+	--color=query:#00aaee'
 #
 
 # SpaceCamp
@@ -567,11 +567,11 @@ j() {
 # --color=marker:#c3e88d,spinner:#c3e88d,header:#c3e88d"
 #
 # tokyonight_night
-export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
---color=fg:#c0caf5,bg:#1a1b26,hl:#ff9e64 \
---color=fg+:#c0caf5,bg+:#292e42,hl+:#ff9e64 \
---color=info:#7aa2f7,prompt:#7dcfff,pointer:#7dcfff \
---color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a"
+# export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
+# --color=fg:#c0caf5,bg:#1a1b26,hl:#ff9e64 \
+# --color=fg+:#c0caf5,bg+:#292e42,hl+:#ff9e64 \
+# --color=info:#7aa2f7,prompt:#7dcfff,pointer:#7dcfff \
+# --color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a"
 #
 # tokyonight_storm
 # export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
