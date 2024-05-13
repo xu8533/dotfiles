@@ -161,9 +161,9 @@ return {
           -- disable jump labels when not enabled, when using a count,
           -- or when recording/executing registers
           opts.jump_labels = opts.jump_labels
-              and vim.v.count == 0
-              and vim.fn.reg_executing() == ""
-              and vim.fn.reg_recording() == ""
+            and vim.v.count == 0
+            and vim.fn.reg_executing() == ""
+            and vim.fn.reg_recording() == ""
 
           -- Show jump labels only in operator-pending mode
           -- opts.jump_labels = vim.v.count == 0 and vim.fn.mode(true):find("o")
@@ -233,8 +233,8 @@ return {
         relative = "editor",
         width = 1, -- when <=1 it's a percentage of the editor width
         height = 1,
-        row = -1,  -- when negative it's an offset from the bottom
-        col = 0,   -- when negative it's an offset from the right
+        row = -1, -- when negative it's an offset from the bottom
+        col = 0, -- when negative it's an offset from the right
         zindex = 1000,
       },
     },
@@ -268,14 +268,14 @@ return {
       desc = "Flash backward search only",
     },
 
-    { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end,   desc = "Flash" },
+    { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
     {
       "S",
       mode = { "n", "x", "o" },
       function() require("flash").treesitter() end,
       desc = "Flash Treesitter",
     },
-    { "r", mode = "o",               function() require("flash").remote() end, desc = "Remote Flash" },
+    { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
     {
       "R",
       mode = { "o", "x" },
