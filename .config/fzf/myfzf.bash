@@ -399,15 +399,14 @@ j() {
 
 # fzf主题
 # Paper color
-export FZF_DEFAULT_OPTS='
-	--color=fg:#4d4d4c,bg:#eeeeee,hl:#d7005f
-	--color=fg+:#fd3f7f,bg+:#eeeee8,hl+:#007175
-	--color=info:#4271ae,prompt:#8959a8,pointer:#d7005f
-	--color=marker:#4271ae,spinner:#4271ae,header:#4271ae
-	--color=preview-fg:#f4b3c2,preview-bg:#326663
-	--color=query:#00aaee'
+# export FZF_DEFAULT_OPTS='
+# 	--color=fg:#4d4d4c,bg:#eeeeee,hl:#d7005f
+# 	--color=fg+:#fd3f7f,bg+:#eeeee8,hl+:#007175
+# 	--color=info:#4271ae,prompt:#8959a8,pointer:#d7005f
+# 	--color=marker:#4271ae,spinner:#4271ae,header:#4271ae
+# 	--color=preview-fg:#f4b3c2,preview-bg:#326663
+# 	--color=query:#00aaee'
 #
-
 # SpaceCamp
 # export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 #  --color=fg:#dedede,bg:#121212,hl:#666666
@@ -544,6 +543,22 @@ export FZF_DEFAULT_OPTS='
 # 	--color=border:#dfdad9,header:#286983,gutter:#faf4ed
 # 	--color=spinner:#ea9d34,info:#56949f,separator:#dfdad9
 # 	--color=pointer:#907aa9,marker:#b4637a,prompt:#797593'
+#
+# rose-pine-moon:
+# export FZF_DEFAULT_OPTS="
+# --color=fg:#908caa,bg:#232136,hl:#ea9a97
+# --color=fg+:#e0def4,bg+:#393552,hl+:#ea9a97
+# --color=border:#44415a,header:#3e8fb0,gutter:#232136
+# --color=spinner:#f6c177,info:#9ccfd8,separator:#44415a
+# --color=pointer:#c4a7e7,marker:#eb6f92,prompt:#908caa"
+#
+# rose-pine:
+export FZF_DEFAULT_OPTS="
+--color=fg:#908caa,bg:#191724,hl:#ebbcba
+--color=fg+:#e0def4,bg+:#26233a,hl+:#ebbcba
+--color=border:#403d52,header:#31748f,gutter:#191724
+--color=spinner:#f6c177,info:#9ccfd8,separator:#403d52
+--color=pointer:#c4a7e7,marker:#eb6f92,prompt:#908caa"
 #
 # Ayu Mirage
 # export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
