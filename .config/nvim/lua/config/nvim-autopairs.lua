@@ -13,6 +13,7 @@ npairs.setup {
   },
 }
 
+npairs.clear_rules()
 npairs.add_rules {
   -- press % => %% only while inside a comment or string
   Rule("%", "%", "lua"):with_pair(ts_conds.is_ts_node { "string", "comment" }),
@@ -64,21 +65,6 @@ npairs.add_rules {
   --     }, context)
   --   end),
 }
--- For each pair of brackets we will add another rule
-for _, bracket in pairs(brackets) do
-  npairs.add_rules {
-    -- Each of these rules is for a pair with left-side '( ' and right-side ' )' for each bracket type
-    Rule(bracket[1] .. " ", " " .. bracket[2])
-      :with_pair(cond.none())
-      :with_move(function(opts) return opts.char == bracket[2] end)
-      :with_del(cond.none())
-      :use_key(bracket[2])
-      -- Removes the trailing whitespace that can occur without this
-      :replace_map_cr(
-        function(_) return "<C-c>2xi<CR><C-c>O" end
-      ),
-  }
-end
 
 -- Add spaces or star between parentheses
 function rule2(a1, ins, a2, lang)
@@ -96,6 +82,22 @@ end
 rule2("(", "*", ")", "ocaml")
 rule2("(*", " ", "*)", "ocaml")
 rule2("(", " ", ")")
+
+-- For each pair of brackets we will add another rule
+for _, bracket in pairs(brackets) do
+  npairs.add_rules {
+    -- Each of these rules is for a pair with left-side '( ' and right-side ' )' for each bracket type
+    Rule(bracket[1] .. " ", " " .. bracket[2])
+      :with_pair(cond.none())
+      :with_move(function(opts) return opts.char == bracket[2] end)
+      :with_del(cond.none())
+      :use_key(bracket[2])
+      -- Removes the trailing whitespace that can occur without this
+      :replace_map_cr(
+        function(_) return "<C-c>2xi<CR><C-c>O" end
+      ),
+  }
+end
 
 -- Expand multiple pairs on enter key
 -- https://github.com/rstacruz/vim-closer/blob/master/autoload/closer.vim
