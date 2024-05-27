@@ -9,12 +9,17 @@ return {
   ---@type AstroUIOpts
   opts = {
     -- change colorscheme
-    -- colorscheme = "astrodark",
+    colorscheme = "astrodark",
     -- colorscheme = "astrolight",
     -- colorscheme = "astromars",
     -- colorscheme = "astrojupiter",
-    colorscheme = "bamboo",
-    -- colorscheme = "catppuccin",
+    -- colorscheme = "bamboo",
+    -- colorscheme = "bamboo-light",
+    -- colorscheme = "bamboo-multiplex",
+    -- colorscheme = "bamboo-vulgaris",
+    -- colorscheme = "catppuccin-frappe",
+    -- colorscheme = "catppuccin-macchiato",
+    -- colorscheme = "catppuccin-mocha",
     -- colorscheme = "dracula",
     -- colorscheme = "vscode",
     -- colorscheme = "gruvbox-baby",
