@@ -81,6 +81,7 @@ return {
   { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.pack.python" },
+  { import = "astrocommunity.pack.json" },
   -- project
   { import = "astrocommunity.project.nvim-spectre" },
   -- recipes
