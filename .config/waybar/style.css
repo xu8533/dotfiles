@@ -155,7 +155,6 @@ button {
   padding-right: 10px;
 }
 
-
 /* #workspaces button.persistent { */
 /*    border-style: solid; */
 /*    border-width: 1px; */
@@ -309,7 +308,8 @@ button {
 #tray {
   /* color: #B5E8E0; */
   /* background: #2980b9; */
-  background-color: rgba(213, 224, 213, 0.9);
+  /* background-color: rgba(213, 224, 213, 0.9); */
+  background-color: rgba(122, 123, 120, 0.8);
   /* border-color: rgba(96, 67, 34, 1); */
 }
 
