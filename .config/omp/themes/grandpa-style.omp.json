@@ -5,10 +5,10 @@
       "alignment": "left",
       "segments": [
         {
-          "background": "#a313a8",
-          "foreground": "#FFEB3B",
+          "background": "#000000",
+          "foreground": "#dd1e1e",
           "style": "plain",
-          "template": "\u26a1 ",
+          "template": " \u26a1 ",
           "type": "root"
         },
         {
@@ -19,18 +19,16 @@
           "type": "os"
         },
         {
-          "background": "#01579B",
-          "foreground": "#ffffff",
-          "leading_diamond": "<transparent,#01579B>\ue0b0</>",
+          "background": "#5a3d29",
+          "foreground": "#43CCEA",
           "properties": {
             "folder_icon": "...",
             "folder_separator_icon": "<transparent> \ue0bd </>",
             "home_icon": "\ueb06",
             "style": "agnoster_short"
           },
-          "style": "diamond",
+          "style": "plain",
           "template": " {{ .Path }} ",
-          "trailing_diamond": "\ue0b0",
           "type": "path"
         },
         {
@@ -42,34 +40,36 @@
             "{{ if gt .Behind 0 }}#B388FF{{ end }}"
           ],
           "foreground": "#000000",
-          "powerline_symbol": "\ue0b0",
+          "leading_diamond": "<parentBackground,background>\ue0b0</>",
           "properties": {
             "fetch_stash_count": true,
             "fetch_status": true
           },
-          "style": "powerline",
+          "style": "diamond",
           "template": " {{ .HEAD }}{{ if .Staging.Changed }}<#FF6F00> \uf046 {{ .Staging.String }}</>{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }} ",
           "type": "git"
         },
         {
-          "background": "#49404f",
-          "foreground": "#ffffff",
-          "leading_diamond": "<transparent,#49404f>\ue0b0</>",
+          "background": "#2ba1bb",
+          "foreground": "#5a3d29",
+          "leading_diamond": "<parentBackground,background>\ue0b0</>",
           "properties": {
             "style": "dallas",
             "threshold": 0
           },
           "style": "diamond",
           "template": " {{ .FormattedMs }}s ",
-          "trailing_diamond": "\ue0b0",
           "type": "executiontime"
         },
         {
           "background": "#910000",
           "foreground": "#ffffff",
           "powerline_symbol": "\ue0b0",
-          "style": "powerline",
-          "template": "<transparent> \uf12a</> {{ reason .Code }} ",
+          "properties": {
+            "always_enabled": true
+          },
+          "style": "plain",
+          "template": "{{ if gt .Code 0 }}<parentBackground,background>\ue0b0</><transparent> \uf12a</> {{ reason .Code }} <background,transparent>\ue0b0</>{{ else }}<parentBackground,transparent>\ue0b0</>{{ end }}",
           "type": "status"
         }
       ],
@@ -79,23 +79,21 @@
       "alignment": "right",
       "segments": [
         {
-          "background": "#29315A",
+          "background": "#5a3d29",
           "foreground": "#43CCEA",
           "leading_diamond": "\ue0c5",
-          "trailing_diamond": "\ue0bc",
           "style": "diamond",
-          "template": "  {{ .UserName }}<transparent> / </>{{ .HostName }} ",
+          "template": "  {{ if .SSHSession }}\ueba9 {{ end }}{{ .UserName }}<transparent> / </>{{ .HostName }}",
           "type": "session"
         },
         {
-          "background": "#29315A",
-          "foreground": "#3EC669",
+          "background": "#5a3d29",
+          "foreground": "#43CCEA",
           "properties": {
-            "time_format": "15:04:05"
+            "time_format": "3:04:05 PM"
           },
-          "leading_diamond": "\ue0ba",
-          "style": "diamond",
-          "template": " {{ .CurrentDate | date .Format }} ",
+          "style": "plain",
+          "template": "<transparent> \ue0ba\ue0bc </>{{ .CurrentDate | date .Format }} ",
           "type": "time"
         }
       ],
