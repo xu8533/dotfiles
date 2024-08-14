@@ -11,11 +11,12 @@ return {
     jump_on_sole_occurrence = false,
   },
   keys = {
-    -- { "hc", "<cmd>HopChar1<CR>", desc = "Hop one char motion" },
+    { "h1c", "<cmd>HopChar1<CR>", desc = "Hop one char motion" },
     { "hl", "<cmd>HopLine<CR>", desc = "Hop line beginne motion" },
     { "hs", "<cmd>HopLineStart<CR>", desc = "Hop line start motion" },
     { "hv", "<cmd>HopVertical<CR>", desc = "Hop vertical motion" },
     { "hw", "<cmd>HopWord<CR>", desc = "Hop word motion" },
+    { "hn", "<cmd>HopNodes<CR>", desc = "Hop treesitter nodes motion" },
     -- { "hcc", "<cmd>HopChar2<CR>", desc = "Hop two char motion" },
     { "hcl", "<cmd>HopWordCurrentLine<CR>", desc = "Hop current line motion" },
   },
