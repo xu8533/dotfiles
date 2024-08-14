@@ -187,7 +187,7 @@ return {
         -- `left` and `right` are always left and right.
         char_actions = function(motion)
           return {
-            [";"] = "next", -- set to `right` to always go right
+            ["."] = "next", -- set to `right` to always go right
             [","] = "prev", -- set to `left` to always go left
             -- clever-f style
             [motion:lower()] = "next",
@@ -205,7 +205,7 @@ return {
       -- `require("flash").treesitter()`
       treesitter = {
         labels = "abcdefghijklmnopqrstuvwxyz",
-        jump = { pos = "range" },
+        jump = { pos = "range", autojump = true },
         search = { incremental = false },
         label = { before = true, after = true, style = "inline" },
         highlight = {
@@ -268,26 +268,26 @@ return {
       desc = "Flash backward search only",
     },
 
-    { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-    {
-      "S",
-      mode = { "n", "x", "o" },
-      function() require("flash").treesitter() end,
-      desc = "Flash Treesitter",
-    },
-    { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-    {
-      "R",
-      mode = { "o", "x" },
-      function() require("flash").treesitter_search() end,
-      desc = "Treesitter Search",
-    },
-    {
-      "<c-s>",
-      mode = { "c" },
-      function() require("flash").toggle() end,
-      desc = "Toggle Flash Search",
-    },
+    -- { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+    -- {
+    --   "S",
+    --   mode = { "n", "x", "o" },
+    --   function() require("flash").treesitter() end,
+    --   desc = "Flash Treesitter",
+    -- },
+    -- { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+    -- {
+    --   "R",
+    --   mode = { "o", "x" },
+    --   function() require("flash").treesitter_search() end,
+    --   desc = "Treesitter Search",
+    -- },
+    -- {
+    --   "<c-s>",
+    --   mode = { "c" },
+    --   function() require("flash").toggle() end,
+    --   desc = "Toggle Flash Search",
+    -- },
     -- {
     --   "{",
     --   mode = { "n", "x", "o" },
@@ -333,6 +333,85 @@ return {
         }
       end,
       desc = "Flash show diagnostics at target, without changing cursor position",
+    },
+  },
+  dependencies = {
+    {
+      "AstroNvim/astrocore",
+      opts = {
+        mappings = {
+          x = {
+            ["s"] = {
+              function() require("flash").jump() end,
+              desc = "Flash",
+            },
+            ["R"] = {
+              function() require("flash").treesitter_search() end,
+              desc = "Treesitter Search",
+            },
+            ["S"] = {
+              function() require("flash").treesitter() end,
+              desc = "Flash Treesitter",
+            },
+          },
+          o = {
+            ["r"] = {
+              function() require("flash").remote() end,
+              desc = "Remote Flash",
+            },
+            ["R"] = {
+              function() require("flash").treesitter_search() end,
+              desc = "Treesitter Search",
+            },
+            ["s"] = {
+              function() require("flash").jump() end,
+              desc = "Flash",
+            },
+            ["S"] = {
+              function() require("flash").treesitter() end,
+              desc = "Flash Treesitter",
+            },
+          },
+          n = {
+            ["s"] = {
+              function() require("flash").jump() end,
+              desc = "Flash",
+            },
+            ["S"] = {
+              function() require("flash").treesitter() end,
+              desc = "Flash Treesitter",
+            },
+          },
+        },
+      },
+    },
+    {
+      "nvim-telescope/telescope.nvim",
+      optional = true,
+      opts = function(_, opts)
+        local function flash(prompt_bufnr)
+          require("flash").jump {
+            pattern = "^",
+            label = { after = { 0, 0 } },
+            search = {
+              mode = "search",
+              exclude = {
+                function(win) return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~= "TelescopeResults" end,
+              },
+            },
+            action = function(match)
+              local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
+              picker:set_selection(match.pos[1] - 1)
+            end,
+          }
+        end
+        opts.defaults = vim.tbl_deep_extend("force", opts.defaults or {}, {
+          mappings = {
+            n = { s = flash },
+            i = { ["<c-s>"] = flash },
+          },
+        })
+      end,
     },
   },
 }
