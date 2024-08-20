@@ -74,8 +74,8 @@ keymap = [
 	{ on = [ "s" ],         run = "search fd",                                            desc = "名字搜索，使用fd做后端" },
 	{ on = [ "S" ],         run = "search rg",                                            desc = "搜索文件内容, 使用ripgrep做后端" },
 	{ on = [ "<C-s>" ],     run = "search none",                                          desc = "取消正在进行的搜索" },
-	{ on = [ "Z" ],         run = "jump zoxide",                                          desc = "切换目录, 使用zoxide做后端" },
-	{ on = [ "z" ],         run = "jump fzf",                                             desc = "切换目录或定位文件, 使用fzf做后端" },
+	{ on = [ "Z" ],         run = "plugin zoxide",                                        desc = "切换目录, 使用zoxide做后端" },
+	{ on = [ "z" ],         run = "plugin fzf",                                           desc = "切换目录或定位文件, 使用fzf做后端" },
 
 	# Linemode
 	{ on = [ "m", "s" ], run = "linemode size",        desc = "Set linemode to size" },
@@ -99,18 +99,18 @@ keymap = [
 	{ on = [ "N" ], run = "find_arrow --previous",   desc = "搜索上一个" },
 
 	# Sorting
-	{ on = [ ",", "m" ], run = "sort modified --dir-first",               desc = "按修改时间排序" },
-	{ on = [ ",", "M" ], run = "sort modified --reverse --dir-first",     desc = "按修改时间排序(降序)" },
-	{ on = [ ",", "c" ], run = "sort created --dir-first",                desc = "按创建时间排序" },
-	{ on = [ ",", "C" ], run = "sort created --reverse --dir-first",      desc = "按创建时间排序(降序)" },
-	{ on = [ ",", "e" ], run = "sort extension --dir-first",         	   desc = "按扩展名排序" },
-	{ on = [ ",", "E" ], run = "sort extension --reverse --dir-first",    desc = "按扩展名排序(降序)" },
-	{ on = [ ",", "a" ], run = "sort alphabetical --dir-first",           desc = "按字母排序" },
-	{ on = [ ",", "A" ], run = "sort alphabetical --reverse --dir-first", desc = "按字母排序(降序)" },
-	{ on = [ ",", "n" ], run = "sort natural --dir-first",                desc = "自然排序" },
-	{ on = [ ",", "N" ], run = "sort natural --reverse --dir-first",      desc = "自然排序(降序)" },
-	{ on = [ ",", "s" ], run = "sort size --dir-first",                   desc = "按文件大小排序" },
-	{ on = [ ",", "S" ], run = "sort size --reverse --dir-first",         desc = "按文件大小排序 (降序)" },
+	{ on = [ ",", "m" ], run = "sort modified --reverse=no",     desc = "按修改时间排序" },
+	{ on = [ ",", "M" ], run = "sort modified --reverse",        desc = "按修改时间排序(降序)" },
+	{ on = [ ",", "c" ], run = "sort created --reverse=no",      desc = "按创建时间排序" },
+	{ on = [ ",", "C" ], run = "sort created  --reverse",        desc = "按创建时间排序(降序)" },
+	{ on = [ ",", "e" ], run = "sort extension --reverse=no",    desc = "按扩展名排序" },
+	{ on = [ ",", "E" ], run = "sort extension --reverse",       desc = "按扩展名排序(降序)" },
+	{ on = [ ",", "a" ], run = "sort alphabetical --reverse=no", desc = "按字母排序" },
+	{ on = [ ",", "A" ], run = "sort alphabetical --reverse",    desc = "按字母排序(降序)" },
+	{ on = [ ",", "n" ], run = "sort natural --reverse=no",      desc = "自然排序" },
+	{ on = [ ",", "N" ], run = "sort natural --reverse",         desc = "自然排序(降序)" },
+	{ on = [ ",", "s" ], run = "sort size --reverse=no",         desc = "按文件大小排序" },
+	{ on = [ ",", "S" ], run = "sort size --reverse",            desc = "按文件大小排序 (降序)" },
 
 	# Tabs
 	{ on = [ "t" ], run = "tab_create --current", desc = "新建标签" },
