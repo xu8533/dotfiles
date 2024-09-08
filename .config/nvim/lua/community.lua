@@ -83,8 +83,10 @@ return {
   { import = "astrocommunity.pack.python" },
   { import = "astrocommunity.pack.json" },
   -- project
-  { import = "astrocommunity.project.nvim-spectre" },
+  { import = "astrocommunity.project.projectmgr-nvim" },
   -- recipes
+  { import = "astrocommunity.recipes.astrolsp-no-insert-inlay-hints" },
+  -- { import = "astrocommunity.recipes.heirline-mode-text-statusline" },
   { import = "astrocommunity.recipes.telescope-nvchad-theme" },
   -- snippets
   -- { import = "astrocommunity.snippet.nvim-snippets" },
