@@ -1,31 +1,29 @@
-return { -- override nvim-autopairs plugin
+return {
   "windwp/nvim-autopairs",
-  config = function(plugin, opts)
-    -- run default AstroNvim config
-    require "astronvim.plugins.configs.nvim-autopairs"(plugin, opts)
-    -- require Rule function
-    local Rule = require "nvim-autopairs.rule"
-    local npairs = require "nvim-autopairs"
-    npairs.add_rules {
-      {
-        -- specify a list of rules to add
-        Rule(" ", " "):with_pair(function(options)
-          local pair = options.line:sub(options.col - 1, options.col)
-          return vim.tbl_contains({ "()", "[]", "{}" }, pair)
-        end),
-        Rule("( ", " )")
-          :with_pair(function() return false end)
-          :with_move(function(options) return options.prev_char:match ".%)" ~= nil end)
-          :use_key ")",
-        Rule("{ ", " }")
-          :with_pair(function() return false end)
-          :with_move(function(options) return options.prev_char:match ".%}" ~= nil end)
-          :use_key "}",
-        Rule("[ ", " ]")
-          :with_pair(function() return false end)
-          :with_move(function(options) return options.prev_char:match ".%]" ~= nil end)
-          :use_key "]",
-      },
-    }
-  end,
+  event = "InsertEnter",
+  specs = {
+    {
+      "AstroNvim/astrocore",
+      opts = function(_, opts)
+        local maps = opts.mappings
+        maps.n["<Leader>ua"] = { function() require("astrocore.toggles").autopairs() end, desc = "Toggle autopairs" }
+      end,
+    },
+  },
+  opts = {
+    check_ts = true,
+    ts_config = { java = false },
+    fast_wrap = {
+      map = "<M-e>",
+      chars = { "{", "[", "(", '"', "'" },
+      pattern = ([[ [%'%"%)%>%]%)%}%,] ]]):gsub("%s+", ""),
+      offset = 0,
+      end_key = "$",
+      keys = "qwertyuiopzxcvbnmasdfghjkl",
+      check_comma = true,
+      highlight = "PmenuSel",
+      highlight_grey = "LineNr",
+    },
+  },
+  config = function(...) require "plugins.configs.nvim-autopairs"(...) end,
 }
