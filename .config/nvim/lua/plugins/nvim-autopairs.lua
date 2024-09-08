@@ -1,21 +1,31 @@
-return {
+return { -- override nvim-autopairs plugin
   "windwp/nvim-autopairs",
-  event = "InsertEnter",
-  opts = {
-    fast_wrap = {
-      map = "<M-e>",
-      chars = { "{", "[", "(", '"', "'" },
-      pattern = [=[[%'%"%>%]%)%}%,]]=],
-      end_key = "$",
-      before_key = "h",
-      after_key = "l",
-      cursor_pos_before = true,
-      keys = "qwertyuiopzxcvbnmasdfghjkl",
-      manual_position = true,
-      check_comma = true,
-      highlight = "PmenuSel",
-      highlight_grey = "LineNr",
-    },
-  },
-  config = function() require "config.nvim-autopairs" end,
+  config = function(plugin, opts)
+    -- run default AstroNvim config
+    require "astronvim.plugins.configs.nvim-autopairs"(plugin, opts)
+    -- require Rule function
+    local Rule = require "nvim-autopairs.rule"
+    local npairs = require "nvim-autopairs"
+    npairs.add_rules {
+      {
+        -- specify a list of rules to add
+        Rule(" ", " "):with_pair(function(options)
+          local pair = options.line:sub(options.col - 1, options.col)
+          return vim.tbl_contains({ "()", "[]", "{}" }, pair)
+        end),
+        Rule("( ", " )")
+          :with_pair(function() return false end)
+          :with_move(function(options) return options.prev_char:match ".%)" ~= nil end)
+          :use_key ")",
+        Rule("{ ", " }")
+          :with_pair(function() return false end)
+          :with_move(function(options) return options.prev_char:match ".%}" ~= nil end)
+          :use_key "}",
+        Rule("[ ", " ]")
+          :with_pair(function() return false end)
+          :with_move(function(options) return options.prev_char:match ".%]" ~= nil end)
+          :use_key "]",
+      },
+    }
+  end,
 }
