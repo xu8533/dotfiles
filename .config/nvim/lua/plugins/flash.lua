@@ -93,7 +93,7 @@ return {
       -- Enable this to use rainbow colors to highlight labels
       -- Can be useful for visualizing Treesitter ranges.
       rainbow = {
-        enabled = false,
+        enabled = true,
         -- number between 1 and 9
         shade = 5,
       },
