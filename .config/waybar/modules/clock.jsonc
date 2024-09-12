@@ -18,8 +18,8 @@
         // "days": "<span color='#ecc6d9'>{}</span>",
         // "weeks": "<span color='#99ffdd'><b>W{:%V}</b></span>",
         "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
-        "today": "<span color='#75c1c4'><b><u>{}</u></b></span>"
-      }
+        "today": "<span color='#75c1c4'><b><u>{}</u></b></span>",
+      },
     },
     // "today-format": "<span color='#ff6699'><b><u>{}</u></b></span>",
     // "format-calendar": "<span color='#ecc6d9'><b>{}</b></span>",
@@ -30,7 +30,7 @@
       "on-click-forward": "tz_up",
       "on-click-backward": "tz_down",
       "on-scroll-up": "shift_up",
-      "on-scroll-down": "shift_down"
-    }
-  }
+      "on-scroll-down": "shift_down",
+    },
+  },
 }
