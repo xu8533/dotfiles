@@ -12,6 +12,9 @@ return {
   -- { import = "astrocommunity.bars-and-lines.lualine-nvim" },
   -- { import = "astrocommunity.bars-and-lines.lualine-nvim" },
   -- { import = "astrocommunity.bars-and-lines.statuscol-nvim" },
+  -- code-runner
+  { import = "astrocommunity.code-runner.overseer-nvim" },
+  -- code-runner
   -- color
   { import = "astrocommunity.color.ccc-nvim" },
   { import = "astrocommunity.color.transparent-nvim" },
