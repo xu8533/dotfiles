@@ -1,12 +1,10 @@
 return {
   "smoka7/hop.nvim",
-  event = "VeryLazy",
   opts = {
-    keys = "asdghklqwertyuiopzxcvbnmfj",
-    quit_key = "<ESC>",
     case_insensitive = false,
     create_hl_autocmd = false, -- 使用hop自带高亮色
     multi_windows = true, -- 多个窗口同时启用
+    match_mappings = { "zh", "zh_sc" },
     uppercase_labels = true,
     jump_on_sole_occurrence = false,
   },
@@ -27,24 +25,13 @@ return {
       mappings = {
         n = {
           ["<A-s>"] = { function() require("hop").hint_words() end, desc = "Hop hint words" },
-          -- ["<S-s>"] = { function() require("hop").hint_lines() end, desc = "Hop hint lines" },
+          ["<S-s>"] = false,
         },
         v = {
           ["s"] = { function() require("hop").hint_words { extend_visual = true } end, desc = "Hop hint words" },
-          -- ["<S-s>"] = {
-          --   function() require("hop").hint_lines { extend_visual = true } end,
-          --   desc = "Hop hint lines",
-          -- },
+          ["<S-s>"] = false,
         },
       },
-    },
-  },
-  specs = {
-    {
-      "catppuccin",
-      optional = true,
-      ---@type CatppuccinOptions
-      opts = { integrations = { hop = true } },
     },
   },
 }
