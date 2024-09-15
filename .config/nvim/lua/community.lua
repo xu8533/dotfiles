@@ -99,6 +99,7 @@ return {
   { import = "astrocommunity.recipes.astrolsp-no-insert-inlay-hints" },
   -- { import = "astrocommunity.recipes.heirline-mode-text-statusline" },
   { import = "astrocommunity.recipes.telescope-nvchad-theme" },
+  { import = "astrocommunity.recipes.telescope-lsp-mappings" },
   -- snippets
   -- { import = "astrocommunity.snippet.nvim-snippets" },
   -- utility
