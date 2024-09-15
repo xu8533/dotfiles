@@ -37,6 +37,7 @@ return {
   { import = "astrocommunity.completion.codeium-vim" },
   -- motion
   { import = "astrocommunity.motion.flash-nvim" },
+  { import = "astrocommunity.motion.hop-nvim" },
   { import = "astrocommunity.motion.nvim-surround" },
   -- debug
   { import = "astrocommunity.debugging.nvim-dap-repl-highlights" },
