@@ -15,6 +15,8 @@ return {
     { "hw", "<cmd>HopWord<CR>", desc = "Hop word motion" },
     { "hn", "<cmd>HopNodes<CR>", desc = "Hop treesitter nodes motion" },
     { "hp", "<cmd>HopPattern<CR>", desc = "Hop pattern motion" },
+    { "hP", "<cmd>HopPasteChar1<CR>", desc = "Hop paste without motion" },
+    { "hpl", "<cmd>HopPasteChar1CurrentLine<CR>", desc = "Hop paste currentline without motion" },
     -- { "h1c", "<cmd>HopChar1<CR>", desc = "Hop one char motion" },
     -- { "h2c", "<cmd>HopChar2<CR>", desc = "Hop two char motion" },
     { "hcl", "<cmd>HopWordCurrentLine<CR>", desc = "Hop current line motion" },
@@ -29,7 +31,8 @@ return {
           ["<S-s>"] = false,
         },
         v = {
-          ["s"] = { function() require("hop").hint_words { extend_visual = true } end, desc = "Hop hint words" },
+          -- ["s"] = { function() require("hop").hint_words { extend_visual = true } end, desc = "Hop hint words" },
+          ["s"] = false,
           ["<S-s>"] = false,
         },
       },
