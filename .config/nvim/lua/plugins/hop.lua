@@ -24,6 +24,7 @@ return {
     opts = {
       mappings = {
         n = {
+          ["s"] = false,
           ["<A-s>"] = { function() require("hop").hint_words() end, desc = "Hop hint words" },
           ["<S-s>"] = false,
         },
