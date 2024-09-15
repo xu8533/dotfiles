@@ -1,6 +1,6 @@
 {
   "cava": {
-    "cava_config": "$HOME/cava/config",
+    "cava_config": "$HOME/.config/cava/config",
     "framerate": 30,
     "autosens": 1,
     "sensitivity": 100,
@@ -18,7 +18,7 @@
     "input_delay": 2,
     "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
     "actions": {
-      "on-click-right": "mode"
-    }
-  }
+      "on-click-right": "mode",
+    },
+  },
 }
