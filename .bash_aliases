@@ -50,3 +50,5 @@ alias gw='cd $HOME/图片/Wallpapers'
 #
 # git bare裸库，用于配置文件管理
 alias dot-git='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+# 自动删除不需要的软件包
+alias autoremove="sudo pacman -Qtdq | sudo pacman -Rns -"
