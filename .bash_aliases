@@ -52,3 +52,5 @@ alias gw='cd $HOME/图片/Wallpapers'
 alias dot-git='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 # 自动删除不需要的软件包
 alias autoremove="sudo pacman -Qtdq | sudo pacman -Rns -"
+# 使用lazygit管理裸库
+alias dot-ly="lazygit --git-dir=$HOME/.dotfiles --work-tree=$HOME"
