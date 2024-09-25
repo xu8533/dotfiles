@@ -1,0 +1,37 @@
+gui:
+  # newpaper_light
+  authorColors:
+    "*": "#27408B"
+  branchColors:
+    "main": "#005F87"
+    "master": "#005F87"
+    "hotfix": "#DF0000"
+    "bug": "#DF0000"
+    "release": "#50A14F"
+    "develop": "#D75F00"
+    "bugfix": "#D75F00"
+    "dev": "#D75F00"
+    "wip": "#D75F00"
+    "feature": "#E563BA"
+    "feat": "#E563BA"
+  theme:
+    lightTheme: true
+    defaultFgColor:
+      - "#413932"
+    activeBorderColor:
+      - "#8700AF"
+      - bold
+    inactiveBorderColor:
+      - "#878787"
+    optionsTextColor:
+      - "#0072C1"
+    selectedLineBgColor:
+      - "#C0D9FA"
+    selectedRangeBgColor:
+      - "#C0D9FA"
+    cherryPickedCommitBgColor:
+      - "#EBEAE2"
+    cherryPickedCommitFgColor:
+      - "#0087AF"
+    unstagedChangesColor:
+      - "#D73A49"
