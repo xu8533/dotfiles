@@ -175,7 +175,7 @@ export EDITOR=vi
 
 # >>> conda initialize >>>
 # <<< conda initialize <<<
-PATH=$PATH:~/.config/rofi/scripts
+PATH=$PATH:~/.config/rofi/scripts:~/.local/bin
 
 # MPD daemon start (if no other user instance exists)
 # [ ! -s ~/.config/mpd/pid ] && systemctl --user start mpd
