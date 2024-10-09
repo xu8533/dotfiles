@@ -21,3 +21,13 @@ gui:
       - "#e5c890"
   authorColors:
     "*": "#babbf1"
+  nerdFontsVersion: "3"
+git:
+  paging:
+    pager: "--dark --paging=never"
+  mainBranches:
+    - master
+    - main
+os:
+  open: "vi ({filename}) > /dev/null"
+  openLink: "firefox ({link})"
