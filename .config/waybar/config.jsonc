@@ -46,7 +46,7 @@
     "network",
     "bluetooth",
     "custom/wallpaper",
-    // "cava",
+    // "custom/cava",
     "backlight",
     "pulseaudio",
     "clock",
