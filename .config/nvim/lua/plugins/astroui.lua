@@ -34,7 +34,7 @@ return {
     -- colorscheme = "terafox",
     -- colorscheme = "onelight",
     -- colorscheme = "onedark",
-    -- colorscheme = "onedark_vivid",
+    colorscheme = "onedark_vivid",
     -- colorscheme = "onedark_dark",
     -- colorscheme = "oxocarbon",
     -- colorscheme = "rose-pine-moon",
@@ -46,7 +46,7 @@ return {
     -- colorscheme = "tokyonight-storm",
     -- colorscheme = "sonokai",
     -- colorscheme = "everforest",
-    colorscheme = "edge",
+    -- colorscheme = "edge",
     -- AstroUI allows you to easily modify highlight groups easily for any and all colorschemes
     highlights = {
       init = { -- this table overrides highlights in all themes
