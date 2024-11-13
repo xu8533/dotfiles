@@ -1,12 +1,16 @@
 #!/usr/bin/env bash
 # some more ls aliases
 alias l='ls -CF'
-alias la='ls -A'
-alias ld='exa -1 --icons -D'
-alias le='exa -l --icons'
-alias lf='exa -1 --icons -f'
+# alias la='ls -A'
 alias ll='ls -alF'
 alias ls='ls --color=auto --hyperlink=auto'
+alias la='eza -A'
+alias ld='eza -1 --icons -D'
+alias le='eza -l --icons'
+alias lf='eza -1 --icons -f'
+alias lG='eza --grid'
+alias lR='eza --recurse'
+alias lT='eza --tree'
 
 # ranger like file manager
 # alias js='joshuto'
