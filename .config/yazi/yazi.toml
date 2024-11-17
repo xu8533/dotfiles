@@ -8,9 +8,12 @@ sort_by        = "modified"
 sort_sensitive = true
 sort_reverse   = true
 sort_dir_first = true
-linemode       = "none"
+linemode       = "size_and_mtime"
 show_hidden    = false
 show_symlink   = true
+scrolloff      = 8
+mouse_events   = [ "click", "scroll" ]
+title_format   = "Yazi: {cwd}"
 
 [preview]
 tab_size        = 1
@@ -22,6 +25,8 @@ sixel_fraction  = 15
 cache_dir       = ""
 ueberzug_scale  = 1
 ueberzug_offset = [ 0, 0, 0, 0 ]
+wrap            = "yes"
+image_delay 		= 30
 
 [opener]
 edit = [
@@ -29,7 +34,7 @@ edit = [
 	{ run = 'code "%*"',    orphan = true, for = "windows" },
 ]
 open = [
-	{ run = 'imv "$@"',					desc = "Open", for = "linux" },
+	{ run = 'xdg-open "$1"',					desc = "Open", for = "linux" },
 	{ run = 'start "%1"', orphan = true, 	desc = "Open", for = "windows" }
 ]
 reveal = [
@@ -51,12 +56,17 @@ openpdf = [
 	{ run = 'evince "$@"',		desc = "Open pdf", for = "linux" },
 ]
 
+
+openimg = [
+	{ run = 'imv "$@"',		desc = "Open image", for = "linux" },
+]
+
 [open]
 rules = [
 	{ name = "*/", use = [ "edit", "open", "reveal" ] },
 
 	{ mime = "text/*",  use = [ "edit", "reveal" ] },
-	{ mime = "image/*", use = [ "open", "reveal" ] },
+	{ mime = "image/*", use = [ "openimg", "reveal" ] },
 	{ mime = "video/*", use = [ "play", "reveal" ] },
 	{ mime = "audio/*", use = [ "play", "reveal" ] },
 	{ mime = "inode/x-empty", use = [ "edit", "reveal" ] },
@@ -91,13 +101,15 @@ preloaders = [
 	# Image
 	{ mime = "image/vnd.djvu", run = "noop" },
 	{ mime = "image/*",        run = "image" },
+	# HEIC preloader
+	{ mime = "image/heic", run = "heic" },
 	# Video
 	{ mime = "video/*", run = "video" },
 	# PDF
-	{ mime = "application/pdf", run = "evince" },
+	{ mime = "application/pdf", run = "pdf" },
 ]
 previewers = [
-	{ name = "*/", run = "folder.lua", sync = true },
+	{ name = "*/", run = "folder", sync = true },
 	# Code
 	{ mime = "text/*",                 run = "code" },
 	{ mime = "*/xml",                  run = "code" },
@@ -111,7 +123,8 @@ previewers = [
 	# Video
 	{ mime = "video/*", run = "video" },
 	# PDF
-	{ mime = "application/pdf", run = "enince-previewer" },
+	# { mime = "application/pdf", run = "enince-previewer" },
+	{ mime = "application/pdf", run = "pdf" },
 	# Archive
 	{ mime = "application/zip",             run = "archive" },
 	{ mime = "application/gzip",            run = "archive" },
@@ -124,6 +137,7 @@ previewers = [
 ]
 
 [input]
+cursor_blink = true
 # cd
 cd_title  = "改变目录:"
 cd_origin = "top-center"
@@ -138,18 +152,6 @@ create_offset = [ 0, 2, 50, 3 ]
 rename_title  = "重命名:"
 rename_origin = "hovered"
 rename_offset = [ 0, 1, 50, 3 ]
-
-# trash
-# trash_title 	= "Move {n} selected file{s} to trash? (y/N)"
-trash_title 	= "将选择的文件移动到回收站? (y/N)"
-trash_origin	= "top-center"
-trash_offset	= [ 0, 2, 50, 3 ]
-
-# delete
-# delete_title 	= "Delete {n} selected file{s} permanently? (y/N)"
-delete_title 	= "永久删除选择的文件? (y/N)"
-delete_origin	= "top-center"
-delete_offset	= [ 0, 2, 50, 3 ]
 
 # filter
 filter_title  = "过滤:"
@@ -171,6 +173,19 @@ shell_title  = [ "Shell:", "Shell (block):" ]
 shell_origin = "top-center"
 shell_offset = [ 0, 2, 50, 3 ]
 
+[confirm]
+# trash
+# trash_title 	= "Move {n} selected file{s} to trash? (y/N)"
+trash_title 	= "将选择的文件移动到回收站? (y/N)"
+trash_origin	= "top-center"
+trash_offset	= [ 0, 2, 50, 3 ]
+
+# delete
+# delete_title 	= "Delete {n} selected file{s} permanently? (y/N)"
+delete_title 	= "永久删除选择的文件? (y/N)"
+delete_origin	= "top-center"
+delete_offset	= [ 0, 2, 50, 3 ]
+
 # overwrite
 overwrite_title  = "覆盖文件? (y/N)"
 overwrite_origin = "top-center"
@@ -187,5 +202,7 @@ open_title  = "使用下列方式打开:"
 open_origin = "hovered"
 open_offset = [ 0, 1, 50, 7 ]
 
-[log]
-enabled = false
+[which]
+sort_by = "key"
+sort_sensitive = true
+sort_translit  = true
