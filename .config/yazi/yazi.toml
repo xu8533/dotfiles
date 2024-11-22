@@ -97,6 +97,9 @@ suppress_preload = false
 
 [plugin]
 
+append_previewers = [
+  { name = "*", run = "hexyl" },
+]
 preloaders = [
 	# Image
 	{ mime = "image/vnd.djvu", run = "noop" },
