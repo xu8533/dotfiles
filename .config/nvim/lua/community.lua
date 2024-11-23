@@ -35,6 +35,7 @@ return {
   -- completion
   { import = "astrocommunity.completion.cmp-cmdline" },
   { import = "astrocommunity.completion.codeium-vim" },
+  -- { import = "astrocommunity.completion.avante-nvim" },
   -- motion
   { import = "astrocommunity.motion.flash-nvim" },
   { import = "astrocommunity.motion.hop-nvim" },
