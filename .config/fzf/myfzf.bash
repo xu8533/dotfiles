@@ -4,8 +4,9 @@
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --follow'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # Preview file content using bat (https://github.com/sharkdp/bat)
+#
 export FZF_CTRL_T_OPTS="
-	--preview 'bat --color=always {}'
+  --preview 'bat -n --color=always {}'
 	--preview-window right:75%:hidden:wrap
 	--bind '?:change-preview-window(right|hidden|)'
   "
@@ -17,7 +18,7 @@ export FZF_CTRL_R_OPTS="
     --preview 'echo {}' 
     --preview-window down:6:hidden:wrap 
     --bind '?:toggle-preview'
-    --bind 'ctrl-y:execute-silent(echo -n {} | wl-copy -p)+abort'
+    --bind 'ctrl-y:execute-silent(echo -n {2..} | wl-copy -p)+abort'
     --color header:italic
     --header '请按CTRL-y将命令复制到剪切板'"
 
@@ -33,7 +34,8 @@ export FZF_COMPLETION_TRIGGER=',,'
 # 启用双边框
 export FZF_COMPLETION_OPTS='
     --border=double
-    --info=inline-right'
+    --info=inline-right
+    '
 
 # fzf默认选项，启用预览功能，默认为隐藏模式，使用ctrl+/切换
 # 预览程序为bat, bat的配置在~/.config/bat/config, 需要调整效果
@@ -41,14 +43,16 @@ export FZF_COMPLETION_OPTS='
 # --preview 'bat --color=always {}'
 # --preview 'fzf-preview.sh {}'
 export FZF_DEFAULT_OPTS="
+		--preview 'fzf-preview.sh {}'
     --preview-window border-thinblock:right:75%:hidden:wrap
     --bind='ctrl-u:preview-page-up'
     --bind='ctrl-d:preview-page-down'
     --bind='ctrl-/:change-preview-window(right|hidden|)'
-    --bind='?:toggle-preview'
-	--bind='scroll-up:up+up,scroll-down:down+down' \
+    --bind='ctrl-\:toggle-preview'
+		--bind='scroll-up:up+up,scroll-down:down+down' \
     --bind='preview-scroll-up:preview-up+preview-up' \
     --bind='preview-scroll-down:preview-down+preview-down' \
+		--bind 'ctrl-y:execute-silent(printf {} | cut -f 2- | wl-copy --trim-newline)'
     --height=85% 
     --multi
     --layout=reverse
@@ -64,13 +68,13 @@ export FZF_DEFAULT_OPTS="
 # export FZF_TMUX_OPTS='-p 80%,60%'
 
 # fzf和forgit集成
-export FORGIT_FZF_DEFAULT_OPTS="
-  --exact
-  --border
-  --cycle
-  --reverse
-  --height '80%'
-"
+# export FORGIT_FZF_DEFAULT_OPTS="
+#   --exact
+#   --border
+#   --cycle
+#   --reverse
+#   --height '80%'
+# "
 
 #############重写部分默认函数#######################################
 # 使用fd替换find
@@ -95,6 +99,19 @@ _fzf_comprun() {
 	esac
 }
 
+# To use for Ctrl-t for a floating menu from terminal
+__fzfmenu__() {
+	local cmd="fd -tf --max-depth=1"
+	eval "$cmd" | ~/.local/bin/fzfmenu
+}
+
+__fzf-menu__() {
+	local selected="$(__fzfmenu__)"
+	READLINE_LINE="${READLINE_LINE:0:$READLINE_POINT}$selected${READLINE_LINE:$READLINE_POINT}"
+	READLINE_POINT=$((READLINE_POINT + ${#selected}))
+}
+bind -x '"\C-t":"__fzf-menu__"'
+
 #############社区提供的一些常用函数################################
 # fkill - 杀死进程- 只显示本账号可以kill的进程
 fkill() {
@@ -109,46 +126,6 @@ fkill() {
 		echo $pid | xargs kill -${1:-9}
 	fi
 }
-
-# tm - create new tmux session, or switch to existing one. Works from within tmux too. (@bag-man)
-# `tm` will allow you to select your tmux session via fzf.
-# tm() {
-# 	[[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
-# 	if [ $1 ]; then
-# 		tmux $change -t "$1" 2>/dev/null || (tmux new-session -d -s $1 && tmux $change -t "$1")
-# 		return
-# 	fi
-# 	session=$(tmux list-sessions -F "#{session_name}" 2>/dev/null | fzf --exit-0) && tmux $change -t "$session" || echo "No sessions found."
-# }
-
-# fs [FUZZY PATTERN] - Select selected tmux session
-#   - Bypass fuzzy finder if there's only one match (--select-1)
-#   - Exit if there's no match (--exit-0)
-# fs() {
-# 	local session
-# 	session=$(tmux list-sessions -F "#{session_name}" |
-# 		fzf --query="$1" --select-1 --exit-0) &&
-# 		tmux switch-client -t "$session"
-# }
-# ftpane - switch pane (@george-b)
-# ftpane() {
-# 	local panes current_window current_pane target target_window target_pane
-# 	panes=$(tmux list-panes -s -F '#I:#P - #{pane_current_path} #{pane_current_command}')
-# 	current_pane=$(tmux display-message -p '#I:#P')
-# 	current_window=$(tmux display-message -p '#I')
-#
-# 	target=$(echo "$panes" | grep -v "$current_pane" | fzf +m --reverse) || return
-#
-# 	target_window=$(echo $target | awk 'BEGIN{FS=":|-"} {print$1}')
-# 	target_pane=$(echo $target | awk 'BEGIN{FS=":|-"} {print$2}' | cut -c 1)
-#
-# 	if [[ $current_window -eq $target_window ]]; then
-# 		tmux select-pane -t ${target_window}.${target_pane}
-# 	else
-# 		tmux select-pane -t ${target_window}.${target_pane} &&
-# 			tmux select-window -t $target_window
-# 	fi
-# }
 
 # fman - 查看man手册
 man-find() {
@@ -187,7 +164,7 @@ fo() {
 # fh - 重复历史命令
 runcmd() { perl -e 'ioctl STDOUT, 0x5412, $_ for split //, <>'; }
 fh() {
-	([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -re 's/^\s*[0-9]+\s*//' | runcmd
+	([ -n "$BASH" ] && fc -l 1 || history) | fzf +s --tac | sed -re 's/^\s*[0-9]+\s*//' | runcmd
 }
 
 # fhe - 重复历史命令(允许修改命令)
@@ -223,27 +200,6 @@ fco() {
 		) |
 			fzf --no-hscroll --no-multi -n 2 \
 				--ansi
-	) || return
-	git checkout $(awk '{print $2}' <<<"$target")
-}
-# fco_preview - checkout git branch/tag, with a preview showing the commits between the tag/branch and HEAD
-fco_preview() {
-	local tags branches target
-	branches=$(
-		git --no-pager branch --all \
-			--format="%(if)%(HEAD)%(then)%(else)%(if:equals=HEAD)%(refname:strip=3)%(then)%(else)%1B[0;34;1mbranch%09%1B[m%(refname:short)%(end)%(end)" |
-			sed '/^$/d'
-	) || return
-	tags=$(
-		git --no-pager tag | awk '{print "\x1b[35;1mtag\x1b[m\t" $1}'
-	) || return
-	target=$(
-		(
-			echo "$branches"
-			echo "$tags"
-		) |
-			fzf --no-hscroll --no-multi -n 2 \
-				--ansi --preview="git --no-pager log -150 --pretty=format:%s '..{2}'"
 	) || return
 	git checkout $(awk '{print $2}' <<<"$target")
 }
@@ -314,13 +270,30 @@ fstash() {
 		fi
 	done
 }
+
 # gh-watch -- watch the current actions
-gh-watch() {
-	gh run list \
-		--branch $(git rev-parse --abbrev-ref HEAD) \
-		--json status,name,databaseId |
-		jq -r '.[] | select(.status != "completed") | (.databaseId | tostring) + "\t" + (.name)' |
-		fzf -1 -0 | awk '{print $1}' | xargs gh run watch
+# gh-watch() {
+# 	gh run list \
+# 		--branch $(git rev-parse --abbrev-ref HEAD) \
+# 		--json status,name,databaseId |
+# 		jq -r '.[] | select(.status != "completed") | (.databaseId | tostring) + "\t" + (.name)' |
+# 		fzf -1 -0 | awk '{print $1}' | xargs gh run watch
+# }
+
+# ftags - search ctags with preview
+# only works if tags-file was generated with --excmd=number
+ftags() {
+	local line
+	[ -e tags ] &&
+		line=$(
+			awk 'BEGIN { FS="\t" } !/^!/ {print toupper($4)"\t"$1"\t"$2"\t"$3}' tags |
+				fzf \
+					--nth=1,2 \
+					--with-nth=2 \
+					--preview-window="50%" \
+					--preview="bat {3} --color=always | tail -n +\$(echo {4} | tr -d \";\\\"\")"
+		) && ${EDITOR:-vim} $(cut -f3 <<<"$line") -c "set nocst" \
+		-c "silent tag $(cut -f2 <<<"$line")"
 }
 
 # conda集成
@@ -353,9 +326,6 @@ fzf-conda-activate() {
 
 # fzf版本cd命令
 cd() {
-	# 	builtin cd "$@" ||
-	# 		return
-	# fi
 	# 修复直接使用cd命令不加参数时还是跳出目录选择菜单
 	if [[ "$#" != 0 ]]; then
 		builtin cd "$@" || return
@@ -396,6 +366,29 @@ j() {
 		cd $(autojump "$@")
 	fi
 }
+
+# mpd集成
+fmpc() {
+	local song_position
+	song_position=$(mpc -f "%position%) %artist% - %title%" playlist |
+		fzf-tmux --query="$1" --reverse --select-1 --exit-0 |
+		sed -n 's/^\([0-9]\+\)).*/\1/p') || return 1
+	[ -n "$song_position" ] && mpc -q play $song_position
+}
+
+# CTRL-X-1 - Invoke Readline functions by name
+__fzf_readline() {
+	builtin eval "
+        builtin bind ' \
+            \"\C-x3\": $(
+		builtin bind -l | command fzf +s +m --toggle-sort=ctrl-r
+	) \
+        '
+    "
+}
+
+builtin bind -x '"\C-x2": __fzf_readline'
+builtin bind '"\C-x1": "\C-x2\C-x3"'
 
 # fzf主题
 # Paper color
