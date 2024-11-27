@@ -159,12 +159,14 @@ export EDITOR=vi
 # <<< tmux快捷键 <<<
 
 # fzf配置
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-[ -f ~/.config/fzf/myfzf.bash ] && source ~/.config/fzf/myfzf.bash
+[ -f "$HOME/.fzf.bash" ] && source "$HOME/.fzf.bash"
+[ -f "$HOME/.config/fzf/myfzf.bash" ] && source "$HOME/.config/fzf/myfzf.bash"
+[ -f "$HOME/.config/fzf/fzf-git.sh" ] && source "$HOME/.config/fzf/fzf-git.sh"
 
+#
 # forgit配置
-[[ -s ~/.forgit/forgit.plugin.sh ]] && source ~/.forgit/forgit.plugin.sh
-[[ -s ~/.forgit/completions/git-forgit.bash ]] && source ~/.forgit/completions/git-forgit.bash
+# [[ -s ~/.forgit/forgit.plugin.sh ]] && source ~/.forgit/forgit.plugin.sh
+# [[ -s ~/.forgit/completions/git-forgit.bash ]] && source ~/.forgit/completions/git-forgit.bash
 
 # bat主题
 # export BAT_THEME="gruvbox-dark"
@@ -179,7 +181,7 @@ PATH=$PATH:~/.config/rofi/scripts:~/.local/bin
 
 # MPD daemon start (if no other user instance exists)
 # [ ! -s ~/.config/mpd/pid ] && systemctl --user start mpd
-systemctl --user restart mpd
+# systemctl --user restart mpd
 
 # 加载自定义shell函数
 [ -f ~/.bash_func ] && source ~/.bash_func
