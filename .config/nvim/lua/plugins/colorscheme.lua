@@ -102,6 +102,9 @@ return {
   {
     "navarasu/onedark.nvim",
     lazy = true,
+    specs = {
+      { "olimorris/onedarkpro.nvim", optional = true, enabled = false },
+    },
     opts = {
       -- style = "dark",
       -- style = "darker",
