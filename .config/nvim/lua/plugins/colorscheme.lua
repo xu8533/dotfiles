@@ -1,13 +1,16 @@
 return {
   {
+    "AstroNvim/astrotheme",
+    lazy = true,
+  },
+  {
     "ribru17/bamboo.nvim",
     lazy = true,
+    priority = 1000,
     opts = {
-      toggle_style_key = "<LocalLeader>ts", -- Keybind to toggle theme style. Leave it nil to disable it, or set it to a string, e.g. "<leader>ts"
-      dim_inactive = true, -- Dim inactive windows/buffers
-      -- Change code style ---
-      -- Options are anything that can be passed to the `vim.api.nvim_set_hl` table
-      -- You can also configure styles with a string, e.g. keywords = 'italic,bold'
+      toggle_style_key = "<LocalLeader>ts",
+      toggle_style_list = { "vulgaris", "multiplex", "light" },
+      dim_inactive = true,
       code_style = {
         comments = { italic = true },
         conditionals = { italic = true },
@@ -21,7 +24,9 @@ return {
     },
   },
   {
-    "catppuccin",
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
     lazy = true,
   },
   {
@@ -29,7 +34,11 @@ return {
     lazy = true,
   },
   {
-    "Mofiqul/vscode.nvim",
+    "projekt0n/github-nvim-theme",
+    lazy = true,
+  },
+  {
+    "ellisonleao/gruvbox.nvim",
     lazy = true,
   },
   {
@@ -44,10 +53,31 @@ return {
     },
   },
   {
+    "sho-87/kanagawa-paper.nvim",
+    lazy = true,
+    opts = {},
+  },
+  {
     "EdenEast/nightfox.nvim",
     lazy = true,
     opts = {
       options = {
+        module_default = false,
+        modules = {
+          aerial = true,
+          cmp = true,
+          ["dap-ui"] = true,
+          dashboard = true,
+          diagnostic = true,
+          gitsigns = true,
+          native_lsp = true,
+          neotree = true,
+          notify = true,
+          symbol_outline = true,
+          telescope = true,
+          treesitter = true,
+          whichkey = true,
+        },
         dim_inactive = true,
         styles = { -- Style to be applied to different syntax groups
           comments = "italic", -- Value is any valid attr-list value `:help attr-list`
@@ -62,10 +92,37 @@ return {
           variables = "NONE",
         },
       },
+      groups = { all = { NormalFloat = { link = "Normal" } } },
+    },
+  },
+  {
+    "oxfist/night-owl.nvim",
+    lazy = true,
+  },
+  {
+    "navarasu/onedark.nvim",
+    lazy = true,
+    opts = {
+      -- style = "dark",
+      -- style = "darker",
+      -- style = "cool",
+      -- style = "deep",
+      -- style = "warm",
+      style = "warmer",
+      -- style = "light",
+      toggle_style_key = "<leader>ts",
+      code_style = {
+        comments = "italic",
+        keywords = "bold,italic",
+        functions = "italic",
+        strings = "none",
+        variables = "none",
+      },
     },
   },
   {
     "olimorris/onedarkpro.nvim",
+    -- enabled = false,
     lazy = true,
     opts = {
       highlights = {
@@ -75,18 +132,60 @@ return {
       },
       styles = {
         types = "NONE",
-        methods = "NONE",
+        methods = "bold",
         numbers = "NONE",
         strings = "NONE",
         comments = "italic",
         keywords = "bold,italic",
         constants = "NONE",
-        functions = "bold",
+        functions = "italic",
         operators = "NONE",
         variables = "NONE",
         parameters = "NONE",
         conditionals = "italic",
         virtual_text = "NONE",
+      },
+      plugins = { -- Override which plugin highlight groups are loaded
+        aerial = true,
+        barbar = false,
+        codecompanion = false,
+        copilot = false,
+        dashboard = false,
+        flash_nvim = true,
+        gitsigns = true,
+        hop = true,
+        indentline = true,
+        leap = false,
+        lsp_saga = true,
+        lsp_semantic_tokens = true,
+        marks = false,
+        mini_indentscope = true,
+        neotest = true,
+        neo_tree = true,
+        nvim_cmp = true,
+        nvim_bqf = true,
+        nvim_dap = true,
+        nvim_dap_ui = true,
+        nvim_hlslens = false,
+        nvim_lsp = true,
+        nvim_navic = false,
+        nvim_notify = true,
+        nvim_tree = false,
+        nvim_ts_rainbow = true,
+        op_nvim = false,
+        packer = false,
+        persisted = false,
+        polygot = false,
+        rainbow_delimiters = true,
+        render_markdown = true,
+        startify = false,
+        telescope = true,
+        toggleterm = true,
+        treesitter = true,
+        trouble = true,
+        vim_ultest = false,
+        which_key = true,
+        vim_dadbod_ui = false,
       },
       options = {
         cursorline = true,
@@ -168,7 +267,11 @@ return {
     },
   },
   {
-    "AstroNvim/astrotheme",
+    "tiagovla/tokyodark.nvim",
+    lazy = true,
+  },
+  {
+    "Mofiqul/vscode.nvim",
     lazy = true,
   },
   {
@@ -234,5 +337,9 @@ return {
       -- vim.g.edge_menu_selection_background = "green"
       vim.g.edge_diagnostic_virtual_text = "highlighted"
     end,
+  },
+  {
+    "NLKNguyen/papercolor-theme",
+    lazy = true,
   },
 }
