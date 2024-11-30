@@ -113,7 +113,7 @@ return {
       -- style = "warm",
       style = "warmer",
       -- style = "light",
-      toggle_style_key = "<leader>ts",
+      toggle_style_key = "<LocalLeader>ts",
       code_style = {
         comments = "italic",
         keywords = "bold,italic",
