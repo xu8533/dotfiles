@@ -102,9 +102,11 @@ return {
   {
     "navarasu/onedark.nvim",
     lazy = true,
-    specs = {
-      { "olimorris/onedarkpro.nvim", optional = true, enabled = false },
-    },
+    priority = 1000, -- Ensure it loads first
+    enabled = false,
+    -- specs = {
+    --   { "olimorris/onedarkpro.nvim", optional = true, enabled = false },
+    -- },
     opts = {
       -- style = "dark",
       -- style = "darker",
@@ -192,6 +194,7 @@ return {
       },
       options = {
         cursorline = true,
+        transparency = false,
         highlight_inactive_windows = true,
       },
     },
