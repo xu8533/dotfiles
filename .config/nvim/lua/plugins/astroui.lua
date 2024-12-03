@@ -14,7 +14,7 @@ return {
     -- colorscheme = "astromars",
     -- colorscheme = "astrojupiter",
     -- colorscheme = "astrotheme",
-    colorscheme = "bamboo",
+    -- colorscheme = "bamboo",
     -- colorscheme = "bamboo-light",
     -- colorscheme = "bamboo-multiplex",
     -- colorscheme = "bamboo-vulgaris",
@@ -61,7 +61,7 @@ return {
     -- colorscheme = "tokyodark",
     -- colorscheme = "sonokai",
     -- colorscheme = "everforest",
-    -- colorscheme = "edge",
+    colorscheme = "edge",
     -- AstroUI allows you to easily modify highlight groups easily for any and all colorschemes
     highlights = {
       init = { -- this table overrides highlights in all themes
