@@ -58,3 +58,6 @@ alias dot-git='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias autoremove="sudo pacman -Qtdq | sudo pacman -Rns -"
 # 使用lazygit管理裸库
 alias dot-lg='lazygit --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+
+# 显示按键
+alias sk='wshowkeys -b "#0000000f" -f "#eee8d8" -s "#ece87a" -t 1 -a right -a bottom -m 32 &'
