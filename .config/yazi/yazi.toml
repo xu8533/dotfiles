@@ -58,7 +58,7 @@ openpdf = [
 
 
 openimg = [
-	{ run = 'imv "$@"',		desc = "Open image", for = "linux" },
+	{ run = 'swayimg "$@"',		desc = "Open image", for = "linux" },
 ]
 
 [open]
