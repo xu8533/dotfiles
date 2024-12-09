@@ -2,15 +2,8 @@ import datetime
 
 from kitty.boss import get_boss
 from kitty.fast_data_types import Screen, add_timer
-from kitty.tab_bar import (
-    DrawData,
-    ExtraData,
-    Formatter,
-    TabBarData,
-    as_rgb,
-    draw_attributed_string,
-    draw_tab_with_powerline,
-)
+from kitty.tab_bar import (DrawData, ExtraData, Formatter, TabBarData, as_rgb,
+                           draw_attributed_string, draw_tab_with_powerline)
 
 
 def draw_tab(
