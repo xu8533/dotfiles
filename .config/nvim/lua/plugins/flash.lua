@@ -40,22 +40,22 @@ return {
     },
   },
   keys = {
-    {
-      "/",
-      mode = { "n", "x", "o" },
-      function() require("flash").jump { search = { forward = true, wrap = false, multi_window = false } } end,
-      desc = "Flash forward search only",
-    },
-    {
-      "?",
-      mode = { "n", "x", "o" },
-      function()
-        require("flash").jump {
-          search = { forward = false, wrap = false, multi_window = false },
-        }
-      end,
-      desc = "Flash backward search only",
-    },
+    -- {
+    --   "/",
+    --   mode = { "n", "x", "o" },
+    --   function() require("flash").jump { search = { forward = true, wrap = false, multi_window = false } } end,
+    --   desc = "Flash forward search only",
+    -- },
+    -- {
+    --   "?",
+    --   mode = { "n", "x", "o" },
+    --   function()
+    --     require("flash").jump {
+    --       search = { forward = false, wrap = false, multi_window = false },
+    --     }
+    --   end,
+    --   desc = "Flash backward search only",
+    -- },
     {
       "s",
       mode = { "n" },
