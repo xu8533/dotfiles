@@ -34,6 +34,15 @@ return {
   { import = "astrocommunity.colorscheme.sonokai" },
   { import = "astrocommunity.colorscheme.tokyonight-nvim" },
   { import = "astrocommunity.colorscheme.vscode-nvim" },
+  { import = "astrocommunity.colorscheme.aurora" },
+  { import = "astrocommunity.colorscheme.bluloco-nvim" },
+  { import = "astrocommunity.colorscheme.citruszest-nvim" },
+  { import = "astrocommunity.colorscheme.cyberdream-nvim" },
+  { import = "astrocommunity.colorscheme.melange-nvim" },
+  { import = "astrocommunity.colorscheme.nordic-nvim" },
+  { import = "astrocommunity.colorscheme.vim-dogrun" },
+  { import = "astrocommunity.colorscheme.vim-moonfly-colors" },
+  { import = "astrocommunity.colorscheme.vim-nightfly-colors" },
 
   -- completion
   { import = "astrocommunity.completion.cmp-cmdline" },
