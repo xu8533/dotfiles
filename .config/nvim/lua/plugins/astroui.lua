@@ -66,6 +66,7 @@ return {
     -- colorscheme = "bluloco-dark",
     -- colorscheme = "bluloco-light",
     -- colorscheme = "citruszest",
+    -- colorscheme = "cyberdream",
     -- colorscheme = "melange",
     -- colorscheme = "melange",
     -- colorscheme = "nordic",
