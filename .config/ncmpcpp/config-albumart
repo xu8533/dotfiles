@@ -5,10 +5,9 @@ mpd_music_dir = "/media/数据/音乐/"
 mouse_list_scroll_whole_page = "yes"
 lines_scrolled = "1"
 
-visualizer_in_stereo = "no"
-visualizer_fifo_path = "/tmp/mpd.fifo"
+visualizer_in_stereo = "yes"
+visualizer_data_source = "/tmp/mpd.fifo"
 visualizer_output_name = "my_fifo"
-visualizer_sync_interval = "10"
 visualizer_type = "spectrum"
 visualizer_look = "▋▋"
 
@@ -26,7 +25,7 @@ locked_screen_width_part = "60"
 display_bitrate = "no"
 external_editor = "nano"
 
-main_window_highlight_color = "white"
+main_window_color = "white"
 
 progressbar_elapsed_color = "white"
 progressbar_color = "black"
@@ -58,8 +57,8 @@ song_list_format = " $7%l  $2%t $R$5%a "
 
 #uncomment both statement's below if you want to display the albumart
 
-execute_on_song_change="~/.ncmpcpp/art.sh"
-song_list_format = "                       $2%t $R$5%a "
+execute_on_song_change="~/.local/bin/songinfo.sh"
+# song_list_format = "                       $2%t $R$5%a "
 
 song_status_format = "$b$7♫ $2%a $4⟫$3⟫ $8%t $4⟫$3⟫ $5%b "
 song_window_title_format = " {%a} - {%t}"
