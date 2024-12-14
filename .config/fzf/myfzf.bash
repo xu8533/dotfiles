@@ -1,29 +1,26 @@
 #!/usr/bin/bash
 # fzf config
 # export FZF_DEFAULT_COMMAND='fd --type file'
-export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --follow'
+export FZF_DEFAULT_COMMAND='fd --type file --strip-cwd-prefix --follow'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # Preview file content using bat (https://github.com/sharkdp/bat)
 #
 export FZF_CTRL_T_OPTS="
-  --preview 'bat -n --color=always {}'
-	--preview-window right:75%:hidden:wrap
-	--bind '?:change-preview-window(right|hidden|)'
+		--walker-skip .git,node_modules,go,target
+  	--preview 'bat --color=always --style=numbers --line-range=:500 {}'
   "
 
 # 搜索历史命令使用ctrl+r
-# --bind 'ctrl-y:execute-silent(echo -n {2..} | xclip -selection clipboard'
-# --bind 'ctrl-y:execute-silent(echo -n {2..} | xclip -selection clipboard)+abort'
 export FZF_CTRL_R_OPTS="
     --preview 'echo {}' 
     --preview-window down:6:hidden:wrap 
-    --bind '?:toggle-preview'
-    --bind 'ctrl-y:execute-silent(echo -n {2..} | wl-copy -p)+abort'
-    --color header:italic
-    --header '请按CTRL-y将命令复制到剪切板'"
+    "
 
 # 树形目录
-export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
+export FZF_ALT_C_OPTS="
+--walker-skip .git,node_modules,target
+--preview 'tree -C {}'
+"
 
 # 这两个选项不能和preview一起工作
 # --select-1
@@ -37,31 +34,41 @@ export FZF_COMPLETION_OPTS='
     --info=inline-right
     '
 
-# fzf默认选项，启用预览功能，默认为隐藏模式，使用ctrl+/切换
+export FZF_COMPLETION_PATH_OPTS='
+		--walker file,dir,follow,hidden
+		'
+
+export FZF_COMPLETION_DIR_OPTS='
+		--walker dir,follow
+		'
+# fzf默认选项，启用预览功能，默认为隐藏模式，使用ctrl+\切换
+# 使用?切换预览窗口位置
+# 预览程序为fzf-preview.sh, 可以预览图片
 # 预览程序为bat, bat的配置在~/.config/bat/config, 需要调整效果
 # 修改该文件即可
-# --preview 'bat --color=always {}'
-# --preview 'fzf-preview.sh {}'
 export FZF_DEFAULT_OPTS="
-		--preview 'fzf-preview.sh {}'
-    --preview-window border-thinblock:right:75%:hidden:wrap
+		--preview='fzf-preview.sh {}'
+    --preview-window=border-thinblock:down:48%:hidden:wrap
     --bind='ctrl-u:preview-page-up'
     --bind='ctrl-d:preview-page-down'
-    --bind='ctrl-/:change-preview-window(right|hidden|)'
-    --bind='ctrl-\:toggle-preview'
-		--bind='scroll-up:up+up,scroll-down:down+down' \
-    --bind='preview-scroll-up:preview-up+preview-up' \
-    --bind='preview-scroll-down:preview-down+preview-down' \
+		--bind='?:change-preview-window(down|right|)'
+		--bind='ctrl-\:toggle-preview'
+		--bind='scroll-up:up+up,scroll-down:down+down'
+  	--bind='preview-scroll-up:preview-up+preview-up'
+  	--bind='preview-scroll-down:preview-down+preview-down'
 		--bind 'ctrl-y:execute-silent(printf {} | cut -f 2- | wl-copy --trim-newline)'
-    --height=85% 
+    --header '请按CTRL-y将命令复制到剪切板'
+    --height=99%
     --multi
     --layout=reverse
-    --info=right
+    --info=inline-right
     --border=thinblock
     --prompt=' '
     --tabstop=4
-    --padding=1
-    --margin=1"
+    --padding=1%
+    --margin=1%
+    --color=header:italic
+    "
 
 # fzf和tmux结合使用
 # export FZF_TMUX=1
@@ -95,7 +102,7 @@ _fzf_comprun() {
 	cd) fzf --preview 'tree -C {} | head -200' "$@" ;;
 	export | unset) fzf --preview "eval 'echo \$'{}" "$@" ;;
 	ssh) fzf --preview 'dig {}' "$@" ;;
-	*) fzf --preview 'bat {}' "$@" ;;
+	*) fzf --preview 'bat -n --color=always {}' "$@" ;;
 	esac
 }
 
@@ -103,6 +110,7 @@ _fzf_comprun() {
 __fzfmenu__() {
 	local cmd="fd -tf --max-depth=1"
 	eval "$cmd" | ~/.local/bin/fzfmenu
+	# eval "$cmd"
 }
 
 __fzf-menu__() {
@@ -349,21 +357,16 @@ cd() {
 }
 
 # fzf和autojump集成
-j() {
+fj() {
 	local preview_cmd="ls {2..}"
 	if command -v exa &>/dev/null; then
 		preview_cmd="exa -l {2}"
 	fi
 
 	if [[ $# -eq 0 ]]; then
-		cd "$(autojump -s |
-			sort -k1gr |
-			awk -F : '$1 ~ /[0-9]/ && $2 ~ /^\s*\// {print $1 $2}' |
-			fzf --height 40% --reverse --inline-info --preview "$preview_cmd" --preview-window down:50% |
-			cut -d$'\t' -f2- |
-			sed 's/^\s*//')" || return
+		cd "$(autojump -s | sort -k1gr | awk -F : '$1 ~ /[0-9]/ && $2 ~ /^\s*\// {print $1 $2}' | fzf --height 40% --reverse --inline-info --preview "$preview_cmd" --preview-window down:50% | cut -d$'\t' -f2- | sed 's/^\s*//')"
 	else
-		cd $(autojump "$@")
+		cd $(autojump $@)
 	fi
 }
 
@@ -401,13 +404,13 @@ builtin bind '"\C-x1": "\C-x2\C-x3"'
 # 	--color=query:#00aaee'
 #
 # SpaceCamp
-# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-#  --color=fg:#dedede,bg:#121212,hl:#666666
-#  --color=fg+:#eeeeee,bg+:#282828,hl+:#cf73e6
-#  --color=info:#cf73e6,prompt:#FF0000,pointer:#cf73e6
-#  --color=marker:#f0d50c,spinner:#cf73e6,header:#91aadf
-#  --color=query:#b7c741
-#  --color=preview-bg:#223345,border:#778899'
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+ --color=fg:#dedede,bg:#121212,hl:#666666
+ --color=fg+:#eeeeee,bg+:#282828,hl+:#cf73e6
+ --color=info:#cf73e6,prompt:#FF0000,pointer:#cf73e6
+ --color=marker:#f0d50c,spinner:#cf73e6,header:#91aadf
+ --color=query:#b7c741
+ --color=preview-bg:#223345,border:#778899'
 # --color=query:#2874af
 
 # Dracula
@@ -546,12 +549,12 @@ builtin bind '"\C-x1": "\C-x2\C-x3"'
 # --color=pointer:#c4a7e7,marker:#eb6f92,prompt:#908caa"
 #
 # rose-pine:
-export FZF_DEFAULT_OPTS="
---color=fg:#908caa,bg:#191724,hl:#ebbcba
---color=fg+:#e0def4,bg+:#26233a,hl+:#ebbcba
---color=border:#403d52,header:#31748f,gutter:#191724
---color=spinner:#f6c177,info:#9ccfd8,separator:#403d52
---color=pointer:#c4a7e7,marker:#eb6f92,prompt:#908caa"
+# export FZF_DEFAULT_OPTS="
+# --color=fg:#908caa,bg:#191724,hl:#ebbcba
+# --color=fg+:#e0def4,bg+:#26233a,hl+:#ebbcba
+# --color=border:#403d52,header:#31748f,gutter:#191724
+# --color=spinner:#f6c177,info:#9ccfd8,separator:#403d52
+# --color=pointer:#c4a7e7,marker:#eb6f92,prompt:#908caa"
 #
 # Ayu Mirage
 # export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
