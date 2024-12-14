@@ -159,9 +159,15 @@ export EDITOR=vi
 # <<< tmux快捷键 <<<
 
 # fzf配置
+eval "$(fzf --bash)"
 [ -f "$HOME/.fzf.bash" ] && source "$HOME/.fzf.bash"
 [ -f "$HOME/.config/fzf/myfzf.bash" ] && source "$HOME/.config/fzf/myfzf.bash"
 [ -f "$HOME/.config/fzf/fzf-git.sh" ] && source "$HOME/.config/fzf/fzf-git.sh"
+
+# autojump
+if [ -f ~/.local/bin/autojump.bash ]; then
+	. "$HOME/.local/bin/autojump.bash"
+fi
 
 #
 # forgit配置
