@@ -1,7 +1,7 @@
 {
   "hyprland/workspaces": {
     "persistent-workspaces": {
-      "*": 10
+      "*": 10,
     },
     "sort-by-number": true,
     "on-click": "activate",
@@ -30,17 +30,17 @@
       "active": " 󰮯 ",
       "default": " ",
       "empty": "󰧵 ",
-      "persistent": "󰧵 "
-    }
-    // "window-rewrite-default": "",
-    // "window-rewrite": {
-    //   "title<.*youtube.*>": "",
-    //   "class<firefox>": "",
-    //   "class<firefox> title<.*github.*>": "",
-    //   "class<kitty>": "",
-    //   "code": "󰨞"
-    // }
-  }
+      "persistent": "󰧵 ",
+    },
+    "window-rewrite-default": "",
+    "window-rewrite": {
+      "title<.*YouTube.*>": "",
+      "class<firefox>": "",
+      "class<firefox> title<.*github.*>": "",
+      "class<kitty>": "",
+      "class<kitty> title<ncmpcpp>": "🪕",
+    },
+  },
 }
 // "active": "",
 // "default": ""
