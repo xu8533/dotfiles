@@ -5,3 +5,17 @@ export FZF_DEFAULT_OPTS="--height=100% --layout=reverse --border --no-sort --pro
 exec kitty --class="fzf-menu" bash -c "fzf-tmux -m $* < /proc/$$/fd/0 | awk 'BEGIN {ORS=\" \"} {print}' > /proc/$$/fd/1"
 # For st instead
 # st -c fzf-menu -n fzf-menu -e bash -c "fzf-tmux -m $* < /proc/$$/fd/0 | awk 'BEGIN {ORS=\" \"} {print}' > /proc/$$/fd/1"
+# input=$(mktemp -u --suffix .fzfmenu.input)
+# output=$(mktemp -u --suffix .fzfmenu.output)
+# mkfifo $input
+# mkfifo $output
+# chmod 600 $input $output
+#
+# kitty --class fzfmenu sh -c "cat $input | fzf $(printf -- " '%s'" "$@" | sed "s/^ ''$//") | tee $output" &
+# disown
+#
+# # handle ctrl+c outside child terminal window
+# trap "kill $! 2>/dev/null; rm -f $input $output" EXIT
+#
+# cat >$input
+# cat $output
