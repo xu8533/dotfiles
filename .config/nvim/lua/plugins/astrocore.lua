@@ -145,7 +145,7 @@ return {
         swapfile = false,
         --- 显示不可见字符
         list = true,
-        -- iskeyword:append { "$", "@-@", "%" },
+        jumpoptions = "stack", -- 设置跳转选项,ctrl-o和ctrl-i的行为更和逻辑       -- iskeyword:append { "$", "@-@", "%" },
         -- runtimepath:append { "~/.fzf" },
       },
       g = {
