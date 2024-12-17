@@ -71,10 +71,13 @@ return {
   -- { import = "astrocommunity.editing-support.ultimate-autopair-nvim" },
   { import = "astrocommunity.editing-support.undotree" },
   { import = "astrocommunity.editing-support.vim-move" },
-  { import = "astrocommunity.editing-support.yanky-nvim" },
+  -- { import = "astrocommunity.editing-support.yanky-nvim" },
 
   -- file-explorer
   { import = "astrocommunity.file-explorer.telescope-file-browser-nvim" },
+
+  -- fuzzy-finder
+  { import = "astrocommunity.fuzzy-finder.fzf-lua" },
 
   -- git
   { import = "astrocommunity.git.diffview-nvim" },
