@@ -1,6 +1,5 @@
 [flavor]
 # use = "nightfly"
-# use = "rose-pine"
 # use = "ls-colors"
 # use = "ayu-dark"
 # use = "everforest-medium"
@@ -11,8 +10,10 @@
 # use = "catppuccin-macchiato"
 # use = "gruvbox-dark"
 # use = "kanagawa"
-use = "sunset"
+# use = "sunset"
 # use = "tokyo-night"
 # use = "monokai-vibrant"
 # use = "crystal"
 # use = "nightfly"
+dark = "ls-colors"
+light = "catppuccin-latte"
