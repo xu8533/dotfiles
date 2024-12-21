@@ -21,19 +21,19 @@ return {
   { import = "astrocommunity.color.transparent-nvim" },
 
   -- colorscheme
-  { import = "astrocommunity.colorscheme.bamboo-nvim" },
-  { import = "astrocommunity.colorscheme.catppuccin" },
-  { import = "astrocommunity.colorscheme.dracula-nvim" },
-  { import = "astrocommunity.colorscheme.everforest" },
-  { import = "astrocommunity.colorscheme.gruvbox-baby" },
-  { import = "astrocommunity.colorscheme.kanagawa-nvim" },
-  { import = "astrocommunity.colorscheme.nightfox-nvim" },
-  { import = "astrocommunity.colorscheme.onedarkpro-nvim" },
-  { import = "astrocommunity.colorscheme.oxocarbon-nvim" },
-  { import = "astrocommunity.colorscheme.rose-pine" },
-  { import = "astrocommunity.colorscheme.sonokai" },
-  { import = "astrocommunity.colorscheme.tokyonight-nvim" },
-  { import = "astrocommunity.colorscheme.vscode-nvim" },
+  -- { import = "astrocommunity.colorscheme.bamboo-nvim" },
+  -- { import = "astrocommunity.colorscheme.catppuccin" },
+  -- { import = "astrocommunity.colorscheme.dracula-nvim" },
+  -- { import = "astrocommunity.colorscheme.everforest" },
+  -- { import = "astrocommunity.colorscheme.gruvbox-baby" },
+  -- { import = "astrocommunity.colorscheme.kanagawa-nvim" },
+  -- { import = "astrocommunity.colorscheme.nightfox-nvim" },
+  -- { import = "astrocommunity.colorscheme.onedarkpro-nvim" },
+  -- { import = "astrocommunity.colorscheme.oxocarbon-nvim" },
+  -- { import = "astrocommunity.colorscheme.rose-pine" },
+  -- { import = "astrocommunity.colorscheme.sonokai" },
+  -- { import = "astrocommunity.colorscheme.tokyonight-nvim" },
+  -- { import = "astrocommunity.colorscheme.vscode-nvim" },
   { import = "astrocommunity.colorscheme.aurora" },
   { import = "astrocommunity.colorscheme.bluloco-nvim" },
   { import = "astrocommunity.colorscheme.citruszest-nvim" },
@@ -64,20 +64,21 @@ return {
   { import = "astrocommunity.diagnostics.trouble-nvim" },
 
   -- editing-support
-  { import = "astrocommunity.editing-support.multicursors-nvim" },
-  { import = "astrocommunity.editing-support.nvim-treesitter-context" },
+  -- { import = "astrocommunity.editing-support.multicursors-nvim" },
+  -- { import = "astrocommunity.editing-support.nvim-treesitter-context" },
   { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
-  { import = "astrocommunity.editing-support.true-zen-nvim" },
+  -- { import = "astrocommunity.editing-support.true-zen-nvim" },
   -- { import = "astrocommunity.editing-support.ultimate-autopair-nvim" },
   { import = "astrocommunity.editing-support.undotree" },
-  { import = "astrocommunity.editing-support.vim-move" },
-  -- { import = "astrocommunity.editing-support.yanky-nvim" },
+  -- { import = "astrocommunity.editing-support.vim-move" },
+  { import = "astrocommunity.editing-support.yanky-nvim" },
+  { import = "astrocommunity.editing-support.conform-nvim" },
 
   -- file-explorer
-  { import = "astrocommunity.file-explorer.telescope-file-browser-nvim" },
+  -- { import = "astrocommunity.file-explorer.telescope-file-browser-nvim" },
 
   -- fuzzy-finder
-  { import = "astrocommunity.fuzzy-finder.fzf-lua" },
+  -- { import = "astrocommunity.fuzzy-finder.fzf-lua" },
 
   -- git
   { import = "astrocommunity.git.diffview-nvim" },
