@@ -165,7 +165,7 @@ eval "$(fzf --bash)"
 [ -f "$HOME/.config/fzf/fzf-git.sh" ] && source "$HOME/.config/fzf/fzf-git.sh"
 
 # autojump
-if [ -f ~/.local/bin/autojump.bash ]; then
+if [ -f $HOME/.config/autojump/autojump.bash ]; then
 	. "$HOME/.config/autojump/autojump.bash"
 fi
 
