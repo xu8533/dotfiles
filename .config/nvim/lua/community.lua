@@ -72,7 +72,7 @@ return {
   { import = "astrocommunity.editing-support.undotree" },
   -- { import = "astrocommunity.editing-support.vim-move" },
   { import = "astrocommunity.editing-support.yanky-nvim" },
-  { import = "astrocommunity.editing-support.conform-nvim" },
+  -- { import = "astrocommunity.editing-support.conform-nvim" },
 
   -- file-explorer
   -- { import = "astrocommunity.file-explorer.telescope-file-browser-nvim" },
@@ -81,8 +81,8 @@ return {
   -- { import = "astrocommunity.fuzzy-finder.fzf-lua" },
 
   -- git
-  { import = "astrocommunity.git.diffview-nvim" },
-  { import = "astrocommunity.git.octo-nvim" },
+  -- { import = "astrocommunity.git.diffview-nvim" },
+  -- { import = "astrocommunity.git.octo-nvim" },
 
   -- indent
   -- { import = "astrocommunity.indent.indent-blankline-nvim" },
@@ -91,7 +91,7 @@ return {
   -- markdown-and-latex
   -- { import = "astrocommunity.markdown-and-latex.markdown-preview-nvim" },
   -- { import = "astrocommunity.markdown-and-latex.vimtex" },
-  { import = "astrocommunity.markdown-and-latex.markmap-nvim" },
+  -- { import = "astrocommunity.markdown-and-latex.markmap-nvim" },
   { import = "astrocommunity.markdown-and-latex.render-markdown-nvim" },
   -- { import = "astrocommunity.markdown-and-latex.markview-nvim" },
 
