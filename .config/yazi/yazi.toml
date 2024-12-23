@@ -3,7 +3,7 @@
 "$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
 
 [manager]
-ratio          = [ 1, 4, 3 ]
+ratio          = [ 1, 5, 2 ]
 sort_by        = "mtime"
 sort_sensitive = true
 sort_reverse   = true
@@ -96,6 +96,38 @@ suppress_preload = false
 
 [plugin]
 
+fetchers = [
+	# Mimetype
+	{ id = "mime", name = "*", run = "mime", if = "!mime", prio = "high" },
+]
+
+spotters = [
+	{ name = "*/", run = "folder" },
+	# Code
+	{ mime = "text/*", run = "code" },
+	{ mime = "*/{xml,javascript,wine-extension-ini}", run = "code" },
+	# Image
+	{ mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
+	{ mime = "image/*", run = "image" },
+	# Video
+	{ mime = "video/*", run = "video" },
+	# Fallback
+	{ name = "*", run = "file" },
+]
+
+preloaders = [
+	# Image
+	{ mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
+	{ mime = "image/*", run = "image" },
+	# Video
+	{ mime = "video/*", run = "video" },
+	# PDF
+	{ mime = "application/pdf", run = "pdf" },
+	# Font
+	{ mime = "font/*", run = "font" },
+	{ mime = "application/ms-opentype", run = "font" },
+]
+
 prepend_previewers = [
   { name = "*.md", 												run = "glow" },
 	{ mime = "audio/*",   									run = "exifaudio"},
@@ -108,47 +140,35 @@ prepend_previewers = [
 	{ mime = "application/x-rar",           run = "ouch" },
 	{ mime = "application/x-xz",            run = "ouch" },
 ]
-
-append_previewers = [
-  { name = "*", run = "hexyl" },
-]
-preloaders = [
-	# Image
-	{ mime = "image/vnd.djvu", run = "noop" },
-	{ mime = "image/*",        run = "image" },
-	# HEIC preloader
-	{ mime = "image/heic", run = "heic" },
-	# Video
-	{ mime = "video/*", run = "video" },
-	# PDF
-	{ mime = "application/pdf", run = "pdf" },
-]
 previewers = [
 	{ name = "*/", run = "folder", sync = true },
 	# Code
-	{ mime = "text/*",                 run = "code" },
-	{ mime = "*/xml",                  run = "code" },
-	{ mime = "*/javascript",           run = "code" },
-	{ mime = "*/x-wine-extension-ini", run = "code" },
+	{ mime = "text/*", run = "code" },
+	{ mime = "*/{xml,javascript,wine-extension-ini}", run = "code" },
 	# JSON
-	{ mime = "application/json", run = "json" },
+	{ mime = "application/{json,ndjson}", run = "json" },
 	# Image
-	{ mime = "image/vnd.djvu", run = "noop" },
-	{ mime = "image/*",        run = "image" },
+	{ mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
+	{ mime = "image/*", run = "image" },
 	# Video
 	{ mime = "video/*", run = "video" },
 	# PDF
-	# { mime = "application/pdf", run = "enince-previewer" },
 	{ mime = "application/pdf", run = "pdf" },
 	# Archive
-	{ mime = "application/zip",             run = "archive" },
-	{ mime = "application/gzip",            run = "archive" },
-	{ mime = "application/x-tar",           run = "archive" },
-	{ mime = "application/x-bzip",          run = "archive" },
-	{ mime = "application/x-bzip2",         run = "archive" },
-	{ mime = "application/x-7z-compressed", run = "archive" },
-	{ mime = "application/x-rar",           run = "archive" },
-	{ mime = "application/xz",              run = "archive" },
+	{ mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", run = "archive" },
+	{ mime = "application/{debian*-package,redhat-package-manager,rpm,android.package-archive}", run = "archive" },
+	{ name = "*.{AppImage,appimage}", run = "archive" },
+	# Virtual Disk / Disk Image
+	{ mime = "application/{iso9660-image,qemu-disk,ms-wim,apple-diskimage}", run = "archive" },
+	{ mime = "application/virtualbox-{vhd,vhdx}", run = "archive" },
+	{ name = "*.{img,fat,ext,ext2,ext3,ext4,squashfs,ntfs,hfs,hfsx}", run = "archive" },
+	# Font
+	{ mime = "font/*", run = "font" },
+	{ mime = "application/ms-opentype", run = "font" },
+	# Empty file
+	{ mime = "inode/empty", run = "empty" },
+	# Fallback
+	{ name = "*", run = "file" },
 ]
 
 [input]
@@ -190,13 +210,11 @@ shell_offset = [ 0, 2, 50, 3 ]
 
 [confirm]
 # trash
-# trash_title 	= "Move {n} selected file{s} to trash? (y/N)"
 trash_title 	= "将选择的文件移动到回收站? (y/N)"
 trash_origin	= "top-center"
 trash_offset	= [ 0, 2, 50, 3 ]
 
 # delete
-# delete_title 	= "Delete {n} selected file{s} permanently? (y/N)"
 delete_title 	= "永久删除选择的文件? (y/N)"
 delete_origin	= "top-center"
 delete_offset	= [ 0, 2, 50, 3 ]
@@ -207,12 +225,11 @@ overwrite_origin = "top-center"
 overwrite_offset = [ 0, 2, 50, 3 ]
 
 # quit
-# quit_title  = "{n} task{s} running, sure to quit? (y/N)"
 quit_title  = "有正在运行的任务, 确定退出? (y/N)"
 quit_origin = "top-center"
 quit_offset = [ 0, 2, 50, 3 ]
 
-[select]
+[pick]
 open_title  = "使用下列方式打开:"
 open_origin = "hovered"
 open_offset = [ 0, 1, 50, 7 ]
