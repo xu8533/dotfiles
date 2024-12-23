@@ -122,6 +122,7 @@ return {
   { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.pack.python" },
   { import = "astrocommunity.pack.json" },
+  { import = "astrocommunity.pack.hyprlang" },
 
   -- project
   { import = "astrocommunity.project.projectmgr-nvim" },
