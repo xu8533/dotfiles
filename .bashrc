@@ -166,7 +166,7 @@ eval "$(fzf --bash)"
 
 # autojump
 if [ -f ~/.local/bin/autojump.bash ]; then
-	. "$HOME/.local/bin/autojump.bash"
+	. "$HOME/.config/autojump/autojump.bash"
 fi
 
 #
