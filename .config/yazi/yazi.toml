@@ -133,12 +133,12 @@ prepend_previewers = [
 	{ mime = "audio/*",   									run = "exifaudio"},
 	{ name = "*/", 													run = "eza-preview" },
 	# Archive previewer
-	{ mime = "application/*zip",            run = "ouch" },
-	{ mime = "application/x-tar",           run = "ouch" },
-	{ mime = "application/x-bzip2",         run = "ouch" },
-	{ mime = "application/x-7z-compressed", run = "ouch" },
-	{ mime = "application/x-rar",           run = "ouch" },
-	{ mime = "application/x-xz",            run = "ouch" },
+	# { mime = "application/*zip",            run = "ouch" },
+	# { mime = "application/x-tar",           run = "ouch" },
+	# { mime = "application/x-bzip2",         run = "ouch" },
+	# { mime = "application/x-7z-compressed", run = "ouch" },
+	# { mime = "application/x-rar",           run = "ouch" },
+	# { mime = "application/x-xz",            run = "ouch" },
 ]
 previewers = [
 	{ name = "*/", run = "folder", sync = true },
@@ -148,7 +148,7 @@ previewers = [
 	# JSON
 	{ mime = "application/{json,ndjson}", run = "json" },
 	# Image
-	{ mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
+	{ mime = "image/{tiff,avif,hei?,jxl,svg+xml}", run = "magick" },
 	{ mime = "image/*", run = "image" },
 	# Video
 	{ mime = "video/*", run = "video" },
