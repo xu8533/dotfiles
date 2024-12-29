@@ -1,0 +1,17 @@
+# tab补全忽略大小写
+set completion-ignore-case on
+
+# 按下tab键时候补全
+set show-all-if-ambiguous on
+
+set menu-complete-display-prefix on
+TAB:menu-complete
+
+# tab补全软连接
+set mark-symlinked-directories on
+
+
+Control-v:"v \C-t"
+Control-g:unix-filename-rubout
+Control-p:history-search-backward
+Control-n:history-search-forward
