@@ -14,6 +14,7 @@
 
 ## 🌟 PREVIEW
 
+<img align="center" width="85%" src="previews/screenshot_2024-12-29_10:24:46.png">
 <img align="center" width="85%" src="previews/screenshot_2024-02-28_21:56:16.png">
 <img align="center" width="85%" src="previews/screenshot_2024-02-02_23:45:26.png">
 
