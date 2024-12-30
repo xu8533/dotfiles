@@ -10,6 +10,8 @@ TAB:menu-complete
 # tab补全软连接
 set mark-symlinked-directories on
 
+# 彩色补全文本
+set colored-completion-prefix on
 
 Control-v:"v \C-t"
 Control-g:unix-filename-rubout
