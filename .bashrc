@@ -154,7 +154,6 @@ export MANROFFOPT
 export EDITOR=vi
 # export EDITOR="NVIM_APPNAME=AstroNvim vi"
 
-echo EDITOR
 # >>> tmux快捷键 >>>
 # bind -x '"\C-[": "tmux"'
 # <<< tmux快捷键 <<<
