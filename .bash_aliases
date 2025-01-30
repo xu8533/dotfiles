@@ -11,6 +11,7 @@ alias lf='eza -1 --icons -f'
 alias lG='eza --grid'
 alias lR='eza --recurse'
 alias lT='eza --tree'
+alias l.='eza -d .[!.]*'
 
 # ranger like file manager
 # alias js='joshuto'
