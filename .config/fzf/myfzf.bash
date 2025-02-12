@@ -46,6 +46,7 @@ export FZF_COMPLETION_DIR_OPTS='
 # 预览程序为fzf-preview.sh, 可以预览图片
 # 预览程序为bat, bat的配置在~/.config/bat/config, 需要调整效果
 # 修改该文件即可
+# --layout=reverse
 export FZF_DEFAULT_OPTS="
 		--preview='fzf-preview.sh {}'
     --preview-window=border-thinblock:down:48%:hidden:wrap
@@ -58,9 +59,8 @@ export FZF_DEFAULT_OPTS="
   	--bind='preview-scroll-down:preview-down+preview-down'
 		--bind 'ctrl-y:execute-silent(printf {} | cut -f 2- | wl-copy --trim-newline)'
     --header '请按CTRL-y将命令复制到剪切板'
-    --height=99%
+    --height=90%
     --multi
-    --layout=reverse
     --info=inline-right
     --border=thinblock
     --prompt=' '
@@ -68,6 +68,9 @@ export FZF_DEFAULT_OPTS="
     --padding=1%
     --margin=1%
     --color=header:italic
+		--header-lines-border bottom
+		--list-border bottom
+		--style=full
     "
 
 # fzf和tmux结合使用
