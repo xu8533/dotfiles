@@ -1,5 +1,54 @@
-[plugin]
-deps = [ { use = "Reledia/glow", rev = "c2ed51e" }, { use = "Sonico98/exifaudio", rev = "d794614" },  ]
+[[plugin.deps]]
+use = "Reledia/glow"
+rev = "c2ed51e"
+hash = "12f1a22a187df8f6c90f68f623f892ee"
 
-[flavor]
-deps = [{ use = "PinThePenguine/sunset", rev = "181acd4" }, { use = "kmlupreti/ayu-dark", rev = "441a38d" }, { use = "Chromium-3-Oxide/everforest-medium", rev = "65bc09b" }, { use = "sanjinso/monokai-vibrant", rev = "8b68223" }, { use = "dangooddd/kanagawa", rev = "b32f205" }, { use = "yazi-rs/flavors:catppuccin-macchiato", rev = "4a3082f" }, { use = "yazi-rs/flavors:catppuccin-latte", rev = "4a3082f" }, { use = "yazi-rs/flavors:catppuccin-frappe", rev = "4a3082f" }, { use = "yazi-rs/flavors:catppuccin-mocha", rev = "4a3082f" }]
+[[plugin.deps]]
+use = "Sonico98/exifaudio"
+rev = "d794614"
+hash = "a8e15d3c21c02a5af41d46ed04778a02"
+
+[[flavor.deps]]
+use = "PinThePenguine/sunset"
+rev = "181acd4"
+hash = ""
+
+[[flavor.deps]]
+use = "kmlupreti/ayu-dark"
+rev = "441a38d"
+hash = ""
+
+[[flavor.deps]]
+use = "Chromium-3-Oxide/everforest-medium"
+rev = "65bc09b"
+hash = ""
+
+[[flavor.deps]]
+use = "sanjinso/monokai-vibrant"
+rev = "8b68223"
+hash = ""
+
+[[flavor.deps]]
+use = "dangooddd/kanagawa"
+rev = "b32f205"
+hash = ""
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:catppuccin-macchiato"
+rev = "4a3082f"
+hash = ""
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:catppuccin-latte"
+rev = "4a3082f"
+hash = ""
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:catppuccin-frappe"
+rev = "4a3082f"
+hash = ""
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:catppuccin-mocha"
+rev = "4a3082f"
+hash = ""
