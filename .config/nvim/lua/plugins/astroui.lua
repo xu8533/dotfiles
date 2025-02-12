@@ -28,7 +28,7 @@ return {
     -- colorscheme = "gruvbox-material",
     -- colorscheme = "kanagawa-dragon",
     -- colorscheme = "kanagawa-lotus",
-    colorscheme = "kanagawa-wave",
+    -- colorscheme = "kanagawa-wave",
     -- colorscheme = "kanagawa-paper",
     -- colorscheme = "carbonfox",
     -- colorscheme = "duskfox",
@@ -72,7 +72,7 @@ return {
     -- colorscheme = "nordic",
     -- colorscheme = "dogrun",
     -- colorscheme = "moonfly",
-    -- colorscheme = "nightfly",
+    colorscheme = "nightfly",
     -- AstroUI allows you to easily modify highlight groups easily for any and all colorschemes
     highlights = {
       init = { -- this table overrides highlights in all themes
