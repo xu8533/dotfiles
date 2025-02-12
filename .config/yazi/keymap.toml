@@ -35,8 +35,8 @@ keymap = [
 	{ on = [ "<Left>" ],  run = "leave",    desc = "进入上层目" },
 	{ on = [ "<Right>" ], run = "enter",    desc = "进入子目录" },
 
-	{ on = [ "g", "g" ], run = "arrow -99999999", desc = "移动到顶部" },
-	{ on = [ "G" ],      run = "arrow 99999999",  desc = "移动到底部" },
+	{ on = [ "g", "g" ], run = "arrow top", desc = "移动到顶部" },
+	{ on = [ "G" ],      run = "arrow bot", desc = "移动到底部" },
 
 	{ on = [ "<S-Up>" ],   run = "arrow -5", desc = "向上移动5行" },
 	{ on = [ "<S-Down>" ], run = "arrow 5",  desc = "向下移动5行" },
