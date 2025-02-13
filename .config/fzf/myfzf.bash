@@ -6,20 +6,20 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # Preview file content using bat (https://github.com/sharkdp/bat)
 #
 export FZF_CTRL_T_OPTS="
-		--walker-skip .git,node_modules,go,target
-  	--preview 'bat --color=always --style=numbers --line-range=:500 {}'
-  "
+    --walker-skip .git,node_modules,go,target
+    --preview 'bat --color=always --style=numbers --line-range=:500 {}'
+"
 
 # 搜索历史命令使用ctrl+r
 export FZF_CTRL_R_OPTS="
     --preview 'echo {}' 
     --preview-window down:6:hidden:wrap 
-    "
+"
 
 # 树形目录
 export FZF_ALT_C_OPTS="
---walker-skip .git,node_modules,target
---preview 'tree -C {}'
+    --walker-skip .git,node_modules,target
+    --preview 'tree -C {}'
 "
 
 # 这两个选项不能和preview一起工作
@@ -32,15 +32,15 @@ export FZF_COMPLETION_TRIGGER=',,'
 export FZF_COMPLETION_OPTS='
     --border=double
     --info=inline-right
-    '
+'
 
 export FZF_COMPLETION_PATH_OPTS='
-		--walker file,dir,follow,hidden
-		'
+    --walker file,dir,follow,hidden
+'
 
 export FZF_COMPLETION_DIR_OPTS='
-		--walker dir,follow
-		'
+    --walker dir,follow
+'
 # fzf默认选项，启用预览功能，默认为隐藏模式，使用ctrl+\切换
 # 使用?切换预览窗口位置
 # 预览程序为fzf-preview.sh, 可以预览图片
@@ -48,16 +48,16 @@ export FZF_COMPLETION_DIR_OPTS='
 # 修改该文件即可
 # --layout=reverse
 export FZF_DEFAULT_OPTS="
-		--preview='fzf-preview.sh {}'
+    --preview='fzf-preview.sh {}'
     --preview-window=border-thinblock:down:48%:hidden:wrap
     --bind='ctrl-u:preview-page-up'
     --bind='ctrl-d:preview-page-down'
-		--bind='?:change-preview-window(down|right|)'
-		--bind='ctrl-\:toggle-preview'
-		--bind='scroll-up:up+up,scroll-down:down+down'
-  	--bind='preview-scroll-up:preview-up+preview-up'
-  	--bind='preview-scroll-down:preview-down+preview-down'
-		--bind 'ctrl-y:execute-silent(printf {} | cut -f 2- | wl-copy --trim-newline)'
+    --bind='?:change-preview-window(down|right|)'
+    --bind='ctrl-\:toggle-preview'
+    --bind='scroll-up:up+up,scroll-down:down+down'
+    --bind='preview-scroll-up:preview-up+preview-up'
+    --bind='preview-scroll-down:preview-down+preview-down'
+    --bind 'ctrl-y:execute-silent(printf {} | cut -f 2- | wl-copy --trim-newline)'
     --header '请按CTRL-y将命令复制到剪切板'
     --height=95%
     --multi
@@ -68,10 +68,10 @@ export FZF_DEFAULT_OPTS="
     --padding=1%
     --margin=1%
     --color=header:italic
-		--header-lines-border bottom
-		--list-border bottom
-		--style=full
-    "
+    --header-lines-border bottom
+    --list-border bottom
+    --style=full
+"
 
 # fzf和tmux结合使用
 # export FZF_TMUX=1
