@@ -59,7 +59,7 @@ export FZF_DEFAULT_OPTS="
   	--bind='preview-scroll-down:preview-down+preview-down'
 		--bind 'ctrl-y:execute-silent(printf {} | cut -f 2- | wl-copy --trim-newline)'
     --header '请按CTRL-y将命令复制到剪切板'
-    --height=90%
+    --height=95%
     --multi
     --info=inline-right
     --border=thinblock
