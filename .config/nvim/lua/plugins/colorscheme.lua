@@ -393,6 +393,10 @@ return {
   },
   {
     "NLKNguyen/papercolor-theme",
-    lazy = true,
+    -- lazy = true,
+    config = function()
+      vim.cmd [[colorscheme PaperColor]]
+      vim.cmd [[set background=dark]]
+    end,
   },
 }
