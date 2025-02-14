@@ -41,7 +41,6 @@ return {
   { import = "astrocommunity.colorscheme.melange-nvim" },
   { import = "astrocommunity.colorscheme.nordic-nvim" },
   { import = "astrocommunity.colorscheme.vim-dogrun" },
-  { import = "astrocommunity.colorscheme.vim-moonfly-colors" },
   { import = "astrocommunity.colorscheme.vim-nightfly-colors" },
 
   -- completion
@@ -72,7 +71,7 @@ return {
   { import = "astrocommunity.editing-support.undotree" },
   -- { import = "astrocommunity.editing-support.vim-move" },
   { import = "astrocommunity.editing-support.yanky-nvim" },
-  -- { import = "astrocommunity.editing-support.conform-nvim" },
+  { import = "astrocommunity.editing-support.conform-nvim" },
 
   -- file-explorer
   -- { import = "astrocommunity.file-explorer.telescope-file-browser-nvim" },
