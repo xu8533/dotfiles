@@ -50,7 +50,7 @@ return {
     -- colorscheme = "onedark_vivid",
     -- colorscheme = "onedark_dark",
     -- colorscheme = "oxocarbon",
-    -- colorscheme = "PaperColor",
+    colorscheme = "PaperColor",
     -- colorscheme = "rose-pine-moon",
     -- colorscheme = "rose-pine-main",
     -- colorscheme = "tokyonight-day",
@@ -71,8 +71,7 @@ return {
     -- colorscheme = "melange",
     -- colorscheme = "nordic",
     -- colorscheme = "dogrun",
-    -- colorscheme = "moonfly",
-    colorscheme = "nightfly",
+    -- colorscheme = "nightfly",
     -- AstroUI allows you to easily modify highlight groups easily for any and all colorschemes
     highlights = {
       init = { -- this table overrides highlights in all themes
