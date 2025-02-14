@@ -130,8 +130,8 @@ return {
         signcolumn = "auto", -- sets vim.opt.signcolumn to auto
         wrap = true, -- sets vim.opt.wrap
         sidescrolloff = 8, -- 保留光标周围8列
-        -- tabstop = 4,
-        -- softtabstop = 4,
+        tabstop = 4,
+        softtabstop = 4,
         expandtab = true,
         -- shiftwidth = 4,
         hlsearch = true,
@@ -147,6 +147,7 @@ return {
         list = true,
         jumpoptions = "stack", -- 设置跳转选项,ctrl-o和ctrl-i的行为更和逻辑       -- iskeyword:append { "$", "@-@", "%" },
         -- runtimepath:append { "~/.fzf" },
+        background = "light",
       },
       g = {
         mapleader = " ", -- sets vim.g.mapleader
