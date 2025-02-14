@@ -50,7 +50,7 @@ return {
     -- colorscheme = "onedark_vivid",
     -- colorscheme = "onedark_dark",
     -- colorscheme = "oxocarbon",
-    colorscheme = "PaperColor",
+    -- colorscheme = "PaperColor",
     -- colorscheme = "rose-pine-moon",
     -- colorscheme = "rose-pine-main",
     -- colorscheme = "tokyonight-day",
