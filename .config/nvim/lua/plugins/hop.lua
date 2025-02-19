@@ -21,21 +21,4 @@ return {
     -- { "h2c", "<cmd>HopChar2<CR>", desc = "Hop two char motion" },
     { "hcl", "<cmd>HopWordCurrentLine<CR>", desc = "Hop current line motion" },
   },
-  dependencies = {
-    "AstroNvim/astrocore",
-    opts = {
-      mappings = {
-        n = {
-          ["s"] = false,
-          ["<A-s>"] = { function() require("hop").hint_words() end, desc = "Hop hint words" },
-          ["<S-s>"] = false,
-        },
-        v = {
-          -- ["s"] = { function() require("hop").hint_words { extend_visual = true } end, desc = "Hop hint words" },
-          ["s"] = false,
-          ["<S-s>"] = false,
-        },
-      },
-    },
-  },
 }

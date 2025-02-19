@@ -1,6 +1,7 @@
 return {
   "folke/flash.nvim",
-  -- vscode = true,
+  vscode = true,
+  event = "VeryLazy",
   opts = {
     label = {
       rainbow = {
@@ -40,39 +41,59 @@ return {
     },
   },
   keys = {
-    -- {
-    --   "/",
-    --   mode = { "n", "x", "o" },
-    --   function() require("flash").jump { search = { forward = true, wrap = false, multi_window = false } } end,
-    --   desc = "Flash forward search only",
-    -- },
-    -- {
-    --   "?",
-    --   mode = { "n", "x", "o" },
-    --   function()
-    --     require("flash").jump {
-    --       search = { forward = false, wrap = false, multi_window = false },
-    --     }
-    --   end,
-    --   desc = "Flash backward search only",
-    -- },
     {
       "s",
-      mode = { "n" },
-      function() require("flash").jump() end,
+      mode = { "n", "x", "o" },
+      function()
+        require("flash").jump()
+      end,
       desc = "Flash",
+    },
+    {
+      "S",
+      mode = { "n", "o", "x" },
+      function()
+        require("flash").treesitter()
+      end,
+      desc = "Flash Treesitter",
+    },
+    {
+      "r",
+      mode = "o",
+      function()
+        require("flash").remote()
+      end,
+      desc = "Remote Flash",
+    },
+    {
+      "R",
+      mode = { "o", "x" },
+      function()
+        require("flash").treesitter_search()
+      end,
+      desc = "Treesitter Search",
+    },
+    {
+      "<c-s>",
+      mode = { "c" },
+      function()
+        require("flash").toggle()
+      end,
+      desc = "Toggle Flash Search",
     },
     {
       "<CR>",
       mode = { "n", "x", "o" },
-      function() require("flash").jump { continue = true } end,
+      function()
+        require("flash").jump({ continue = true })
+      end,
       desc = "Flash continue last search",
     },
     {
       "f",
       mode = { "o" },
       function()
-        require("flash").jump {
+        require("flash").jump({
           search = {
             forward = true,
           },
@@ -85,7 +106,7 @@ return {
               multi_line = false,
             },
           },
-        }
+        })
       end,
       desc = "inseatd f motion",
     },
@@ -93,7 +114,7 @@ return {
       "t",
       mode = { "o" },
       function()
-        require("flash").jump {
+        require("flash").jump({
           search = {
             forward = true,
           },
@@ -105,7 +126,7 @@ return {
               multi_line = false,
             },
           },
-        }
+        })
       end,
       desc = "insetad t motion",
     },
@@ -113,7 +134,7 @@ return {
       "F",
       mode = { "o" },
       function()
-        require("flash").jump {
+        require("flash").jump({
           search = {
             forward = false,
           },
@@ -125,7 +146,7 @@ return {
               multi_line = false,
             },
           },
-        }
+        })
       end,
       desc = "insetad F motion",
     },
@@ -133,7 +154,7 @@ return {
       "T",
       mode = { "o" },
       function()
-        require("flash").jump {
+        require("flash").jump({
           search = {
             forward = false,
           },
@@ -146,68 +167,9 @@ return {
               multi_line = false,
             },
           },
-        }
-      end,
-      desc = "insetad T motion",
-    },
-    {
-      "*",
-      mode = { "n", "x", "o" },
-      function()
-        require("flash").jump {
-          matcher = function(win)
-            ---@param diag Diagnostic
-            return vim.tbl_map(
-              function(diag)
-                return {
-                  pos = { diag.lnum + 1, diag.col },
-                  end_pos = { diag.end_lnum + 1, diag.end_col - 1 },
-                }
-              end,
-              vim.diagnostic.get(vim.api.nvim_win_get_buf(win))
-            )
-          end,
-          action = function(match, state)
-            vim.api.nvim_win_call(match.win, function()
-              vim.api.nvim_win_set_cursor(match.win, match.pos)
-              vim.diagnostic.open_float()
-            end)
-            state:restore()
-          end,
-        }
-      end,
-      desc = "Flash show diagnostics at target, without changing cursor position",
-    },
-  },
-  dependencies = {
-    -- Telescope integration
-    {
-      "nvim-telescope/telescope.nvim",
-      optional = true,
-      opts = function(_, opts)
-        local function flash(prompt_bufnr)
-          require("flash").jump {
-            pattern = "^",
-            label = { after = { 0, 0 } },
-            search = {
-              mode = "search",
-              exclude = {
-                function(win) return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~= "TelescopeResults" end,
-              },
-            },
-            action = function(match)
-              local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
-              picker:set_selection(match.pos[1] - 1)
-            end,
-          }
-        end
-        opts.defaults = vim.tbl_deep_extend("force", opts.defaults or {}, {
-          mappings = {
-            n = { s = flash },
-            i = { ["<c-s>"] = flash },
-          },
         })
       end,
+      desc = "insetad T motion",
     },
   },
 }

@@ -1,9 +1,5 @@
 return {
   {
-    "AstroNvim/astrotheme",
-    lazy = true,
-  },
-  {
     "ribru17/bamboo.nvim",
     lazy = true,
     priority = 1000,
@@ -28,6 +24,57 @@ return {
     name = "catppuccin",
     priority = 1000,
     lazy = true,
+    opts = {
+      integrations = {
+        aerial = true,
+        alpha = true,
+        cmp = true,
+        dashboard = true,
+        flash = true,
+        fzf = true,
+        grug_far = true,
+        gitsigns = true,
+        headlines = true,
+        illuminate = true,
+        indent_blankline = { enabled = true },
+        leap = true,
+        lsp_trouble = true,
+        mason = true,
+        markdown = true,
+        mini = true,
+        native_lsp = {
+          enabled = true,
+          underlines = {
+            errors = { "undercurl" },
+            hints = { "undercurl" },
+            warnings = { "undercurl" },
+            information = { "undercurl" },
+          },
+        },
+        navic = { enabled = true, custom_bg = "lualine" },
+        neotest = true,
+        neotree = true,
+        noice = true,
+        notify = true,
+        semantic_tokens = true,
+        snacks = true,
+        telescope = true,
+        treesitter = true,
+        treesitter_context = true,
+        which_key = true,
+      },
+    },
+    specs = {
+      {
+        "akinsho/bufferline.nvim",
+        optional = true,
+        opts = function(_, opts)
+          if (vim.g.colors_name or ""):find("catppuccin") then
+            opts.highlights = require("catppuccin.groups.integrations.bufferline").get()
+          end
+        end,
+      },
+    },
   },
   {
     "Mofiqul/dracula.nvim",
@@ -60,7 +107,7 @@ return {
         local theme = colors.theme
         -- Tint background of diagnostic messages with their foreground color
         local makeDiagnosticColor = function(color)
-          local c = require "kanagawa.lib.color"
+          local c = require("kanagawa.lib.color")
           return { fg = color, bg = c(color):blend(theme.ui.bg, 0.95):to_hex() }
         end
         return {
@@ -251,7 +298,8 @@ return {
     lazy = true,
   },
   {
-    "rose-pine",
+    "rose-pine/neovim",
+    name = "rose-pine",
     lazy = true,
     opts = {
       dim_inactive_windows = true,
@@ -393,10 +441,73 @@ return {
   },
   {
     "NLKNguyen/papercolor-theme",
-    -- lazy = true,
+    lazy = true,
     config = function()
-      vim.cmd [[colorscheme PaperColor]]
-      vim.cmd [[set background=dark]]
+      vim.cmd([[colorscheme PaperColor]])
+      vim.cmd([[set background=dark]])
     end,
+  },
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      -- colorscheme = "bamboo",
+      -- colorscheme = "bamboo-light",
+      -- colorscheme = "bamboo-multiplex",
+      -- colorscheme = "bamboo-vulgaris",
+      -- colorscheme = "catppuccin-frappe",
+      -- colorscheme = "catppuccin-macchiato",
+      -- colorscheme = "catppuccin-mocha",
+      -- colorscheme = "dracula",
+      -- colorscheme = "vscode",
+      -- colorscheme = "gruvbox",
+      -- colorscheme = "gruvbox-baby",
+      -- colorscheme = "gruvbox-material",
+      -- colorscheme = "kanagawa-dragon",
+      -- colorscheme = "kanagawa-lotus",
+      -- colorscheme = "kanagawa-wave",
+      -- colorscheme = "kanagawa-paper",
+      -- colorscheme = "carbonfox",
+      -- colorscheme = "duskfox",
+      -- colorscheme = "nightfox",
+      -- colorscheme = "terafox",
+      -- colorscheme = "github_dark",
+      -- colorscheme = "github_dark_dimmed",
+      -- colorscheme = "github_dark_colorblind",
+      -- colorscheme = "github_dark_tritanopia",
+      -- colorscheme = "github_dark_high_contrast",
+      -- colorscheme = "github_light",
+      -- colorscheme = "github_light_colorblind",
+      -- colorscheme = "github_light_tritanopia",
+      -- colorscheme = "github_light_high_contrast",
+      -- colorscheme = "nordfox",
+      -- colorscheme = "night-owl",
+      -- colorscheme = "onelight",
+      -- colorscheme = "onedark",
+      -- colorscheme = "onedark_vivid",
+      -- colorscheme = "onedark_dark",
+      -- colorscheme = "oxocarbon",
+      -- colorscheme = "PaperColor",
+      -- colorscheme = "rose-pine-moon",
+      -- colorscheme = "rose-pine-main",
+      -- colorscheme = "tokyonight-day",
+      -- colorscheme = "tokyonight",
+      -- colorscheme = "tokyonight-moon",
+      -- colorscheme = "tokyonight-night",
+      -- colorscheme = "tokyonight-storm",
+      -- colorscheme = "tokyodark",
+      -- colorscheme = "sonokai",
+      -- colorscheme = "everforest",
+      colorscheme = "edge",
+      -- colorscheme = "aurora",
+      -- colorscheme = "bluloco-dark",
+      -- colorscheme = "bluloco-light",
+      -- colorscheme = "citruszest",
+      -- colorscheme = "cyberdream",
+      -- colorscheme = "melange",
+      -- colorscheme = "melange",
+      -- colorscheme = "nordic",
+      -- colorscheme = "dogrun",
+      -- colorscheme = "nightfly",
+    },
   },
 }
