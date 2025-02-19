@@ -13,9 +13,7 @@ alias lR='eza --recurse'
 alias lT='eza --tree'
 alias l.='eza -d .[!.]*'
 
-# ranger like file manager
-# alias js='joshuto'
-alias rg='ranger'
+# termianl file manager
 alias yi='yazi'
 
 # Add an "alert" alias for long running commands.  Use like so:
@@ -30,7 +28,6 @@ alias px0='export HTTP_PROXY="127.0.0.1:1095"'
 alias px1='export HTTPS_PROXY="127.0.0.1:1095"'
 alias px2='export ALL_PROXY="127.0.0.1:1095"'
 alias px3='export all_proxy="127.0.0.1:1095"'
-
 alias unpx0='export HTTP_PROXY="127.0.0.1:1095"'
 alias unpx1='export HTTPS_PROXY="127.0.0.1:1095"'
 alias unpx2='export ALL_PROXY="127.0.0.1:1095"'
