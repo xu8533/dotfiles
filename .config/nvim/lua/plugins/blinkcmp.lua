@@ -1,6 +1,8 @@
 return {
   {
     "saghen/blink.cmp",
+    optional = true,
+    dependencies = { "codeium.nvim", "saghen/blink.compat" },
     opts = function(_, opts)
       opts.cmdline = {
         enabled = true,
@@ -30,13 +32,14 @@ return {
           },
         },
       }
+
       opts.completion = {
         documentation = {
           auto_show = true,
           auto_show_delay_ms = 500,
           treesitter_highlighting = true,
         },
-        ghost_text = { enabled = true },
+        -- ghost_text = { enabled = true }, -- 垂直列表
         keyword = {
           range = "full", -- 'prefix', 'full'
         },
@@ -90,6 +93,7 @@ return {
           },
         },
       }
+
       opts.signature = {
         enabled = true,
         window = {
@@ -98,10 +102,16 @@ return {
       }
 
       opts.sources = {
+        default = { "lsp", "path", "snippets", "buffer", "codeium" },
+        compat = { "codeium" },
         providers = {
-          -- # shell命令模式禁用自动补全
+          codeium = {
+            kind = "Codeium",
+            score_offset = 100,
+            async = true,
+          },
           cmdline = {
-            -- ignores cmdline completions when executing shell commands
+            -- # shell命令模式禁用自动补全
             enabled = function()
               return vim.fn.getcmdtype() ~= ":" or not vim.fn.getcmdline():match("^[%%0-9,'<>%-]*!")
             end,
