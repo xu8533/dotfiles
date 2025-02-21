@@ -1,9 +1,16 @@
 return {
   "uga-rosa/ccc.nvim",
+  lazy = true,
+  keys = {
+    { "<localleader>uc", "<cmd>CccHighlighterEnable<cr>", desc = "Color highlighter enable" },
+    { "<localleader>uC", "<cmd>CcccConvetr<cr>", desc = "Color highlighter convert" },
+    { "<localleader>up", "<cmd>CcccPick<cr>", desc = "Color highlighter Pick" },
+    { "<localleader>ut", "<cmd>CccHighlighterToggle<cr>", desc = "Color highlighter toggle" },
+  },
   config = function()
-    local ccc = require "ccc"
-    local ColorInput = require "ccc.input"
-    local convert = require "ccc.utils.convert"
+    local ccc = require("ccc")
+    local ColorInput = require("ccc.input")
+    local convert = require("ccc.utils.convert")
 
     local RgbHslCmykInput = setmetatable({
       name = "RGB/HSL/CMYK",
@@ -36,7 +43,9 @@ return {
       return { R, G, B, H, S, L, C, M, Y, K }
     end
 
-    function RgbHslCmykInput.to_rgb(value) return { value[1], value[2], value[3] } end
+    function RgbHslCmykInput.to_rgb(value)
+      return { value[1], value[2], value[3] }
+    end
 
     function RgbHslCmykInput:_set_rgb(RGB)
       self.value[1] = RGB[1]
@@ -80,10 +89,10 @@ return {
         self:_set_hsl(HSL)
       end
     end
-    ccc.setup {
+    ccc.setup({
       inputs = {
         RgbHslCmykInput,
       },
-    }
+    })
   end,
 }
