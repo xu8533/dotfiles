@@ -12,3 +12,14 @@ function Linemode:size_and_mtime()
 	local size = self._file:size()
 	return string.format("%s %s", size and ya.readable_size(size) or "-", time)
 end
+
+-- 在neovim中默认隐藏预览窗口
+if os.getenv("NVIM") then
+	require("toggle-pane"):entry("min-preview")
+end
+
+-- 挂载压缩文件
+require("fuse-archive"):setup({
+	smart_enter = true,
+	mount_dir = "/media",
+})
