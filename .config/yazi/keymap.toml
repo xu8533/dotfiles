@@ -243,7 +243,7 @@ keymap = [
     ], run = "search fd", desc = "名字搜索，使用fd做后端" },
     { on = [
         "S",
-    ], run = "search rg", desc = "搜索文件内容, 使用ripgrep做后端" },
+    ], run = "search --via=rga", desc = "搜索文件内容, 使用ripgrep做后端" },
     { on = [
         "<C-s>",
     ], run = "search none", desc = "取消正在进行的搜索" },
