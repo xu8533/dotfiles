@@ -17,8 +17,10 @@ title_format = "{cwd} - Yazi"
 
 [preview]
 tab_size = 2
-max_width = 600
-max_height = 900
+# max_width = 600
+# max_height = 900
+max_width = 1000
+max_height = 1000
 image_filter = "triangle"
 image_quality = 75
 sixel_fraction = 15
@@ -48,14 +50,15 @@ extract = [
 play = [
     { run = 'mpv "$@"', orphan = true, for = "unix" },
     { run = 'mpv "%1"', orphan = true, for = "windows" },
-    { run = '''mediainfo "$1"; echo "Press enter to exit"; read''', block = true, desc = "Show media info", for = "unix" },
+    { run = '''mediainfo "$1"; echo "Press enter to exit"; read''', block = true, desc = "显示多媒体信息", for = "unix" },
 ]
 
-pdf = [{ run = 'evince "$@"', desc = "Open pdf", for = "linux" }]
+pdf = [{ run = 'evince "$@"', desc = "打开pdf", for = "linux" }]
 
 
 image = [
-    { run = 'swayimg --scale=fill "$@"', desc = "Open image", for = "linux" },
+    { run = 'swayimg --scale=fill "$@"', desc = "打开图片", for = "linux" },
+    # { run = 'imv "$@"', desc = "打开图片", for = "linux" },
 ]
 
 [open]
