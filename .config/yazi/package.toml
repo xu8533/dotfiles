@@ -8,6 +8,21 @@ use = "Sonico98/exifaudio"
 rev = "d794614"
 hash = "a8e15d3c21c02a5af41d46ed04778a02"
 
+[[plugin.deps]]
+use = "yazi-rs/plugins:toggle-pane"
+rev = "5186af7"
+hash = "2391805528b59d562a51f9b33f4a8236"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:mount"
+rev = "5186af7"
+hash = "5c4d8080367dd2561a18c1cf5a1dd295"
+
+[[plugin.deps]]
+use = "dawsers/fuse-archive"
+rev = "a58327c"
+hash = "6a6d24880ce7666048fb81ad758c48d3"
+
 [[flavor.deps]]
 use = "PinThePenguine/sunset"
 rev = "181acd4"
@@ -52,3 +67,28 @@ hash = ""
 use = "yazi-rs/flavors:catppuccin-mocha"
 rev = "4a3082f"
 hash = ""
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:dracula"
+rev = "c023460"
+hash = "53e1f10ae0f6abd406e463fceca8622a"
+
+[[flavor.deps]]
+use = "BennyOe/tokyo-night"
+rev = "695dac6"
+hash = "a8f426ea0d9cb843b081d62ab01364c8"
+
+[[flavor.deps]]
+use = "bennyyip/gruvbox-dark"
+rev = "b4cc9f2"
+hash = "f44c42bcbed3c8564100e45e2fe3649a"
+
+[[flavor.deps]]
+use = "gosxrgxx/flexoki-dark"
+rev = "65ba744"
+hash = "13cc1e635e5571d749f606bdbde23a0d"
+
+[[flavor.deps]]
+use = "gosxrgxx/flexoki-light"
+rev = "04860ce"
+hash = "5008789e88484402912664f0546757ac"
