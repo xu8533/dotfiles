@@ -41,7 +41,7 @@ require("lazy").setup({
       ft = "📂",
       init = "⚙",
       import = "🚆",
-      keys = "🖥️",
+      keys = "🗝️",
       lazy = "💤 ",
       loaded = "✅",
       not_loaded = "🚫",
@@ -61,7 +61,7 @@ require("lazy").setup({
   },
   checker = {
     enabled = true, -- check for plugin updates periodically
-    notify = false, -- notify on update
+    notify = true, -- notify on update
   }, -- automatically check for plugin updates
   performance = {
     rtp = {
