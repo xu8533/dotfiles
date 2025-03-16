@@ -191,6 +191,7 @@ return {
   },
   {
     "oxfist/night-owl.nvim",
+    enabled = false,
     lazy = true,
   },
   {
@@ -369,10 +370,12 @@ return {
   },
   {
     "tiagovla/tokyodark.nvim",
+    enabled = false,
     lazy = true,
   },
   {
     "Mofiqul/vscode.nvim",
+    enabled = false,
     lazy = true,
   },
   {
@@ -426,6 +429,7 @@ return {
   {
     "sainnhe/edge",
     lazy = true,
+    enabled = false,
     init = function()
       vim.g.edge_style = "aura"
       -- vim.g.edge_style = "neon"
@@ -456,7 +460,7 @@ return {
       -- colorscheme = "bamboo-vulgaris",
       -- colorscheme = "catppuccin-frappe",
       -- colorscheme = "catppuccin-macchiato",
-      colorscheme = "catppuccin-mocha",
+      -- colorscheme = "catppuccin-mocha",
       -- colorscheme = "dracula",
       -- colorscheme = "vscode",
       -- colorscheme = "gruvbox",
@@ -495,7 +499,7 @@ return {
       -- colorscheme = "tokyonight-night",
       -- colorscheme = "tokyonight-storm",
       -- colorscheme = "tokyodark",
-      -- colorscheme = "sonokai",
+      colorscheme = "sonokai",
       -- colorscheme = "everforest",
       -- colorscheme = "edge",
       -- colorscheme = "aurora",

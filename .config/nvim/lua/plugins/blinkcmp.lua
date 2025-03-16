@@ -102,13 +102,18 @@ return {
       }
 
       opts.sources = {
-        default = { "lsp", "path", "snippets", "buffer", "codeium" },
+        default = { "lsp", "path", "snippets", "buffer", "codeium", "markdown" },
         compat = { "codeium" },
         providers = {
           codeium = {
             kind = "Codeium",
             score_offset = 100,
             async = true,
+          },
+          markdown = {
+            name = "RenderMarkdown",
+            module = "render-markdown.integ.blink",
+            fallbacks = { "lsp" },
           },
           cmdline = {
             -- # shell命令模式禁用自动补全

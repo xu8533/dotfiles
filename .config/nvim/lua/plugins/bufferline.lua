@@ -6,7 +6,7 @@ return {
     },
     opts = {
       options = {
-        always_show_bufferline = true,
+        always_show_bufferline = false,
         separator_style = "slant",
         -- separator_style = "padded_slant",
         -- separator_style = "slope",

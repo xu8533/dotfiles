@@ -3,17 +3,50 @@ return {
     "folke/snacks.nvim",
     opts = {
       animate = {
+        enabled = true,
         easing = "circle",
         fps = 30, -- frames per second. Global setting for all animations
       },
       dashboard = {
-        enabled = false,
+        enabled = true,
+        preset = {
+          pick = "fzf-lua",
+          keys = {
+            { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
+            { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
+            { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
+            { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+            {
+              icon = " ",
+              key = "c",
+              desc = "Config",
+              action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
+            },
+            { icon = " ", key = "s", desc = "Restore Session", section = "session" },
+            { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+          },
+        },
+        sections = {
+          { section = "header" },
+          { section = "keys", gap = 1, padding = 1 },
+          { section = "startup" },
+        },
       },
       bigfile = { enabled = true },
       dim = { enabled = true },
       explorer = { enabled = true },
-      input = { enabled = true },
+      image = { enabled = true },
+      input = {
+        enabled = false,
+        icon = " ",
+        icon_hl = "SnacksInputIcon",
+        icon_pos = "left",
+        prompt_pos = "title",
+        win = { style = "input" },
+        expand = true,
+      },
       indent = {
+        enabled = true,
         char = "┇",
         hl = {
           "SnacksIndent1",
@@ -25,7 +58,6 @@ return {
           "SnacksIndent7",
           "SnacksIndent8",
         },
-        enabled = true,
         indent = {
           enabled = false,
         },
