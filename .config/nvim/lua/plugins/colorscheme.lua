@@ -429,7 +429,7 @@ return {
   {
     "sainnhe/edge",
     lazy = true,
-    enabled = false,
+    -- enabled = false,
     init = function()
       vim.g.edge_style = "aura"
       -- vim.g.edge_style = "neon"
@@ -499,9 +499,9 @@ return {
       -- colorscheme = "tokyonight-night",
       -- colorscheme = "tokyonight-storm",
       -- colorscheme = "tokyodark",
-      colorscheme = "sonokai",
+      -- colorscheme = "sonokai",
       -- colorscheme = "everforest",
-      -- colorscheme = "edge",
+      colorscheme = "edge",
       -- colorscheme = "aurora",
       -- colorscheme = "bluloco-dark",
       -- colorscheme = "bluloco-light",
