@@ -38,6 +38,20 @@
 ## :wrench: <samp>SETUP</samp>
 
 ## :rocket: <samp>MISCELLANEOUS</samp>
+<p align="center">
+  <h2 align="center"><b> 浪淘沙.北戴河  </b></h2>
+大雨落幽燕，
+白浪滔天，
+秦皇岛外打鱼船。
+一片汪洋都不见，
+知向谁边？
+
+往事越千年，
+魏武挥鞭，
+东临碣石有遗篇。
+萧瑟秋风今又是，
+换了人间。
+</p>
 
 <p align="center">
    <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/footers/gray0_ctp_on_line.svg?sanitize=true"/>
