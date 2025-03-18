@@ -39,17 +39,19 @@
 
 ## :rocket: <samp>MISCELLANEOUS</samp>
 <h2 align="center"><b> 浪淘沙.北戴河  </b></h2>
+<body align="center">
 大雨落幽燕，<br/>
 白浪滔天，<br/>
 秦皇岛外打鱼船。<br/>
 一片汪洋都不见，<br/>
-知向谁边？<br/>
+知向谁边？
 
 往事越千年，<br/>
 魏武挥鞭，<br/>
 东临碣石有遗篇。<br/>
 萧瑟秋风今又是，<br/>
 换了人间。<br/>
+</body>
 
 <p align="center">
    <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/footers/gray0_ctp_on_line.svg?sanitize=true"/>
