@@ -6,30 +6,39 @@ return {
     opts = function(_, opts)
       opts.cmdline = {
         enabled = true,
-        keymap = { preset = "cmdline" }, -- Inherits from top level `keymap` config when not set
-        sources = function()
-          local type = vim.fn.getcmdtype()
-          -- Search forward and backward
-          if type == "/" or type == "?" then
-            return { "buffer" }
-          end
-          -- Commands
-          if type == ":" or type == "@" then
-            return { "cmdline" }
-          end
-          return {}
-        end,
+        keymap = {
+          -- preset = "cmdline",
+          ["<Tab>"] = { "accept" },
+          ["<CR>"] = { "accept_and_enter", "fallback" },
+        },
+        -- sources = function()
+        --   local type = vim.fn.getcmdtype()
+        --   -- Search forward and backward
+        --   if type == "/" or type == "?" then
+        --     return { "buffer" }
+        --   end
+        --   -- Commands
+        --   if type == ":" or type == "@" then
+        --     return { "cmdline" }
+        --   end
+        --   return {}
+        -- end,
         completion = {
-          trigger = {
-            show_on_blocked_trigger_characters = {},
-            show_on_x_blocked_trigger_characters = {}, -- Inherits from top level `completion.trigger.show_on_blocked_trigger_characters` config when not set
-          },
+          ghost_text = { enabled = true },
           menu = {
-            auto_show = true, -- Inherits from top level `completion.menu.auto_show` config when not set
+            auto_show = function(ctx)
+              return vim.fn.getcmdtype() == ":"
+                -- enable for inputs as well, with:
+                or vim.fn.getcmdtype() == "@"
+            end,
             draw = {
               columns = { { "label", "label_description", gap = 1 } },
             },
           },
+          -- trigger = {
+          --   show_on_blocked_trigger_characters = {},
+          --   show_on_x_blocked_trigger_characters = {},
+          -- },
         },
       }
 
@@ -38,6 +47,7 @@ return {
           auto_show = true,
           auto_show_delay_ms = 500,
           treesitter_highlighting = true,
+          -- window = { border = "single" },
         },
         -- ghost_text = { enabled = true }, -- 垂直列表
         keyword = {
@@ -57,6 +67,7 @@ return {
         },
         menu = {
           -- auto_show = true,
+          border = "single",
           --进行搜索时不显示补全列表
           auto_show = function(ctx)
             return ctx.mode ~= "cmdline" or not vim.tbl_contains({ "/", "?" }, vim.fn.getcmdtype())
@@ -97,12 +108,13 @@ return {
       opts.signature = {
         enabled = true,
         window = {
+          border = "single",
           show_documentation = false,
         },
       }
 
       opts.sources = {
-        default = { "lsp", "path", "snippets", "buffer", "codeium", "markdown" },
+        default = { "buffer", "lsp", "path", "snippets", "codeium", "markdown" },
         compat = { "codeium" },
         providers = {
           codeium = {
@@ -117,8 +129,15 @@ return {
           },
           cmdline = {
             -- # shell命令模式禁用自动补全
-            enabled = function()
-              return vim.fn.getcmdtype() ~= ":" or not vim.fn.getcmdline():match("^[%%0-9,'<>%-]*!")
+            -- enabled = function()
+            --   return vim.fn.getcmdtype() ~= ":" or not vim.fn.getcmdline():match("^[%%0-9,'<>%-]*!")
+            -- end,
+            min_keyword_length = function(ctx)
+              -- when typing a command, only show when the keyword is 3 characters or longer
+              if ctx.mode == "cmdline" and string.find(ctx.line, " ") == nil then
+                return 3
+              end
+              return 0
             end,
           },
         },
