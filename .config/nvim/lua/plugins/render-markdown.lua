@@ -43,7 +43,7 @@ return {
         sign = false,
         border = true,
         border_virtual = true,
-        icons = { "󰼏 ", "󰎨 ", "󰎫 ", "󰎲", "󰎯", "󰎴" },
+        icons = { "󰼏 ", "󰼐 ", "󰼑 ", "󰼒 ", "󰼓 ", "󰼔 " },
       },
       indent = {
         enabled = true,
