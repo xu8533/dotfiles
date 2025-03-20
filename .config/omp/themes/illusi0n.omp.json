@@ -12,7 +12,7 @@
         {
           "foreground": "#ff8800",
           "style": "diamond",
-          "template": "{{ (div ((sub .PhysicalTotalMemory .PhysicalFreeMemory)|float64) 1073741824.0) }}/{{ (div .PhysicalTotalMemory 1073741824.0) }}GB ",
+          "template": "{{ (div ((sub .PhysicalTotalMemory .PhysicalAvailableMemory)|float64) 1073741824.0) }}/{{ (div .PhysicalTotalMemory 1073741824.0) }}GB ",
           "type": "sysinfo"
         }
       ],
@@ -60,7 +60,7 @@
             "{{ if gt .Behind 0 }}#c062ff{{ end }}"
           ],
           "properties": {
-            "branch_max_length": 25,
+            "branch_template": "{{ trunc 25 .Branch }}",
             "fetch_stash_count": true,
             "fetch_status": true,
             "fetch_upstream_icon": true
