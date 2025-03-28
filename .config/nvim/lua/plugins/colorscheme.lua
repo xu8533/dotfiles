@@ -148,6 +148,7 @@ return {
   },
   {
     "sho-87/kanagawa-paper.nvim",
+    enabled = false,
     lazy = true,
     opts = {},
   },
