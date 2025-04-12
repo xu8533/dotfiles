@@ -1,16 +1,16 @@
 (defwidget user []
-    (box :orientation "h" :space-evenly true :class "user-box"
-        (box :orientation "h" :space-evenly false :halign "start"
-            (box :orientation "h" :space-evenly false :class "user-image")
-            (button :class "open-powermenu-button" :onclick "eww open powermenu" "Sign out")
-            (button :class "open-settings-button" :onclick "XDG_CURRENT_DESKTOP=gnome gnome-control-center &" "")
-        )
-        (box :orientation "h" :space-evenly false :halign "end"
-            (box :orientation "h" :space-evenly false
-                (label :class "user-clock-time" :text {formattime(EWW_TIME, "%H:%M")})
-                (label :class "user-clock-separator" :text "|")
-                (label :class "user-clock-date" :text {formattime(EWW_TIME, "%a, %b %d")})
-            )
-        )
+  (box
+    :space-evenly false
+    :orientation "h"
+    :style "padding-left: 28px; padding-right: 22px;"
+    (label 
+      :class "username"
+      :style "margin-right: 5px;"
+      :text "${username == "" ? username_default : username}"
     )
+    (box
+      :class "userpic"
+      :style "background-image: url('/var/lib/AccountsService/icons/${username == "" ? username_default : username}');"
+    )
+  )
 )

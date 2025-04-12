@@ -1,9 +1,51 @@
-(defwidget clock []
-    (label :class "clock" :text {formattime(EWW_TIME, "%H:%M")})
+(defwidget clock_module []
+  (eventbox
+    :onclick "${EWW_CMD} update popup='calendar'"
+    :class "${popup == 'calendar' ? 'calendar-win' : ''}"
+    :style "${rev_ontf ? 'background-color: #838383;' : ''}"
+    ; clock-module
+    (box
+      :space-evenly false
+      :orientation "v"
+      (box
+        :class "module"
+        :valign "start"
+        :orientation "v"
+        :style "min-width: 115px;"
+        (box
+          :space-evenly false
+          :halign "start"
+          (label :text "${time.hour}" :class "clock hour")
+          (label :text ":" :class "clock")
+          (label :text {time.minute} :class "clock minute")
+        )
+        (button
+          :style "background"
+          :halign "start"
+          :valign "start"
+          :class "date-clock"
+          :onclick "${EWW_CMD} update popup='calendar'"
+          "${time.day}, ${time.date}"
+        )
+        
+      )
+      (revealer
+        :reveal "${popup == 'calendar'}"
+        :transition "slideright"
+        :duration "0ms"
+        (revealer
+          :reveal "${popup == 'calendar'}"
+          :transition "crossfade"
+          :duration "0ms"
+          (revealer
+            :reveal "${popup == 'calendar'}"
+            :transition "slidedown"
+            :duration "0ms"
+            (calendar)
+          )
+        )
+      )
+    )
+  )
 )
 
-(defwidget big_clock []
-    (box :class "big_clock_box" :orientation "h" :space-evenly false
-        (label :class "big_clock_label" :text {formattime(EWW_TIME, "%H:%M")})
-    )
-)
