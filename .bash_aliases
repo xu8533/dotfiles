@@ -59,3 +59,9 @@ alias dot-lg='lazygit --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
 # 显示按键
 alias sk='wshowkeys -b "#0000000f" -f "#eee8d8" -s "#ece87a" -t 1 -a right -a bottom -m 32 &'
+
+# 终端时钟
+alias clock-pea='peaclock --config-dir=$HOME/.config/peaclock'
+alias clock-era='era'
+alias clock-tu='tuime -c candy'
+alias clock-tm='tmlshock clock -c 228 -cc 010'
