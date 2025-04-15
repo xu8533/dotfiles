@@ -1,0 +1,9 @@
+@include styleModule( // class name
+  'cmodule-wallpaper',
+  // styling properties
+  ('text-color': #21252b,
+    'icon-color':#21252b,
+    'label-background': #00953e,
+    'inner-spacing': 0.1em,
+    'border-enabled': false,
+    'icon-size': 1.2em));

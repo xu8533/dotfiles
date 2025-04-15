@@ -1,0 +1,13 @@
+{
+    "custom/wallpaper": {
+        "icon": "",
+        "label": "",
+        "tooltip": "切换背景图片",
+        "executeOnAction": "",
+        "hideOnEmpty": false,
+        "scrollThreshold": 1,
+        "actions": {
+            "onLeftClick": "~/.config/hypr/scripts/randwall.sh"
+        }
+    }
+}
