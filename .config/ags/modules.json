@@ -1,13 +1,19 @@
 {
+    "wallpaper": {
+        "image": "~/图片/Wallpapers/美杜莎72.jpg"
+    },
+    "server": {
+        "status": "up"
+    },
     "custom/wallpaper": {
         "icon": "",
         "label": "",
-        "tooltip": "{detail}",
+        "tooltip": "点击切换背景图片",
         "executeOnAction": "",
         "hideOnEmpty": false,
         "scrollThreshold": 1,
         "actions": {
-            "onLeftClick": "~/.config/hypr/scripts/randwall.sh",
+            "onLeftClick": "~/.config/hypr/scripts/randwall.sh;notify-send -t 3000 -app-name=swww 背景图片已切换 \"$(~/.config/ags/scripts/wallpaperinfo.sh)\"",
             "onRightClick": "waypaper"
         }
     }
