@@ -13,7 +13,7 @@
         "hideOnEmpty": false,
         "scrollThreshold": 1,
         "actions": {
-            "onLeftClick": "~/.config/hypr/scripts/randwall.sh;notify-send -t 3000 -app-name=swww 背景图片已切换 \"$(~/.config/ags/scripts/wallpaperinfo.sh)\"",
+            "onLeftClick": "~/.config/hypr/scripts/randwall.sh;notify-send -t 3000 --app-name=swww 背景图片已切换 \"$(~/.config/ags/scripts/wallpaperinfo.sh)\"",
             "onRightClick": "waypaper"
         }
     }
