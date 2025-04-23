@@ -665,5 +665,9 @@
   "theme.bar.buttons.separator.width": "0.1em",
   "theme.bar.menus.border.size": "0.13em",
   "theme.bar.menus.border.radius": "0.7em",
-  "theme.bar.buttons.background_opacity": 100
+  "theme.bar.buttons.background_opacity": 100,
+  "bar.battery.scrollUp": "brightnessctl s +2%",
+  "bar.battery.scrollDown": "brightnessctl s +2%-",
+  "bar.volume.scrollUp": "hyprpanel vol +2",
+  "bar.volume.scrollDown": "hyprpanel vol -2"
 }
