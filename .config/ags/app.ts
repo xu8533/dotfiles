@@ -14,6 +14,7 @@ import { Bar } from './src/components/bar';
 import { DropdownMenus, StandardWindows } from './src/components/menus/exports';
 import Notifications from './src/components/notifications';
 import SettingsDialog from './src/components/settings/index';
+import AppLauncher from "./src/components/applauncher/AppLauncher";
 import { bash, forMonitors } from 'src/lib/utils';
 import options from 'src/options';
 import OSD from 'src/components/osd/index';
@@ -23,7 +24,6 @@ import { handleRealization } from 'src/components/menus/shared/dropdown/helpers'
 import { isDropdownMenu } from 'src/lib/constants/options.js';
 import { initializeSystemBehaviors } from 'src/lib/behaviors';
 import { runCLI } from 'src/cli/commander';
-import AppLauncher from "./src/components/applauncher/AppLauncher";
 
 const initializeStartupScripts = (): void => {
     execAsync(`python3 ${SRC_DIR}/scripts/bluetooth.py`).catch((err) => console.error(err));
@@ -60,6 +60,7 @@ App.start({
 
         Notifications();
         OSD();
+        AppLauncher().hide();
 
         const barsForMonitors = await forMonitors(Bar);
         barsForMonitors.forEach((bar: JSX.Element) => bar);
@@ -68,7 +69,6 @@ App.start({
         initializeMenus();
 
         initializeSystemBehaviors();
-        AppLauncher().hide();
     },
 });
 
