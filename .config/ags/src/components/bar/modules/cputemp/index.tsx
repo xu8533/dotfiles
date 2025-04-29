@@ -48,7 +48,7 @@ export const CpuTemp = (): BarBoxChild => {
     const cpuTempModule = Module({
         textIcon: bind(icon),
         label: labelBinding(),
-        tooltipText: 'CPU Temperature',
+        tooltipText: 'CPU温度',
         boxClass: 'cpu-temp',
         showLabelBinding: bind(label),
         props: {
