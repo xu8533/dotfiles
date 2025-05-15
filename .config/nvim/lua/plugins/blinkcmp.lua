@@ -1,44 +1,36 @@
 return {
   {
     "saghen/blink.cmp",
-    optional = true,
-    dependencies = { "codeium.nvim", "saghen/blink.compat" },
+    event = { "BufReadPost", "BufNewFile" },
+    dependencies = {
+      "codeium.nvim",
+      "saghen/blink.compat",
+      "xzbdmw/colorful-menu.nvim",
+      {
+        "L3MON4D3/LuaSnip",
+        version = "v2.*",
+      },
+    },
     opts = function(_, opts)
       opts.cmdline = {
         enabled = true,
         keymap = {
-          -- preset = "cmdline",
-          ["<Tab>"] = { "accept" },
-          ["<CR>"] = { "accept_and_enter", "fallback" },
+          preset = "inherit",
+          ["<Tab>"] = { "show", "accept" },
         },
-        -- sources = function()
-        --   local type = vim.fn.getcmdtype()
-        --   -- Search forward and backward
-        --   if type == "/" or type == "?" then
-        --     return { "buffer" }
-        --   end
-        --   -- Commands
-        --   if type == ":" or type == "@" then
-        --     return { "cmdline" }
-        --   end
-        --   return {}
-        -- end,
         completion = {
           ghost_text = { enabled = true },
           menu = {
+            -- auto_show = true,
             auto_show = function(ctx)
               return vim.fn.getcmdtype() == ":"
-                -- enable for inputs as well, with:
-                or vim.fn.getcmdtype() == "@"
+              -- enable for inputs as well, with:
+              -- or vim.fn.getcmdtype() == "@"
             end,
             draw = {
               columns = { { "label", "label_description", gap = 1 } },
             },
           },
-          -- trigger = {
-          --   show_on_blocked_trigger_characters = {},
-          --   show_on_x_blocked_trigger_characters = {},
-          -- },
         },
       }
 
@@ -47,9 +39,12 @@ return {
           auto_show = true,
           auto_show_delay_ms = 500,
           treesitter_highlighting = true,
-          -- window = { border = "single" },
+          window = { border = "single" },
         },
-        -- ghost_text = { enabled = true }, -- 垂直列表
+        ghost_text = {
+          enabled = true,
+          show_with_menu = true,
+        }, -- 补全预览
         keyword = {
           range = "full", -- 'prefix', 'full'
         },
@@ -81,15 +76,15 @@ return {
               -- { "label", "label_description", gap = 1 },
               -- { "kind_icon", "kind" },
               -- 自定义样式
-              { "kind_icon" },
-              { "label", "label_description", "source_name", gap = 1 },
-              -- { "kind_icon", "label", gap = 1 },
+              -- { "kind_icon" },
+              -- { "label", "label_description", "source_name", gap = 1 },
+              -- colorful-menu.nvim
+              { "kind_icon", "label", "source_name", gap = 1 },
               -- { "label_description", "kind", "source_name", gap = 1 },
             },
             -- 使用mini.icons补全图标和图标高亮
             components = {
               kind_icon = {
-                ellipsis = false,
                 text = function(ctx)
                   local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
                   return kind_icon
@@ -100,11 +95,66 @@ return {
                   return hl
                 end,
               },
+              kind = {
+                -- (optional) use highlights from mini.icons
+                highlight = function(ctx)
+                  local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+                  return hl
+                end,
+              },
+              label = {
+                text = function(ctx)
+                  return require("colorful-menu").blink_components_text(ctx)
+                end,
+                highlight = function(ctx)
+                  return require("colorful-menu").blink_components_highlight(ctx)
+                end,
+              },
             },
+            -- treesitter = { "lsp" },
           },
         },
+        trigger = {
+          show_on_keyword = true,
+        },
       }
+      opts.fuzzy = {
+        implementation = "rust",
+        sorts = {
+          "exact",
+          -- defaults
+          "score",
+          "sort_text",
+        },
+      }
+      opts.keymap = {
+        ["<A-space>"] = { "show", "show_documentation", "hide_documentation" },
+        ["<C-e>"] = { "hide", "fallback" },
+        ["<C-y>"] = { "select_and_accept" },
+        ["<CR>"] = { "accept", "fallback" },
 
+        ["<Up>"] = { "select_prev", "fallback" },
+        ["<Down>"] = { "select_next", "fallback" },
+        ["<C-p>"] = { "select_prev", "fallback_to_mappings" },
+        ["<C-n>"] = { "select_next", "fallback_to_mappings" },
+
+        ["<C-b>"] = { "scroll_documentation_up", "fallback" },
+        ["<C-f>"] = { "scroll_documentation_down", "fallback" },
+
+        ["<Tab>"] = {
+          function(cmp)
+            if cmp.snippet_active() then
+              return cmp.accept()
+            else
+              return cmp.select_and_accept()
+            end
+          end,
+          "snippet_forward",
+          "fallback",
+        },
+        ["<S-Tab>"] = { "snippet_backward", "fallback" },
+        ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
+      }
       opts.signature = {
         enabled = true,
         window = {
@@ -114,18 +164,26 @@ return {
       }
 
       opts.sources = {
-        default = { "buffer", "lsp", "path", "snippets", "codeium", "markdown" },
         compat = { "codeium" },
+        default = { "buffer", "lsp", "path", "snippets", "codeium", "markdown" },
+        per_filetype = {
+          lua = { inherit_defaults = true, "lazydev" },
+        },
+        snippets = { preset = "luasnip" },
         providers = {
-          codeium = {
-            kind = "Codeium",
-            score_offset = 100,
-            async = true,
-          },
-          markdown = {
-            name = "RenderMarkdown",
-            module = "render-markdown.integ.blink",
-            fallbacks = { "lsp" },
+          -- 使用所有buffer内容作为补全源
+          buffer = {
+            opts = {
+              -- get all buffers, even ones like neo-tree
+              -- get_bufnrs = vim.api.nvim_list_bufs
+              -- or (recommended) filter to only "normal" buffers
+              get_bufnrs = function()
+                return vim.tbl_filter(function(bufnr)
+                  return vim.bo[bufnr].buftype == ""
+                end, vim.api.nvim_list_bufs())
+              end,
+            },
+            score_offset = 2000,
           },
           cmdline = {
             -- # shell命令模式禁用自动补全
@@ -139,6 +197,41 @@ return {
               end
               return 0
             end,
+          },
+          codeium = {
+            kind = "Codeium",
+            score_offset = 1000,
+            async = true,
+          },
+          lazydev = {
+            name = "LazyDev",
+            module = "lazydev.integrations.blink",
+            -- make lazydev completions top priority (see `:h blink.cmp`)
+            score_offset = 100,
+          },
+          -- https://cmp.saghen.dev/recipes#fuzzy-sorting-filtering
+          lsp = {
+            -- name = "LSP",
+            -- module = "blink.cmp.sources.lsp",
+            -- transform_items = function(_, items)
+            --   return vim.tbl_filter(function(item)
+            --     return item.kind ~= require("blink.cmp.types").CompletionItemKind.Keyword
+            --   end, items)
+            -- end,
+            fallbacks = {},
+          },
+          markdown = {
+            name = "RenderMarkdown",
+            module = "render-markdown.integ.blink",
+            fallbacks = { "lsp" },
+          },
+          -- 使用cwd替换buffer目录作为补全源
+          path = {
+            opts = {
+              get_cwd = function(_)
+                return vim.fn.getcwd()
+              end,
+            },
           },
         },
       }
