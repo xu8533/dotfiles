@@ -1,15 +1,17 @@
 return {
   {
+    "saghen/blink.compat",
+    version = "*",
+    lazy = true,
+    opts = {},
+  },
+  {
     "saghen/blink.cmp",
     event = { "BufReadPost", "BufNewFile" },
     dependencies = {
       "codeium.nvim",
       "saghen/blink.compat",
       "xzbdmw/colorful-menu.nvim",
-      {
-        "L3MON4D3/LuaSnip",
-        version = "v2.*",
-      },
     },
     opts = function(_, opts)
       opts.cmdline = {
@@ -68,6 +70,7 @@ return {
             return ctx.mode ~= "cmdline" or not vim.tbl_contains({ "/", "?" }, vim.fn.getcmdtype())
           end,
           draw = {
+            cursorline_priority = 0,
             columns = {
               -- 默认样式
               -- { "kind_icon" },
@@ -103,15 +106,14 @@ return {
                 end,
               },
               label = {
-                text = function(ctx)
-                  return require("colorful-menu").blink_components_text(ctx)
-                end,
                 highlight = function(ctx)
                   return require("colorful-menu").blink_components_highlight(ctx)
                 end,
+                text = function(ctx)
+                  return require("colorful-menu").blink_components_text(ctx)
+                end,
               },
             },
-            -- treesitter = { "lsp" },
           },
         },
         trigger = {
@@ -155,6 +157,7 @@ return {
         ["<S-Tab>"] = { "snippet_backward", "fallback" },
         ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
       }
+
       opts.signature = {
         enabled = true,
         window = {
@@ -165,7 +168,7 @@ return {
 
       opts.sources = {
         compat = { "codeium" },
-        default = { "buffer", "lsp", "path", "snippets", "codeium", "markdown" },
+        default = { "buffer", "lsp", "path", "snippets", "markdown" },
         per_filetype = {
           lua = { inherit_defaults = true, "lazydev" },
         },
@@ -174,9 +177,6 @@ return {
           -- 使用所有buffer内容作为补全源
           buffer = {
             opts = {
-              -- get all buffers, even ones like neo-tree
-              -- get_bufnrs = vim.api.nvim_list_bufs
-              -- or (recommended) filter to only "normal" buffers
               get_bufnrs = function()
                 return vim.tbl_filter(function(bufnr)
                   return vim.bo[bufnr].buftype == ""
