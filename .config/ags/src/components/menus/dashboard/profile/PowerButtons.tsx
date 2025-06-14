@@ -1,6 +1,6 @@
-import { PowerOptions } from 'src/lib/types/options';
-import { isPrimaryClick } from 'src/lib/utils';
+import { isPrimaryClick } from 'src/lib/events/mouse';
 import { handleClick } from './helpers';
+import { PowerOptions } from 'src/lib/options/types';
 
 const PowerActionButton = (icon: string, tooltip: string, action: PowerOptions): JSX.Element => {
     return (
@@ -20,17 +20,17 @@ const PowerActionButton = (icon: string, tooltip: string, action: PowerOptions):
 };
 
 export const ShutDown = (): JSX.Element => {
-    return PowerActionButton('󰐥', '关机', 'shutdown');
+    return PowerActionButton('󰐥', 'Shut Down', 'shutdown');
 };
 
 export const Reboot = (): JSX.Element => {
-    return PowerActionButton('󰜉', '重启', 'reboot');
+    return PowerActionButton('󰜉', 'Reboot', 'reboot');
 };
 
 export const LogOut = (): JSX.Element => {
-    return PowerActionButton('󰿅', '注销', 'logout');
+    return PowerActionButton('󰿅', 'Log Out', 'logout');
 };
 
 export const Sleep = (): JSX.Element => {
-    return PowerActionButton('󰤄', '休眠', 'sleep');
+    return PowerActionButton('󰤄', 'Sleep', 'sleep');
 };

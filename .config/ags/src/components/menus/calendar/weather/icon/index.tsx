@@ -1,6 +1,8 @@
 import { bind } from 'astal';
 import { Gtk } from 'astal/gtk3';
-import { getWeatherStatusTextIcon } from 'src/globals/weather.js';
+import WeatherService from 'src/services/weather';
+
+const weatherService = WeatherService.getInstance();
 
 export const TodayIcon = (): JSX.Element => {
     return (
@@ -11,7 +13,7 @@ export const TodayIcon = (): JSX.Element => {
         >
             <label
                 className={'calendar-menu-weather today icon txt-icon'}
-                label={bind(globalWeatherVar).as(getWeatherStatusTextIcon)}
+                label={bind(weatherService.statusIcon)}
             />
         </box>
     );

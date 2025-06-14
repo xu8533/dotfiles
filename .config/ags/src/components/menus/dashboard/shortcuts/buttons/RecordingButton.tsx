@@ -15,14 +15,19 @@ const MonitorListDropdown = (): JSX.Element => {
     });
 
     return (
-        <Menu className={'dropdown recording'} halign={Gtk.Align.FILL} onDestroy={() => monitorBinding.drop()} hexpand>
+        <Menu
+            className={'dropdown recording'}
+            halign={Gtk.Align.FILL}
+            onDestroy={() => monitorBinding.drop()}
+            hexpand
+        >
             {bind(monitorList).as((monitors) =>
                 monitors.map((monitor) => {
                     const sanitizedPath = getRecordingPath().replace(/"/g, '\\"');
 
                     return (
                         <MenuItem
-                            label={`全屏录屏 ${monitor.name}`}
+                            label={`Display ${monitor.name}`}
                             onButtonPressEvent={(_, event) => {
                                 if (event.get_button()[1] !== Gdk.BUTTON_PRIMARY) return;
 
@@ -36,7 +41,7 @@ const MonitorListDropdown = (): JSX.Element => {
                 }),
             )}
             <MenuItem
-                label="区域录屏"
+                label="Region"
                 onButtonPressEvent={(_, event) => {
                     if (event.get_button()[1] !== Gdk.BUTTON_PRIMARY) return;
 
@@ -55,7 +60,7 @@ export const RecordingButton = (): JSX.Element => {
     return (
         <button
             className={`dashboard-button record ${isRecording.get() ? 'active' : ''}`}
-            tooltipText="录屏"
+            tooltipText="Record Screen"
             vexpand
             onButtonPressEvent={(_, event) => {
                 const buttonClicked = event.get_button()[1];

@@ -1,13 +1,13 @@
 import { bind } from 'astal';
 import { ActionButton } from './ActionButton';
-import { isPrimaryClick } from 'src/lib/utils';
 import AstalBluetooth from 'gi://AstalBluetooth?version=0.1';
+import { isPrimaryClick } from 'src/lib/events/mouse';
 
 export const ConnectButton = ({ device }: ConnectButtonProps): JSX.Element => {
     return (
         <ActionButton
             name={'disconnect'}
-            tooltipText={bind(device, 'connected').as((connected) => (connected ? '断开连接' : '连接'))}
+            tooltipText={bind(device, 'connected').as((connected) => (connected ? 'Disconnect' : 'Connect'))}
             label={bind(device, 'connected').as((connected) => (connected ? '󱘖' : ''))}
             onClick={(_, self) => {
                 if (isPrimaryClick(self) && device.connected) {

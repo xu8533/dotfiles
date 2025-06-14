@@ -1,20 +1,25 @@
-import { openMenu } from '../../utils/menu';
-import options from 'src/options';
-import { BarBoxChild } from 'src/lib/types/bar.js';
-import { runAsyncCommand, throttledScrollHandler } from 'src/components/bar/utils/helpers.js';
+import { openDropdownMenu } from '../../utils/menu';
 import { bind, Variable } from 'astal';
 import { onMiddleClick, onPrimaryClick, onScroll, onSecondaryClick } from 'src/lib/shared/eventHandlers';
 import { Astal } from 'astal/gtk3';
-import { systemTime } from 'src/globals/time';
+import { systemTime } from 'src/lib/units/time';
+import { BarBoxChild } from 'src/components/bar/types';
+import options from 'src/configuration';
+import { runAsyncCommand } from '../../utils/input/commandExecutor';
+import { throttledScrollHandler } from '../../utils/input/throttle';
 
 const { format, icon, showIcon, showTime, rightClick, middleClick, scrollUp, scrollDown } = options.bar.clock;
 const { style } = options.theme.bar.buttons;
 
-const time = Variable.derive([systemTime, format], (c, f) => c.format(f) || '');
+const time = Variable.derive([systemTime, format], (c, f) => c.format(f) ?? '');
 
 const Clock = (): BarBoxChild => {
-    const ClockTime = (): JSX.Element => <label className={'bar-button-label clock bar'} label={bind(time)} />;
-    const ClockIcon = (): JSX.Element => <label className={'bar-button-icon clock txt-icon bar'} label={bind(icon)} />;
+    const ClockTime = (): JSX.Element => (
+        <label className={'bar-button-label clock bar'} label={bind(time)} />
+    );
+    const ClockIcon = (): JSX.Element => (
+        <label className={'bar-button-icon clock txt-icon bar'} label={bind(icon)} />
+    );
 
     const componentClassName = Variable.derive(
         [bind(style), bind(showIcon), bind(showTime)],
@@ -79,7 +84,7 @@ const Clock = (): BarBoxChild => {
 
                         disconnectFunctions.push(
                             onPrimaryClick(self, (clicked, event) => {
-                                openMenu(clicked, event, 'calendarmenu');
+                                openDropdownMenu(clicked, event, 'calendarmenu');
                             }),
                         );
 
@@ -95,7 +100,9 @@ const Clock = (): BarBoxChild => {
                             }),
                         );
 
-                        disconnectFunctions.push(onScroll(self, throttledHandler, scrollUp.get(), scrollDown.get()));
+                        disconnectFunctions.push(
+                            onScroll(self, throttledHandler, scrollUp.get(), scrollDown.get()),
+                        );
                     },
                 );
             },

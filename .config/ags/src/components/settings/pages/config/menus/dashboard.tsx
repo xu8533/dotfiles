@@ -1,6 +1,6 @@
 import { Option } from 'src/components/settings/shared/Option';
 import { Header } from 'src/components/settings/shared/Header';
-import options from 'src/options';
+import options from 'src/configuration';
 import { Gtk } from 'astal/gtk3';
 
 export const DashboardMenuSettings = (): JSX.Element => {
@@ -43,7 +43,11 @@ export const DashboardMenuSettings = (): JSX.Element => {
                     title="Show Confirmation Dialogue"
                     type="boolean"
                 />
-                <Option opt={options.menus.dashboard.powermenu.shutdown} title="Shutdown Command" type="string" />
+                <Option
+                    opt={options.menus.dashboard.powermenu.shutdown}
+                    title="Shutdown Command"
+                    type="string"
+                />
                 <Option opt={options.menus.dashboard.powermenu.reboot} title="Reboot Command" type="string" />
                 <Option opt={options.menus.dashboard.powermenu.logout} title="Logout Command" type="string" />
                 <Option opt={options.menus.dashboard.powermenu.sleep} title="Sleep Command" type="string" />

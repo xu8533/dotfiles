@@ -1,10 +1,9 @@
 import { App, Astal, Gdk, Gtk } from 'astal/gtk3';
-import { WINDOW_LAYOUTS } from 'src/globals/window';
-import { LayoutFunction, Layouts, PaddingProps, PopupRevealerProps, PopupWindowProps } from 'src/lib/types/popupwindow';
-import { Exclusivity, GtkWidget } from 'src/lib/types/widget';
+import { POPUP_LAYOUTS } from 'src/components/menus/shared/popup/layouts';
 import { EventBox, Revealer } from 'astal/gtk3/widget';
+import { LayoutFunction, Layouts, PaddingProps, PopupRevealerProps, PopupWindowProps } from './types';
 
-export const Padding = ({ name, opts }: PaddingProps): JSX.Element => (
+const Padding = ({ name, opts }: PaddingProps): JSX.Element => (
     <eventbox
         className={opts?.className ?? ''}
         hexpand
@@ -32,7 +31,7 @@ const PopupRevealer = ({ name, child, transition }: PopupRevealerProps): JSX.Ele
     </box>
 );
 
-const Layout: LayoutFunction = (name: string, child: GtkWidget, transition: Gtk.RevealerTransitionType) => ({
+const Layout: LayoutFunction = (name, child, transition) => ({
     center: () => (
         <centerbox>
             <Padding name={name} />
@@ -114,15 +113,15 @@ const Layout: LayoutFunction = (name: string, child: GtkWidget, transition: Gtk.
 });
 
 const isValidLayout = (layout: string): layout is Layouts => {
-    return WINDOW_LAYOUTS.includes(layout);
+    return POPUP_LAYOUTS.includes(layout);
 };
 
 export default ({
     name,
-    child,
+    child = <box />,
     layout = 'center',
-    transition = 'none',
-    exclusivity = 'ignore' as Exclusivity,
+    transition = Gtk.RevealerTransitionType.NONE,
+    exclusivity = Astal.Exclusivity.IGNORE,
     ...props
 }: PopupWindowProps): JSX.Element => {
     const layoutFn = isValidLayout(layout) ? layout : 'center';
@@ -147,7 +146,10 @@ export default ({
             application={App}
             layer={Astal.Layer.TOP}
             anchor={
-                Astal.WindowAnchor.TOP | Astal.WindowAnchor.BOTTOM | Astal.WindowAnchor.RIGHT | Astal.WindowAnchor.LEFT
+                Astal.WindowAnchor.TOP |
+                Astal.WindowAnchor.BOTTOM |
+                Astal.WindowAnchor.RIGHT |
+                Astal.WindowAnchor.LEFT
             }
             {...props}
         >

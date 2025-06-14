@@ -1,11 +1,10 @@
-import options from 'src/options';
-import { DropdownMenuProps } from 'src/lib/types/dropdownmenu';
-import { BarEventMargins } from './eventBoxes/index';
-import { globalEventBoxes } from 'src/globals/dropdown';
+import options from 'src/configuration';
+import { BarEventMargins } from './helpers/eventBoxes';
+import { globalEventBoxes } from 'src/lib/events/dropdown';
 import { bind } from 'astal';
 import { App, Astal, Gdk, Gtk } from 'astal/gtk3';
 import { Revealer } from 'astal/gtk3/widget';
-import { locationMap } from 'src/lib/types/defaults/bar';
+import { DropdownMenuProps, LocationMap } from './types';
 
 const { location } = options.theme.bar;
 
@@ -16,6 +15,11 @@ export default ({
     exclusivity = Astal.Exclusivity.IGNORE,
     ...props
 }: DropdownMenuProps): JSX.Element => {
+    const locationMap: LocationMap = {
+        top: Astal.WindowAnchor.TOP,
+        bottom: Astal.WindowAnchor.BOTTOM,
+    };
+
     return (
         <window
             name={name}
@@ -66,7 +70,10 @@ export default ({
                         onButtonPressEvent={(_, event) => {
                             const buttonClicked = event.get_button()[1];
 
-                            if (buttonClicked === Gdk.BUTTON_PRIMARY || buttonClicked === Gdk.BUTTON_SECONDARY) {
+                            if (
+                                buttonClicked === Gdk.BUTTON_PRIMARY ||
+                                buttonClicked === Gdk.BUTTON_SECONDARY
+                            ) {
                                 return true;
                             }
                         }}

@@ -1,13 +1,12 @@
 import { bind } from 'astal';
 import { Gtk } from 'astal/gtk3';
 import AstalPowerProfiles from 'gi://AstalPowerProfiles?version=0.1';
+import { isPrimaryClick } from 'src/lib/events/mouse';
 import icons from 'src/lib/icons/icons';
-import { ProfileType } from 'src/lib/types/powerprofiles';
-import { isPrimaryClick } from 'src/lib/utils';
-
-const powerProfilesService = AstalPowerProfiles.get_default();
+import { ProfileType } from './types';
 
 export const PowerProfiles = (): JSX.Element => {
+    const powerProfilesService = AstalPowerProfiles.get_default();
     const powerProfiles = powerProfilesService.get_profiles();
 
     return (
@@ -18,7 +17,8 @@ export const PowerProfiles = (): JSX.Element => {
                 return (
                     <button
                         className={bind(powerProfilesService, 'activeProfile').as(
-                            (active) => `power-profile-item ${active === powerProfile.profile ? 'active' : ''}`,
+                            (active) =>
+                                `power-profile-item ${active === powerProfile.profile ? 'active' : ''}`,
                         )}
                         onClick={(_, event) => {
                             if (isPrimaryClick(event)) {

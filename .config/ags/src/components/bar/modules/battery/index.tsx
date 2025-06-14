@@ -1,16 +1,25 @@
 import AstalBattery from 'gi://AstalBattery?version=0.1';
 import { Astal } from 'astal/gtk3';
-import { openMenu } from '../../utils/menu';
-import options from 'src/options';
-import { BarBoxChild } from 'src/lib/types/bar.js';
-import { runAsyncCommand, throttledScrollHandler } from 'src/components/bar/utils/helpers.js';
+import { openDropdownMenu } from '../../utils/menu';
 import Variable from 'astal/variable';
 import { bind } from 'astal';
 import { onMiddleClick, onPrimaryClick, onScroll, onSecondaryClick } from 'src/lib/shared/eventHandlers';
 import { getBatteryIcon } from './helpers';
+import { BarBoxChild } from 'src/components/bar/types';
+import options from 'src/configuration';
+import { throttledScrollHandler } from '../../utils/input/throttle';
+import { runAsyncCommand } from '../../utils/input/commandExecutor';
 
 const batteryService = AstalBattery.get_default();
-const { label: show_label, rightClick, middleClick, scrollUp, scrollDown, hideLabelWhenFull } = options.bar.battery;
+
+const {
+    label: show_label,
+    rightClick,
+    middleClick,
+    scrollUp,
+    scrollDown,
+    hideLabelWhenFull,
+} = options.bar.battery;
 
 const BatteryLabel = (): BarBoxChild => {
     const batIcon = Variable.derive(
@@ -30,14 +39,14 @@ const BatteryLabel = (): BarBoxChild => {
 
     const generateTooltip = (timeSeconds: number, isCharging: boolean, isCharged: boolean): string => {
         if (isCharged === true) {
-            return '已充满';
+            return 'Full';
         }
 
         const { hours, minutes } = formatTime(timeSeconds);
         if (isCharging) {
-            return `充满时间: ${hours}小时 ${minutes}分钟`;
+            return `Time to full: ${hours} h ${minutes} min`;
         } else {
-            return `剩余时间: ${hours}小时 ${minutes}分钟`;
+            return `Time to empty: ${hours} h ${minutes} min`;
         }
     };
 
@@ -55,10 +64,18 @@ const BatteryLabel = (): BarBoxChild => {
     );
 
     const componentTooltip = Variable.derive(
-        [bind(batteryService, 'charging'), bind(batteryService, 'timeToFull'), bind(batteryService, 'timeToEmpty')],
+        [
+            bind(batteryService, 'charging'),
+            bind(batteryService, 'timeToFull'),
+            bind(batteryService, 'timeToEmpty'),
+        ],
         (isCharging, timeToFull, timeToEmpty) => {
             const timeRemaining = isCharging ? timeToFull : timeToEmpty;
-            return generateTooltip(timeRemaining, isCharging, Math.floor(batteryService.percentage * 100) === 100);
+            return generateTooltip(
+                timeRemaining,
+                isCharging,
+                Math.floor(batteryService.percentage * 100) === 100,
+            );
         },
     );
 
@@ -68,7 +85,9 @@ const BatteryLabel = (): BarBoxChild => {
             const isCharged = Math.round(percentage) === 100;
 
             const icon = <label className={'bar-button-icon battery txt-icon'} label={batIcon()} />;
-            const label = <label className={'bar-button-label battery'} label={`${Math.floor(percentage * 100)}%`} />;
+            const label = (
+                <label className={'bar-button-label battery'} label={`${Math.floor(percentage * 100)}%`} />
+            );
 
             const children = [icon];
 
@@ -119,7 +138,7 @@ const BatteryLabel = (): BarBoxChild => {
 
                         disconnectFunctions.push(
                             onPrimaryClick(self, (clicked, event) => {
-                                openMenu(clicked, event, 'energymenu');
+                                openDropdownMenu(clicked, event, 'energymenu');
                             }),
                         );
 
@@ -135,7 +154,9 @@ const BatteryLabel = (): BarBoxChild => {
                             }),
                         );
 
-                        disconnectFunctions.push(onScroll(self, throttledHandler, scrollUp.get(), scrollDown.get()));
+                        disconnectFunctions.push(
+                            onScroll(self, throttledHandler, scrollUp.get(), scrollDown.get()),
+                        );
                     },
                 );
             },

@@ -1,7 +1,7 @@
 import { Option } from 'src/components/settings/shared/Option';
 import { Header } from 'src/components/settings/shared/Header';
 
-import options from 'src/options';
+import options from 'src/configuration';
 import { Gtk } from 'astal/gtk3';
 
 export const BatteryMenuTheme = (): JSX.Element => {
@@ -24,7 +24,11 @@ export const BatteryMenuTheme = (): JSX.Element => {
 
                 {/* Background Section */}
                 <Header title="Background" />
-                <Option opt={options.theme.bar.menus.menu.battery.background.color} title="Background" type="color" />
+                <Option
+                    opt={options.theme.bar.menus.menu.battery.background.color}
+                    title="Background"
+                    type="color"
+                />
 
                 {/* Border Section */}
                 <Header title="Border" />
@@ -36,18 +40,38 @@ export const BatteryMenuTheme = (): JSX.Element => {
 
                 {/* List Items Section */}
                 <Header title="List Items" />
-                <Option opt={options.theme.bar.menus.menu.battery.listitems.active} title="Active/Hover" type="color" />
-                <Option opt={options.theme.bar.menus.menu.battery.listitems.passive} title="Passive" type="color" />
+                <Option
+                    opt={options.theme.bar.menus.menu.battery.listitems.active}
+                    title="Active/Hover"
+                    type="color"
+                />
+                <Option
+                    opt={options.theme.bar.menus.menu.battery.listitems.passive}
+                    title="Passive"
+                    type="color"
+                />
 
                 {/* Icons Section */}
                 <Header title="Icons" />
                 <Option opt={options.theme.bar.menus.menu.battery.icons.active} title="Active" type="color" />
-                <Option opt={options.theme.bar.menus.menu.battery.icons.passive} title="Passive" type="color" />
+                <Option
+                    opt={options.theme.bar.menus.menu.battery.icons.passive}
+                    title="Passive"
+                    type="color"
+                />
 
                 {/* Slider Section */}
                 <Header title="Slider" />
-                <Option opt={options.theme.bar.menus.menu.battery.slider.primary} title="Primary" type="color" />
-                <Option opt={options.theme.bar.menus.menu.battery.slider.background} title="Background" type="color" />
+                <Option
+                    opt={options.theme.bar.menus.menu.battery.slider.primary}
+                    title="Primary"
+                    type="color"
+                />
+                <Option
+                    opt={options.theme.bar.menus.menu.battery.slider.background}
+                    title="Background"
+                    type="color"
+                />
                 <Option
                     opt={options.theme.bar.menus.menu.battery.slider.backgroundhover}
                     title="Background (Hover)"

@@ -1,11 +1,12 @@
-import { runAsyncCommand, throttledScrollHandler } from 'src/components/bar/utils/helpers';
-import { BarBoxChild } from 'src/lib/types/bar';
-import options from 'src/options';
 import AstalHyprland from 'gi://AstalHyprland?version=0.1';
 import { onMiddleClick, onPrimaryClick, onScroll, onSecondaryClick } from 'src/lib/shared/eventHandlers';
 import { bind, Variable } from 'astal';
 import { clientTitle, getTitle, getWindowMatch, truncateTitle } from './helpers/title';
 import { Astal } from 'astal/gtk3';
+import { BarBoxChild } from 'src/components/bar/types';
+import options from 'src/configuration';
+import { runAsyncCommand } from '../../utils/input/commandExecutor';
+import { throttledScrollHandler } from '../../utils/input/throttle';
 
 const hyprlandService = AstalHyprland.get_default();
 const { leftClick, rightClick, middleClick, scrollDown, scrollUp } = options.bar.windowtitle;
@@ -14,7 +15,12 @@ const ClientTitle = (): BarBoxChild => {
     const { custom_title, class_name, label, icon, truncation, truncation_size } = options.bar.windowtitle;
 
     const ClientIcon = ({ client }: ClientIconProps): JSX.Element => {
-        return <label className={'bar-button-icon windowtitle txt-icon bar'} label={getWindowMatch(client).icon} />;
+        return (
+            <label
+                className={'bar-button-icon windowtitle txt-icon bar'}
+                label={getWindowMatch(client).icon}
+            />
+        );
     };
 
     const ClientLabel = ({
@@ -28,7 +34,10 @@ const ClientTitle = (): BarBoxChild => {
         return (
             <label
                 className={`bar-button-label windowtitle ${showIcon ? '' : 'no-icon'}`}
-                label={truncateTitle(getTitle(client, useCustomTitle, useClassName), truncate ? truncationSize : -1)}
+                label={truncateTitle(
+                    getTitle(client, useCustomTitle, useClassName),
+                    truncate ? truncationSize : -1,
+                )}
             />
         );
     };
@@ -131,7 +140,9 @@ const ClientTitle = (): BarBoxChild => {
                             }),
                         );
 
-                        disconnectFunctions.push(onScroll(self, throttledHandler, scrollUp.get(), scrollDown.get()));
+                        disconnectFunctions.push(
+                            onScroll(self, throttledHandler, scrollUp.get(), scrollDown.get()),
+                        );
                     },
                 );
             },

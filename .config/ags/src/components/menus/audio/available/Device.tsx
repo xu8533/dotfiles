@@ -1,7 +1,7 @@
 import { Gtk } from 'astal/gtk3';
 import AstalWp from 'gi://AstalWp?version=0.1';
-import { isPrimaryClick } from 'src/lib/utils';
 import { bind } from 'astal';
+import { isPrimaryClick } from 'src/lib/events/mouse';
 
 const DeviceIcon = ({ device, type, icon }: AudioDeviceProps): JSX.Element => {
     return (
@@ -20,7 +20,9 @@ const DeviceName = ({ device, type }: Omit<AudioDeviceProps, 'icon'>): JSX.Eleme
             truncate
             wrap
             className={bind(device, 'description').as((currentDesc) =>
-                device.description === currentDesc ? `menu-button-name active ${type}` : `menu-button-name ${type}`,
+                device.description === currentDesc
+                    ? `menu-button-name active ${type}`
+                    : `menu-button-name ${type}`,
             )}
             label={device.description}
         />

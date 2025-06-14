@@ -1,17 +1,16 @@
 import icons from 'src/lib/icons/icons';
 import { Astal, Gtk, Widget } from 'astal/gtk3';
-import { isPrimaryClick } from 'src/lib/utils';
 import { bind } from 'astal';
 import { isLoopActive, isShuffleActive, loopIconMap, loopTooltipMap } from './helpers';
 import AstalMpris from 'gi://AstalMpris?version=0.1';
-import { activePlayer, loopStatus, shuffleStatus } from 'src/globals/media';
-
-export type LoopStatus = 'none' | 'track' | 'playlist';
+import { loopStatus, activePlayer, shuffleStatus } from 'src/services/media';
+import { isPrimaryClick } from 'src/lib/events/mouse';
 
 export const Loop = (): JSX.Element => {
     const className = bind(loopStatus).as((status) => {
         const isActive = isLoopActive(status);
-        const loopingAllowed = status !== null && status !== AstalMpris.Loop.UNSUPPORTED ? 'enabled' : 'disabled';
+        const loopingAllowed =
+            status !== null && status !== AstalMpris.Loop.UNSUPPORTED ? 'enabled' : 'disabled';
 
         return `media-indicator-control-button loop ${isActive} ${loopingAllowed}`;
     });
@@ -60,7 +59,8 @@ export const Loop = (): JSX.Element => {
 export const Shuffle = (): JSX.Element => {
     const className = bind(shuffleStatus).as((status) => {
         const isActive = isShuffleActive(status);
-        const shuffleAllowed = status !== null && status !== AstalMpris.Shuffle.UNSUPPORTED ? 'enabled' : 'disabled';
+        const shuffleAllowed =
+            status !== null && status !== AstalMpris.Shuffle.UNSUPPORTED ? 'enabled' : 'disabled';
 
         return `media-indicator-control-button shuffle ${isActive} ${shuffleAllowed}`;
     });

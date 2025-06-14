@@ -1,8 +1,8 @@
-import options from 'src/options';
-import { capitalizeFirstLetter } from 'src/lib/utils';
-import { defaultWindowTitleMap } from 'src/lib/constants/appIcons';
+import { defaultWindowTitleMap } from 'src/components/bar/modules/window_title/helpers/appIcons';
 import AstalHyprland from 'gi://AstalHyprland?version=0.1';
 import { bind, Variable } from 'astal';
+import options from 'src/configuration';
+import { capitalizeFirstLetter } from 'src/lib/string/formatters';
 
 const { title_map: userDefinedTitles } = options.bar.windowtitle;
 
@@ -15,7 +15,7 @@ function trackClientUpdates(client: AstalHyprland.Client): void {
     clientBinding?.drop();
     clientBinding = undefined;
 
-    if (!client) {
+    if (client === null) {
         return;
     }
 
@@ -68,7 +68,11 @@ export const getWindowMatch = (hyprlandClient: AstalHyprland.Client): Record<str
  *
  * @returns The title of the window as a string.
  */
-export const getTitle = (client: AstalHyprland.Client, useCustomTitle: boolean, useClassName: boolean): string => {
+export const getTitle = (
+    client: AstalHyprland.Client,
+    useCustomTitle: boolean,
+    useClassName: boolean,
+): string => {
     if (client === null || useCustomTitle) return getWindowMatch(client).label;
 
     const title = client.title;

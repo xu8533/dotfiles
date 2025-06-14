@@ -1,8 +1,8 @@
-import { RowProps } from 'src/lib/types/options';
 import { Variable } from 'astal';
 import { PropertyLabel } from './PropertyLabel';
 import { ResetButton } from './ResetButton';
 import { SettingInput } from './SettingInput';
+import { RowProps } from 'src/lib/options/types';
 
 export const Option = <T extends string | number | boolean | object>({
     className,
@@ -11,7 +11,7 @@ export const Option = <T extends string | number | boolean | object>({
     const isUnsaved = Variable(false);
     return (
         <box
-            className={'option-item'}
+            className="option-item"
             hexpand
             onDestroy={() => {
                 isUnsaved.drop();

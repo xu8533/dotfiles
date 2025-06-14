@@ -1,6 +1,4 @@
-import { LayoutKeys, LayoutValues } from 'src/lib/types/customModules/kbLayout';
-
-export const layoutMap: Record<LayoutKeys, LayoutValues> = {
+const layoutMapObj = {
     'Abkhazian (Russia)': 'RU (Ab)',
     Akan: 'GH (Akan)',
     Albanian: 'AL',
@@ -585,3 +583,8 @@ export const layoutMap: Record<LayoutKeys, LayoutValues> = {
     Yoruba: 'NG (Yoruba)',
     'Unknown Layout': 'Unknown',
 } as const;
+
+export type LayoutKeys = keyof typeof layoutMapObj;
+export type LayoutValues = (typeof layoutMapObj)[LayoutKeys];
+
+export const layoutMap = layoutMapObj;

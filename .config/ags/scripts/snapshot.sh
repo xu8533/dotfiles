@@ -18,8 +18,8 @@ area)
     command="grimblast copysave area $outputPath"
     ;;
 *)
-    echo "错误选项: $mode"
-    echo "用法: $0 {active|output|area}"
+    echo "无效选型: $mode"
+    echo "Usage: $0 {active|output|area}"
     exit 1
     ;;
 esac

@@ -1,5 +1,4 @@
 import { bind, Variable } from 'astal';
-import options from 'src/options';
 import { hasCommand, isRecording, leftCardHidden } from '../helpers';
 import {
     LeftShortcut1,
@@ -12,6 +11,7 @@ import {
 import { LeftColumn, RightColumn } from './Column';
 import { SettingsButton } from '../buttons/SettingsButton';
 import { RecordingButton } from '../buttons/RecordingButton';
+import options from 'src/configuration';
 
 const { left, right } = options.menus.dashboard.shortcuts;
 
@@ -77,7 +77,9 @@ export const RightShortcuts = (): JSX.Element => {
         <box>
             {Variable.derive(rightBindings, () => {
                 return (
-                    <box className={`container utilities dashboard-card ${!leftCardHidden.get() ? 'paired' : ''}`}>
+                    <box
+                        className={`container utilities dashboard-card ${!leftCardHidden.get() ? 'paired' : ''}`}
+                    >
                         <LeftColumn isVisible={true}>
                             <RightShortcut1 />
                             <SettingsButton />

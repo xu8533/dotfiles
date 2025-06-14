@@ -1,6 +1,5 @@
-import { RowProps } from 'src/lib/types/options';
 import { NumberInputter } from './inputs/number';
-import { ObjectInputter } from './inputs/object';
+import { FloatInputter } from './inputs/float';
 import { StringInputter } from './inputs/string';
 import { BooleanInputter } from './inputs/boolean';
 import { ImageInputter } from './inputs/image';
@@ -11,6 +10,8 @@ import { EnumInputter } from './inputs/enum';
 import { FontInputter } from './inputs/font';
 import { Variable } from 'astal';
 import { Gtk } from 'astal/gtk3';
+import { RowProps } from 'src/lib/options/types';
+import { ObjectInputter } from './inputs/object';
 
 const InputField = <T extends string | number | boolean | object>({
     opt,
@@ -29,8 +30,11 @@ const InputField = <T extends string | number | boolean | object>({
 }: InputFieldProps<T>): JSX.Element => {
     switch (type) {
         case 'number':
-            return <NumberInputter opt={opt} min={min} max={max} increment={increment} isUnsaved={isUnsaved} />;
+            return (
+                <NumberInputter opt={opt} min={min} max={max} increment={increment} isUnsaved={isUnsaved} />
+            );
         case 'float':
+            return <FloatInputter opt={opt} isUnsaved={isUnsaved} className={className} />;
         case 'object':
             return <ObjectInputter opt={opt} isUnsaved={isUnsaved} className={className} />;
         case 'string':
@@ -38,7 +42,9 @@ const InputField = <T extends string | number | boolean | object>({
         case 'enum':
             return <EnumInputter opt={opt} values={enums} />;
         case 'boolean':
-            return <BooleanInputter opt={opt} disabledBinding={disabledBinding} dependencies={dependencies} />;
+            return (
+                <BooleanInputter opt={opt} disabledBinding={disabledBinding} dependencies={dependencies} />
+            );
         case 'img':
             return <ImageInputter opt={opt} />;
         case 'config_import':
@@ -71,7 +77,11 @@ export const Inputter = <T extends string | number | boolean | object>({
     isUnsaved,
 }: InputterProps<T>): JSX.Element => {
     return (
-        <box className={/export|import/.test(type || '') ? '' : 'inputter-container'} valign={Gtk.Align.CENTER}>
+        <box
+            className={/export|import/.test(type || '') ? '' : 'inputter-container'}
+            valign={Gtk.Align.START}
+            halign={Gtk.Align.END}
+        >
             <InputField
                 type={type}
                 opt={opt}

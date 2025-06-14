@@ -1,6 +1,6 @@
 import { Option } from 'src/components/settings/shared/Option';
 import { Header } from 'src/components/settings/shared/Header';
-import options from 'src/options';
+import options from 'src/configuration';
 import { Gtk } from 'astal/gtk3';
 
 export const OSDSettings = (): JSX.Element => {
@@ -28,7 +28,16 @@ export const OSDSettings = (): JSX.Element => {
                     title="Position"
                     subtitle="Position of OSD"
                     type="enum"
-                    enums={['top left', 'top', 'top right', 'right', 'bottom right', 'bottom', 'bottom left', 'left']}
+                    enums={[
+                        'top left',
+                        'top',
+                        'top right',
+                        'right',
+                        'bottom right',
+                        'bottom',
+                        'bottom left',
+                        'left',
+                    ]}
                 />
                 <Option
                     opt={options.theme.osd.monitor}
@@ -57,7 +66,12 @@ export const OSDSettings = (): JSX.Element => {
                     type="string"
                 />
                 <Option opt={options.theme.osd.border.size} title="Border Size" type="string" />
-                <Option opt={options.theme.osd.radius} title="Radius" subtitle="Radius of the OSD" type="string" />
+                <Option
+                    opt={options.theme.osd.radius}
+                    title="Radius"
+                    subtitle="Radius of the OSD"
+                    type="string"
+                />
                 <Option
                     opt={options.theme.osd.muted_zero}
                     title="Mute Volume as Zero"

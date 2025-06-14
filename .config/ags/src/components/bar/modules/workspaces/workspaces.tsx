@@ -1,11 +1,14 @@
-import options from 'src/options';
-import { forceUpdater, getWorkspacesToRender, initWorkspaceEvents, workspaceRules } from './helpers';
-import { getAppIcon, getWsColor, renderClassnames, renderLabel } from './helpers/utils';
-import { ApplicationIcons, WorkspaceIconMap } from 'src/lib/types/workspace';
+import { initWorkspaceEvents } from './helpers/utils';
+import { getAppIcon, getWsColor, renderClassnames, renderLabel } from './helpers';
 import { bind, Variable } from 'astal';
 import AstalHyprland from 'gi://AstalHyprland?version=0.1';
 import { Gtk } from 'astal/gtk3';
-import { isPrimaryClick } from 'src/lib/utils';
+import { WorkspaceService } from 'src/services/workspace';
+import options from 'src/configuration';
+import { isPrimaryClick } from 'src/lib/events/mouse';
+import { WorkspaceIconMap, ApplicationIcons } from './types';
+
+const workspaceService = WorkspaceService.getInstance();
 
 const hyprlandService = AstalHyprland.get_default();
 const {
@@ -61,8 +64,8 @@ export const WorkspaceModule = ({ monitor }: WorkspaceModuleProps): JSX.Element 
             bind(ignored),
             bind(showAllActive),
             bind(hyprlandService, 'focusedWorkspace'),
-            bind(workspaceRules),
-            bind(forceUpdater),
+            bind(workspaceService.workspaceRules),
+            bind(workspaceService.forceUpdater),
         ],
         (
             isMonitorSpecific: boolean,
@@ -88,10 +91,11 @@ export const WorkspaceModule = ({ monitor }: WorkspaceModuleProps): JSX.Element 
             clients: AstalHyprland.Client[],
             monitorList: AstalHyprland.Monitor[],
         ) => {
-            const workspacesToRender = getWorkspacesToRender(
+            const wsRules = workspaceService.workspaceRules.get();
+            const workspacesToRender = workspaceService.getWorkspaces(
                 totalWorkspaces,
                 workspaceList,
-                workspaceRules.get(),
+                wsRules,
                 monitor,
                 isMonitorSpecific,
                 monitorList,
@@ -145,7 +149,9 @@ export const WorkspaceModule = ({ monitor }: WorkspaceModuleProps): JSX.Element 
                                 monitor,
                             )}
                             setup={(self) => {
-                                const currentWsClients = clients.filter((client) => client?.workspace?.id === wsId);
+                                const currentWsClients = clients.filter(
+                                    (client) => client?.workspace?.id === wsId,
+                                );
                                 self.toggleClassName('occupied', currentWsClients.length > 0);
                             }}
                         />

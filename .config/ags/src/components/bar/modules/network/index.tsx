@@ -1,12 +1,13 @@
-import options from 'src/options';
-import { openMenu } from '../../utils/menu';
-import { runAsyncCommand, throttledScrollHandler } from 'src/components/bar/utils/helpers.js';
+import { openDropdownMenu } from '../../utils/menu';
 import { bind, Variable } from 'astal';
 import { onPrimaryClick, onSecondaryClick, onMiddleClick, onScroll } from 'src/lib/shared/eventHandlers';
 import { Astal, Gtk } from 'astal/gtk3';
 import AstalNetwork from 'gi://AstalNetwork?version=0.1';
-import { BarBoxChild } from 'src/lib/types/bar.js';
 import { formatWifiInfo, wiredIcon, wirelessIcon } from './helpers';
+import { BarBoxChild } from 'src/components/bar/types';
+import options from 'src/configuration';
+import { runAsyncCommand } from '../../utils/input/commandExecutor';
+import { throttledScrollHandler } from '../../utils/input/throttle';
 
 const networkService = AstalNetwork.get_default();
 const { label, truncation, truncation_size, rightClick, middleClick, scrollDown, scrollUp, showWifiInfo } =
@@ -20,7 +21,9 @@ const Network = (): BarBoxChild => {
         },
     );
 
-    const NetworkIcon = (): JSX.Element => <icon className={'bar-button-icon network-icon'} icon={iconBinding()} />;
+    const NetworkIcon = (): JSX.Element => (
+        <icon className={'bar-button-icon network-icon'} icon={iconBinding()} />
+    );
 
     const networkLabel = Variable.derive(
         [
@@ -32,20 +35,19 @@ const Network = (): BarBoxChild => {
 
             bind(networkService, 'state'),
             bind(networkService, 'connectivity'),
-            ...(networkService.wifi ? [bind(networkService.wifi, 'enabled')] : []),
+            ...(networkService.wifi !== null ? [bind(networkService.wifi, 'enabled')] : []),
         ],
         (primaryNetwork, showLabel, trunc, tSize, showWifiInfo) => {
             if (!showLabel) {
                 return <box />;
             }
             if (primaryNetwork === AstalNetwork.Primary.WIRED) {
-                return <label className={'bar-button-label network-label'} label={'Wired'.substring(0, tSize)} />;
+                return (
+                    <label className={'bar-button-label network-label'} label={'Wired'.substring(0, tSize)} />
+                );
             }
             const networkWifi = networkService.wifi;
-            if (networkWifi != null) {
-                // Astal doesn't reset the wifi attributes on disconnect, only on a valid connection
-                // so we need to check if both the WiFi is enabled and if there is an active access
-                // point
+            if (networkWifi !== null) {
                 if (!networkWifi.enabled) {
                     return <label className={'bar-button-label network-label'} label="Off" />;
                 }
@@ -54,11 +56,15 @@ const Network = (): BarBoxChild => {
                     <label
                         className={'bar-button-label network-label'}
                         label={
-                            networkWifi.active_access_point
+                            networkWifi.active_access_point !== null
                                 ? `${trunc ? networkWifi.ssid.substring(0, tSize) : networkWifi.ssid}`
                                 : '--'
                         }
-                        tooltipText={showWifiInfo && networkWifi.active_access_point ? formatWifiInfo(networkWifi) : ''}
+                        tooltipText={
+                            showWifiInfo && networkWifi.active_access_point !== null
+                                ? formatWifiInfo(networkWifi)
+                                : ''
+                        }
                     />
                 );
             }
@@ -119,7 +125,7 @@ const Network = (): BarBoxChild => {
 
                         disconnectFunctions.push(
                             onPrimaryClick(self, (clicked, event) => {
-                                openMenu(clicked, event, 'networkmenu');
+                                openDropdownMenu(clicked, event, 'networkmenu');
                             }),
                         );
 
@@ -135,7 +141,9 @@ const Network = (): BarBoxChild => {
                             }),
                         );
 
-                        disconnectFunctions.push(onScroll(self, throttledHandler, scrollUp.get(), scrollDown.get()));
+                        disconnectFunctions.push(
+                            onScroll(self, throttledHandler, scrollUp.get(), scrollDown.get()),
+                        );
                     },
                 );
             },

@@ -1,7 +1,9 @@
 import { Variable } from 'astal';
-import { disconnectFromAP, forgetAP, isApActive } from './helpers';
 import AstalNetwork from 'gi://AstalNetwork?version=0.1';
 import { Gtk } from 'astal/gtk3';
+import { NetworkService } from 'src/services/network';
+
+const networkService = NetworkService.getInstance();
 
 export const Controls = ({ connecting, accessPoint }: ControlsProps): JSX.Element => {
     const DisconnectButton = (): JSX.Element => {
@@ -9,10 +11,14 @@ export const Controls = ({ connecting, accessPoint }: ControlsProps): JSX.Elemen
             <button
                 className="menu-icon-button network disconnect"
                 onClick={(_, event) => {
-                    disconnectFromAP(accessPoint, event);
+                    networkService.wifi.disconnectFromAP(accessPoint, event);
                 }}
             >
-                <label className="menu-icon-button disconnect-network txt-icon" tooltipText="断开" label="󱘖" />
+                <label
+                    className="menu-icon-button disconnect-network txt-icon"
+                    tooltipText="Disconnect"
+                    label="󱘖"
+                />
             </button>
         );
     };
@@ -21,9 +27,9 @@ export const Controls = ({ connecting, accessPoint }: ControlsProps): JSX.Elemen
         return (
             <button
                 className="menu-icon-button network disconnect"
-                tooltipText="删除/忘记 网络"
+                tooltipText="Delete/Forget Network"
                 onClick={(_, event) => {
-                    forgetAP(accessPoint, event);
+                    networkService.wifi.forgetAP(accessPoint, event);
                 }}
             >
                 <label className="txt-icon delete-network" label="󰚃" />
@@ -33,7 +39,9 @@ export const Controls = ({ connecting, accessPoint }: ControlsProps): JSX.Elemen
 
     return (
         <revealer
-            revealChild={accessPoint.bssid !== connecting.get() && isApActive(accessPoint)}
+            revealChild={
+                accessPoint.bssid !== connecting.get() && networkService.wifi.isApActive(accessPoint)
+            }
             valign={Gtk.Align.START}
         >
             <box className={'network-element-controls-container'}>

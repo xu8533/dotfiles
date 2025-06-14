@@ -1,88 +1,126 @@
-import { defaultColorMap } from '../../lib/types/defaults/options';
-import { ColorMapValue, ColorMapKey, HexColor, MatugenColors } from '../../lib/types/options';
+import { ColorMapKey, HexColor, MatugenColors } from '../../lib/options/types';
 import { getMatugenVariations } from './variations';
-import { bash, dependencies, Notify, isAnImage } from '../../lib/utils';
-import options from '../../options';
 import icons from '../../lib/icons/icons';
-import Variable from 'astal/variable';
-const { scheme_type, contrast } = options.theme.matugen_settings;
-const { matugen } = options.theme;
+import { SystemUtilities } from 'src/core/system/SystemUtilities';
+import options from 'src/configuration';
+import { isAnImage } from 'src/lib/validation/images';
+import { defaultColorMap } from './defaults';
 
-const updateOptColor = (color: HexColor, opt: Variable<HexColor>): void => {
-    opt.set(color);
-};
+const MATUGEN_ENABLED = options.theme.matugen;
+const MATUGEN_SETTINGS = options.theme.matugen_settings;
 
-export async function generateMatugenColors(): Promise<MatugenColors | undefined> {
-    if (!matugen.get() || !dependencies('matugen')) {
-        return;
+/**
+ * Service that integrates with Matugen to generate color schemes from wallpapers
+ */
+export class MatugenService {
+    private static _instance: MatugenService;
+
+    private constructor() {}
+
+    /**
+     * Gets the singleton instance of the MatugenService
+     *
+     * @returns The MatugenService instance
+     */
+    public static getInstance(): MatugenService {
+        if (this._instance === undefined) {
+            this._instance = new MatugenService();
+        }
+
+        return this._instance;
     }
-    const wallpaperPath = options.wallpaper.image.get();
 
-    try {
-        if (!wallpaperPath.length || !isAnImage(wallpaperPath)) {
-            Notify({
+    /**
+     * Normalizes contrast value to be within Matugen's acceptable range
+     *
+     * @param contrast - The raw contrast value
+     * @returns Normalized contrast value between -1 and 1
+     */
+    private _normalizeContrast(contrast: number): number {
+        return Math.max(-1, Math.min(1, contrast));
+    }
+
+    /**
+     * Generates a color scheme from the current wallpaper using Matugen
+     *
+     * @returns The generated color palette or undefined if generation fails
+     */
+    public async generateMatugenColors(): Promise<MatugenColors | undefined> {
+        if (!MATUGEN_ENABLED.get() || !SystemUtilities.checkDependencies('matugen')) {
+            return;
+        }
+
+        const wallpaperPath = options.wallpaper.image.get();
+
+        if (!wallpaperPath || !isAnImage(wallpaperPath)) {
+            SystemUtilities.notify({
                 summary: 'Matugen Failed',
                 body: "Please select a wallpaper in 'Theming > General' first.",
                 iconName: icons.ui.warning,
             });
+
             return;
         }
 
-        const normalizedContrast = contrast.get() > 1 ? 1 : contrast.get() < -1 ? -1 : contrast.get();
-        const contents = await bash(
-            `matugen image --dry-run -q ${wallpaperPath} -t scheme-${scheme_type.get()} --contrast ${normalizedContrast} --json hex`,
-        );
-        await bash(`matugen image -q ${wallpaperPath} -t scheme-${scheme_type.get()} --contrast ${normalizedContrast}`);
+        try {
+            const normalizedContrast = this._normalizeContrast(MATUGEN_SETTINGS.contrast.get());
+            const schemeType = MATUGEN_SETTINGS.scheme_type.get();
+            const mode = MATUGEN_SETTINGS.mode.get();
 
-        return JSON.parse(contents).colors[options.theme.matugen_settings.mode.get()];
-    } catch (error) {
-        const errMsg = `An error occurred while generating matugen colors: ${error}`;
-        console.error(errMsg);
-        return;
+            const baseCommand = `matugen image -q "${wallpaperPath}" -t scheme-${schemeType} --contrast ${normalizedContrast}`;
+
+            const jsonResult = await SystemUtilities.bash(`${baseCommand} --dry-run --json hex`);
+            await SystemUtilities.bash(baseCommand);
+
+            const parsedResult = JSON.parse(jsonResult);
+            return parsedResult?.colors?.[mode];
+        } catch (error) {
+            SystemUtilities.notify({
+                summary: 'Matugen Error',
+                body: `An error occurred: ${error}`,
+                iconName: icons.ui.info,
+            });
+            console.error(`An error occurred while generating matugen colors: ${error}`);
+            return;
+        }
     }
-}
 
-const isColorValid = (color: string): color is ColorMapKey => {
-    return defaultColorMap.hasOwnProperty(color);
-};
+    /**
+     * Validates if a color string is a valid key in the default color map
+     *
+     * @param color - The color key to validate
+     * @returns Whether the color is a valid ColorMapKey
+     */
+    public isColorKeyValid(color: string): color is ColorMapKey {
+        return Object.prototype.hasOwnProperty.call(defaultColorMap, color);
+    }
 
-export const replaceHexValues = (incomingHex: HexColor, matugenColors: MatugenColors): HexColor => {
-    if (!options.theme.matugen.get()) {
+    /**
+     * Maps a default color hex value to its Matugen-generated equivalent
+     *
+     * @param incomingHex - The original hex color to map
+     * @param matugenColors - The Matugen color palette to use for mapping
+     * @returns The mapped hex color or original if no mapping exists
+     */
+    public getMatugenHex(incomingHex: HexColor, matugenColors?: MatugenColors): HexColor {
+        if (!MATUGEN_ENABLED.get() || !matugenColors) {
+            return incomingHex;
+        }
+
+        const variation = MATUGEN_SETTINGS.variation.get();
+        const matugenVariation = getMatugenVariations(matugenColors, variation);
+
+        for (const colorKey of Object.keys(defaultColorMap)) {
+            if (!this.isColorKeyValid(colorKey)) {
+                continue;
+            }
+
+            const colorValue = defaultColorMap[colorKey];
+            if (colorValue === incomingHex) {
+                return matugenVariation[colorKey] ?? incomingHex;
+            }
+        }
+
         return incomingHex;
     }
-
-    const matugenVariation = getMatugenVariations(matugenColors, options.theme.matugen_settings.variation.get());
-    updateOptColor(matugenVariation.base, options.theme.bar.menus.menu.media.card.color as Variable<HexColor>);
-
-    for (const curColor of Object.keys(defaultColorMap)) {
-        const currentColor: string = curColor;
-        if (!isColorValid(currentColor)) {
-            continue;
-        }
-
-        const curColorValue: ColorMapValue = defaultColorMap[currentColor];
-        if (curColorValue === incomingHex) {
-            return matugenVariation[currentColor];
-        }
-    }
-
-    return incomingHex;
-};
-
-export const getMatugenHex = (incomingHex: HexColor, matugenColors: MatugenColors): HexColor => {
-    const matugenVariation = getMatugenVariations(matugenColors, options.theme.matugen_settings.variation.get());
-
-    for (const curColor of Object.keys(defaultColorMap)) {
-        if (!isColorValid(curColor)) {
-            continue;
-        }
-
-        const curColorValue: ColorMapValue = defaultColorMap[curColor];
-
-        if (curColorValue === incomingHex) {
-            return matugenVariation[curColor];
-        }
-    }
-
-    return incomingHex;
-};
+}

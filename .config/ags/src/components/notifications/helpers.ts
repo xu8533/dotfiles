@@ -1,6 +1,6 @@
 import { bind, timeout, Variable } from 'astal';
 import AstalNotifd from 'gi://AstalNotifd?version=0.1';
-import options from 'src/options';
+import options from 'src/configuration';
 import { isNotificationIgnored } from 'src/lib/shared/notifications';
 import AstalHyprland from 'gi://AstalHyprland?version=0.1';
 
@@ -84,7 +84,9 @@ const dropNotificationPopup = (
     popupNotifications: Variable<AstalNotifd.Notification[]>,
 ): void => {
     const currentPopups = popupNotifications.get();
-    const undismissedNotifications = currentPopups.filter((popupNotif) => popupNotif.id !== notificationToDismiss.id);
+    const undismissedNotifications = currentPopups.filter(
+        (popupNotif) => popupNotif.id !== notificationToDismiss.id,
+    );
 
     popupNotifications.set(undismissedNotifications);
 };

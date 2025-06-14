@@ -15,7 +15,7 @@ checkRecording() {
 # Function to start screen recording
 startRecording() {
     if checkRecording; then
-        echo "录屏中，请稍后!"
+        echo "正在录屏，请稍后!"
         exit 1
     fi
 
@@ -32,14 +32,14 @@ startRecording() {
     fi
 
     # Set a default output directory if not provided
-    outputDir="${outputDir:-$HOME/Videos}"
+    outputDir="${outputDir:-$HOME/视频}"
 
     # Expand ~ to $HOME if present in outputDir
     outputDir="${outputDir/#\~/$HOME}"
 
     # Ensure output directory exists
     if [ ! -d "$outputDir" ]; then
-        echo "错误: '$outputDir' 不存在."
+        echo "错误: 输出目录不存在-'$outputDir'."
         exit 1
     fi
 
@@ -47,7 +47,7 @@ startRecording() {
     outputFile="录屏_$(date +%Y-%m-%d_%H-%M-%S).mp4"
     outputPath="$outputDir/$outputFile"
 
-    echo "目标: $target"
+    echo "目的: $target"
     echo "显示器: ${monitor_name:-N/A}"
     echo "输出目录: $outputDir"
     echo "输出文件: $outputPath"
@@ -55,7 +55,7 @@ startRecording() {
     # Start screen recording
     if [ "$target" == "screen" ]; then
         if [ -z "$monitor_name" ]; then
-            echo "错误: 全屏录屏需要显示器名称,请提供!"
+            echo "错误: 录屏需要提供显示器名称."
             exit 1
         fi
 
@@ -97,14 +97,14 @@ startRecording() {
     fi
 
     disown "$(jobs -p | tail -n 1)"
-    echo "开始录屏. 文件保存在 $outputPath 目录"
+    echo "已开始录屏. 文件保存在$outputPath"
     echo "$outputPath" >/tmp/last_recording_path
 }
 
 # Function to stop screen recording
 stopRecording() {
     if ! checkRecording; then
-        echo "没有录屏."
+        echo "未录屏，退出."
         exit 1
     fi
 
@@ -114,21 +114,19 @@ stopRecording() {
     outputPath=$(cat /tmp/last_recording_path 2>/dev/null)
 
     if [ -z "$outputPath" ] || [ ! -f "$outputPath" ]; then
-        notify-send "停止录屏" "未找到录屏记录." \
+        notify-send "录屏已停止" "未找到最近的录屏." \
             -i video-x-generic \
-            -a "录屏" \
+            -a "录屏器" \
             -t 10000
         exit 1
     fi
 
-    notify-send "停止录屏" "保存到: $outputPath" \
+    notify-send "录屏已停止" "录屏文件保存在: $outputPath" \
         -i video-x-generic \
-        -a "录屏" \
+        -a "录屏器" \
         -t 10000 \
         --action="scriptAction:-xdg-open $(dirname "$outputPath")=打开目录" \
         --action="scriptAction:-xdg-open $outputPath=播放"
-    # --action="scriptAction:-xdg-open $(dirname "$outputPath")=Open Directory" \
-    # --action="scriptAction:-xdg-open $outputPath=Play"
 }
 
 # Handle script arguments
@@ -142,9 +140,8 @@ stop)
 status)
     if checkRecording; then
         echo "正在录屏"
-        # echo "recording"
     else
-        echo "未录屏"
+        echo "未找到最近的录屏"
     fi
     ;;
 *)

@@ -4,7 +4,7 @@ export const SettingsButton = (): JSX.Element => {
     return (
         <button
             className={'dashboard-button'}
-            tooltipText={'配置'}
+            tooltipText={'HyprPanel Configuration'}
             vexpand
             onButtonPressEvent={(_, event) => {
                 const buttonClicked = event.get_button()[1];

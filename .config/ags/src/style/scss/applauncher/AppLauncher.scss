@@ -1,0 +1,84 @@
+@use "sass:string";
+
+@function gtkalpha($c, $a) {
+  @return string.unquote("alpha(#{$c},#{$a})");
+}
+
+// color: #b57614;
+// color: #689d6a;
+// color: #af3a03;
+// color: #458588;
+// color: #3c3836;
+//
+$fg-color: #282828;
+$bg-color: #ebdbb2;
+$secondary_bg: #1d2021;
+// $secondary_bg: #b8bb26;
+
+window#launcher {
+  all: unset;
+
+
+  box.Applauncher {
+    background-color: $bg-color;
+    border-radius: 11px;
+    margin: 1rem;
+    padding: 0.8rem;
+    box-shadow: 2px 2px 2px 2px gtkalpha(#427b58, 0.5);
+    // box-shadow: 2px 2px 2px 2px gtkalpha(#8ec07c, 0.4);
+
+    entry {
+      margin-bottom: 0.8rem;
+      color: #cc241d;
+      border: 0.2rem;
+      border-color: #d79921;
+      border-style: ridge;
+    }
+
+
+    button {
+      min-width: 0;
+      min-height: 0;
+      padding: .5rem;
+      border-radius: 13px;
+      background-color: #3c3836;
+
+      &:hover,
+      &:active {
+        font-family: "Hack Nerd Font Mono";
+        font-size: 1.8em;
+        padding: .8rem;
+        background-color: $secondary_bg;
+      }
+
+      icon {
+        font-size: 3em;
+        margin-right: 0.3rem;
+      }
+
+      label.name {
+        font-weight: bold;
+        font-size: 1.1em;
+        color: #98971a;
+      }
+
+      label.description {
+        color: gtkalpha(#7c6f64, 0.8);
+      }
+    }
+
+    box.not-found {
+      padding: 1rem;
+
+      icon {
+        font-size: 6em;
+        color: gtkalpha($fg-color, 0.7);
+      }
+
+      label {
+        color: gtkalpha($fg-color, 0.9);
+        font-size: 1.2em;
+      }
+    }
+  }
+}

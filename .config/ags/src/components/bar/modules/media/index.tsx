@@ -1,13 +1,14 @@
-import { openMenu } from '../../utils/menu.js';
-import options from 'src/options.js';
-import { runAsyncCommand, throttledScrollHandler } from 'src/components/bar/utils/helpers.js';
 import { generateMediaLabel } from './helpers/index.js';
-import { onMiddleClick, onPrimaryClick, onScroll, onSecondaryClick } from 'src/lib/shared/eventHandlers.js';
+import { onPrimaryClick, onSecondaryClick, onMiddleClick, onScroll } from 'src/lib/shared/eventHandlers';
 import { bind, Variable } from 'astal';
-import { BarBoxChild } from 'src/lib/types/bar.js';
 import { Astal } from 'astal/gtk3';
-import { activePlayer, mediaAlbum, mediaArtist, mediaTitle } from 'src/globals/media.js';
 import AstalMpris from 'gi://AstalMpris?version=0.1';
+import { BarBoxChild } from 'src/components/bar/types.js';
+import { activePlayer, mediaTitle, mediaAlbum, mediaArtist } from 'src/services/media';
+import options from 'src/configuration';
+import { runAsyncCommand } from '../../utils/input/commandExecutor';
+import { throttledScrollHandler } from '../../utils/input/throttle';
+import { openDropdownMenu } from '../../utils/menu';
 
 const mprisService = AstalMpris.get_default();
 const {
@@ -49,15 +50,18 @@ const Media = (): BarBoxChild => {
         },
     );
 
-    const componentClassName = Variable.derive([options.theme.bar.buttons.style, show_label], (style: string) => {
-        const styleMap: Record<string, string> = {
-            default: 'style1',
-            split: 'style2',
-            wave: 'style3',
-            wave2: 'style3',
-        };
-        return `media-container ${styleMap[style]}`;
-    });
+    const componentClassName = Variable.derive(
+        [options.theme.bar.buttons.style, show_label],
+        (style: string) => {
+            const styleMap: Record<string, string> = {
+                default: 'style1',
+                split: 'style2',
+                wave: 'style3',
+                wave2: 'style3',
+            };
+            return `media-container ${styleMap[style]}`;
+        },
+    );
 
     const component = (
         <box
@@ -68,14 +72,17 @@ const Media = (): BarBoxChild => {
                 componentClassName.drop();
             }}
         >
-            <label className={'bar-button-icon media txt-icon bar'} label={bind(songIcon).as((icn) => icn || '󰝚')} />
+            <label
+                className={'bar-button-icon media txt-icon bar'}
+                label={bind(songIcon).as((icn) => icn || '󰝚')}
+            />
             <label className={'bar-button-label media'} label={mediaLabel()} />
         </box>
     );
 
     return {
         component,
-        isVis,
+        isVis: bind(isVis),
         boxClass: 'media',
         props: {
             setup: (self: Astal.Button): void => {
@@ -97,7 +104,7 @@ const Media = (): BarBoxChild => {
 
                         disconnectFunctions.push(
                             onPrimaryClick(self, (clicked, event) => {
-                                openMenu(clicked, event, 'mediamenu');
+                                openDropdownMenu(clicked, event, 'mediamenu');
                             }),
                         );
 
@@ -113,7 +120,9 @@ const Media = (): BarBoxChild => {
                             }),
                         );
 
-                        disconnectFunctions.push(onScroll(self, throttledHandler, scrollUp.get(), scrollDown.get()));
+                        disconnectFunctions.push(
+                            onScroll(self, throttledHandler, scrollUp.get(), scrollDown.get()),
+                        );
                     },
                 );
             },

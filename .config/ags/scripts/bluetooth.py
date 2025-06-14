@@ -39,7 +39,7 @@ class Agent(dbus.service.Object):
     def RequestPinCode(self, device):
         device_name = self.get_device_name(device)
         logging.info(f"RequestPinCode {device_name} ({device})")
-        self.request_input("Enter PIN code", f"Enter PIN code for device {device_name}", device, "pin")
+        self.request_input("请输入PIN码", f"请如入 {device_name} 的PIN码", device, "pin")
 
     @dbus.service.method("org.bluez.Agent1", in_signature="o", out_signature="u")
     def RequestPasskey(self, device):

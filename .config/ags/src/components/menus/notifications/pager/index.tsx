@@ -1,8 +1,8 @@
 import { bind, Variable } from 'astal';
 import { Gtk } from 'astal/gtk3';
 import AstalNotifd from 'gi://AstalNotifd?version=0.1';
-import options from 'src/options';
 import { FirstPageButton, LastPageButton, NextPageButton, PreviousPageButton } from './Buttons';
+import options from 'src/configuration';
 
 const notifdService = AstalNotifd.get_default();
 
@@ -32,7 +32,11 @@ export const NotificationPager = ({ curPage }: NotificationPagerProps): JSX.Elem
                 <box>
                     <FirstPageButton curPage={curPage} currentPage={currentPage} />
                     <PreviousPageButton curPage={curPage} currentPage={currentPage} />
-                    <PageDisplay notifications={notifications} currentPage={currentPage} dispTotal={dispTotal} />
+                    <PageDisplay
+                        notifications={notifications}
+                        currentPage={currentPage}
+                        dispTotal={dispTotal}
+                    />
                     <NextPageButton
                         curPage={curPage}
                         currentPage={currentPage}

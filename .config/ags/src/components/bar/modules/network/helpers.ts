@@ -19,7 +19,7 @@ const handleWiredIcon = (): void => {
     wiredIconBinding?.drop();
     wiredIconBinding = undefined;
 
-    if (!networkService.wired) {
+    if (networkService.wired === null) {
         return;
     }
 
@@ -38,7 +38,7 @@ const handleWirelessIcon = (): void => {
     wirelessIconBinding?.drop();
     wirelessIconBinding = undefined;
 
-    if (!networkService.wifi) {
+    if (networkService.wifi === null) {
         return;
     }
 
@@ -70,7 +70,7 @@ const formatFrequency = (frequency: number): string => {
  * @returns A formatted string containing the WiFi information.
  */
 export const formatWifiInfo = (wifi: AstalNetwork.Wifi): string => {
-    return `网络: ${wifi.ssid} \n信号强度: ${wifi.strength}% \n频率: ${formatFrequency(wifi.frequency)}`;
+    return `Network: ${wifi.ssid} \nSignal Strength: ${wifi.strength}% \nFrequency: ${formatFrequency(wifi.frequency)}`;
 };
 
 Variable.derive([bind(networkService, 'state'), bind(networkService, 'connectivity')], () => {
