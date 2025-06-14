@@ -1,0 +1,297 @@
+# A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
+# If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
+"$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
+
+[manager]
+ratio = [1, 4, 3]
+sort_by = "mtime"
+sort_sensitive = true
+sort_reverse = true
+sort_dir_first = true
+linemode = "size_and_mtime"
+show_hidden = false
+show_symlink = true
+scrolloff = 8
+# mouse_events   = [ "click", "scroll", "touch", "move", "drag" ]
+title_format = "{cwd} - Yazi"
+
+[preview]
+tab_size = 2
+# max_width = 600
+# max_height = 900
+max_width = 1000
+max_height = 1000
+image_filter = "triangle"
+image_quality = 75
+sixel_fraction = 15
+cache_dir = ""
+ueberzug_scale = 1
+ueberzug_offset = [0, 0, 0, 0]
+wrap = "yes"
+image_delay = 10
+
+[opener]
+edit = [
+    { run = '$EDITOR "$@"', block = true, for = "unix" },
+    { run = '%EDITOR% "%*"', orphan = true, for = "windows" },
+]
+open = [
+    { run = 'xdg-open "$1"', desc = "Open", for = "linux" },
+    { run = 'start "" "%1"', orphan = true, desc = "Open", for = "windows" },
+]
+reveal = [
+    { run = 'explorer /select,%1', orphan = true, desc = "Reveal", for = "windows" },
+    { run = 'xdg-open "$(dirname "$1")"', desc = "Reveal", for = "linux" },
+    { run = '''clear; exiftool "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show EXIF", for = "unix" },
+]
+extract = [
+    # { run = 'unar "$1"', desc = "解压到这...", for = "unix" },
+    # { run = 'unar "%1"', desc = "解压到这...", for = "windows" },
+    { run = 'ya pub extract --list "$@"', desc = "解压到这...", for = "unix" },
+    { run = 'ya pub extract --list %*', desc = "解压到这...", for = "windows" },
+]
+play = [
+    { run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
+    { run = 'mpv --force-window %*', orphan = true, for = "windows" },
+    { run = '''mediainfo "$1"; echo "Press enter to exit"; read_''', block = true, desc = "显示多媒体信息", for = "unix" },
+]
+
+pdf = [{ run = 'evince "$@"', desc = "打开pdf", for = "linux" }]
+
+
+image = [
+    { run = 'swayimg --scale=fill "$@"', desc = "打开图片", for = "linux" },
+    # { run = 'imv "$@"', desc = "打开图片", for = "linux" },
+]
+
+[open]
+rules = [
+    { name = "*/", use = [
+        "edit",
+        "open",
+        "reveal",
+    ] },
+    { mime = "text/*", use = [
+        "edit",
+        "reveal",
+    ] },
+    { mime = "image/*", use = [
+        "image",
+        "reveal",
+    ] },
+    { mime = "{audio,video}/*", use = [
+        "play",
+        "reveal",
+    ] },
+    { mime = "inode/x-empty", use = [
+        "edit",
+        "reveal",
+    ] },
+
+    { mime = "application/{json,ndjson}", use = [
+        "edit",
+        "reveal",
+    ] },
+    { mime = "*/javascript", use = [
+        "edit",
+        "reveal",
+    ] },
+
+    { mime = "application/pdf", use = [
+        "pdf",
+        "open",
+    ] },
+    { mime = "application/zip", use = [
+        "extract",
+        "reveal",
+    ] },
+    { mime = "application/gzip", use = [
+        "extract",
+        "reveal",
+    ] },
+    { mime = "application/x-tar", use = [
+        "extract",
+        "reveal",
+    ] },
+    { mime = "application/x-bzip", use = [
+        "extract",
+        "reveal",
+    ] },
+    { mime = "application/x-bzip2", use = [
+        "extract",
+        "reveal",
+    ] },
+    { mime = "application/x-7z-compressed", use = [
+        "extract",
+        "reveal",
+    ] },
+    { mime = "application/x-rar", use = [
+        "extract",
+        "reveal",
+    ] },
+    { mime = "application/xz", use = [
+        "extract",
+        "reveal",
+    ] },
+
+    { mime = "*", use = [
+        "open",
+        "reveal",
+    ] },
+]
+
+[tasks]
+micro_workers = 10
+macro_workers = 25
+bizarre_retry = 5
+image_alloc = 536870912  # 512MB
+image_bound = [0, 0]
+suppress_preload = false
+
+[plugin]
+
+fetchers = [
+    # Mimetype
+    { id = "mime", name = "*", run = "mime", if = "!mime", prio = "high" },
+]
+
+spotters = [
+    { name = "*/", run = "folder" },
+    # Code
+    { mime = "text/*", run = "code" },
+    { mime = "*/{xml,javascript,wine-extension-ini}", run = "code" },
+    # Image
+    { mime = "image/{avif,hei?,jxl}", run = "magick" },
+    { mime = "image/svg+xml", run = "svg" },
+    { mime = "image/*", run = "image" },
+    # Video
+    { mime = "video/*", run = "video" },
+    # Fallback
+    { name = "*", run = "file" },
+]
+
+preloaders = [
+    # Image
+    { mime = "image/{avif,hei?,jxl}", run = "magick" },
+    { mime = "image/svg+xml", run = "svg" },
+    { mime = "image/*", run = "image" },
+    # Video
+    { mime = "video/*", run = "video" },
+    # PDF
+    { mime = "application/pdf", run = "pdf" },
+    # Font
+    { mime = "font/*", run = "font" },
+    { mime = "application/ms-opentype", run = "font" },
+]
+
+prepend_previewers = [
+    { name = "*.md", run = "glow" },
+    { mime = "audio/*", run = "exifaudio" },
+    { name = "*/", run = "eza-preview" },
+    # Archive previewer
+    # { mime = "application/*zip",            run = "ouch" },
+    # { mime = "application/x-tar",           run = "ouch" },
+    # { mime = "application/x-bzip2",         run = "ouch" },
+    # { mime = "application/x-7z-compressed", run = "ouch" },
+    # { mime = "application/x-rar",           run = "ouch" },
+    # { mime = "application/x-xz",            run = "ouch" },
+]
+previewers = [
+    { name = "*/", run = "folder", sync = true },
+    # Code
+    { mime = "text/*", run = "code" },
+    { mime = "*/{xml,javascript,wine-extension-ini}", run = "code" },
+    # JSON
+    { mime = "application/{json,ndjson}", run = "json" },
+    # Image
+    { mime = "image/{avif,hei?,jxl}", run = "magick" },
+    { mime = "image/svg+xml", run = "svg" },
+    { mime = "image/*", run = "image" },
+    # Video
+    { mime = "video/*", run = "video" },
+    # PDF
+    { mime = "application/pdf", run = "pdf" },
+    # Archive
+    { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", run = "archive" },
+    { mime = "application/{debian*-package,redhat-package-manager,rpm,android.package-archive}", run = "archive" },
+    { name = "*.{AppImage,appimage}", run = "archive" },
+    # Virtual Disk / Disk Image
+    { mime = "application/{iso9660-image,qemu-disk,ms-wim,apple-diskimage}", run = "archive" },
+    { mime = "application/virtualbox-{vhd,vhdx}", run = "archive" },
+    { name = "*.{img,fat,ext,ext2,ext3,ext4,squashfs,ntfs,hfs,hfsx}", run = "archive" },
+    # Font
+    { mime = "font/*", run = "font" },
+    { mime = "application/ms-opentype", run = "font" },
+    # Empty file
+    { mime = "inode/empty", run = "empty" },
+    # Fallback
+    { name = "*", run = "file" },
+]
+
+[input]
+cursor_blink = true
+# cd
+cd_title = "改变目录:"
+cd_origin = "top-center"
+cd_offset = [0, 2, 50, 3]
+
+# create
+create_title = ["新建:", "新建文件夹:"]
+create_origin = "top-center"
+create_offset = [0, 2, 50, 3]
+
+# rename
+rename_title = "重命名:"
+rename_origin = "hovered"
+rename_offset = [0, 1, 50, 3]
+
+# filter
+filter_title = "过滤:"
+filter_origin = "top-center"
+filter_offset = [0, 2, 50, 3]
+
+# find
+find_title = ["查找下一个:", "查找上一个:"]
+find_origin = "top-center"
+find_offset = [0, 2, 50, 3]
+
+# search
+search_title = "搜索:"
+search_origin = "top-center"
+search_offset = [0, 2, 50, 3]
+
+# shell
+shell_title = ["Shell:", "Shell (block):"]
+shell_origin = "top-center"
+shell_offset = [0, 2, 50, 3]
+
+[confirm]
+# trash
+trash_title = "将选择的文件移动到回收站? (y/N)"
+trash_origin = "top-center"
+trash_offset = [0, 2, 50, 3]
+
+# delete
+delete_title = "永久删除选择的文件? (y/N)"
+delete_origin = "top-center"
+delete_offset = [0, 2, 50, 3]
+
+# overwrite
+overwrite_title = "覆盖文件? (y/N)"
+overwrite_origin = "top-center"
+overwrite_offset = [0, 2, 50, 3]
+
+# quit
+quit_title = "有正在运行的任务, 确定退出? (y/N)"
+quit_origin = "top-center"
+quit_offset = [0, 2, 50, 3]
+
+[pick]
+open_title = "使用下列方式打开:"
+open_origin = "hovered"
+open_offset = [0, 1, 50, 7]
+
+[which]
+sort_by = "key"
+sort_sensitive = true
+sort_translit = true

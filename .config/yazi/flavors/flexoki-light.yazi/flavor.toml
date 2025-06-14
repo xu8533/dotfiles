@@ -29,7 +29,7 @@ hovered = { bg = "#F2F0E5" } # bg-2
 preview_hovered = { underline = true }
 
 # Find
-find_keyword = { fg = "#FFFCF0", bg = "#D0A215" } # bg, ye-2
+find_keyword = { fg = "#D0A215", reversed = true } # ye-2
 find_position = { fg = "#B7B5AC", bold = true, italic = true } # tx-3
 
 # Marker
@@ -44,9 +44,9 @@ tab_inactive = { fg = "#6F6E69", bg = "#E6E4D9" } # tx-2, ui
 tab_width = 1
 
 # Count
-count_copied = { fg = "#FFFCF0", bg = "#66800B", bold = true } # bg, gr
-count_cut = { fg = "#FFFCF0", bg = "#AF3029", bold = true } # bg, re
-count_selected = { fg = "#FFFCF0", bg = "#24837B", bold = true } # bg, cy
+count_copied = { fg = "#66800B", bold = true, reversed = true } # gr
+count_cut = { fg = "#AF3029", bold = true, reversed = true } # re
+count_selected = { fg = "#24837B", bold = true, reversed = true } # cy
 
 # Border
 border_symbol = "│"
@@ -66,12 +66,7 @@ unset_main = { fg = "#FFFCF0", bg = "#24837B", bold = true } # bg, cy
 unset_alt = { fg = "#24837B", bg = "#BFE8D9" } # cy, cy-100
 
 [status]
-separator_style = { fg = "#E6E4D9", bg = "#E6E4D9" } # ui, ui
-
-# Progress
-progress_label = { fg = "#FFFCF0" } # bg
-progress_normal = { fg = "#24837B", bg = "#5ABDAC" } # cy, cy-300
-progress_error = { bg = "#AF3029" } # re
+overall = { fg = "#100F0F" } # tx
 
 # Permissions
 perm_type = { fg = "#205EA6" } # bl
@@ -80,26 +75,10 @@ perm_write = { fg = "#AF3029" } # re
 perm_exec = { fg = "#66800B" } # gr
 perm_sep = { fg = "#6F6E69" } # tx-2
 
-[pick]
-border = { fg = "#CECDC3", bold = true } # ui-3
-active = { fg = "#100F0F", bg = "#F2F0E5" } # tx, bg-2
-inactive = { fg = "#100F0F" } # tx
-
-[input]
-border = { fg = "#CECDC3" } # ui-3
-title = { fg = "#B7B5AC", bold = true } # tx-3
-value = { fg = "#100F0F" } # tx
-selected = { bg = "#F2F0E5" } # bg-2
-
-[completion]
-border = { fg = "#CECDC3", bold = true } # ui-3
-active = { fg = "#100F0F", bg = "#F2F0E5" } # tx, bg-2
-inactive = { fg = "#100F0F" } # tx
-
-[tasks]
-border = { fg = "#CECDC3" } # ui-3
-title = { fg = "#B7B5AC", bold = true } # tx-3
-hovered = { bg = "#F2F0E5" } # bg-2
+# Progress
+progress_label = { fg = "#FFFCF0" } # bg
+progress_normal = { fg = "#24837B", bg = "#5ABDAC" } # cy, cy-300
+progress_error = { bg = "#AF3029" } # re
 
 [which]
 cols = 3
@@ -110,18 +89,53 @@ desc = { fg = "#B7B5AC" } # tx-3
 separator = " "
 separator_style = { }
 
-[help]
-on = { fg = "#205EA6" } # bl
-run = { fg = "#24837B" } # cy
-desc = { fg = "#B7B5AC", italic = true } # tx-3
-hovered = { bg = "#F2F0E5" } # bg-2
-footer = { fg = "#100F0F", bg = "#E6E4D9", bold = true } # tx, ui
+[confirm]
+border = { fg = "#CECDC3" } # ui-3
+title = { fg = "#B7B5AC", bold = true } # tx-3
+content = { fg = "#100F0F", bold = true } # tx
+list = { fg = "#100F0F" } # tx
+btn_yes = { fg = "#100F0F", bg = "#CECDC3", bold = true } # tx, ui-3
+btn_no = { fg = "#6F6E69", bg = "#E6E4D9" } # tx-2, ui
+
+[spot]
+border = { fg = "#CECDC3" } # ui-3
+title = { fg = "#B7B5AC", bold = true } # tx-3
+tbl_col = { fg = "#6F6E69" } # tx-2
+tbl_cell = { bg = "#F2F0E5" } # bg-2
 
 [notify]
 # Notification title
 title_info = { fg = "#205EA6" } # bl
 title_warn = { fg = "#BC5215" } # or
 title_error = { fg = "#AF3029" } # re
+
+[pick]
+border = { fg = "#CECDC3", bold = true } # ui-3
+active = { fg = "#100F0F" } # tx
+inactive = { fg = "#6F6E69" } # tx-2
+
+[input]
+border = { fg = "#CECDC3" } # ui-3
+title = { fg = "#B7B5AC", bold = true } # tx-3
+value = { fg = "#100F0F" } # tx
+selected = { bg = "#F2F0E5" } # bg-2
+
+[cmp]
+border = { fg = "#CECDC3", bold = true } # ui-3
+active = { fg = "#6F6E69", bg = "#F2F0E5" } # tx-2, bg-2
+inactive = { fg = "#6F6E69" } # tx-2
+
+[tasks]
+border = { fg = "#CECDC3" } # ui-3
+title = { fg = "#B7B5AC", bold = true } # tx-3
+hovered = { bg = "#F2F0E5" } # bg-2
+
+[help]
+on = { fg = "#205EA6" } # bl
+run = { fg = "#24837B" } # cy
+desc = { fg = "#B7B5AC", italic = true } # tx-3
+hovered = { bg = "#F2F0E5" } # bg-2
+footer = { fg = "#100F0F", bg = "#E6E4D9", bold = true } # tx, ui
 
 [filetype]
 rules = [

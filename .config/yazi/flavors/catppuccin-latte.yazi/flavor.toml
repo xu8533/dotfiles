@@ -2,7 +2,7 @@
 
 # : Manager {{{
 
-[manager]
+[mgr]
 cwd = { fg = "#179299" }
 
 # Hovered
@@ -36,36 +36,54 @@ border_style  = { fg = "#8c8fa1" }
 # : }}}
 
 
-# : Status {{{
+# : Tabs {{{
+
+[tabs]
+active   = { fg = "#eff1f5", bg = "#1e66f5", bold = true }
+inactive = { fg = "#1e66f5", bg = "#ccd0da" }
+
+# : }}}
+
+
+# : Mode {{{
+
+[mode]
+
+normal_main = { fg = "#eff1f5", bg = "#1e66f5", bold = true }
+normal_alt  = { fg = "#1e66f5", bg = "#ccd0da" }
+
+# Select mode
+select_main = { fg = "#eff1f5", bg = "#179299", bold = true }
+select_alt  = { fg = "#179299", bg = "#ccd0da" }
+
+# Unset mode
+unset_main = { fg = "#eff1f5", bg = "#dd7878", bold = true }
+unset_alt  = { fg = "#dd7878", bg = "#ccd0da" }
+
+# : }}}
+
+
+# : Status bar {{{
 
 [status]
-separator_open  = ""
-separator_close = ""
-separator_style = { fg = "#bcc0cc", bg = "#bcc0cc" }
-
-# Mode
-mode_normal = { fg = "#eff1f5", bg = "#1e66f5", bold = true }
-mode_select = { fg = "#eff1f5", bg = "#40a02b", bold = true }
-mode_unset  = { fg = "#eff1f5", bg = "#dd7878", bold = true }
+# Permissions
+perm_sep   = { fg = "#8c8fa1" }
+perm_type  = { fg = "#1e66f5" }
+perm_read  = { fg = "#df8e1d" }
+perm_write = { fg = "#d20f39" }
+perm_exec  = { fg = "#40a02b" }
 
 # Progress
 progress_label  = { fg = "#ffffff", bold = true }
 progress_normal = { fg = "#1e66f5", bg = "#bcc0cc" }
 progress_error  = { fg = "#d20f39", bg = "#bcc0cc" }
 
-# Permissions
-permissions_t = { fg = "#1e66f5" }
-permissions_r = { fg = "#df8e1d" }
-permissions_w = { fg = "#d20f39" }
-permissions_x = { fg = "#40a02b" }
-permissions_s = { fg = "#8c8fa1" }
-
 # : }}}
 
 
-# : Select {{{
+# : Pick {{{
 
-[select]
+[pick]
 border   = { fg = "#1e66f5" }
 active   = { fg = "#ea76cb", bold = true }
 inactive = {}
@@ -86,7 +104,7 @@ selected = { reversed = true }
 
 # : Completion {{{
 
-[completion]
+[cmp]
 border = { fg = "#1e66f5" }
 
 # : }}}
@@ -121,7 +139,7 @@ separator_style = { fg = "#acb0be" }
 on      = { fg = "#179299" }
 run     = { fg = "#ea76cb" }
 hovered = { reversed = true, bold = true }
-footer  = { fg = "#bcc0cc", bg = "#4c4f69" }
+footer  = { fg = "#ccd0da", bg = "#4c4f69" }
 
 # : }}}
 
@@ -148,11 +166,10 @@ rules = [
 	{ mime = "{audio,video}/*", fg = "#df8e1d" },
 
 	# Archives
-	{ mime = "application/*zip", fg = "#ea76cb" },
-	{ mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}", fg = "#ea76cb" },
+	{ mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", fg = "#ea76cb" },
 
 	# Documents
-	{ mime = "application/{pdf,doc,rtf,vnd.*}", fg = "#40a02b" },
+	{ mime = "application/{pdf,doc,rtf}", fg = "#40a02b" },
 
 	# Fallback
 	{ name = "*", fg = "#4c4f69" },
