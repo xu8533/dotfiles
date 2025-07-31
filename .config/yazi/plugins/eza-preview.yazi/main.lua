@@ -142,7 +142,7 @@ function M:peek(job)
 		})
 	elseif empty_output then
 		ya.preview_widgets(job, {
-			ui.Text({ ui.Line("空空如也") }):area(job.area):align(ui.Text.CENTER),
+			ui.Text({ ui.Line("No items") }):area(job.area):align(ui.Text.CENTER),
 		})
 	else
 		ya.preview_widgets(job, { ui.Text.parse(lines):area(job.area) })

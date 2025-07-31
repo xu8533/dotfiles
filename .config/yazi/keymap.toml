@@ -156,17 +156,17 @@ keymap = [
     ], run = "arrow 100%", desc = "向下移动整屏" },
 
     { on = [
-        "<A-k>",
-    ], run = "seek -5", desc = "Seek up 5 units in the preview" },
-    { on = [
-        "<A-j>",
-    ], run = "seek 5", desc = "Seek down 5 units in the preview" },
-    { on = [
         "<A-PageUp>",
-    ], run = "seek -5", desc = "Seek up 5 units in the preview" },
+    ], run = "seek -5", desc = "预览窗口内容向上移动5行" },
     { on = [
         "<A-PageDown>",
-    ], run = "seek 5", desc = "Seek down 5 units in the preview" },
+    ], run = "seek 5", desc = "预览窗口内容向下移动5行" },
+    { on = [
+        "<A-k>",
+    ], run = "seek -5", desc = "预览窗口内容向上移动5行" },
+    { on = [
+        "<A-j>",
+    ], run = "seek 5", desc = "预览窗口内容向下移动5行" },
 
     # 选择
     { on = [
@@ -339,7 +339,7 @@ keymap = [
     { on = [
         ",",
         "M",
-    ], run = "sort modified --reverse --dir-first=yes", desc = "按修改时间排序(降序)" },
+    ], run = "sort mtime --reverse --dir-first=yes", desc = "按修改时间排序(降序)" },
     { on = [
         ",",
         "c",

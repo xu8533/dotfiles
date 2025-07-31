@@ -1,26 +1,26 @@
 [[plugin.deps]]
 use = "Reledia/glow"
-rev = "2da96e3"
-hash = "f9ee1436e3b853508d87f7d49dce56e6"
+rev = "bd3eaa5"
+hash = "92b5c58159a51c567f82b618cee2b78"
 
 [[plugin.deps]]
 use = "Sonico98/exifaudio"
-rev = "7ff7141"
-hash = "666ccba55119fba4c25b8ad354b2855c"
+rev = "e766cd2"
+hash = "5fd39bf4e88d6a046d4b81691a38d615"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:toggle-pane"
-rev = "63f9650"
-hash = "d5d4f3527592da5fbe77fd6f51815f80"
+rev = "86d28e4"
+hash = "d6f60c24d8c0cf57a855bf46115b2502"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mount"
-rev = "63f9650"
-hash = "c0b6cd7dc830b96e77e5c8a71eec7926"
+rev = "86d28e4"
+hash = "b3f1d6ec3721d4061aad5f69cddb0cf9"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "63f9650"
+rev = "86d28e4"
 hash = "3996fc74044bc44144b323686f887e1"
 
 [[plugin.deps]]
@@ -90,10 +90,30 @@ hash = "f48f510e5505f5d01e79c4f8257ec5cb"
 
 [[flavor.deps]]
 use = "gosxrgxx/flexoki-dark"
-rev = "3e8cfba"
-hash = "56a96293138f09da7fae25ee405a4393"
+rev = "28e1977"
+hash = "9dbbb64ea20f9f1271c31951dea55c7b"
 
 [[flavor.deps]]
 use = "gosxrgxx/flexoki-light"
-rev = "9d53f85"
-hash = "4871da00f8c49c6ad3ba552652539199"
+rev = "45eb0a0"
+hash = "1ee212b0799497b54c7e60bac8931e4e"
+
+[[flavor.deps]]
+use = "marcosvnmelo/kanagawa-dragon"
+rev = "4905527"
+hash = "5fd7aa0bf4e7d9753ad8a4660a6eb94f"
+
+[[flavor.deps]]
+use = "muratoffalex/kanagawa-lotus"
+rev = "d84d61a"
+hash = "eef7cfa41fe51c19628d28cf453e967d"
+
+[[flavor.deps]]
+use = "956MB/vscode-dark-modern"
+rev = "cd60541"
+hash = "f970182bee3543831796629ccf078553"
+
+[[flavor.deps]]
+use = "956MB/vscode-light-modern"
+rev = "c054b12"
+hash = "87265fb9bc07de76c0c9c916c84cc8b5"

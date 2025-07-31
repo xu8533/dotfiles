@@ -1,7 +1,3 @@
-> ⚠️ **Seeking NixOS Maintainer** ⚠️
->
-> HyprPanel is currently looking for a NixOS maintainer to help stabilize and maintain the NixOS integration. If you have experience with Nix and would like to contribute, please reach out to me via the HyprPanel discord.
-
 # HyprPanel 🚀
 
 A panel built for Hyprland with [Astal](https://github.com/Aylur/astal)
@@ -194,7 +190,7 @@ Once you've set up the overlay, you can reference HyprPanel with `pkgs.hyprpanel
 # install it as a system package
 environment.systemPackages = with pkgs; [
   # ...
-  inputs.hyprpanel.packages.${pkgs.system}.wrapper # this one if you want to avoid overlays/didn't enable them
+  inputs.hyprpanel.packages.${pkgs.system}.default # this one if you want to avoid overlays/didn't enable them
   hyprpanel
   # ...
 ];
@@ -202,7 +198,7 @@ environment.systemPackages = with pkgs; [
 # or install it as a user package
 users.users.<username>.packages = with pkgs; [
   # ...
-  inputs.hyprpanel.packages.${pkgs.system}.wrapper # this one if you want to avoid overlays/didn't enable them
+  inputs.hyprpanel.packages.${pkgs.system}.default # this one if you want to avoid overlays/didn't enable them
   hyprpanel
   # ...
 ];
@@ -213,7 +209,7 @@ users.users.<username>.packages = with pkgs; [
 # install it as a user package with home-manager
 home.packages = with pkgs; [
   # ...
-  inputs.hyprpanel.packages.${pkgs.system}.wrapper # this one if you want to avoid overlays/didn't enable them
+  inputs.hyprpanel.packages.${pkgs.system}.default # this one if you want to avoid overlays/didn't enable them
   hyprpanel
   # ...
 ];

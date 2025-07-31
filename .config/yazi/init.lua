@@ -42,8 +42,8 @@ end
 -- require("omp"):setup({ config = "~/.config/omp/yazi-themes/jandedobbeleer.omp.json" })
 -- require("omp"):setup({ config = "~/.config/omp/yazi-themes/json.omp.json" })
 -- require("omp"):setup({ config = "~/.config/omp/yazi-themes/powerlevel10k_classic.omp.json" })
--- require("omp"):setup({ config = "~/.config/omp/yazi-themes/tokyonight_storm.omp.json" })
-require("omp"):setup({ config = "~/.config/omp/yazi-themes/ys.omp.json" })
+require("omp"):setup({ config = "~/.config/omp/yazi-themes/tokyonight_storm.omp.json" })
+-- require("omp"):setup({ config = "~/.config/omp/yazi-themes/ys.omp.json" })
 
 -- full-border
 require("full-border"):setup({

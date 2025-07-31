@@ -13,7 +13,7 @@
 ## 🎨 Installation
 
 ```sh
-ya pack -a gosxrgxx/flexoki-light
+ya pkg add gosxrgxx/flexoki-light
 ```
 
 ## ⚙️ Usage

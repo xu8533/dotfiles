@@ -21,7 +21,7 @@
 # purple-600  "#5E409D" pu
 # magenta-600 "#A02F6F" ma
 
-[manager]
+[mgr]
 cwd = { fg = "#100F0F", bold = true } # tx
 
 # Hovered
@@ -38,11 +38,6 @@ marker_cut = { fg = "#AF3029", bg = "#AF3029" } # re, re
 marker_marked = { fg = "#5ABDAC", bg = "#5ABDAC" } # cy-300, cy-300
 marker_selected = { fg = "#24837B", bg = "#24837B" } # cy, cy
 
-# Tab
-tab_active = { fg = "#100F0F", bg = "#CECDC3", bold = true } # tx, ui-3
-tab_inactive = { fg = "#6F6E69", bg = "#E6E4D9" } # tx-2, ui
-tab_width = 1
-
 # Count
 count_copied = { fg = "#66800B", bold = true, reversed = true } # gr
 count_cut = { fg = "#AF3029", bold = true, reversed = true } # re
@@ -51,6 +46,12 @@ count_selected = { fg = "#24837B", bold = true, reversed = true } # cy
 # Border
 border_symbol = "│"
 border_style = { fg = "#E6E4D9" } # ui
+
+[tabs]
+active = { fg = "#100F0F", bg = "#CECDC3", bold = true } # tx, ui-3
+inactive = { fg = "#6F6E69", bg = "#E6E4D9" } # tx-2, ui
+sep_inner = { open = "", close = "" }
+sep_outer = { open = "", close = "" }
 
 [mode]
 # Normal mode
