@@ -1,0 +1,45 @@
+# vim:ft=lf
+# @author nate zhou
+# @since 2025
+# file opener for lf
+
+cmd open &{{
+    case $(file --mime-type -Lb $f) in
+        image/x-xcf)
+            gimp $fx
+            ;;
+        image/*)
+            [ "$XDG_SESSION_TYPE" = "tty" ] && mpv --loop $fx || SWAYSOCK=/dev/null swayimg $fx
+            ;;
+        video/*)
+            mpv --loop $fx
+            ;;
+        audio/*)
+            [ "$XDG_SESSION_TYPE" = "tty" ] && mpv --loop --audio-display=no $fx || footclient mpv --loop --audio-display=no $fx
+            ;;
+        */pdf|*/epub*)
+            zathura $fx
+            ;;
+		application/*opendocument*|*officedocument*)
+            libreoffice $fx
+            ;;
+        application/gzip)
+            lf -remote "send $id \$zless \$f"
+            ;;
+        application/zip)
+            lf -remote "send $id \$zipinfo \$f | less -i"
+            ;;
+        application/*tar|application/*zip*|application/zstd|application/*xz)
+            lf -remote "send $id \$tar vvtf \$f | less -i"
+            ;;
+        text/html)
+            firejail firefox $fx
+            ;;
+        text/*|*/json|inode/x-empty|application/javascript)
+            lf -remote "send $id \$$EDITOR -p \$fx"
+            ;;
+        #*)
+        #    for f in $fx; do $OPENER $f > /dev/null 2> /dev/null & done
+        #    ;;
+    esac
+}}

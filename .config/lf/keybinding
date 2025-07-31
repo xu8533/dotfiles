@@ -1,0 +1,110 @@
+## unmap
+map ','
+map '.'
+map "'"
+map '"'
+map ';'
+map m
+map t
+map '['
+map ']'
+map s
+
+## built-in
+map <c-u> half-down
+map <c-d> half-up
+map H jump-prev
+map L jump-next
+map J half-down
+map K half-up
+map zp toggle-preview
+map ` !true
+map F :filter
+map C visual-change
+
+map ,m :set sortby time; set info size:time; set reverse!; top
+map ,M :set sortby time; set info size:time; set reverse; top
+map ,c :set sortby btime; set info size:btime; set reverse!; top
+map ,C :set sortby btime; set info size:btime; set reverse; top
+map ,a :set sortby atime; set info size:atime; set reverse!; top
+map ,A :set sortby atime; set info size:atime; set reverse!; top
+map sc :set sortby ctime; set info size:ctime; set reverse!; top
+map sC :set sortby ctime; set info size:ctime; set reverse; top
+map ,e :set sortby ext; set info size:time; set reverse!; top
+map ,E :set sortby ext; set info size:time; set reverse; top
+map ,n :set sortby natural; set info size:time; set reverse!; top
+map ,N :set sortby natural; set info size:time; set reverse; top
+map ,s :set sortby size; set info size:time; set reverse!; top
+map ,S :set sortby size; set info size:time; set reverse; top
+map ,z :set sortby name; set info size:time; set reverse!; top
+map ,Z :set sortby name; set info size:time; set reverse!; top
+
+map zc :{{
+    set dircounts!
+    calcdirsize
+}}
+map zd :{{
+    set dironly!
+}}
+
+map zf :{{
+    set dirfirst!
+}}
+cmap <tab> cmd-menu-complete
+cmap <backtab> cmd-menu-complete-back
+
+map D delete
+
+map a :rename
+map A :rename; cmd-end
+map I :rename; cmd-home
+map r push a<c-u>
+map R push A<c-u>
+map w $$SHELL
+map i $bat --color always --style plain,changes --pager 'less -R' "$f"
+
+map U !du -csh $fx
+map E &footclient nvim $f
+map Y $printf '%s' "$fx" | wl-copy
+
+
+# 切换目录
+map gc cd ~/.config
+map gd cd ~/下载
+map gD cd ~/文档
+map ge cd ~/桌面
+map gh cd ~
+map gm cd /media/数据/音乐
+map gM cd ~/音乐
+map gp cd ~/图片
+map gs cd ~/.dotfiles
+map gt cd /tmp
+map gv cd ~/视频
+map gw cd ~/图片/Wallpapers
+
+
+map W $~/.local/bin/setwall $f
+
+map xc $~/.local/bin/gpg-cipher $f
+map xe $~/.local/bin/gpg-encrypt $f
+map xd $~/.local/bin/gpg-doc $f
+map xp $~/.local/bin/gpg-pic $f
+map xv $~/.local/bin/gpg-vid $f
+
+map mi $mid3v2 -l $f | less -i
+map mm $mediainfo $f | less -i
+map me $exiftool $f | less -i
+map mf $file -L $fx | less -i
+map mF $file -L --mime-type $fx | less -i
+
+map xs $swayimg -r
+
+map xR $~/.local/bin/rename-dlp $fx
+map xL $~/.local/bin/rename-lowercase $fx
+map xS $~/.local/bin/rename-space $fx
+map xt $~/.local/bin/id3title $fx
+map xT $~/.local/bin/id3trck $fx
+
+## Git
+map gl $clear; git log --graph --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s%Cgreen(%cr)' --abbrev-commit
+map gs $clear; git status -v | less -i
