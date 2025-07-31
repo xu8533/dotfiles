@@ -1,10 +1,22 @@
 {
-  "backlight": {
-    "tooltip": false,
-    "format": "{icon} {percent}%",
-    "format-icons": ["󰹐", "󱩎", "󱩏", "󱩐", "󱩑", "󱩒", "󱩓", "󱩔", "󱩕", "󱩖", "󰛨"],
-    "interval": 1,
-    "on-scroll-up": "brightnessctl set +5",
-    "on-scroll-down": "brightnessctl set 5-",
-  },
+    "backlight": {
+        "tooltip": false,
+        "format": "{icon} {percent}%",
+        "format-icons": [
+            "󰹐",
+            "󱩎",
+            "󱩏",
+            "󱩐",
+            "󱩑",
+            "󱩒",
+            "󱩓",
+            "󱩔",
+            "󱩕",
+            "󱩖",
+            "󰛨"
+        ],
+        "interval": 1,
+        "on-scroll-up": "brightnessctl set +1%",
+        "on-scroll-down": "brightnessctl set 1%-",
+    },
 }
