@@ -121,7 +121,7 @@ colorscript -e zfetch
 
 # export STARSHIP_CONFIG=~/.config/starship/starship.toml
 # eval "$(starship init bash)"
-eval "$(oh-my-posh init bash --config ~/.config/omp/my.omp.json)"
+# eval "$(oh-my-posh init bash --config ~/.config/omp/my.omp.json)"
 
 # AstroNvim中obsidian插件使用
 # NOTES="/media/xujian/工作/学习/个人笔记"
@@ -179,6 +179,7 @@ if [ -f $HOME/.local/share/bash-completion/completions/lf.bash ]; then
     . "$HOME/.local/share/bash-completion/completions/lf.bash"
 fi
 
+eval "$(starship init bash)"
 #
 # forgit配置
 # [[ -s ~/.forgit/forgit.plugin.sh ]] && source ~/.forgit/forgit.plugin.sh
