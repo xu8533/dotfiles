@@ -43,6 +43,9 @@ prepend_keymap = [
     #     "<Left>",
     # ], run = "plugin fuse-archive --args=unmount", desc = "离开或者卸载压缩文件" },
 
+    # zomm.yazi
+    { on = "+", run = "plugin zoom 1", desc = "放大文件" },
+    { on = "_", run = "plugin zoom -1", desc = "缩小文件" },
 ]
 
 keymap = [
@@ -613,6 +616,8 @@ keymap = [
 
 [input]
 
+prepend_keymap = [{ on = ["<Esc>"], run = "close", desc = "取消输入" }]
+
 keymap = [
     { on = [
         "<C-[>",
@@ -623,9 +628,9 @@ keymap = [
     { on = [
         "<Enter>",
     ], run = "close --submit", desc = "提交输入" },
-    { on = [
-        "<Esc>",
-    ], run = "escape", desc = "回退normal模式, 或者取消输入" },
+    # { on = [
+    #     "<Esc>",
+    # ], run = "escape", desc = "回退normal模式, 或者取消输入" },
 
     # Mode
     { on = [
