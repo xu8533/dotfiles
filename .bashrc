@@ -119,7 +119,8 @@ PATH=$PATH:~/.config/rofi/scripts:~/.local/bin
 # neofetch
 colorscript -e zfetch
 
-# export STARSHIP_CONFIG=~/.config/starship/starship.toml
+# export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
 # eval "$(starship init bash)"
 # eval "$(oh-my-posh init bash --config ~/.config/omp/my.omp.json)"
 
