@@ -19,30 +19,27 @@
 # lotusOrange    "#cc6d00"
 # lotusAqua2     "#5e857a"
 
-[manager]
+[mgr]
 marker_copied = { fg = "#6f894e", bg = "#6f894e" }
 marker_cut = { fg = "#c84053", bg = "#c84053" }
 marker_marked = { fg = "#624c83", bg = "#624c83" }
 marker_selected = { fg = "#cc6d00", bg = "#cc6d00" }
-
 cwd = { fg = "#77713f" }
 hovered = { reversed = true }
 preview_hovered = { reversed = true }
-
 find_keyword = { fg = "#cc6d00", bg = "#f2ecbc" }
 find_position = {}
-
-tab_active = { reversed = true }
-tab_inactive = {}
-tab_width = 1
-
 count_copied = { fg = "#f2ecbc", bg = "#6f894e" }
 count_cut = { fg = "#f2ecbc", bg = "#c84053" }
 count_selected = { fg = "#f2ecbc", bg = "#77713f" }
-
 border_symbol = "│"
 border_style = { fg = "#545464" }
 
+[tabs]
+active = { fg = "#f2ecbc", bg = "#4d699b" }
+inactive = { fg = "#43436c", bg = "#e7dba0" }
+sep_inner = { open = "", close = "" }
+sep_outer = { open = "", close = "" }
 
 [mode]
 normal_main = { fg = "#f2ecbc", bg = "#4d699b" }
@@ -52,22 +49,27 @@ select_alt = { fg = "#624c83", bg = "#e7dba0" }
 unset_main = { fg = "#f2ecbc", bg = "#77713f" }
 unset_alt = { fg = "#77713f", bg = "#e7dba0" }
 
-
 [status]
 sep_left = { open = "", close = "" }
 sep_right = { open = "", close = "" }
 overall = { fg = "#43436c", bg = "#d5cea3" }
-
 progress_label = { fg = "#4d699b", bg = "#e7dba0", bold = true }
 progress_normal = { fg = "#e7dba0", bg = "#f2ecbc" }
 progress_error = { fg = "#e7dba0", bg = "#f2ecbc" }
-
 perm_type = { fg = "#6f894e" }
 perm_read = { fg = "#77713f" }
 perm_write = { fg = "#d7474b" }
 perm_exec = { fg = "#5e857a" }
 perm_sep = { fg = "#624c83" }
 
+[which]
+cols = 2
+separator = " - "
+separator_style = { fg = "#8a8980" }
+mask = { bg = "#d5cea3" }
+rest = { fg = "#8a8980" }
+cand = { fg = "#4d699b" }
+desc = { fg = "#a09cac" }
 
 [pick]
 border = { fg = "#5a7785" }
@@ -89,15 +91,6 @@ inactive = {}
 border = { fg = "#5a7785" }
 title = {}
 hovered = { fg = "#624c83" }
-
-[which]
-cols = 2
-separator = " - "
-separator_style = { fg = "#8a8980" }
-mask = { bg = "#d5cea3" }
-rest = { fg = "#8a8980" }
-cand = { fg = "#4d699b" }
-desc = { fg = "#a09cac" }
 
 [help]
 on = { fg = "#5e857a" }

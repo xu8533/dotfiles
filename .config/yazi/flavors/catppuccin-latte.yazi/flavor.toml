@@ -19,11 +19,6 @@ marker_cut      = { fg = "#d20f39", bg = "#d20f39" }
 marker_marked   = { fg = "#179299", bg = "#179299" }
 marker_selected = { fg = "#df8e1d", bg = "#df8e1d" }
 
-# Tab
-tab_active   = { reversed = true }
-tab_inactive = {}
-tab_width    = 1
-
 # Count
 count_copied   = { fg = "#eff1f5", bg = "#40a02b" }
 count_cut      = { fg = "#eff1f5", bg = "#d20f39" }
@@ -172,6 +167,10 @@ rules = [
 	{ mime = "application/{pdf,doc,rtf}", fg = "#40a02b" },
 
 	# Fallback
+	{ url = "*", fg = "#4c4f69" },
+	{ url = "*/", fg = "#1e66f5" },
+
+	# TODO: remove
 	{ name = "*", fg = "#4c4f69" },
 	{ name = "*/", fg = "#1e66f5" }
 ]
