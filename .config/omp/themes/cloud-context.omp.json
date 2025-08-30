@@ -168,7 +168,6 @@
           "background": "p:background-color",
           "foreground": "p:git-text",
           "properties": {
-            "fetch_stash_count": true,
             "fetch_status": true
           },
           "style": "powerline",
@@ -185,7 +184,7 @@
       "segments": [
         {
           "background": "p:error-background",
-          "foreground": "p:backgrond-color",
+          "foreground": "p:background-color",
           "style": "diamond",
           "leading_diamond": "\ue0c7",
           "trailing_diamond": "\ue0c6",
