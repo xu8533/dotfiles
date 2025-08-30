@@ -2,17 +2,17 @@
     "appearance": {
         "anim": {
             "durations": {
-                "scale": 2
+                "scale": 1
             }
         },
         "font": {
             "family": {
                 "material": "Material Symbols Rounded",
-                "mono": "JetBrainsMono Nerd Font Mono",
-                "sans": "DejaVu Sans Mono"
+                "mono": "Maple Mono NF CN",
+                "sans": "Rubik"
             },
             "size": {
-                "scale": 1
+                "scale": 1.1
             }
         },
         "padding": {
@@ -22,11 +22,11 @@
             "scale": 1
         },
         "spacing": {
-            "scale": 1
+            "scale": 0.5
         },
         "transparency": {
             "enabled": true,
-            "base": 0.85,
+            "base": 0.89,
             "layers": 0.4
         }
     },
@@ -41,68 +41,130 @@
         }
     },
     "background": {
-        "enabled": true
+        "desktopClock": {
+            "enabled": true
+        },
+        "enabled": true,
+        "visualiser": {
+            "enabled": true,
+            "autoHide": true,
+            "rounding": 1,
+            "spacing": 1
+        }
     },
     "bar": {
+        "clock": {
+            "showIcon": true
+        },
         "dragThreshold": 20,
+        "entries": [
+            {
+                "id": "logo",
+                "enabled": true
+            },
+            {
+                "id": "workspaces",
+                "enabled": true
+            },
+            {
+                "id": "spacer",
+                "enabled": true
+            },
+            {
+                "id": "activeWindow",
+                "enabled": true
+            },
+            {
+                "id": "spacer",
+                "enabled": true
+            },
+            {
+                "id": "tray",
+                "enabled": true
+            },
+            {
+                "id": "clock",
+                "enabled": true
+            },
+            {
+                "id": "statusIcons",
+                "enabled": true
+            },
+            {
+                "id": "power",
+                "enabled": true
+            },
+            {
+                "id": "idleInhibitor",
+                "enabled": false
+            }
+        ],
         "persistent": true,
         "showOnHover": true,
         "status": {
             "showAudio": true,
             "showBattery": true,
             "showBluetooth": true,
-            "showKbLayout": false,
+            "showKbLayout": true,
             "showNetwork": true
+        },
+        "tray": {
+            "background": true,
+            "recolour": true
         },
         "workspaces": {
             "activeIndicator": true,
             "activeLabel": "󰮯 ",
-            "activeTrail": false,
+            "activeTrail": true,
             "label": "  ",
-            "occupiedBg": false,
+            "occupiedBg": true,
             "occupiedLabel": "󰮯 ",
+            "perMonitorWorkspaces": true,
             "rounded": true,
             "showWindows": true,
             "shown": 5
         }
     },
     "border": {
-        "rounding": 25,
-        "thickness": 10
+        "rounding": 22,
+        "thickness": 1
     },
     "dashboard": {
         "enabled": true,
         "dragThreshold": 50,
         "mediaUpdateInterval": 500,
-        "showOnHover": true,
-        "visualiserBars": 45
+        "showOnHover": true
     },
     "launcher": {
         "actionPrefix": ">",
         "dragThreshold": 50,
-        "vimKeybinds": false,
+        "vimKeybinds": true,
         "enableDangerousActions": false,
         "maxShown": 8,
         "maxWallpapers": 9,
         "useFuzzy": {
-            "apps": false,
-            "actions": false,
-            "schemes": false,
-            "variants": false,
-            "wallpapers": false
-        }
+            "apps": true,
+            "actions": true,
+            "schemes": true,
+            "variants": true,
+            "wallpapers": true
+        },
+        "showOnHover": false
     },
     "lock": {
-        "maxNotifs": 5
+        "recolourLogo": true
     },
     "notifs": {
-        "actionOnClick": false,
+        "actionOnClick": true,
         "clearThreshold": 0.3,
         "defaultExpireTimeout": 5000,
         "expandThreshold": 20,
-        "expire": false
+        "expire": true
     },
     "osd": {
+        "enabled": true,
+        "enableBrightness": true,
+        "enableMicrophone": false,
         "hideDelay": 2000
     },
     "paths": {
@@ -112,9 +174,19 @@
     },
     "services": {
         "audioIncrement": 0.1,
-        "weatherLocation": "10,10",
+        "defaultPlayer": "ncmpcpp",
+        "gpuType": "",
+        "playerAliases": [
+            {
+                "from": "com.github.th_ch.youtube_music",
+                "to": "YT Music"
+            }
+        ],
+        "weatherLocation": "",
         "useFahrenheit": false,
-        "useTwelveHourClock": false
+        "useTwelveHourClock": false,
+        "smartScheme": true,
+        "visualiserBars": 45
     },
     "session": {
         "dragThreshold": 30,
