@@ -12,23 +12,18 @@ linemode = "size_and_mtime"
 show_hidden = false
 show_symlink = true
 scrolloff = 8
-# mouse_events   = [ "click", "scroll", "touch", "move", "drag" ]
 title_format = "{cwd} - Yazi"
 
 [preview]
-tab_size = 2
+tab_size = 4
 # max_width = 600
 # max_height = 900
 max_width = 1000
 max_height = 1000
+image_delay = 100
 image_filter = "triangle"
 image_quality = 75
-sixel_fraction = 15
-cache_dir = ""
-ueberzug_scale = 1
-ueberzug_offset = [0, 0, 0, 0]
 wrap = "yes"
-image_delay = 10
 
 [opener]
 edit = [
