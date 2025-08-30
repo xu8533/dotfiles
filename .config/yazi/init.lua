@@ -42,7 +42,7 @@ end
 -- require("omp"):setup({ config = "~/.config/omp/yazi-themes/jandedobbeleer.omp.json" })
 -- require("omp"):setup({ config = "~/.config/omp/yazi-themes/json.omp.json" })
 -- require("omp"):setup({ config = "~/.config/omp/yazi-themes/powerlevel10k_classic.omp.json" })
-require("omp"):setup({ config = "~/.config/omp/yazi-themes/tokyonight_storm.omp.json" })
+-- require("omp"):setup({ config = "~/.config/omp/yazi-themes/tokyonight_storm.omp.json" })
 -- require("omp"):setup({ config = "~/.config/omp/yazi-themes/ys.omp.json" })
 
 -- full-border
@@ -51,3 +51,7 @@ require("full-border"):setup({
 	-- type = ui.Border.ROUNDED,
 	type = ui.Border.PLAIN,
 })
+
+-- relative-motions
+-- require("relative-motions"):setup({ show_numbers = "relative_absolute", show_motion = true, enter_mode = "first" })
+require("relative-motions"):setup({ show_numbers = "relative_absolute", show_motion = true, enter_mode = "first" })
