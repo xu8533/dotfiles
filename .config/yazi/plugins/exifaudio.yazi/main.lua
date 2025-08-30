@@ -55,7 +55,7 @@ function M:peek(job)
 		status, child = pcall(Exiftool, job.file.url)
 		if not status or child == nil then
 			local error = ui.Line { ui.Span("Make sure exiftool is installed and in your PATH") }
-			local p = ui.Text(error):area(job.area):wrap(ui.Text.WRAP)
+			local p = ui.Text(error):area(job.area):wrap(ui.Wrap.YES)
 			ya.preview_widget(job, { p })
 			return
 		end
@@ -83,7 +83,7 @@ function M:peek(job)
 		end
 	until i >= job.skip + limit
 
-	local p = ui.Text(metadata):area(job.area):wrap(ui.Text.WRAP)
+	local p = ui.Text(metadata):area(job.area):wrap(ui.Wrap.YES)
 	ya.preview_widget(job, { p })
 
 	local cover_width = job.area.w / 2 - 5
