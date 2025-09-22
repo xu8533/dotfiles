@@ -1,7 +1,7 @@
 return {
   {
     "saghen/blink.compat",
-    version = "*",
+    version = "2.*",
     lazy = true,
     opts = {},
   },
@@ -10,10 +10,48 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     dependencies = {
       "codeium.nvim",
-      "saghen/blink.compat",
       "xzbdmw/colorful-menu.nvim",
     },
     opts = function(_, opts)
+      opts.appearance = {
+        use_nvim_cmp_as_default = true,
+        nerd_font_variant = "mono",
+        kind_icons = {
+          Array = "",
+          Boolean = "",
+          Text = "󰉿",
+          Method = "󰊕",
+          Function = "󰊕",
+          Constructor = "",
+          Field = "󰜢",
+          Variable = "󰀫",
+          Class = "",
+          Interface = "",
+          Module = "",
+          Namespace = "",
+          Null = "",
+          Property = "󰜢",
+          Unit = "",
+          Value = "",
+          Enum = "",
+          Key = "",
+          Keyword = "󰌋",
+          Snippet = "",
+          Color = "󰏘",
+          File = "󰈙",
+          Reference = "",
+          Folder = "󰉋",
+          EnumMember = "",
+          Constant = "󰏿",
+          Struct = "󰙅",
+          Event = "",
+          Operator = "",
+          TypeParameter = "",
+          Object = "",
+          Package = "",
+          String = "",
+        },
+      }
       opts.cmdline = {
         enabled = true,
         keymap = {
@@ -37,6 +75,9 @@ return {
       }
 
       opts.completion = {
+        accept = {
+          auto_brackets = { enabled = false },
+        },
         documentation = {
           auto_show = true,
           auto_show_delay_ms = 500,
@@ -82,36 +123,92 @@ return {
               -- { "kind_icon" },
               -- { "label", "label_description", "source_name", gap = 1 },
               -- colorful-menu.nvim
-              { "kind_icon", "label", "source_name", gap = 1 },
+              { "kind_icon" },
+              -- { "label", gap = 1 },
+              { "label", "source_name", gap = 1 },
               -- { "label_description", "kind", "source_name", gap = 1 },
             },
             -- 使用mini.icons补全图标和图标高亮
             components = {
-              kind_icon = {
-                text = function(ctx)
-                  local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
-                  return kind_icon
-                end,
-                -- Optionally, you may also use the highlights from mini.icons
-                highlight = function(ctx)
-                  local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
-                  return hl
-                end,
-              },
-              kind = {
-                -- (optional) use highlights from mini.icons
-                highlight = function(ctx)
-                  local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
-                  return hl
-                end,
-              },
+              -- kind_icon = {
+              --   text = function(ctx)
+              --     local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
+              --     return kind_icon
+              --   end,
+              --   -- Optionally, you may also use the highlights from mini.icons
+              --   highlight = function(ctx)
+              --     local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+              --     return hl
+              --   end,
+              -- },
+              -- kind = {
+              --   -- (optional) use highlights from mini.icons
+              --   highlight = function(ctx)
+              --     local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+              --     return hl
+              --   end,
+              -- },
+              -- nvim-web-devicons+lspkind
+              -- kind_icon = {
+              --   text = function(ctx)
+              --     local icon = ctx.kind_icon
+              --     if vim.tbl_contains({ "Path" }, ctx.source_name) then
+              --       local dev_icon, _ = require("nvim-web-devicons").get_icon(ctx.label)
+              --       if dev_icon then
+              --         icon = dev_icon
+              --       end
+              --     else
+              --       icon = require("lspkind").symbolic(ctx.kind, {
+              --         mode = "symbol",
+              --       })
+              --     end
+              --
+              --     return icon .. ctx.icon_gap
+              --   end,
+
+              -- Optionally, use the highlight groups from nvim-web-devicons
+              -- You can also add the same function for `kind.highlight` if you want to
+              -- keep the highlight groups in sync with the icons.
+              --   highlight = function(ctx)
+              --     local hl = ctx.kind_hl
+              --     if vim.tbl_contains({ "Path" }, ctx.source_name) then
+              --       local dev_icon, dev_hl = require("nvim-web-devicons").get_icon(ctx.label)
+              --       if dev_icon then
+              --         hl = dev_hl
+              --       end
+              --     end
+              --     return hl
+              --   end,
+              -- },
               label = {
-                highlight = function(ctx)
-                  return require("colorful-menu").blink_components_highlight(ctx)
-                end,
+                width = { fill = true, max = 60 },
                 text = function(ctx)
-                  return require("colorful-menu").blink_components_text(ctx)
+                  local highlights_info = require("colorful-menu").blink_highlights(ctx)
+                  if highlights_info ~= nil then
+                    -- Or you want to add more item to label
+                    return highlights_info.label
+                  else
+                    return ctx.label
+                  end
                 end,
+                highlight = function(ctx)
+                  local highlights = {}
+                  local highlights_info = require("colorful-menu").blink_highlights(ctx)
+                  if highlights_info ~= nil then
+                    highlights = highlights_info.highlights
+                  end
+                  for _, idx in ipairs(ctx.label_matched_indices) do
+                    table.insert(highlights, { idx, idx + 1, group = "BlinkCmpLabelMatch" })
+                  end
+                  -- Do something else
+                  return highlights
+                end,
+                --   -- text = function(ctx)
+                --   --   return require("colorful-menu").blink_components_text(ctx)
+                --   -- end,
+                --   -- highlight = function(ctx)
+                --   --   return require("colorful-menu").blink_components_highlight(ctx)
+                --   -- end,
               },
             },
           },
@@ -121,7 +218,8 @@ return {
         },
       }
       opts.fuzzy = {
-        implementation = "rust",
+        -- implementation = "rust",
+        implementation = "prefer_rust_with_warning",
         sorts = {
           "exact",
           -- defaults
@@ -165,14 +263,13 @@ return {
           show_documentation = false,
         },
       }
-
       opts.sources = {
         compat = { "codeium" },
-        default = { "buffer", "lsp", "path", "snippets", "markdown" },
+        default = { "snippets", "buffer", "lsp", "path", "markdown" },
         per_filetype = {
           lua = { inherit_defaults = true, "lazydev" },
         },
-        snippets = { preset = "luasnip" },
+        -- snippets = { preset = "luasnip" },
         providers = {
           -- 使用所有buffer内容作为补全源
           buffer = {
