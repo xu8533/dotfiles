@@ -1,3 +1,41 @@
+local header = [[
+███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
+████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
+██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
+██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
+██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
+╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
+]]
+local pos
+local cwd = vim.fn.getcwd(0)
+if cwd and cwd:find("obsidian") then
+  header = [[
+                   ----                 
+                --------                
+              ----------  --            
+           ------------  -----          
+        -------------   -------         
+       -------------   ----------       
+       ------------   ------------      
+       ------------  -------------      
+        -----------  -------------      
+      -   ---------  --------------     
+     ----  --------  --------------     
+    ------   ------   ---------------   
+   --------   -----     --------------  
+  ----------      ------     -----------
+ ------------  --------------   --------
+-------------  ----------------   ----  
+ ------------  ------------------  --   
+   ----------  -------------------      
+      ------  --------------------      
+        ---   -------------------       
+            ---------------------       
+                       ---------        
+  ]]
+  pos = 2
+end
+
 return {
   {
     "folke/snacks.nvim",
@@ -25,19 +63,13 @@ return {
             },
             { icon = " ", key = "q", desc = "退出neovim", action = ":qa" },
           },
-          header = [[
-███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
-████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
-██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
-██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
-██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
-╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]],
+          header = header,
         },
-        -- sections = {
-        --   { section = "header" },
-        --   { section = "keys", gap = 1, padding = 1 },
-        --   { section = "startup" },
-        -- },
+        formats = {
+          key = function(item)
+            return { { "[", hl = "special" }, { item.key, hl = "key" }, { "]", hl = "special" } }
+          end,
+        },
         sections = {
           { section = "header" },
           {
@@ -48,9 +80,28 @@ return {
             height = 5,
             padding = 1,
           },
-          { section = "keys", gap = 1, padding = 1 },
-          { pane = 2, icon = " ", title = "最近文件", section = "recent_files", indent = 2, padding = 1 },
-          { pane = 2, icon = " ", title = "工程", section = "projects", indent = 2, padding = 1 },
+          {
+            pane = pos,
+            section = "keys",
+            gap = 1,
+            padding = 1,
+          },
+          {
+            pane = 2,
+            icon = " ",
+            title = "最近编辑文件",
+            section = "recent_files",
+            indent = 2,
+            padding = 2,
+          },
+          {
+            pane = 2,
+            icon = " ",
+            title = "工程",
+            section = "projects",
+            indent = 2,
+            padding = 1,
+          },
           {
             pane = 2,
             icon = " ",
@@ -71,7 +122,10 @@ return {
       bigfile = { enabled = true },
       dim = { enabled = true },
       explorer = { enabled = true },
-      image = { enabled = true },
+      image = {
+        enabled = true,
+        doc = { enabled = true, inline = false, float = true, max_width = 80, max_height = 40 },
+      },
       input = {
         enabled = false,
         icon = " ",
