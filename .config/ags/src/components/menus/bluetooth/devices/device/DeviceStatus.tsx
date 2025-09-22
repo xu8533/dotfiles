@@ -21,7 +21,7 @@ export const DeviceStatus = ({ device }: DeviceStatusProps): JSX.Element => {
             <label
                 halign={Gtk.Align.START}
                 className={'connection-status dim'}
-                label={bind(device, 'connected').as((connected) => (connected ? 'Connected' : 'Paired'))}
+                label={bind(device, 'connected').as((connected) => (connected ? '已连接' : '已配对'))}
             />
         </revealer>
     );

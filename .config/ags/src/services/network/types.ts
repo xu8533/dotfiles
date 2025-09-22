@@ -8,19 +8,19 @@ type DevceStates = {
 };
 
 export const DEVICE_STATES: DevceStates = {
-    [AstalNetwork.DeviceState.UNKNOWN]: 'Unknown',
-    [AstalNetwork.DeviceState.UNMANAGED]: 'Unmanaged',
-    [AstalNetwork.DeviceState.UNAVAILABLE]: 'Unavailable',
-    [AstalNetwork.DeviceState.DISCONNECTED]: 'Disconnected',
-    [AstalNetwork.DeviceState.PREPARE]: 'Prepare',
-    [AstalNetwork.DeviceState.CONFIG]: 'Config',
-    [AstalNetwork.DeviceState.NEED_AUTH]: 'Need Authentication',
-    [AstalNetwork.DeviceState.IP_CONFIG]: 'IP Configuration',
-    [AstalNetwork.DeviceState.IP_CHECK]: 'IP Check',
+    [AstalNetwork.DeviceState.UNKNOWN]: '未知',
+    [AstalNetwork.DeviceState.UNMANAGED]: '未管理',
+    [AstalNetwork.DeviceState.UNAVAILABLE]: '不可用',
+    [AstalNetwork.DeviceState.DISCONNECTED]: '连接断开',
+    [AstalNetwork.DeviceState.PREPARE]: '准备',
+    [AstalNetwork.DeviceState.CONFIG]: '配置',
+    [AstalNetwork.DeviceState.NEED_AUTH]: '需要验证',
+    [AstalNetwork.DeviceState.IP_CONFIG]: 'IP配置',
+    [AstalNetwork.DeviceState.IP_CHECK]: 'IP检查',
     [AstalNetwork.DeviceState.SECONDARIES]: 'Secondaries',
-    [AstalNetwork.DeviceState.ACTIVATED]: 'Activated',
-    [AstalNetwork.DeviceState.DEACTIVATING]: 'Deactivating',
-    [AstalNetwork.DeviceState.FAILED]: 'Failed',
+    [AstalNetwork.DeviceState.ACTIVATED]: '启用',
+    [AstalNetwork.DeviceState.DEACTIVATING]: '禁用',
+    [AstalNetwork.DeviceState.FAILED]: '失败',
 } as const;
 
 export const wifiIconMap = new Map<string, WifiIcon>([

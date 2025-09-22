@@ -12,19 +12,19 @@ export default (): JSX.Element => (
                     <label
                         className="desc"
                         label={bind(powermenu, 'title').as(
-                            (p) => `Are you sure you want to ${p.toLowerCase()}?`,
+                            (p) => `请问确认${p.toLowerCase()}吗?`,
                         )}
                     />
                 </box>
                 <box className="buttons horizontal" vexpand valign={Gtk.Align.END} homogeneous>
                     <button className="verification-button bar-verification_yes" onClicked={powermenu.exec}>
-                        <label label={'Yes'} />
+                        <label label={'是'} />
                     </button>
                     <button
                         className="verification-button bar-verification_no"
                         onClicked={() => App.toggle_window('verification')}
                     >
-                        <label label={'No'} />
+                        <label label={'否'} />
                     </button>
                 </box>
             </box>

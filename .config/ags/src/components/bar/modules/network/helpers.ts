@@ -70,7 +70,7 @@ const formatFrequency = (frequency: number): string => {
  * @returns A formatted string containing the WiFi information.
  */
 export const formatWifiInfo = (wifi: AstalNetwork.Wifi): string => {
-    return `Network: ${wifi.ssid} \nSignal Strength: ${wifi.strength}% \nFrequency: ${formatFrequency(wifi.frequency)}`;
+    return `无线网络: ${wifi.ssid} \n信号强度: ${wifi.strength}% \n频率: ${formatFrequency(wifi.frequency)}`;
 };
 
 Variable.derive([bind(networkService, 'state'), bind(networkService, 'connectivity')], () => {

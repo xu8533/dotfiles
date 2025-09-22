@@ -11,7 +11,7 @@ export const BarGeneral = (): JSX.Element => {
             vscroll={Gtk.PolicyType.AUTOMATIC}
         >
             <box vertical>
-                <Header title="General Settings" />
+                <Header title="通用配置" />
                 <Option
                     opt={options.theme.font.name}
                     fontLabel={options.theme.font.label}
@@ -19,10 +19,10 @@ export const BarGeneral = (): JSX.Element => {
                     title="Font"
                     type="font"
                 />
-                <Option opt={options.theme.font.size} title="Font Size" type="string" />
+                <Option opt={options.theme.font.size} title="字体大小" type="string" />
                 <Option
                     opt={options.theme.font.weight}
-                    title="Font Weight"
+                    title="字体重量"
                     subtitle="100, 200, 300, etc."
                     type="number"
                     increment={100}
@@ -31,36 +31,36 @@ export const BarGeneral = (): JSX.Element => {
                 />
                 <Option
                     opt={options.dummy}
-                    title="Config"
-                    subtitle="WARNING: Importing a configuration will replace your current configuration settings."
+                    title="配置"
+                    subtitle="警告: 导入的配置会覆盖现有配置哦!"
                     type="config_import"
                     exportData={{ filePath: CONFIG_FILE, themeOnly: false }}
                 />
                 <Option
                     opt={options.hyprpanel.restartAgs}
-                    title="Restart Hyprpanel On Wake Or Monitor Connection"
-                    subtitle="WARNING: Disabling this may cause bar issues on sleep/monitor connect."
+                    title="唤醒或监视器连接时重新启动ags"
+                    subtitle="警告：禁用此选项可能会导致睡眠/监视器连接出现条形图问题。"
                     type="boolean"
                 />
                 <Option
                     opt={options.hyprpanel.restartCommand}
-                    title="Restart Command"
-                    subtitle="Command executed when restarting. Use '-b busName' flag if needed."
+                    title="重启命令"
+                    subtitle="重启时执行的命令。如果需要，请使用“-b busName”标志。"
                     type="string"
                 />
                 <Option
                     opt={options.hyprpanel.useLazyLoading}
-                    title="Lazy Load Settings Dialog"
+                    title="延迟加载设置对话框"
                     subtitle={
-                        'Only loads the settings dialog when first opened, rather than at startup. (Requires restart)\n' +
-                        'Improves launch speed and reduces memory usage until the dialog is accessed.'
+                        '仅在首次打开时加载设置对话框，而不是在每次启动时加载。（需要重新启动)\n' +
+                        '提高启动速度并减少内存使用，直到访问对话框。'
                     }
                     type="boolean"
                 />
                 <Option
                     opt={options.terminal}
-                    title="Terminal"
-                    subtitle="For tools like 'btop'"
+                    title="终端"
+                    subtitle="给'btop'之类使用"
                     type="string"
                 />
                 <Option
@@ -71,23 +71,23 @@ export const BarGeneral = (): JSX.Element => {
                 />
                 <Option
                     opt={options.menus.transition}
-                    title="Menu Transition"
+                    title="菜单转换"
                     type="enum"
                     enums={['none', 'crossfade']}
                 />
                 <Option
                     opt={options.menus.transitionTime}
-                    title="Menu Transition Duration"
+                    title="菜单转换持续时间"
                     type="number"
                     min={0}
                     max={10000}
                     increment={25}
                 />
-                <Option opt={options.theme.bar.menus.enableShadow} title="Enable Shadow" type="boolean" />
+                <Option opt={options.theme.bar.menus.enableShadow} title="启用阴影" type="boolean" />
                 <Option
                     opt={options.theme.bar.menus.shadow}
-                    title="Menu Shadow"
-                    subtitle="Requires that sufficient margins have been set to house the shadow."
+                    title="菜单阴影"
+                    subtitle="要求设置足够的边距来容纳阴影。"
                     type="string"
                 />
                 <Option

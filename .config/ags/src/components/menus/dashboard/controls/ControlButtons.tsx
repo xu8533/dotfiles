@@ -26,7 +26,7 @@ export const WifiButton = (): JSX.Element => {
                     networkService.wifi?.set_enabled(!networkService.wifi.enabled);
                 }
             }}
-            tooltipText={'Toggle Wifi'}
+            tooltipText={'无线网开关'}
             expand
         >
             <label
@@ -48,7 +48,7 @@ export const BluetoothButton = (): JSX.Element => {
                     bluetoothService.toggle();
                 }
             }}
-            tooltipText={'Toggle Bluetooth'}
+            tooltipText={'蓝牙开关'}
             expand
         >
             <label
@@ -70,7 +70,7 @@ export const NotificationsButton = (): JSX.Element => {
                     notifdService.set_dont_disturb(!notifdService.dontDisturb);
                 }
             }}
-            tooltipText={'Toggle Notifications'}
+            tooltipText={'通知开关'}
             expand
         >
             <label
@@ -92,7 +92,7 @@ export const PlaybackButton = (): JSX.Element => {
                     audioService.defaultSpeaker.set_mute(!audioService.defaultSpeaker.mute);
                 }
             }}
-            tooltipText={'Toggle Mute (Playback)'}
+            tooltipText={'(Playback)静音'}
             expand
         >
             <label
@@ -114,7 +114,7 @@ export const MicrophoneButton = (): JSX.Element => {
                     audioService.defaultMicrophone.set_mute(!audioService.defaultMicrophone.mute);
                 }
             }}
-            tooltipText={'Toggle Mute (Microphone)'}
+            tooltipText={'(麦克风)静音'}
             expand
         >
             <label

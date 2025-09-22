@@ -13,7 +13,7 @@ export const Header = (): JSX.Element => {
                         options.reset();
                     }
                 }}
-                tooltipText={'Reset All Settings'}
+                tooltipText={'重置所有配置'}
                 halign={Gtk.Align.START}
                 valign={Gtk.Align.START}
             >

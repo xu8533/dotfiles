@@ -12,7 +12,7 @@ export const ClearNotificationsButton = (): JSX.Element => {
     return (
         <button
             className={'clear-notifications-button'}
-            tooltipText={'Clear Notifications'}
+            tooltipText={'清除通知'}
             onClick={(_, event) => {
                 if (!isPrimaryClick(event)) {
                     return;

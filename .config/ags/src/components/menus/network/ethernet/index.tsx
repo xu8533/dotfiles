@@ -10,7 +10,7 @@ export const Ethernet = (): JSX.Element => {
     return (
         <box className={'menu-section-container ethernet'} vertical>
             <box className={'menu-label-container'} halign={Gtk.Align.FILL}>
-                <label className={'menu-label'} halign={Gtk.Align.START} hexpand label={'Ethernet'} />
+                <label className={'menu-label'} halign={Gtk.Align.START} hexpand label={'有线网络'} />
             </box>
             <box className={'menu-items-section'} vertical>
                 <box className={'menu-content'} vertical>
@@ -32,7 +32,7 @@ export const Ethernet = (): JSX.Element => {
                                     truncate
                                     wrap
                                     label={bind(networkService.ethernet.wiredSpeed).as((speed) => {
-                                        return `Ethernet Connection (${speed} Mbps)`;
+                                        return `有线网络 (${speed} Mbps)`;
                                     })}
                                 />
                                 <label

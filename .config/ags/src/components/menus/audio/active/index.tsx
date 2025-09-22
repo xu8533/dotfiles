@@ -13,7 +13,7 @@ const activeMenu: Variable<ActiveDeviceMenu> = Variable(ActiveDeviceMenu.DEVICES
 
 const Header = (): JSX.Element => (
     <box className={'menu-label-container volume selected'} halign={Gtk.Align.FILL}>
-        <label className={'menu-label audio volume'} halign={Gtk.Align.START} hexpand label={'Volume'} />
+        <label className={'menu-label audio volume'} halign={Gtk.Align.START} hexpand label={'音量'} />
         <button
             className={'menu-icon-button menu-label slider-toggle volume'}
             onClick={(_, event) => {

@@ -13,7 +13,7 @@ export const Power = (): BarBoxChild => {
     let inputHandlerBindings: Variable<void>;
 
     const powerModule = Module({
-        tooltipText: 'Power Menu',
+        tooltipText: '电源清单',
         textIcon: bind(icon),
         showLabelBinding: bind(Variable(false)),
         boxClass: 'powermodule',

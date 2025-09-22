@@ -7,7 +7,7 @@ export const TrustButton = ({ device }: TrustButtonProps): JSX.Element => {
     return (
         <ActionButton
             name={'untrust'}
-            tooltipText={bind(device, 'trusted').as((trusted) => (trusted ? 'Untrust' : 'Trust'))}
+            tooltipText={bind(device, 'trusted').as((trusted) => (trusted ? '不信任' : '信任'))}
             label={bind(device, 'trusted').as((trusted) => (trusted ? '' : '󱖡'))}
             onClick={(_, self) => {
                 if (isPrimaryClick(self)) {

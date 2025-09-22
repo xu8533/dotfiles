@@ -26,7 +26,7 @@ export const WirelessAPs = (): JSX.Element => {
                         expand
                         halign={Gtk.Align.CENTER}
                         valign={Gtk.Align.CENTER}
-                        label={'No Wi-Fi Networks Found'}
+                        label={'为找到无线网络'}
                     />
                 );
             }

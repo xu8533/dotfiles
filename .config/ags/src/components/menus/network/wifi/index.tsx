@@ -8,7 +8,7 @@ export const Wifi = (): JSX.Element => {
     return (
         <box className="menu-section-container wifi" vertical>
             <box className="menu-label-container" halign={Gtk.Align.FILL}>
-                <label className="menu-label" halign={Gtk.Align.START} hexpand label="Wi-Fi" />
+                <label className="menu-label" halign={Gtk.Align.START} hexpand label="无线网络" />
                 <WifiSwitch />
                 <RefreshButton />
             </box>

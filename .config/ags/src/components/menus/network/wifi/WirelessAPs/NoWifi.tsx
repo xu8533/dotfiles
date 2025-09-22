@@ -6,7 +6,7 @@ export const NoWifi = (): JSX.Element => {
     return (
         <box className="menu-section-container wifi" vertical>
             <box className="menu-label-container" halign={Gtk.Align.FILL}>
-                <label className="menu-label" halign={Gtk.Align.START} hexpand label="Wi-Fi" />
+                <label className="menu-label" halign={Gtk.Align.START} hexpand label="无线" />
                 <WifiSwitch />
                 <RefreshButton />
             </box>
@@ -17,7 +17,7 @@ export const NoWifi = (): JSX.Element => {
                     expand
                     halign={Gtk.Align.CENTER}
                     valign={Gtk.Align.CENTER}
-                    label="Wi-Fi Adapter Not Found"
+                    label="未找到无线网卡"
                 />
             </box>
         </box>

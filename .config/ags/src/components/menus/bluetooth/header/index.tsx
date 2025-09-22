@@ -8,7 +8,7 @@ export const Header = (): JSX.Element => {
                 className="menu-label"
                 valign={Gtk.Align.CENTER}
                 halign={Gtk.Align.START}
-                label="Bluetooth"
+                label="蓝牙"
             />
         );
     };

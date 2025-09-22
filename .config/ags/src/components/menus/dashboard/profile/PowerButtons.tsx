@@ -20,17 +20,17 @@ const PowerActionButton = (icon: string, tooltip: string, action: PowerOptions):
 };
 
 export const ShutDown = (): JSX.Element => {
-    return PowerActionButton('󰐥', 'Shut Down', 'shutdown');
+    return PowerActionButton('󰐥', '关机', 'shutdown');
 };
 
 export const Reboot = (): JSX.Element => {
-    return PowerActionButton('󰜉', 'Reboot', 'reboot');
+    return PowerActionButton('󰜉', '重启', 'reboot');
 };
 
 export const LogOut = (): JSX.Element => {
-    return PowerActionButton('󰿅', 'Log Out', 'logout');
+    return PowerActionButton('󰿅', '注销', 'logout');
 };
 
 export const Sleep = (): JSX.Element => {
-    return PowerActionButton('󰤄', 'Sleep', 'sleep');
+    return PowerActionButton('󰤄', '休眠', 'sleep');
 };

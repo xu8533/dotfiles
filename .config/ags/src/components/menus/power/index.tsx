@@ -38,7 +38,7 @@ export default (): JSX.Element => (
         transition={bind(transition).as((transition) => RevealerTransitionMap[transition])}
     >
         <box className={'powermenu horizontal'}>
-            <SysButton action={'shutdown'} label={'SHUTDOWN'} />
+            <SysButton action={'shutdown'} label={'关机'} />
             <SysButton action={'logout'} label={'LOG OUT'} />
             <SysButton action={'reboot'} label={'REBOOT'} />
             <SysButton action={'sleep'} label={'SLEEP'} />

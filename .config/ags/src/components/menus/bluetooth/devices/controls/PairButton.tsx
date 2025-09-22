@@ -7,7 +7,7 @@ export const PairButton = ({ device }: PairButtonProps): JSX.Element => {
     return (
         <ActionButton
             name={'unpair'}
-            tooltipText={bind(device, 'paired').as((paired) => (paired ? 'Unpair' : 'Pair'))}
+            tooltipText={bind(device, 'paired').as((paired) => (paired ? '未配对' : '配对'))}
             label={bind(device, 'paired').as((paired) => (paired ? '' : ''))}
             onClick={(_, self) => {
                 if (!isPrimaryClick(self)) {

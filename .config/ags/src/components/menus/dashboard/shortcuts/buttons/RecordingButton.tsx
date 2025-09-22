@@ -27,7 +27,7 @@ const MonitorListDropdown = (): JSX.Element => {
 
                     return (
                         <MenuItem
-                            label={`Display ${monitor.name}`}
+                            label={`显示器录屏: ${monitor.name}`}
                             onButtonPressEvent={(_, event) => {
                                 if (event.get_button()[1] !== Gdk.BUTTON_PRIMARY) return;
 
@@ -41,7 +41,7 @@ const MonitorListDropdown = (): JSX.Element => {
                 }),
             )}
             <MenuItem
-                label="Region"
+                label="区域录屏"
                 onButtonPressEvent={(_, event) => {
                     if (event.get_button()[1] !== Gdk.BUTTON_PRIMARY) return;
 
@@ -60,7 +60,7 @@ export const RecordingButton = (): JSX.Element => {
     return (
         <button
             className={`dashboard-button record ${isRecording.get() ? 'active' : ''}`}
-            tooltipText="Record Screen"
+            tooltipText="录屏"
             vexpand
             onButtonPressEvent={(_, event) => {
                 const buttonClicked = event.get_button()[1];

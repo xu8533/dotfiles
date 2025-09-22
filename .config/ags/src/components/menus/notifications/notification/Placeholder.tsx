@@ -20,7 +20,7 @@ export const Placeholder = (): JSX.Element => {
                 />
                 <label
                     className={'placeholder-label dim message'}
-                    label={"You're all caught up :)"}
+                    label={"无通知 :)"}
                     valign={Gtk.Align.START}
                 />
             </box>

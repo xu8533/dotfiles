@@ -16,7 +16,7 @@ export const Controls = ({ connecting, accessPoint }: ControlsProps): JSX.Elemen
             >
                 <label
                     className="menu-icon-button disconnect-network txt-icon"
-                    tooltipText="Disconnect"
+                    tooltipText="断开连接"
                     label="󱘖"
                 />
             </button>
@@ -27,7 +27,7 @@ export const Controls = ({ connecting, accessPoint }: ControlsProps): JSX.Elemen
         return (
             <button
                 className="menu-icon-button network disconnect"
-                tooltipText="Delete/Forget Network"
+                tooltipText="删除/忘记 网络"
                 onClick={(_, event) => {
                     networkService.wifi.forgetAP(accessPoint, event);
                 }}

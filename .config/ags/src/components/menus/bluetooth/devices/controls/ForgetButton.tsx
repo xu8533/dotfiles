@@ -7,7 +7,7 @@ export const ForgetButton = ({ device }: ForgetButtonProps): JSX.Element => {
     return (
         <ActionButton
             name={'delete'}
-            tooltipText={'Forget'}
+            tooltipText={'删除'}
             label={'󰆴'}
             onClick={(_, self) => {
                 if (isPrimaryClick(self)) {

@@ -7,7 +7,7 @@ export const ConnectButton = ({ device }: ConnectButtonProps): JSX.Element => {
     return (
         <ActionButton
             name={'disconnect'}
-            tooltipText={bind(device, 'connected').as((connected) => (connected ? 'Disconnect' : 'Connect'))}
+            tooltipText={bind(device, 'connected').as((connected) => (connected ? '断开连接' : '连接'))}
             label={bind(device, 'connected').as((connected) => (connected ? '󱘖' : ''))}
             onClick={(_, self) => {
                 if (isPrimaryClick(self) && device.connected) {

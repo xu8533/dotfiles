@@ -8,7 +8,7 @@ export const MenuLabel = (): JSX.Element => {
             valign={Gtk.Align.CENTER}
             expand
         >
-            <label className={'menu-label notifications'} label={'Notifications'} />
+            <label className={'menu-label notifications'} label={'通知'} />
         </box>
     );
 };
