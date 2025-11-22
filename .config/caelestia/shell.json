@@ -7,6 +7,7 @@
         },
         "font": {
             "family": {
+                "clock": "FirCode Nerd Font Mono",
                 "material": "Material Symbols Rounded",
                 "mono": "Maple Mono NF CN",
                 "sans": "Rubik"
@@ -37,6 +38,58 @@
             ],
             "audio": [
                 "pavucontrol"
+            ],
+            "playback": [
+                "mpv"
+            ],
+            "explorer": [
+                "yazi"
+            ]
+        },
+        "battery": {
+            "warnLevels": [
+                {
+                    "level": 20,
+                    "title": "警告，电量低:(",
+                    "message": "请插入电源",
+                    "icon": "battery_android_frame_2"
+                },
+                {
+                    "level": 10,
+                    "title": "警告，电量极低:<",
+                    "message": "请迅速插入电源",
+                    "icon": "battery_android_frame_1"
+                },
+                {
+                    "level": 5,
+                    "title": "警告，电量异常低:<(",
+                    "message": "请立刻插入电源!!",
+                    "icon": "battery_android_alert",
+                    "critical": true
+                }
+            ],
+            "criticalLevel": 3
+        },
+        "idle": {
+            "lockBeforeSleep": true,
+            "inhibitWhenAudio": true,
+            "timeouts": [
+                {
+                    "timeout": 180,
+                    "idleAction": "lock"
+                },
+                {
+                    "timeout": 300,
+                    "idleAction": "dpms off",
+                    "returnAction": "dpms on"
+                },
+                {
+                    "timeout": 600,
+                    "idleAction": [
+                        "systemctl",
+                        "suspend-then-hibernate"
+                    ]
+                }
             ]
         }
     },
@@ -46,6 +99,7 @@
         },
         "enabled": true,
         "visualiser": {
+            "blur": false,
             "enabled": true,
             "autoHide": true,
             "rounding": 1,
@@ -93,41 +147,79 @@
             {
                 "id": "power",
                 "enabled": true
-            },
-            {
-                "id": "idleInhibitor",
-                "enabled": false
             }
         ],
         "persistent": true,
+        "popouts": {
+            "activeWindow": true,
+            "statusIcons": true,
+            "tray": true
+        },
+        "scrollActions": {
+            "brightness": true,
+            "workspaces": true,
+            "volume": true
+        },
         "showOnHover": true,
         "status": {
             "showAudio": true,
             "showBattery": true,
             "showBluetooth": true,
             "showKbLayout": true,
-            "showNetwork": true
+            "showMicrophone": false,
+            "showNetwork": true,
+            "showLockStatus": true
+        },
+        "sizes": {
+            "innerWidth": 36,
+            "windowPreviewSize": 400,
+            "trayMenuWidth": 300,
+            "batteryWidth": 280,
+            "networkWidth": 280
         },
         "tray": {
             "background": true,
-            "recolour": true
+            "compact": true,
+            "iconSubs": [],
+            "recolour": false
         },
         "workspaces": {
             "activeIndicator": true,
-            "activeLabel": "󰮯 ",
-            "activeTrail": true,
+            "activeLabel": "󰮯",
+            "activeTrail": false,
             "label": "  ",
-            "occupiedBg": true,
-            "occupiedLabel": "󰮯 ",
+            "occupiedBg": false,
+            "occupiedLabel": "󰮯",
             "perMonitorWorkspaces": true,
-            "rounded": true,
             "showWindows": true,
-            "shown": 5
+            "shown": 5,
+            "specialWorkspaceIcons": [
+                {
+                    "name": "music",
+                    "icon": "sports_esports"
+                },
+                {
+                    "name": "video",
+                    "icon": "video"
+                },
+                {
+                    "name": "media",
+                    "icon": "video"
+                },
+                {
+                    "name": "office",
+                    "icon": "office"
+                },
+                {
+                    "name": "note",
+                    "icon": "notebook"
+                }
+            ]
         }
     },
     "border": {
-        "rounding": 22,
-        "thickness": 1
+        "rounding": 20,
+        "thickness": 8
     },
     "dashboard": {
         "enabled": true,
@@ -137,11 +229,160 @@
     },
     "launcher": {
         "actionPrefix": ">",
+        "actions": [
+            {
+                "name": "Calculator",
+                "icon": "calculate",
+                "description": "计算器",
+                "command": [
+                    "autocomplete",
+                    "calc"
+                ],
+                "enabled": true,
+                "dangerous": false
+            },
+            {
+                "name": "Scheme",
+                "icon": "palette",
+                "description": "更改当前配色方案",
+                "command": [
+                    "autocomplete",
+                    "scheme"
+                ],
+                "enabled": true,
+                "dangerous": false
+            },
+            {
+                "name": "Wallpaper",
+                "icon": "image",
+                "description": "更改当前壁纸",
+                "command": [
+                    "autocomplete",
+                    "wallpaper"
+                ],
+                "enabled": true,
+                "dangerous": false
+            },
+            {
+                "name": "Variant",
+                "icon": "colors",
+                "description": "更改当前方案变体",
+                "command": [
+                    "autocomplete",
+                    "variant"
+                ],
+                "enabled": true,
+                "dangerous": false
+            },
+            {
+                "name": "Transparency",
+                "icon": "opacity",
+                "description": "更改shell透明度",
+                "command": [
+                    "autocomplete",
+                    "transparency"
+                ],
+                "enabled": false,
+                "dangerous": false
+            },
+            {
+                "name": "Random",
+                "icon": "casino",
+                "description": "随机切换壁纸",
+                "command": [
+                    "caelestia",
+                    "wallpaper",
+                    "-r"
+                ],
+                "enabled": true,
+                "dangerous": false
+            },
+            {
+                "name": "Light",
+                "icon": "light_mode",
+                "description": "将方案更改为亮模式",
+                "command": [
+                    "setMode",
+                    "light"
+                ],
+                "enabled": true,
+                "dangerous": false
+            },
+            {
+                "name": "Dark",
+                "icon": "dark_mode",
+                "description": "将方案更改为暗黑模式",
+                "command": [
+                    "setMode",
+                    "dark"
+                ],
+                "enabled": true,
+                "dangerous": false
+            },
+            {
+                "name": "Shutdown",
+                "icon": "power_settings_new",
+                "description": "关机",
+                "command": [
+                    "systemctl",
+                    "poweroff"
+                ],
+                "enabled": true,
+                "dangerous": true
+            },
+            {
+                "name": "Reboot",
+                "icon": "cached",
+                "description": "重启",
+                "command": [
+                    "systemctl",
+                    "reboot"
+                ],
+                "enabled": true,
+                "dangerous": true
+            },
+            {
+                "name": "Logout",
+                "icon": "exit_to_app",
+                "description": "注销",
+                "command": [
+                    "hyprctl",
+                    "dispatch",
+                    "exit",
+                    "0"
+                ],
+                "enabled": true,
+                "dangerous": true
+            },
+            {
+                "name": "Lock",
+                "icon": "lock",
+                "description": "锁定会话",
+                "command": [
+                    "loginctl",
+                    "lock-session"
+                ],
+                "enabled": true,
+                "dangerous": false
+            },
+            {
+                "name": "Sleep",
+                "icon": "bedtime",
+                "description": "休眠",
+                "command": [
+                    "systemctl",
+                    "suspend-then-hibernate"
+                ],
+                "enabled": true,
+                "dangerous": false
+            }
+        ],
         "dragThreshold": 50,
         "vimKeybinds": true,
         "enableDangerousActions": false,
-        "maxShown": 8,
+        "maxShown": 7,
         "maxWallpapers": 9,
+        "specialPrefix": "@",
         "useFuzzy": {
             "apps": true,
             "actions": true,
@@ -149,7 +390,8 @@
             "variants": true,
             "wallpapers": true
         },
-        "showOnHover": false
+        "showOnHover": false,
+        "hiddenApps": []
     },
     "lock": {
         "recolourLogo": true
@@ -170,10 +412,11 @@
     "paths": {
         "mediaGif": "root:/assets/bongocat.gif",
         "sessionGif": "root:/assets/kurukuru.gif",
-        "wallpaperDir": "~/图片/Wallpapers"
+        "wallpaperDir": "~/图片/Wallpapers/"
     },
     "services": {
         "audioIncrement": 0.1,
+        "maxVolume": 1.0,
         "defaultPlayer": "ncmpcpp",
         "gpuType": "",
         "playerAliases": [
@@ -190,12 +433,14 @@
     },
     "session": {
         "dragThreshold": 30,
+        "enabled": true,
         "vimKeybinds": false,
         "commands": {
             "logout": [
-                "loginctl",
-                "terminate-user",
-                ""
+                "hyprctl",
+                "dispatch",
+                "exit",
+                "0"
             ],
             "shutdown": [
                 "systemctl",
@@ -209,6 +454,27 @@
                 "systemctl",
                 "reboot"
             ]
+        }
+    },
+    "sidebar": {
+        "dragThreshold": 80,
+        "enabled": true
+    },
+    "utilities": {
+        "enabled": true,
+        "maxToasts": 4,
+        "toasts": {
+            "audioInputChanged": true,
+            "audioOutputChanged": true,
+            "capsLockChanged": true,
+            "chargingChanged": true,
+            "configLoaded": true,
+            "dndChanged": true,
+            "gameModeChanged": true,
+            "kbLayoutChanged": true,
+            "numLockChanged": true,
+            "vpnChanged": true,
+            "nowPlaying": false
         }
     }
 }
