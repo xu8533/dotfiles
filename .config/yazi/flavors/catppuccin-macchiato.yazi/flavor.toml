@@ -70,8 +70,8 @@ perm_exec  = { fg = "#a6da95" }
 
 # Progress
 progress_label  = { fg = "#ffffff", bold = true }
-progress_normal = { fg = "#8aadf4", bg = "#494d64" }
-progress_error  = { fg = "#ed8796", bg = "#494d64" }
+progress_normal = { fg = "#a6da95", bg = "#494d64" }
+progress_error  = { fg = "#eed49f", bg = "#ed8796" }
 
 # : }}}
 
@@ -110,7 +110,7 @@ border = { fg = "#8aadf4" }
 [tasks]
 border  = { fg = "#8aadf4" }
 title   = {}
-hovered = { fg = "#f5bde6", underline = true }
+hovered = { fg = "#f5bde6", bold = true }
 
 # : }}}
 
@@ -139,7 +139,18 @@ footer  = { fg = "#363a4f", bg = "#cad3f5" }
 # : }}}
 
 
-# : Notify {{{
+# : Spotter {{{
+
+[spot]
+border   = { fg = "#8aadf4" }
+title    = { fg = "#8aadf4" }
+tbl_col  = { fg = "#8bd5ca" }
+tbl_cell = { fg = "#f5bde6", bg = "#494d64" }
+
+# : }}}
+
+
+# : Notification {{{
 
 [notify]
 title_info  = { fg = "#a6da95" }
@@ -154,22 +165,19 @@ title_error = { fg = "#ed8796" }
 [filetype]
 
 rules = [
-	# Images
+	# Image
 	{ mime = "image/*", fg = "#8bd5ca" },
-
 	# Media
 	{ mime = "{audio,video}/*", fg = "#eed49f" },
-
-	# Archives
+	# Archive
 	{ mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", fg = "#f5bde6" },
-
-	# Documents
+	# Document
 	{ mime = "application/{pdf,doc,rtf}", fg = "#a6da95" },
-
+	# Virtual file system
+	{ mime = "vfs/{absent,stale}", fg = "#939ab7" },
 	# Fallback
 	{ url = "*", fg = "#cad3f5" },
 	{ url = "*/", fg = "#8aadf4" },
-
 	# TODO: remove
 	{ name = "*", fg = "#cad3f5" },
 	{ name = "*/", fg = "#8aadf4" }
