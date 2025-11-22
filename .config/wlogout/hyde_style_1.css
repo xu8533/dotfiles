@@ -1,0 +1,138 @@
+* {
+    background-image: none;
+    font-size: 28px;
+}
+
+@import "../../.cache/wal/colors-waybar.css";
+
+window {
+    background-image: url("./icons/lakeside_sunset.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+}
+
+button {
+    color: @foreground;
+    /* color: rgba(224, 240, 235, 0.95); */
+    /* background-color: rgba(16, 20, 25, 0.7); */
+    background-color: @background;
+    outline-style: none;
+    border: none;
+    border-width: 0px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20%;
+    border-radius: 0px;
+    box-shadow: none;
+    text-shadow: none;
+    animation: gradient_f 20s ease-in infinite;
+}
+
+button:focus,
+button:hover {
+    /* background-color: rgba(147, 206, 233, 0.4); */
+    background-color: @color6;
+    background-size: 40%;
+    border-radius: 50px;
+    /* color: rgba(234, 85, 50, 0.95); */
+    color: @color3;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55, 0.0, .28, 1.682);
+}
+
+button:hover#lock {
+    border-radius: 50px;
+    margin: 331px 0px 331px 403px;
+}
+
+button:hover#logout {
+    border-radius: 50px;
+    margin: 331px 0px 331px 0px;
+}
+
+button:hover#suspend {
+    border-radius: 50px;
+    margin: 331px 0px 331px 0px;
+}
+
+button:hover#shutdown {
+    border-radius: 50px;
+    margin: 331px 0px 331px 0px;
+}
+
+button:hover#hibernate {
+    border-radius: 50px;
+    margin: 331px 0px 331px 0px;
+}
+
+button:hover#reboot {
+    border-radius: 50px;
+    margin: 331px 403px 331px 0px;
+}
+
+button:focus#lock {
+    border-radius: 50px;
+    margin: 331px 0px 331px 403px;
+}
+
+button:focus#logout {
+    border-radius: 50px;
+    margin: 331px 0px 331px 0px;
+}
+
+button:focus#suspend {
+    border-radius: 50px;
+    margin: 331px 0px 331px 0px;
+}
+
+button:focus#shutdown {
+    border-radius: 50px;
+    margin: 331px 0px 331px 0px;
+}
+
+button:focus#hibernate {
+    border-radius: 50px;
+    margin: 331px 0px 331px 0px;
+}
+
+button:focus#reboot {
+    border-radius: 50px;
+    margin: 331px 403px 331px 0px;
+}
+
+#lock {
+    background-image: image(url("$HOME/.config/wlogout/icons/lock_white.png"), url("/usr/share/wlogout/icons/lock.png"), url("/usr/local/share/wlogout/icons/lock.png"));
+    border-radius: 80px 0px 0px 80px;
+    margin: 403px 0px 403px 403px;
+}
+
+#logout {
+    background-image: image(url("$HOME/.config/wlogout/icons/logout_white.png"), url("/usr/share/wlogout/icons/logout.png"), url("/usr/local/share/wlogout/icons/logout.png"));
+    border-radius: 0px 0px 0px 0px;
+    margin: 403px 0px 403px 0px;
+}
+
+#suspend {
+    background-image: image(url("$HOME/.config/wlogout/icons/suspend_white.png"), url("/usr/share/wlogout/icons/suspend.png"), url("/usr/local/share/wlogout/icons/suspend.png"));
+    border-radius: 0px 0px 0px 0px;
+    margin: 403px 0px 403px 0px;
+}
+
+#shutdown {
+    background-image: image(url("$HOME/.config/wlogout/icons/shutdown_white.png"), url("/usr/share/wlogout/icons/shutdown.png"), url("/usr/local/share/wlogout/icons/shutdown.png"));
+    border-radius: 0px 0px 0px 0px;
+    margin: 403px 0px 403px 0px;
+}
+
+#hibernate {
+    background-image: image(url("$HOME/.config/wlogout/icons/hibernate_white.png"), url("/usr/share/wlogout/icons/hibernate.png"), url("/usr/local/share/wlogout/icons/hibernate.png"));
+    border-radius: 0px 0px 0px 0px;
+    margin: 403px 0px 403px 0px;
+}
+
+#reboot {
+    background-image: image(url("$HOME/.config/wlogout/icons/reboot_white.png"), url("/usr/share/wlogout/icons/reboot.png"), url("/usr/local/share/wlogout/icons/reboot.png"));
+    border-radius: 0px 80px 80px 0px;
+    margin: 403px 403px 403px 0px;
+}

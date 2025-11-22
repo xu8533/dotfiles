@@ -1,0 +1,99 @@
+* {
+    background-image: none;
+    font-size: 28px;
+}
+
+window {
+    background-image: url("./icons/ngc-7293.png");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+button {
+    color: rgba(248, 247, 240, 0.9);
+    background-color: rgba(16, 20, 25, 0.7);
+    outline-style: none;
+    border: none;
+    border-width: 0px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 10%;
+    border-radius: 0px;
+    box-shadow: none;
+    text-shadow: none;
+    animation: gradient_f 20s ease-in infinite;
+}
+
+button:focus,
+button:hover {
+    background-color: rgba(147, 206, 233, 0.4);
+    background-size: 25%;
+    border-radius: 50px;
+    color: rgba(234, 85, 50, 0.95);
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55, 0.0, .28, 1.682);
+}
+
+/* button:hover#lock { */
+/*     border-radius: 50px 50px 0px 50px; */
+/*     margin: 280px 0px 0px 504px; */
+/* } */
+/**/
+/* button:hover#logout { */
+/*     border-radius: 50px 0px 50px 50px; */
+/*     margin: 0px 0px 280px 504px; */
+/* } */
+/**/
+/* button:hover#shutdown { */
+/*     border-radius: 50px 50px 50px 0px; */
+/*     margin: 280px 504px 0px 0px; */
+/* } */
+/**/
+/* button:hover#reboot { */
+/*     border-radius: 0px 50px 50px 50px; */
+/*     margin: 0px 504px 280px 0px; */
+/* } */
+
+button:focus#lock {
+    border-radius: 50px 50px 0px 50px;
+    margin: 280px 0px 0px 504px;
+}
+
+button:focus#logout {
+    border-radius: 50px 0px 50px 50px;
+    margin: 0px 0px 280px 504px;
+}
+
+button:focus#shutdown {
+    border-radius: 50px 50px 50px 0px;
+    margin: 280px 504px 0px 0px;
+}
+
+button:focus#reboot {
+    border-radius: 0px 50px 50px 50px;
+    margin: 0px 504px 280px 0px;
+}
+
+#lock {
+    background-image: image(url("$HOME/.config/wlogout/icons/lock_black.png"), url("/usr/share/wlogout/icons/lock.png"), url("/usr/local/share/wlogout/icons/lock.png"));
+    border-radius: 80px 0px 0px 0px;
+    margin: 360px 0px 0px 619px;
+}
+
+#logout {
+    background-image: image(url("$HOME/.config/wlogout/icons/logout_black.png"), url("/usr/share/wlogout/icons/logout.png"), url("/usr/local/share/wlogout/icons/logout.png"));
+    border-radius: 0px 0px 0px 80px;
+    margin: 0px 0px 360px 619px;
+}
+
+#shutdown {
+    background-image: image(url("$HOME/.config/wlogout/icons/shutdown_black.png"), url("/usr/share/wlogout/icons/shutdown.png"), url("/usr/local/share/wlogout/icons/shutdown.png"));
+    border-radius: 0px 80px 0px 0px;
+    margin: 360px 619px 0px 0px;
+}
+
+#reboot {
+    background-image: image(url("$HOME/.config/wlogout/icons/reboot_black.png"), url("/usr/share/wlogout/icons/reboot.png"), url("/usr/local/share/wlogout/icons/reboot.png"));
+    border-radius: 0px 0px 80px 0px;
+    margin: 0px 619px 360px 0px;
+}
