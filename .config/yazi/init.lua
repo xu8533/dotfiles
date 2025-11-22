@@ -23,27 +23,6 @@ end
 -- 	smart_enter = true,
 -- 	mount_dir = "/media",
 -- })
---
--- omp提示
--- require("omp"):setup({ config = "~/.config/omp/yazi-themes/unicorn.omp.json" })
--- require("omp"):setup({ config = "~/.config/omp/yazi-themes/aliens.omp.json" })
--- require("omp"):setup({ config = "~/.config/omp/yazi-themes/blueish.omp.json" })
--- require("omp"):setup({ config = "~/.config/omp/yazi-themes/cert.omp.json" })
--- require("omp"):setup({ config = "~/.config/omp/yazi-themes/cobalt2.omp.json" })
--- require("omp"):setup({ config = "~/.config/omp/yazi-themes/chips.omp.json" })
--- require("omp"):setup({ config = "~/.config/omp/yazi-themes/gmay.omp.json" })
--- require("omp"):setup({ config = "~/.config/omp/yazi-themes/gruvbox.omp.json" })
--- require("omp"):setup({ config = "~/.config/omp/yazi-themes/huvix.omp.json" })
--- require("omp"):setup({ config = "~/.config/omp/yazi-themes/paradox.omp.json" })
--- require("omp"):setup({ config = "~/.config/omp/yazi-themes/1_shell.omp.json" })
--- require("omp"):setup({ config = "~/.config/omp/yazi-themes/catppuccin_latte.omp.json" })
--- require("omp"):setup({ config = "~/.config/omp/yazi-themes/honukai.omp.json" })
--- require("omp"):setup({ config = "~/.config/omp/yazi-themes/if_tea.omp.json" })
--- require("omp"):setup({ config = "~/.config/omp/yazi-themes/jandedobbeleer.omp.json" })
--- require("omp"):setup({ config = "~/.config/omp/yazi-themes/json.omp.json" })
--- require("omp"):setup({ config = "~/.config/omp/yazi-themes/powerlevel10k_classic.omp.json" })
--- require("omp"):setup({ config = "~/.config/omp/yazi-themes/tokyonight_storm.omp.json" })
--- require("omp"):setup({ config = "~/.config/omp/yazi-themes/ys.omp.json" })
 
 -- full-border
 require("full-border"):setup({
@@ -53,5 +32,82 @@ require("full-border"):setup({
 })
 
 -- relative-motions
--- require("relative-motions"):setup({ show_numbers = "relative_absolute", show_motion = true, enter_mode = "first" })
 require("relative-motions"):setup({ show_numbers = "relative_absolute", show_motion = true, enter_mode = "first" })
+
+-- yatline
+-- yatline theme
+local tokyo_night_theme = require("yatline-tokyo-night"):setup("day") -- "night" | "moon" | "storm" | "day"
+local dracula_theme = require("yatline-dracula"):setup()
+local catppuccin_theme = require("yatline-catppuccin"):setup("mocha") -- "mocha" | "latte" | "frappe" | "macchiato"
+local gruvbox_material_theme = require("yatline-gruvbox-material"):setup({ mode = "dark", toughness = "medium" }) -- "dark" | "light" -- or "hard" | "medium" | "soft"
+local gruvbox_theme = require("yatline-gruvbox"):setup("light") -- "dark" | "light"
+require("yatline"):setup({
+	-- theme = dracula_theme,
+	-- theme = tokyo_night_theme,
+	-- theme = catppuccin_theme,
+	-- theme = gruvbox_theme,
+	theme = gruvbox_material_theme,
+	-- section_separator = { open = "", close = "" },
+	part_separator = { open = "", close = "" },
+	-- inverse_separator = { open = "", close = "" },
+
+	section_separator = { open = "", close = "" },
+	-- part_separator = { open = "", close = "" },
+	inverse_separator = { open = "", close = "" },
+
+	tab_width = 20,
+	tab_use_inverse = false,
+
+	show_background = true,
+
+	display_header_line = true,
+	display_status_line = true,
+
+	component_positions = { "header", "tab", "status" },
+
+	header_line = {
+		left = {
+			section_a = {
+				{ type = "line", custom = false, name = "tabs", params = { "left" } },
+			},
+			section_b = {},
+			section_c = {},
+		},
+		right = {
+			section_a = {
+				{ type = "string", custom = false, name = "date", params = { "%A, %Y年%B%d日" } },
+			},
+			section_b = {
+				{ type = "string", custom = false, name = "date", params = { "%X" } },
+			},
+			section_c = {},
+		},
+	},
+
+	status_line = {
+		left = {
+			section_a = {
+				{ type = "string", custom = false, name = "tab_mode" },
+			},
+			section_b = {
+				{ type = "string", custom = false, name = "hovered_size" },
+			},
+			section_c = {
+				{ type = "string", custom = false, name = "hovered_path" },
+				{ type = "coloreds", custom = false, name = "count" },
+			},
+		},
+		right = {
+			section_a = {
+				{ type = "string", custom = false, name = "cursor_position" },
+			},
+			section_b = {
+				{ type = "string", custom = false, name = "cursor_percentage" },
+			},
+			section_c = {
+				{ type = "string", custom = false, name = "hovered_file_extension", params = { true } },
+				{ type = "coloreds", custom = false, name = "permissions" },
+			},
+		},
+	},
+})
