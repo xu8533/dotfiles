@@ -1,31 +1,35 @@
 [mgr]
 
 prepend_keymap = [
-    { on = [
-        "B",
-    ], run = "plugin hexyl", desc = "二进制显示" },
-    { on = [
-        "C",
-    ], run = "plugin ouch --args=zip", desc = "压缩文件" },
+    { on = "B", run = "plugin hexyl", desc = "二进制显示" },
+    { on = "C", run = "plugin ouch", desc = "压缩文件" },
+    { on = "F", run  = "plugin smart-filter", desc = "智能筛选" },
     { on = "T", run = "plugin toggle-pane max-preview", desc = "最大化或恢复预览窗口" },
     { on = "M", run = "plugin mount", desc = "挂载磁盘" },
+    # diff.yazi
+    { on   = "<C-d>", run  = "plugin diff", desc = "对比选择的文件" },
+    { on = "<C-y>", run = ["plugin wl-clipboard"], desc = "剪切板" },
     # eza-preview
-    { on = [
-        "E",
-    ], run = "plugin eza-preview", desc = "目录预览切换(tree/list)" },
-    { on = [
-        "-",
-    ], run = "plugin eza-preview inc-level", desc = "进一步展开目录层级" },
-    { on = [
-        "_",
-    ], run = "plugin eza-preview dec-level", desc = "进一步折叠目录层级" },
-    { on = [
-        "$",
-    ], run = "plugin eza-preview toggle-follow-symlinks", desc = "Toggle tree follow symlinks" },
-    { on = [
-        "*",
-    ], run = "plugin eza-preview toggle-hidden", desc = "隐藏文件" },
+    # { on = [
+    #     "E",
+    # ], run = "plugin eza-preview", desc = "目录预览切换(tree/list)" },
+    # { on = [
+    #     "-",
+    # ], run = "plugin eza-preview inc-level", desc = "进一步展开目录层级" },
+    # { on = [
+    #     "_",
+    # ], run = "plugin eza-preview dec-level", desc = "进一步折叠目录层级" },
+    # { on = [
+    #     "$",
+    # ], run = "plugin eza-preview toggle-follow-symlinks", desc = "Toggle tree follow symlinks" },
+    # { on = [
+    #     "*",
+    # ], run = "plugin eza-preview toggle-hidden", desc = "隐藏文件" },
 
+    # relative-motions.yazi
+    { on = [
+        "m",
+    ], run = "plugin relative-motions", desc = "触发相对移动(relative-motions)" },
 
     # glow.yazi
     { on = [
@@ -164,12 +168,12 @@ keymap = [
     { on = [
         "<A-PageDown>",
     ], run = "seek 5", desc = "预览窗口内容向下移动5行" },
-    { on = [
-        "<A-k>",
-    ], run = "seek -5", desc = "预览窗口内容向上移动5行" },
-    { on = [
-        "<A-j>",
-    ], run = "seek 5", desc = "预览窗口内容向下移动5行" },
+    # { on = [
+    #     "<A-k>",
+    # ], run = "seek -5", desc = "预览窗口内容向上移动5行" },
+    # { on = [
+    #     "<A-j>",
+    # ], run = "seek 5", desc = "预览窗口内容向下移动5行" },
 
     # 选择
     { on = [
@@ -186,10 +190,10 @@ keymap = [
     ], run = "visual_mode --unset", desc = "退出visual模式(unset mode)" },
     { on = [
         "<C-a>",
-    ], run = "select_all --state=true", desc = "全选" },
+    ], run = "toggle_all --state=true", desc = "全选" },
     { on = [
         "<C-r>",
-    ], run = "select_all --state=none", desc = "打开/取消全选" },
+    ], run = "toggle_all --state=none", desc = "打开/取消全选" },
 
     # 操作
     { on = [
