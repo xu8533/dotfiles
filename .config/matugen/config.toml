@@ -1,0 +1,43 @@
+[config.wallpaper]
+command = "caelestia"
+arguments = ["wallpaper"]
+set = true
+
+[templates.waybar]
+input_path = './templates/colors.css'
+output_path = '~/.cache/matugen/colors-waybar.css'
+post_hook = 'pkill -SIGUSR2 waybar'
+
+[templates.hyprland]
+input_path = './templates/hyprland-colors.conf'
+output_path = '~/.cache/matugen/hyprland-colors.conf'
+
+[templates.kitty]
+input_path = './templates/kitty-colors.conf'
+output_path = '~/.cache/matugen/kitty-colors.conf'
+post_hook = 'pkill -SIGUSR1 kitty'
+
+[templates.wlogout]
+input_path = './templates/colors.css'
+output_path = '~/.cache/matugen/colors-waybar.css'
+
+[templates.rofi]
+input_path = './templates/rofi-colors.rasi'
+output_path = '~/.cache/matugen/rofi-colors.rasi'
+
+[templates.cava]
+input_path = './templates/cava-colors.ini'
+output_path = '~/.cache/matugen/cava-colors.ini'
+post_hook = "pkill -USR1 cava"
+
+[templates.btop]
+input_path = './templates/btop.theme'
+output_path = '~/.cache/matugen/btop.theme'
+
+[templates.ghostty]
+input_path = './templates/ghostty'
+output_path = '~/.cache/matugen/ghostty'
+
+[templates.yazi]
+input_path = './templates/yazi-theme.toml'
+output_path = '~/.cache/matugen/yazi-theme.toml'
