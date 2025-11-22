@@ -31,39 +31,37 @@ edit = [
     { run = '%EDITOR% "%*"', orphan = true, for = "windows" },
 ]
 open = [
-    { run = 'xdg-open "$1"', desc = "Open", for = "linux" },
-    { run = 'start "" "%1"', orphan = true, desc = "Open", for = "windows" },
+    { run = '$EDITOR "$1"', desc = "打开", for = "linux" },
+    { run = 'start "" "%1"', orphan = true, desc = "Open", for = "打开" },
 ]
 reveal = [
-    { run = 'explorer /select,%1', orphan = true, desc = "Reveal", for = "windows" },
-    { run = 'xdg-open "$(dirname "$1")"', desc = "Reveal", for = "linux" },
-    { run = '''clear; exiftool "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show EXIF", for = "unix" },
+    { run = 'explorer /select,%1', orphan = true, desc = "展示", for = "windows" },
+    { run = 'yazi "$(dirname "$1")"', desc = "显示目录", for = "linux" },
+    { run = '''clear; exiftool "$1"; echo "请按enter键退出"; read _''', block = true, desc = "显示EXIF", for = "unix" },
 ]
 extract = [
-    # { run = 'unar "$1"', desc = "解压到这...", for = "unix" },
-    # { run = 'unar "%1"', desc = "解压到这...", for = "windows" },
     { run = 'ya pub extract --list "$@"', desc = "解压到这...", for = "unix" },
     { run = 'ya pub extract --list %*', desc = "解压到这...", for = "windows" },
 ]
 play = [
     { run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
     { run = 'mpv --force-window %*', orphan = true, for = "windows" },
-    { run = '''mediainfo "$1"; echo "Press enter to exit"; read_''', block = true, desc = "显示多媒体信息", for = "unix" },
+    { run = '''mediainfo "$1"; echo "请按enter键退出"; read_''', block = true, desc = "显示多媒体信息", for = "unix" },
 ]
 
 pdf = [{ run = 'evince "$@"', desc = "打开pdf", for = "linux" }]
 
 
 image = [
-    { run = 'swayimg --scale=fill "$@"', desc = "打开图片", for = "linux" },
+    { run = 'swayimg --scale=fit --class=yazi-img-preview "$@"', desc = "打开图片", for = "linux" },
     # { run = 'imv "$@"', desc = "打开图片", for = "linux" },
 ]
 
 [open]
 rules = [
     { name = "*/", use = [
-        "edit",
         "open",
+        "edit",
         "reveal",
     ] },
     { mime = "text/*", use = [
@@ -139,7 +137,7 @@ rules = [
 micro_workers = 10
 macro_workers = 25
 bizarre_retry = 5
-image_alloc = 536870912  # 512MB
+image_alloc = 1073741824 # 1024MB
 image_bound = [0, 0]
 suppress_preload = false
 
@@ -165,6 +163,15 @@ spotters = [
     { name = "*", run = "file" },
 ]
 
+ prepend_preloaders = [
+    # Replace magick, image, video with mediainfo
+    { mime = "audio/*", run = "mediainfo" },
+    # { mime = "{audio,video,image}/*", run = "mediainfo" },
+    { mime = "application/subrip", run = "mediainfo" },
+    # Adobe Illustrator, Adobe Photoshop is image/adobe.photoshop, already handled above
+    { mime = "application/postscript", run = "mediainfo" },
+  ]
+
 preloaders = [
     # Image
     { mime = "image/{avif,hei?,jxl}", run = "magick" },
@@ -180,16 +187,30 @@ preloaders = [
 ]
 
 prepend_previewers = [
-    { name = "*.md", run = "glow" },
-    { mime = "audio/*", run = "exifaudio" },
-    { name = "*/", run = "eza-preview" },
+    { name = "*.tar*", run  = 'piper --format=url -- tar tf "$1"' },
+    { name = "*.csv", run  = 'piper -- bat -p --color=always "$1"' },
+    { name = "*.md", run  = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"' },
+    { name = "*/", run  = 'piper -- eza -TL=3 --color=always --icons=always --group-directories-first --no-quotes "$1"' },
+    # 用mediainfo替换默认的magick, image, video
+    { mime = "{audio,video,image}/*", run = "mediainfo"},
+    { mime = "application/subrip", run = "mediainfo" },
+    # Adobe Illustrator, Adobe Photoshop is image/adobe.photoshop, already handled above
+    { mime = "application/postscript", run = "mediainfo" },
+    # { mime = "audio/*", run = "exifaudio" },
+    # { name = "*.md", run = "glow" },
+    # { name = "*/", run = "eza-preview" },
     # Archive previewer
-    # { mime = "application/*zip",            run = "ouch" },
-    # { mime = "application/x-tar",           run = "ouch" },
-    # { mime = "application/x-bzip2",         run = "ouch" },
-    # { mime = "application/x-7z-compressed", run = "ouch" },
-    # { mime = "application/x-rar",           run = "ouch" },
-    # { mime = "application/x-xz",            run = "ouch" },
+    { mime = "application/*zip",            run = "ouch" },
+	{ mime = "application/x-tar",           run = "ouch" },
+	{ mime = "application/x-bzip2",         run = "ouch" },
+	{ mime = "application/x-7z-compressed", run = "ouch" },
+	{ mime = "application/x-rar",           run = "ouch" },
+	{ mime = "application/vnd.rar",         run = "ouch" },
+	{ mime = "application/x-xz",            run = "ouch" },
+	{ mime = "application/xz",              run = "ouch" },
+	{ mime = "application/x-zstd",          run = "ouch" },
+	{ mime = "application/zstd",            run = "ouch" },
+	{ mime = "application/java-archive",    run = "ouch" },
 ]
 previewers = [
     { name = "*/", run = "folder", sync = true },
@@ -220,13 +241,17 @@ previewers = [
     # Empty file
     { mime = "inode/empty", run = "empty" },
     # Fallback
-    { name = "*", run = "file" },
+    # { name = "*", run = "file" },
+]
+append_previewers = [
+    # 在未匹配到任何previewer的情况下，使用hexyl替换默认的file,显示文件内容
+    { name = "*", run  = 'piper -- hexyl --border=none --terminal-width=$w "$1"' },
 ]
 
 [input]
 cursor_blink = true
 # cd
-cd_title = "改变目录:"
+cd_title = "切换目录:"
 cd_origin = "top-center"
 cd_offset = [0, 2, 50, 3]
 
