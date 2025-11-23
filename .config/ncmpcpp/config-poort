@@ -1,6 +1,6 @@
 mpd_host = "localhost"
 mpd_port = "6600"
-mpd_music_dir = "/media/数据/音乐/"
+mpd_music_dir = "$HOME/音乐/"
 
 ##### timeouts and delays #####
 mpd_crossfade_time = "2"
@@ -29,7 +29,7 @@ display_bitrate = "yes"
 ignore_leading_the = "yes"
 mouse_support = "yes"
 enable_window_title = "no"
-external_editor = "vim"
+external_editor = "vi"
 use_console_editor = "yes"
 
 ##### colors definitions #####
