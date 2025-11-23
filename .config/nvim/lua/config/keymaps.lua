@@ -4,10 +4,10 @@
 local map = LazyVim.safe_keymap_set
 local del = vim.keymap.del
 
-map({ "n", "x" }, ";", ":", { desc = "quick enter command mode" })
+map({ "n", "x" }, ";", ":", { desc = "快速进入命令行模式" })
 
 -- 调整窗口左右大小
 del("n", "<C-Left>")
 del("n", "<C-Right>")
-map("n", "<S-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
-map("n", "<S-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
+map("n", "<S-Left>", "<cmd>vertical resize -2<cr>", { desc = "缩小窗口宽度" })
+map("n", "<S-Right>", "<cmd>vertical resize +2<cr>", { desc = "增加窗口宽度" })
