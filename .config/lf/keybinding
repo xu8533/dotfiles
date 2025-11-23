@@ -8,20 +8,44 @@ map m
 map t
 map '['
 map ']'
-map s
+map sa
+map sC
+map sb
+map sc
+map se
+map sn
+map ss
+map st
 
 ## built-in
-map <c-u> half-down
-map <c-d> half-up
-map H jump-prev
-map L jump-next
-map J half-down
-map K half-up
-map zp toggle-preview
-map ` !true
-map F :filter
-map C visual-change
+# map <c-u> half-down
+# map <c-d> half-up
+# map H jump-prev
+# map L jump-next
+# map J half-down
+# map K half-up
+# map zp toggle-preview
+# map ` !true
+# map F :filter
+# map C visual-change
 
+map ms select
+
+# 切换目录
+map gc cd ~/.config
+map gd cd ~/下载
+map gD cd ~/文档
+map ge cd ~/桌面
+map gh cd ~
+map gm cd /media/数据/音乐
+map gM cd ~/音乐
+map gp cd ~/图片
+map gs cd ~/.dotfiles
+map gt cd /tmp
+map gv cd ~/视频
+map gw cd ~/图片/Wallpapers
+
+# 排序
 map ,m :set sortby time; set info size:time; set reverse!; top
 map ,M :set sortby time; set info size:time; set reverse; top
 map ,c :set sortby btime; set info size:btime; set reverse!; top
@@ -30,12 +54,12 @@ map ,a :set sortby atime; set info size:atime; set reverse!; top
 map ,A :set sortby atime; set info size:atime; set reverse!; top
 map sc :set sortby ctime; set info size:ctime; set reverse!; top
 map sC :set sortby ctime; set info size:ctime; set reverse; top
+map ,s :set sortby size; set info size:time; set reverse!; top
+map ,S :set sortby size; set info size:time; set reverse; top
 map ,e :set sortby ext; set info size:time; set reverse!; top
 map ,E :set sortby ext; set info size:time; set reverse; top
 map ,n :set sortby natural; set info size:time; set reverse!; top
 map ,N :set sortby natural; set info size:time; set reverse; top
-map ,s :set sortby size; set info size:time; set reverse!; top
-map ,S :set sortby size; set info size:time; set reverse; top
 map ,z :set sortby name; set info size:time; set reverse!; top
 map ,Z :set sortby name; set info size:time; set reverse!; top
 
@@ -68,19 +92,6 @@ map E &footclient nvim $f
 map Y $printf '%s' "$fx" | wl-copy
 
 
-# 切换目录
-map gc cd ~/.config
-map gd cd ~/下载
-map gD cd ~/文档
-map ge cd ~/桌面
-map gh cd ~
-map gm cd /media/数据/音乐
-map gM cd ~/音乐
-map gp cd ~/图片
-map gs cd ~/.dotfiles
-map gt cd /tmp
-map gv cd ~/视频
-map gw cd ~/图片/Wallpapers
 
 
 map W $~/.local/bin/setwall $f
@@ -108,3 +119,147 @@ map xT $~/.local/bin/id3trck $fx
 ## Git
 map gl $clear; git log --graph --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s%Cgreen(%cr)' --abbrev-commit
 map gs $clear; git status -v | less -i
+
+## commands
+cmd toggle-preview %{{
+    if [ "$lf_preview" = true ]; then
+        lf -remote "send $id :set preview false; set ratios 1:5 set info size:time"
+    else
+        lf -remote "send $id :set preview true; set ratios 1:2:3"
+    fi
+}}
+map zp toggle-preview
+
+cmd fzf_jump ${{
+    # `~/.local/bin/scope` checks `$FZF_LEVEL`
+    res="$(find . | FZF_LEVEL=1 fzf --reverse --prompt "lf >" --preview 'scope {}' --bind=ctrl-j:preview-down,ctrl-k:preview-up)"
+    if [ -n "$res" ]; then
+        if [ -d "$res" ]; then
+            cmd="cd"
+        else
+            cmd="select"
+        fi
+        res="$(printf '%s' "$res" | sed 's/\\/\\\\/g;s/"/\\"/g')"
+        lf -remote "send $id $cmd \"$res\""
+    fi
+}}
+map f fzf_jump
+
+cmd bulk-rename ${{
+    old="$(mktemp)"
+    new="$(mktemp)"
+    if [ -n "$fs" ]; then
+        fs="$(basename -a -- $fs)"
+    else
+        fs="$(ls)"
+    fi
+    printf '%s\n' "$fs" > "$old"
+    printf '%s\n' "$fs" > "$new"
+    $EDITOR "$new"
+    [ "$(wc -l < "$new")" -ne "$(wc -l < "$old")" ] && exit
+    paste "$old" "$new" | while IFS= read -r names; do
+        src="$(printf '%s' "$names" | cut -f1)"
+        dst="$(printf '%s' "$names" | cut -f2)"
+        if [ "$src" = "$dst" ] || [ -e "$dst" ]; then
+            continue
+        fi
+        mv -- "$src" "$dst"
+    done
+    rm -- "$old" "$new"
+    lf -remote "send $id unselect"
+}}
+map xb bulk-rename
+
+# y (select for copy) and P to paste symlink
+# d (select for cut) and P to paste hard link
+cmd link %{{
+    set -- $(cat ~/.local/share/lf/files)
+    mode="$1"
+    shift
+    if [ "$#" -lt 1 ]; then
+        lf -remote "send $id echoerr no files to link"
+        exit
+    fi
+    case "$mode" in
+        # 'copy' mode indicates a symlink
+        copy) ln -sr -t . -- "$@";;
+        # while 'move' mode indicates a hard link
+        move)
+            ln -t . -- "$@"
+            lf -remote "send clear"
+            ;;
+    esac
+}}
+map P :link
+
+# touch and focus
+cmd touch %{{
+    IFS=" "
+    file="$*"
+    touch -- "$file"
+    lf -remote "send $id select \"$(printf '%s' "$file" | sed 's/\\/\\\\/g;s/"/\\"/g')\""
+}}
+map o push :touch<space>
+
+# mkdir and focus
+cmd mkdir %{{
+    IFS=" "
+    file="$*"
+    mkdir -p -- "$file"
+    lf -remote "send $id select \"$(printf '%s' "$file" | sed 's/\\/\\\\/g;s/"/\\"/g')\""
+}}
+map O push :mkdir<space>
+
+# git prompt on every changing directory
+cmd on-cd &{{
+    bash -c '
+    # display git repository status in your prompt
+    source /usr/share/git/completion/git-prompt.sh
+
+    GIT_PS1_SHOWDIRTYSTATE=1        # + for staged, * if unstaged
+    GIT_PS1_SHOWSTASHSTATE=1        # $ if something is stashed.
+    GIT_PS1_SHOWUNTRACKEDFILES=1    # % if there are untracked files
+    GIT_PS1_SHOWUPSTREAM=1 	        # <, >, <> behind, ahead, or diverged from upstream.
+    GIT_PS1_STATESEPARATOR=" " 	    # separator between branch name and state symbols
+    GIT_PS1_DESCRIBE_STYLE=1 	    # show commit relative to tag or branch, when detached HEAD
+    GIT_PS1_SHOWCOLORHINTS=1        # display in color
+
+    git=$(__git_ps1 " %s")
+    fmt="\033[106m%u@%h\033[00m \033[40m%d%f$git\033[0m"
+    lf -remote "send $id set promptfmt \"$fmt\""
+    '
+}}
+# calling on-cd when lf starts
+on-cd
+
+# open anothr lf instance in the same PWD
+cmd lf-mirror &{{
+    footclient lf
+}}
+map zm lf-mirror
+
+cmd extract %{{
+    printf "extract file?(y/n)"
+    read choice
+    if [ "$choice" = "y" ]; then
+        case "$f" in
+        *.tar)  tar xf "$f" ;;
+        *.zip)  unzip "$f" ;;
+        *.gz)   gunzip -k "$f" ;;
+        *.tar.gz) tar xzf "$f" ;;
+        *.tar.bz2) tar xjf "$f" ;;
+        *.tar.xz) tar xJf "$f" ;;
+        *.tar.zst) tar xf "$f" --zstd ;;
+        esac
+    fi
+    lf -remote "send clear"
+}}
+map xx extract
+
+cmd rotate %{{
+    printf "rotate degree?: "
+    read line
+    convert -rotate "$line" "$f" "$f"
+    lf -remote "send clear"
+}}
+map xr rotate
