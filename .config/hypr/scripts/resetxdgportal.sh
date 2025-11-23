@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 sleep 1
 killall -e xdg-desktop-portal-hyprland
-# killall xdg-desktop-portal-gnome
-# killall xdg-desktop-portal-kde
-# killall xdg-desktop-portal-lxqt
-killall -e xdg-desktop-portal-wlr
 killall -e xdg-desktop-portal
 sleep 1
 /usr/lib/xdg-desktop-portal-hyprland &
