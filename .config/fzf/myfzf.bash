@@ -12,14 +12,17 @@ export FZF_CTRL_T_OPTS="
 
 # 搜索历史命令使用ctrl+r
 export FZF_CTRL_R_OPTS="
+    --color=header:italic
+    --ghost=搜索历史命令
     --preview 'echo {}' 
-    --preview-window down:6:hidden:wrap 
+    --preview-window down:10:hidden:wrap 
 "
 
 # 树形目录
 export FZF_ALT_C_OPTS="
     --walker-skip .git,node_modules,target
     --preview 'tree -C {}'
+    --ghost=搜索目录
 "
 
 # 这两个选项不能和preview一起工作
@@ -46,10 +49,11 @@ export FZF_COMPLETION_DIR_OPTS='
 # 预览程序为fzf-preview.sh, 可以预览图片
 # 预览程序为bat, bat的配置在~/.config/bat/config, 需要调整效果
 # 修改该文件即可
-# --layout=reverse
+#--pointer='󰞘 '
+label=$(echo FZF模糊搜索器 | lolcat -f -p 5.0 -F 0.3 --truecolor)
 export FZF_DEFAULT_OPTS="
-    --preview='fzf-preview.sh {}'
-    --preview-window=border-thinblock:down:48%:hidden:wrap
+    --preview='BAT_THEME=Dracula fzf-preview.sh {}'
+    --preview-window=border-thinblock:right:48%:hidden:wrap
     --bind='ctrl-u:preview-page-up'
     --bind='ctrl-d:preview-page-down'
     --bind='?:change-preview-window(down|right|)'
@@ -57,19 +61,25 @@ export FZF_DEFAULT_OPTS="
     --bind='scroll-up:up+up,scroll-down:down+down'
     --bind='preview-scroll-up:preview-up+preview-up'
     --bind='preview-scroll-down:preview-down+preview-down'
-    --bind 'ctrl-y:execute-silent(printf {} | cut -f 2- | wl-copy --trim-newline)'
-    --header '请按CTRL-y将命令复制到剪切板'
+    --bind='ctrl-x:exclude-multi'
+    --bind='ctrl-y:execute-silent(printf {} | cut -f 2- | wl-copy --trim-newline)'
+    --bind='ctrl-a:select-all,ctrl-d:deselect-all'
+    --header='请按CTRL-y将命令复制到剪切板'
+    --layout=reverse-list
     --height=95%
     --multi
+    --ansi
     --info=inline-right
-    --border=thinblock
+    --border=sharp
+    --pointer='󱗆 '
     --prompt=' '
+    --border-label='╢ ${label} ╟'
+    --color=label:italic:black
     --tabstop=4
     --padding=1%
     --margin=1%
-    --color=header:italic
-    --header-lines-border bottom
-    --list-border bottom
+    --header-lines-border=bottom
+    --list-border=bottom
     --style=full
     --ghost=请输入
 "
@@ -124,6 +134,71 @@ __fzf-menu__() {
 }
 bind -x '"\C-t":"__fzf-menu__"'
 
+# CTRL-X-1 - Invoke Readline functions by name
+__fzf_readline() {
+    builtin eval "
+        builtin bind ' \
+            \"\C-x3\": $(
+        builtin bind -l | command fzf +s +m --toggle-sort=ctrl-r
+    ) \
+        '
+    "
+}
+
+builtin bind -x '"\C-x2": __fzf_readline'
+builtin bind '"\C-x1": "\C-x2\C-x3"'
+
+# Another CTRL-T script to select a directory and paste it into line
+# __fzf_select_dir() {
+#     builtin typeset READLINE_LINE_NEW="$(
+#         command find -L . \( -path '*/\.*' -o -fstype dev -o -fstype proc \) \
+#             -prune \
+#             -o -type f -print \
+#             -o -type d -print \
+#             -o -type l -print 2>/dev/null |
+#             command sed 1d |
+#             command cut -b3- |
+#             env fzf -m
+#     )"
+#
+#     if
+#         [[ -n $READLINE_LINE_NEW ]]
+#     then
+#         builtin bind '"\er": redraw-current-line'
+#         builtin bind '"\e^": magic-space'
+#         READLINE_LINE=${READLINE_LINE:+${READLINE_LINE:0:READLINE_POINT}}${READLINE_LINE_NEW}${READLINE_LINE:+${READLINE_LINE:READLINE_POINT}}
+#         READLINE_POINT=$((READLINE_POINT + ${#READLINE_LINE_NEW}))
+#     else
+#         builtin bind '"\er":'
+#         builtin bind '"\e^":'
+#     fi
+# }
+#
+# builtin bind -x '"\C-x1": __fzf_select_dir'
+# builtin bind '"\C-t": "\C-x1\e^\er"'
+
+# Another CTRL-R script to insert the selected command from history into the command line/region
+# bind '"\C-r": "\C-x1\e^\er"'
+# bind -x '"\C-x1": __fzf_history'
+#
+# __fzf_history() {
+#     __ehc $(history | fzf --tac --tiebreak=index | perl -ne 'm/^\s*([0-9]+)/ and print "!$1"')
+# }
+#
+# __ehc() {
+#     if
+#         [[ -n $1 ]]
+#     then
+#         bind '"\er": redraw-current-line'
+#         bind '"\e^": magic-space'
+#         READLINE_LINE=${READLINE_LINE:+${READLINE_LINE:0:READLINE_POINT}}${1}${READLINE_LINE:+${READLINE_LINE:READLINE_POINT}}
+#         READLINE_POINT=$((READLINE_POINT + ${#1}))
+#     else
+#         bind '"\er":'
+#         bind '"\e^":'
+#     fi
+# }
+
 #############社区提供的一些常用函数################################
 # fkill - 杀死进程- 只显示本账号可以kill的进程
 fkill() {
@@ -159,7 +234,7 @@ fman() {
 # export MANPAGER="sh -c 'col -bx | bat -l man -p --paging always'"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
-# fe [FUZZY PATTERN] - Open the selected file with the default editor
+# fo [FUZZY PATTERN] - Open the selected file with the default editor
 #   - Bypass fuzzy finder if there's only one match (--select-1)
 #   - Exit if there's no match (--exit-0)
 #   - CTRL-O to open with `open` command,
@@ -176,7 +251,7 @@ fo() {
 # fh - 重复历史命令
 runcmd() { perl -e 'ioctl STDOUT, 0x5412, $_ for split //, <>'; }
 fh() {
-    ([ -n "$BASH" ] && fc -l 1 || history) | fzf +s --tac | sed -re 's/^\s*[0-9]+\s*//' | runcmd
+    ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -re 's/^\s*[0-9]+\s*//' | runcmd
 }
 
 # fhe - 重复历史命令(允许修改命令)
@@ -361,236 +436,25 @@ cd() {
 }
 
 # fzf和autojump集成
-fj() {
-    local preview_cmd="ls {2..}"
-    if command -v exa &>/dev/null; then
-        preview_cmd="exa -l {2}"
-    fi
-
-    if [[ $# -eq 0 ]]; then
-        cd "$(autojump -s | sort -k1gr | awk -F : '$1 ~ /[0-9]/ && $2 ~ /^\s*\// {print $1 $2}' | fzf --height 40% --reverse --inline-info --preview "$preview_cmd" --preview-window down:50% | cut -d$'\t' -f2- | sed 's/^\s*//')"
-    else
-        cd $(autojump $@)
-    fi
-}
+# fj() {
+#     local preview_cmd="ls {2..}"
+#     if command -v exa &>/dev/null; then
+#         preview_cmd="exa -l {2}"
+#     fi
+#
+#     if [[ $# -eq 0 ]]; then
+#         cd "$(autojump -s | sort -k1gr | awk -F : '$1 ~ /[0-9]/ && $2 ~ /^\s*\// {print $1 $2}' | fzf --height 40% --reverse --inline-info --preview "$preview_cmd" --preview-window down:50% | cut -d$'\t' -f2- | sed 's/^\s*//')"
+#     else
+#         cd $(autojump $@)
+#     fi
+# }
 
 # mpd集成
-fmpc() {
-    local song_position
-    song_position=$(mpc -f "%position%) %artist% - %title%" playlist |
-        fzf-tmux --query="$1" --reverse --select-1 --exit-0 |
-        sed -n 's/^\([0-9]\+\)).*/\1/p') || return 1
-    [ -n "$song_position" ] && mpc -q play $song_position
-}
-
-# CTRL-X-1 - Invoke Readline functions by name
-__fzf_readline() {
-    builtin eval "
-        builtin bind ' \
-            \"\C-x3\": $(
-        builtin bind -l | command fzf +s +m --toggle-sort=ctrl-r
-    ) \
-        '
-    "
-}
-
-builtin bind -x '"\C-x2": __fzf_readline'
-builtin bind '"\C-x1": "\C-x2\C-x3"'
-
-# fzf主题
-# Paper color
-# export FZF_DEFAULT_OPTS='
-# 	--color=fg:#4d4d4c,bg:#eeeeee,hl:#d7005f
-# 	--color=fg+:#fd3f7f,bg+:#eeeee8,hl+:#007175
-# 	--color=info:#4271ae,prompt:#8959a8,pointer:#d7005f
-# 	--color=marker:#4271ae,spinner:#4271ae,header:#4271ae
-# 	--color=preview-fg:#f4b3c2,preview-bg:#326663
-# 	--color=query:#00aaee'
-#
-# SpaceCamp
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
- --color=fg:#dedede,bg:#121212,hl:#666666
- --color=fg+:#eeeeee,bg+:#282828,hl+:#cf73e6
- --color=info:#cf73e6,prompt:#FF0000,pointer:#cf73e6
- --color=marker:#f0d50c,spinner:#cf73e6,header:#91aadf
- --color=query:#b7c741
- --color=preview-bg:#223345,border:#778899'
-# --color=query:#2874af
-
-# Dracula
-# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-# 	--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9
-# 	--color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9
-# 	--color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6
-# 	--color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4'
-
-# web color
-# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-# --color=fg:#d0d0d0,bg:#121212,hl:#5f87af
-# 	--color=fg+:#d0d0d0,bg+:#262626,hl+:#5fd7ff
-# 	--color=info:#afaf87,prompt:#d7005f,pointer:#af5fff
-# 	--color=marker:#87ff00,spinner:#af5fff,header:#87afaf'
-
-#sonokai:
-#sonokai-default:
-# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-#   --color=fg:#e1e3e4,bg:#2b2d3a,hl:#7e8294
-# 	--color=fg+:#e1e3e4,bg+:#333648,hl+:#fb617e
-# 	--color=info:#fb617e,prompt:#fb617e,pointer:#fb617e
-# 	--color=marker:#fb617e,spinner:#bb97ee,header:#7e8294
-# 	--color=border:#7e8294,preview-bg:#363a4e'
-
-# sonokai-andromeda:
-# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-# 	--color=fg:#e1e3e4,bg:#2b2d3a,hl:#9ed06c
-# 	--color=fg+:#e1e3e4,bg+:#333648,hl+:#9ed06c
-# 	--color=info:#edc763,prompt:#fb617e,pointer:#6dcae8
-# 	--color=marker:#6dcae8,spinner:#edc763,header:#6dcae8
-#   --color=border:#7e8294'
-#
-# sonokai-atlantis:
-# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-#   --color=fg:#e1e3e4,bg:#2a2f38,hl:#9dd274
-# 	--color=fg+:#e1e3e4,bg+:#333846,hl+:#9dd274
-# 	--color=info:#eacb64,prompt:#ff6578,pointer:#72cce8
-# 	--color=marker:#72cce8,spinner:#eacb64,header:#72cce8
-#   --color=border:#828a9a'
-#
-# sonokai-shusia:
-# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-#   --color=fg:#e3e1e4,bg:#2d2a2e,hl:#9ecd6f
-# 	--color=fg+:#e3e1e4,bg+:#37343a,hl+:#9ecd6f
-# 	--color=info:#e5c463,prompt:#f85e84,pointer:#7accd7
-# 	--color=marker:#7accd7,spinner:#e5c463,header:#7accd7
-#   --color=border:#848089'
-#
-# sonokai-maia:
-# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-#   --color=fg:#e1e2e3,bg:#273136,hl:#9cd57b
-# 	--color=fg+:#e1e2e3,bg+:#313b42,hl+:#9cd57b
-# 	--color=info:#e3d367,prompt:#f76c7c,pointer:#78cee9
-# 	--color=marker:#78cee9,spinner:#e3d367,header:#78cee9
-#   --color=border:#82878b'
-#
-# sonokai-espresso:
-# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-#   --color=fg:#e4e3e1,bg:#312c2b,hl:#a6cd77
-# 	--color=fg+:#e4e3e1,bg+:#393230,hl+:#a6cd77
-# 	--color=info:#f0c66f,prompt:#f86882,pointer:#81d0c9
-# 	--color=marker:#81d0c9,spinner:#f0c66f,header:#81d0c9
-#   --color=border:#90817b'
-#
-# everforest-dark:
-# everforest-soft:
-# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-#   --color=fg:#d3c6aa,bg:#333c43,hl:#a7c080
-# 	--color=fg+:#d3c6aa,bg+:#3a464c,hl+:#83c092
-# 	--color=info:#83c092,prompt:#e69875,pointer:#7fbbb3
-# 	--color=marker:#dbbc7f,spinner:#dbbc7f,header:#859289
-#   --color=border:#859289'
-#
-# everforest-medium:
-# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-#   --color=fg:#d3c6aa,bg:#2d353b,hl:#a7c080
-# 	--color=fg+:#d3c6aa,bg+:#343f44,hl+:#83c092
-# 	--color=info:#83c092,prompt:#e69875,pointer:#7fbbb3
-# 	--color=marker:#dbbc7f,spinner:#dbbc7f,header:#859289
-#   --color=border:#859289'
-#
-# everforest-hard:
-# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-#   --color=fg:#d3c6aa,bg:#272e33,hl:#a7c080
-# 	--color=fg+:#d3c6aa,bg+:#2e383c,hl+:#83c092
-# 	--color=info:#83c092,prompt:#e69875,pointer:#7fbbb3
-# 	--color=marker:#dbbc7f,spinner:#dbbc7f,header:#859289
-#   --color=border:#859289'
-#
-# everforest-light:
-# everforest-soft:
-# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-#   --color=fg:#5c6a72,bg:#f3ead3,hl:#8da101
-# 	--color=fg+:#5c6a72,bg+:#eae4ca,hl+:#35a77c
-# 	--color=info:#35a77c,prompt:#f57d26,pointer:#3a94c5
-# 	--color=marker:#dfa000,spinner:#dfa000,header:#939f91
-#   --color=border:#939f91'
-
-# everforest-medium:
-# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-#   --color=fg:#5c6a72,bg:#fdf6e3,hl:#8da101
-# 	--color=fg+:#5c6a72,bg+:#f4f0d9,hl+:#35a77c
-# 	--color=info:#35a77c,prompt:#f57d26,pointer:#3a94c5
-# 	--color=marker:#dfa000,spinner:#dfa000,header:#939f91
-#   --color=border:#939f91'
-
-# everforest-hard:
-# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-#   --color=fg:#5c6a72,bg:#fffbef,hl:#8da101
-# 	--color=fg+:#5c6a72,bg+:#f8f5e4,hl+:#35a77c
-# 	--color=info:#35a77c,prompt:#f57d26,pointer:#3a94c5
-# 	--color=marker:#dfa000,spinner:#dfa000,header:#939f91
-#   --color=border:#939f91'
-
-# Catppuccin-mocha:
-# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-# 	--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8
-# 	--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc
-# 	--color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8'
-
-# rose-pine-dawn:
-# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-# 	--color=fg:#797593,bg:#faf4ed,hl:#d7827e
-# 	--color=fg+:#575279,bg+:#f2e9e1,hl+:#d7827e
-# 	--color=border:#dfdad9,header:#286983,gutter:#faf4ed
-# 	--color=spinner:#ea9d34,info:#56949f,separator:#dfdad9
-# 	--color=pointer:#907aa9,marker:#b4637a,prompt:#797593'
-#
-# rose-pine-moon:
-# export FZF_DEFAULT_OPTS="
-# --color=fg:#908caa,bg:#232136,hl:#ea9a97
-# --color=fg+:#e0def4,bg+:#393552,hl+:#ea9a97
-# --color=border:#44415a,header:#3e8fb0,gutter:#232136
-# --color=spinner:#f6c177,info:#9ccfd8,separator:#44415a
-# --color=pointer:#c4a7e7,marker:#eb6f92,prompt:#908caa"
-#
-# rose-pine:
-# export FZF_DEFAULT_OPTS="
-# --color=fg:#908caa,bg:#191724,hl:#ebbcba
-# --color=fg+:#e0def4,bg+:#26233a,hl+:#ebbcba
-# --color=border:#403d52,header:#31748f,gutter:#191724
-# --color=spinner:#f6c177,info:#9ccfd8,separator:#403d52
-# --color=pointer:#c4a7e7,marker:#eb6f92,prompt:#908caa"
-#
-# Ayu Mirage
-# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-# 	--color=fg:#cbccc6,bg:#1f2430,hl:#707a8c
-# 	--color=fg+:#707a8c,bg+:#191e2a,hl+:#ffcc66
-# 	--color=info:#73d0ff,prompt:#707a8c,pointer:#cbccc6
-# 	--color=marker:#73d0ff,spinner:#73d0ff,header:#d4bfff'
-#
-# tokyonight_day
-# export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
-# --color=fg:#3760bf,bg:#e1e2e7,hl:#b15c00 \
-# --color=fg+:#3760bf,bg+:#c4c8da,hl+:#b15c00 \
-# --color=info:#2e7de9,prompt:#007197,pointer:#007197 \
-# --color=marker:#587539,spinner:#587539,header:#587539"
-#
-# tokyonight_moon
-# export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
-# --color=fg:#c8d3f5,bg:#222436,hl:#ff966c \
-# --color=fg+:#c8d3f5,bg+:#2f334d,hl+:#ff966c \
-# --color=info:#82aaff,prompt:#86e1fc,pointer:#86e1fc \
-# --color=marker:#c3e88d,spinner:#c3e88d,header:#c3e88d"
-#
-# tokyonight_night
-# export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
-# --color=fg:#c0caf5,bg:#1a1b26,hl:#ff9e64 \
-# --color=fg+:#c0caf5,bg+:#292e42,hl+:#ff9e64 \
-# --color=info:#7aa2f7,prompt:#7dcfff,pointer:#7dcfff \
-# --color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a"
-#
-# tokyonight_storm
-# export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
-# --color=fg:#c0caf5,bg:#24283b,hl:#ff9e64 \
-# --color=fg+:#c0caf5,bg+:#292e42,hl+:#ff9e64 \
-# --color=info:#7aa2f7,prompt:#7dcfff,pointer:#7dcfff \
-# --color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a"
+# fmpc() {
+#     local song_position
+#     song_position=$(mpc -f "%position%) %artist% - %title%" playlist |
+#         fzf-tmux --query="$1" --reverse --select-1 --exit-0 |
+#         sed -n 's/^\([0-9]\+\)).*/\1/p') || return 1
+#     [ -n "$song_position" ] && mpc -q play $song_position
+# }
+source "$HOME/.config/fzf/fzf-themes.sh"
