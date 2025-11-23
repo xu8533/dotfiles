@@ -41,9 +41,8 @@ return {
     "folke/snacks.nvim",
     opts = {
       animate = {
-        enabled = true,
         easing = "circle",
-        fps = 30, -- frames per second. Global setting for all animations
+        fps = 60,
       },
       dashboard = {
         enabled = true,
@@ -119,9 +118,7 @@ return {
           { section = "startup" },
         },
       },
-      bigfile = { enabled = true },
       dim = { enabled = true },
-      explorer = { enabled = true },
       image = {
         enabled = true,
         doc = { enabled = true, inline = false, float = true, max_width = 80, max_height = 40 },
@@ -172,14 +169,21 @@ return {
           hl = "SnacksIndentScope", ---@type string|string[] hl group for scopes
         },
       },
+      explorer = { enabled = true },
+      picker = { enabled = true },
       lazygit = { enabled = true },
       notifier = { enabled = true },
-      picker = { enabled = true },
       quickfile = { enabled = true },
       scope = { enabled = true },
       scroll = { enabled = true },
       statuscolumn = { enabled = false },
-      terminal = { enabled = true },
+      styles = {
+        snacks_image = {
+          border = "rounded",
+          backdrop = false,
+        },
+      },
+      terminal = { enabled = true, win = { style = "float" } },
       toggle = { enabled = true },
       win = { enabled = true },
       words = { enabled = true },
