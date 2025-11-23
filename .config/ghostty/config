@@ -1,6 +1,6 @@
 title=ghostty
 window-theme=dark
-theme=gruvbox-material
+theme="Gruvbox Material"
 mouse-hide-while-typing=true
 mouse-scroll-multiplier=4
 clipboard-read=allow
