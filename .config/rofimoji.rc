@@ -1,3 +1,5 @@
 action = copy
 files = [emojis, hebrew]
 skin-tone = moderate
+hidden-descriptions = true
+selector-args = "-theme /usr/share/rofi/themes/dmenu.rasi"
