@@ -1,6 +1,5 @@
--- In case you don't want to use `:LazyExtras`,
--- then you need to set the option below.
-vim.g.lazyvim_picker = "fzf"
+vim.g.lazyvim_picker = "auto"
+vim.g.lazyvim_cmp = "auto"
 
 vim.g.maplocalleader = ","
 local opt = vim.opt
