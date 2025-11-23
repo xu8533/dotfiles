@@ -5,11 +5,12 @@ set preview true
 set previewer '~/.config/lf/previewer'
 set cleaner '~/.config/lf/cleaner'
 
-#set promptfmt "\033[106m%u@%h\033[00m \033[40m%d%f\033[0m"
-#set numberfmt "\033[90m"
-#set borderfmt "\033[90m"
-set cursoractivefmt "\033[37;106m"
-#set cursorparentfmt "\033[30;44m"
+set promptfmt "\033[106m%u@%h\033[00m \033[40m%d%f\033[0m"
+set numberfmt "\033[95m"
+set borderfmt "\033[90m"
+set cursoractivefmt "\033[33;100m"
+set cursorparentfmt "\033[30;105m"
+set cursorpreviewfmt  "\033[4m"
 set timefmt "2006-01-02 15:04"
 set copyfmt "\033[7;32m"
 set cutfmt "\033[7;31m"
@@ -17,8 +18,9 @@ set visualfmt "\033[7;33m"
 set selectfmt "\033[7;35m"
 set rulerfmt "%a| %p| \033[7;31m %m \033[0m| \033[7;32m %c \033[0m| \033[7;35m %s \033[0m| \033[7;33m %v \033[0m| \033[7;34m %f \033[0m| %i/%t"
 set statfmt "\033[32m%p\033[0m| %c| %u| %g| %S| %t| -> %l"
+set waitmsg '请按任意键继续'
 
-set shell /usr/bin/sh
+set shell /usr/bin/bash
 set shellopts '-eu'
 set ifs "\n"
 set info size:time
@@ -32,146 +34,3 @@ set icons true
 set drawbox
 set locale zh-CN
 set tabstop 4
-
-## commands
-cmd toggle-preview %{{
-    if [ "$lf_preview" = true ]; then
-        lf -remote "send $id :set preview false; set ratios 1:5 set info size:time"
-    else
-        lf -remote "send $id :set preview true; set ratios 1:2:3"
-    fi
-}}
-
-cmd fzf_jump ${{
-    # `~/.local/bin/scope` checks `$FZF_LEVEL`
-    res="$(find . | FZF_LEVEL=1 fzf --reverse --prompt "lf >" --preview 'scope {}' --bind=ctrl-j:preview-down,ctrl-k:preview-up)"
-    if [ -n "$res" ]; then
-        if [ -d "$res" ]; then
-            cmd="cd"
-        else
-            cmd="select"
-        fi
-        res="$(printf '%s' "$res" | sed 's/\\/\\\\/g;s/"/\\"/g')"
-        lf -remote "send $id $cmd \"$res\""
-    fi
-}}
-map f fzf_jump
-
-cmd bulk-rename ${{
-    old="$(mktemp)"
-    new="$(mktemp)"
-    if [ -n "$fs" ]; then
-        fs="$(basename -a -- $fs)"
-    else
-        fs="$(ls)"
-    fi
-    printf '%s\n' "$fs" > "$old"
-    printf '%s\n' "$fs" > "$new"
-    $EDITOR "$new"
-    [ "$(wc -l < "$new")" -ne "$(wc -l < "$old")" ] && exit
-    paste "$old" "$new" | while IFS= read -r names; do
-        src="$(printf '%s' "$names" | cut -f1)"
-        dst="$(printf '%s' "$names" | cut -f2)"
-        if [ "$src" = "$dst" ] || [ -e "$dst" ]; then
-            continue
-        fi
-        mv -- "$src" "$dst"
-    done
-    rm -- "$old" "$new"
-    lf -remote "send $id unselect"
-}}
-map xb bulk-rename
-
-# y (select for copy) and P to paste symlink
-# d (select for cut) and P to paste hard link
-cmd link %{{
-    set -- $(cat ~/.local/share/lf/files)
-    mode="$1"
-    shift
-    if [ "$#" -lt 1 ]; then
-        lf -remote "send $id echoerr no files to link"
-        exit
-    fi
-    case "$mode" in
-        # 'copy' mode indicates a symlink
-        copy) ln -sr -t . -- "$@";;
-        # while 'move' mode indicates a hard link
-        move)
-            ln -t . -- "$@"
-            lf -remote "send clear"
-            ;;
-    esac
-}}
-map P :link
-
-# touch and focus
-cmd touch %{{
-    IFS=" "
-    file="$*"
-    touch -- "$file"
-    lf -remote "send $id select \"$(printf '%s' "$file" | sed 's/\\/\\\\/g;s/"/\\"/g')\""
-}}
-map o push :touch<space>
-
-# mkdir and focus
-cmd mkdir %{{
-    IFS=" "
-    file="$*"
-    mkdir -p -- "$file"
-    lf -remote "send $id select \"$(printf '%s' "$file" | sed 's/\\/\\\\/g;s/"/\\"/g')\""
-}}
-map O push :mkdir<space>
-
-# git prompt on every changing directory
-cmd on-cd &{{
-    bash -c '
-    # display git repository status in your prompt
-    source /usr/share/git/completion/git-prompt.sh
-
-    GIT_PS1_SHOWDIRTYSTATE=1        # + for staged, * if unstaged
-    GIT_PS1_SHOWSTASHSTATE=1        # $ if something is stashed.
-    GIT_PS1_SHOWUNTRACKEDFILES=1    # % if there are untracked files
-    GIT_PS1_SHOWUPSTREAM=1 	        # <, >, <> behind, ahead, or diverged from upstream.
-    GIT_PS1_STATESEPARATOR=" " 	    # separator between branch name and state symbols
-    GIT_PS1_DESCRIBE_STYLE=1 	    # show commit relative to tag or branch, when detached HEAD
-    GIT_PS1_SHOWCOLORHINTS=1        # display in color
-
-    git=$(__git_ps1 " %s")
-    fmt="\033[106m%u@%h\033[00m \033[40m%d%f$git\033[0m"
-    lf -remote "send $id set promptfmt \"$fmt\""
-    '
-}}
-# calling on-cd when lf starts
-on-cd
-
-# open anothr lf instance in the same PWD
-cmd lf-mirror &{{
-    footclient lf
-}}
-map zm lf-mirror
-
-cmd extract %{{
-    printf "extract file?(y/n)"
-    read choice
-    if [ "$choice" = "y" ]; then
-        case "$f" in
-        *.tar)  tar xf "$f" ;;
-        *.zip)  unzip "$f" ;;
-        *.gz)   gunzip -k "$f" ;;
-        *.tar.gz) tar xzf "$f" ;;
-        *.tar.bz2) tar xjf "$f" ;;
-        *.tar.xz) tar xJf "$f" ;;
-        *.tar.zst) tar xf "$f" --zstd ;;
-        esac
-    fi
-    lf -remote "send clear"
-}}
-map xx extract
-
-cmd rotate %{{
-    printf "rotate degree?: "
-    read line
-    convert -rotate "$line" "$f" "$f"
-    lf -remote "send clear"
-}}
-map xr rotate
