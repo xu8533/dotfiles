@@ -61,6 +61,7 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 #
+
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
 else
@@ -92,11 +93,6 @@ fi
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
 if [ -f ~/.bash_aliases ]; then
     . "$HOME/.bash_aliases"
 fi
@@ -117,12 +113,12 @@ PATH=$PATH:~/.config/rofi/scripts:~/.local/bin
 # fastfetch -l Scientific
 # fastfetch
 # neofetch
-colorscript -e zfetch
+"${HOME}.local/bin/colorscript" -e zfetch
 
 # export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
-export STARSHIP_CONFIG=~/.config/starship/starship.toml
+# export STARSHIP_CONFIG=~/.config/starship/starship.toml
 # eval "$(starship init bash)"
-# eval "$(oh-my-posh init bash --config ~/.config/omp/my.omp.json)"
+eval "$(oh-my-posh init bash --config ~/.config/omp/my.omp.json)"
 
 # AstroNvim中obsidian插件使用
 # NOTES="/media/xujian/工作/学习/个人笔记"
@@ -166,21 +162,23 @@ export EDITOR=vi
 
 # fzf配置
 eval "$(fzf --bash)"
-[ -f "$HOME/.fzf.bash" ] && source "$HOME/.fzf.bash"
-[ -f "$HOME/.config/fzf/myfzf.bash" ] && source "$HOME/.config/fzf/myfzf.bash"
-[ -f "$HOME/.config/fzf/fzf-git.sh" ] && source "$HOME/.config/fzf/fzf-git.sh"
+[ -f "${HOME}.fzf.bash" ] && source "$HOME/.fzf.bash"
+[ -f "${HOME}.config/fzf/myfzf.bash" ] && source "$HOME/.config/fzf/myfzf.bash"
+[ -f "${HOME}.config/fzf/fzf-git.sh" ] && source "$HOME/.config/fzf/fzf-git.sh"
 
 # autojump
-if [ -f $HOME/.config/autojump/autojump.bash ]; then
-    . "$HOME/.config/autojump/autojump.bash"
-fi
+# if [ -f "$HOME/.config/autojump/autojump.bash" ]; then
+#     . "$HOME/.config/autojump/autojump.bash"
+# fi
+
+# zoxide
+eval "$(zoxide init bash)"
 
 # lf
-if [ -f $HOME/.local/share/bash-completion/completions/lf.bash ]; then
+if [ -f "$HOME/.local/share/bash-completion/completions/lf.bash" ]; then
     . "$HOME/.local/share/bash-completion/completions/lf.bash"
 fi
 
-eval "$(starship init bash)"
 #
 # forgit配置
 # [[ -s ~/.forgit/forgit.plugin.sh ]] && source ~/.forgit/forgit.plugin.sh
