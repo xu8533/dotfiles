@@ -10,26 +10,26 @@ fi
 # set file variables
 # ScrDir=`dirname $(realpath $0)`
 # source $ScrDir/globalcontrol.sh
-wLayout="$HOME/.config/wlogout/layout_$1"
-wlTmplt="$HOME/.config/wlogout/style_$1.css"
+wLayout="$HOME/.config/wlogout/hyde_layout_$1"
+wlTmplt="$HOME/.config/wlogout/hyde_style_$1.css"
 EnableWallDcol=0
 # hypr var
-hypr_border=`hyprctl -j getoption decoration:rounding | jq '.int'`
-hypr_width=`hyprctl -j getoption general:border_size | jq '.int'`
+hypr_border=$(hyprctl -j getoption decoration:rounding | jq '.int')
+hypr_width=$(hyprctl -j getoption general:border_size | jq '.int')
 
 # 可以使用下列命令获取gtkTheme和gtkMode变量，或直接指定
 # gtkTheme=`gsettings get org.gnome.desktop.interface gtk-theme | sed "s/'//g"`
-# gtkMode=`gsettings get org.gnome.desktop.interface color-scheme | sed "s/'//g" | awk -F '-' '{print $2}'`
+# gtkMode=`gsettings get org.gnome.desktop.interface color-scheme | sed "s/'//g" | awk -F '-' 'cprint $2c'`
 
 # gtkTheme=Material-Sakura
 # gtkTheme=Catppuccin-Mocha
 # gtkTheme=Catppuccin-Latte
 # gtkTheme=Cyberpunk-Edge
 # gtkTheme=Decay-Green
-gtkTheme=Frosted-Glass
+# gtkTheme=Frosted-Glass
 # gtkTheme=Graphite-Mono
 # gtkTheme=Gruvbox-Retro
-# gtkTheme=Rose-Pine
+gtkTheme=Rose-Pine
 # gtkTheme=Tokyo-Night
 # gtkTheme=Wall-Dcol
 # gtkMode=dark
