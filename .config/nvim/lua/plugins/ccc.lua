@@ -2,10 +2,10 @@ return {
   "uga-rosa/ccc.nvim",
   lazy = true,
   keys = {
-    { "<localleader>uc", "<cmd>CccHighlighterEnable<cr>", desc = "Color highlighter enable" },
-    { "<localleader>uC", "<cmd>CcccConvetr<cr>", desc = "Color highlighter convert" },
-    { "<localleader>up", "<cmd>CcccPick<cr>", desc = "Color highlighter Pick" },
-    { "<localleader>ut", "<cmd>CccHighlighterToggle<cr>", desc = "Color highlighter toggle" },
+    -- { "<localleader>uc", "<cmd>CccHighlighterEnable<cr>", desc = "Color highlighter enable" },
+    { "<localleader>uC", "<cmd>CccConvert<cr>", desc = "Ccc Color highlighter convert" },
+    { "<localleader>up", "<cmd>CccPick<cr>", desc = "Ccc Color highlighter Pick" },
+    -- { "<localleader>ut", "<cmd>CccHighlighterToggle<cr>", desc = "Color highlighter toggle" },
   },
   config = function()
     local ccc = require("ccc")
