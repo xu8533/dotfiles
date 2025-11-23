@@ -49,19 +49,28 @@ alias gD='cd $HOME/下载'
 alias gH='cd $HOME/.config/hypr'
 alias gp='cd $HOME/图片'
 alias gw='cd $HOME/图片/Wallpapers'
-#
+
 # git bare裸库，用于配置文件管理
 alias dot-git='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
 # 自动删除不需要的软件包
 alias autoremove="sudo pacman -Qtdq | sudo pacman -Rns -"
+
 # 使用lazygit管理裸库
 alias dot-lg='lazygit --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
 # 显示按键
-alias sk='wshowkeys -b "#0000000f" -f "#eee8d8" -s "#ece87a" -t 1 -a right -a bottom -m 32 &'
+# alias sk='wshowkeys -b "#0000000f" -f "#eee8d8" -s "#ece87a" -t 1 -a right -a bottom -m 32 &'
 
 # 终端时钟
 alias clock-pea='peaclock --config-dir=$HOME/.config/peaclock'
 alias clock-era='era'
 alias clock-tu='tuime -c candy'
 alias clock-tm='tmlshock clock -c 228 -cc 010'
+
+# z.lua
+alias zc='z -c'      # 严格匹配当前路径的子路径
+alias zz='z -i'      # 使用交互式选择模式
+alias zf='z -I'      # 使用 fzf 对多个结果进行选择
+alias zb='z -b'      # 快速回到父目录
+alias zh='z -I -t .' # 回到历史路径

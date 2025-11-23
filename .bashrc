@@ -172,7 +172,10 @@ eval "$(fzf --bash)"
 # fi
 
 # zoxide
-eval "$(zoxide init bash)"
+eval "$(zoxide init --cmd j bash)"
+
+# z.lua
+eval "$(lua ${HOME}.local/bin/z.lua --init bash enhanced once echo fzf)"
 
 # lf
 if [ -f "$HOME/.local/share/bash-completion/completions/lf.bash" ]; then
