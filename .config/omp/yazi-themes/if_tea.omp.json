@@ -1,0 +1,43 @@
+{
+    "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+    "blocks": [
+        {
+            "alignment": "left",
+            "segments": [
+                {
+                    "properties": {
+                        "root_icon": "\uf292 "
+                    },
+                    "style": "diamond",
+                    "template": " \uf0e7 ",
+                    "type": "root"
+                },
+                {
+                    "background": "#f8677b",
+                    "foreground": "#000000",
+                    "leading_diamond": "<transparent,#F8677b>\ue0b0</>",
+                    "properties": {
+                        "folder_icon": "\uf07b ",
+                        "folder_separator_icon": " \uf061 ",
+                        "home_icon": "\uf46d",
+                        "style": "agnoster_full",
+                        "template": " \ue5ff {{ .Path }} "
+                    },
+                    "style": "diamond",
+                    "trailing_diamond": "",
+                    "type": "path"
+                }
+            ],
+            "type": "prompt"
+        }
+    ],
+    "console_title": true,
+    "console_title_style": "template",
+    "console_title_template": "{{ .Folder }}",
+    "transient_prompt": {
+        "background": "transparent",
+        "foreground": "#FEF5ED",
+        "template": "\ue285 "
+    },
+    "version": 3
+}
