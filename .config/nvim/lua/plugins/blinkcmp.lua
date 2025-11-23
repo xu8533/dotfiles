@@ -265,9 +265,25 @@ return {
       }
       opts.sources = {
         compat = { "codeium" },
-        default = { "snippets", "buffer", "lsp", "path", "markdown" },
+        -- default = { "snippets", "buffer", "lsp", "path"  },
+        -- 定制默认源
+        default = function()
+          local success, node = pcall(vim.treesitter.get_node)
+          if success and node and vim.tbl_contains({ "comment", "line_comment", "block_comment" }, node:type()) then
+            return { "buffer" }
+          elseif vim.bo.filetype == "lua" then
+            return { "lsp", "path", "buffer" }
+          elseif vim.bo.filetype == { "markdown" } then
+            return { "lsp" }
+          -- elseif vim.bo.filetype == { "kitty" } then
+          --   return { "lsp", "path", "buffer" }
+          else
+            return { "lsp", "path", "snippets", "buffer" }
+          end
+        end,
         per_filetype = {
           lua = { inherit_defaults = true, "lazydev" },
+          -- markdown = { "lsp" },
         },
         -- snippets = { preset = "luasnip" },
         providers = {
@@ -303,11 +319,10 @@ return {
           lazydev = {
             name = "LazyDev",
             module = "lazydev.integrations.blink",
-            -- make lazydev completions top priority (see `:h blink.cmp`)
             score_offset = 100,
           },
-          -- https://cmp.saghen.dev/recipes#fuzzy-sorting-filtering
           lsp = {
+            -- 不补全关键字和常量
             -- name = "LSP",
             -- module = "blink.cmp.sources.lsp",
             -- transform_items = function(_, items)
@@ -315,12 +330,9 @@ return {
             --     return item.kind ~= require("blink.cmp.types").CompletionItemKind.Keyword
             --   end, items)
             -- end,
+            -- 优先显示lsp
+            score_offset = 3000,
             fallbacks = {},
-          },
-          markdown = {
-            name = "RenderMarkdown",
-            module = "render-markdown.integ.blink",
-            fallbacks = { "lsp" },
           },
           -- 使用cwd替换buffer目录作为补全源
           path = {
