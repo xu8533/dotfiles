@@ -39,36 +39,36 @@ class Agent(dbus.service.Object):
     def RequestPinCode(self, device):
         device_name = self.get_device_name(device)
         logging.info(f"RequestPinCode {device_name} ({device})")
-        self.request_input("Enter PIN code", f"Enter PIN code for device {device_name}", device, "pin")
+        self.request_input("请输入PIN码", f"请输入{device_name}的PIN码", device, "pin")
 
     @dbus.service.method("org.bluez.Agent1", in_signature="o", out_signature="u")
     def RequestPasskey(self, device):
         device_name = self.get_device_name(device)
-        logging.info(f"RequestPasskey {device_name} ({device})")
-        self.request_input("Enter Passkey", f"Enter passkey for device {device_name}", device, "passkey")
+        logging.info(f"{device_name} ({device}) 需要密钥")
+        self.request_input("输入密钥", f"请输入{device_name}的密钥", device, "passkey")
 
     @dbus.service.method("org.bluez.Agent1", in_signature="ou", out_signature="")
     def DisplayPasskey(self, device, passkey):
         device_name = self.get_device_name(device)
-        logging.info(f"DisplayPasskey {device_name} passkey {passkey}")
-        send_notification_with_actions("Bluetooth Pairing Request", f"Passkey for device {device_name} is {passkey}", [], lambda *args: None)
+        logging.info(f"显示密钥 {device_name} 密钥 {passkey}")
+        send_notification_with_actions("蓝牙配对请求", f"{device_name}的密钥是{passkey}", [], lambda *args: None)
 
     @dbus.service.method("org.bluez.Agent1", in_signature="ou", out_signature="")
     def RequestConfirmation(self, device, passkey):
         device_name = self.get_device_name(device)
-        logging.info(f"RequestConfirmation {device_name} passkey {passkey}")
+        logging.info(f"请求确认 {device_name} 密钥 {passkey}")
         actions = ["confirm", "Confirm", "deny", "Deny"]
         
         def action_handler(notification_id, action_key):
             if action_key == "confirm":
-                logging.info(f"Confirmed pairing for {device_name}")
+                logging.info(f"{device_name}配对通过")
                 self.send_reply(device)
             elif action_key == "deny":
-                logging.info(f"Denied pairing for {device_name}")
+                logging.info(f"{device_name}配对被拒绝")
                 self.send_error(device, "org.bluez.Error.Rejected")
         
-        send_notification_with_actions("Bluetooth Pairing Request",
-                                       f"Confirm passkey {passkey} for device {device_name}",
+        send_notification_with_actions("蓝牙配对请求",
+                                       f"确认{device_name}的密钥是{passkey}",
                                        actions, action_handler)
         return
 

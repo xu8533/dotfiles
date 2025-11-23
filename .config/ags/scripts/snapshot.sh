@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-outputDir="$HOME/Pictures/Screenshots/"
-outputFile="snapshot_$(date +%Y-%m-%d_%H-%M-%S).png"
+outputDir="$HOME/图片/Screenshots/"
+outputFile="截图_$(date +%Y-%m-%d_%H-%M-%S).png"
 outputPath="$outputDir/$outputFile"
 mkdir -p "$outputDir"
 
@@ -18,15 +18,15 @@ area)
     command="grimblast copysave area $outputPath"
     ;;
 *)
-    echo "Invalid option: $mode"
-    echo "Usage: $0 {active|output|area}"
+    echo "错误选项: $mode"
+    echo "使用方法: $0 {active|output|area}"
     exit 1
     ;;
 esac
 
 if eval "$command"; then
-    recentFile=$(find "$outputDir" -name 'snapshot_*.png' -printf '%T+ %p\n' | sort -r | head -n 1 | cut -d' ' -f2-)
-    notify-send "Grimblast" "Your snapshot has been saved." \
+    recentFile=$(find "$outputDir" -name '截图_*.png' -printf '%T+ %p\n' | sort -r | head -n 1 | cut -d' ' -f2-)
+    notify-send "Grimblast" "截图已保存." \
         -i video-x-generic \
         -a "Grimblast" \
         -t 7000 \

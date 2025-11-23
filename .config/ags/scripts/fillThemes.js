@@ -58,7 +58,7 @@ const loadJSON = async (filePath) => {
         const data = await fs.readFile(filePath, 'utf8');
         return JSON.parse(data);
     } catch (error) {
-        console.error(formatMessage(COLORS.FG_RED, `Error reading or parsing '${filePath}': ${error.message}`));
+        console.error(formatMessage(COLORS.FG_RED, `'${filePath}'文件读取或解析错误: ${error.message}`));
         process.exit(1);
     }
 };
@@ -74,7 +74,7 @@ const saveJSON = async (filePath, data) => {
         const jsonString = JSON.stringify(data, null, 2);
         await fs.writeFile(filePath, jsonString, 'utf8');
     } catch (error) {
-        console.error(formatMessage(COLORS.FG_RED, `Error writing to '${filePath}': ${error.message}`));
+        console.error(formatMessage(COLORS.FG_RED, `'${filePath}'文件写入错误: ${error.message}`));
         process.exit(1);
     }
 };
@@ -238,9 +238,9 @@ const backupTheme = async (themePath) => {
         await fs.mkdir(backupDir, { recursive: true });
         const backupPath = path.join(backupDir, path.basename(themePath));
         await fs.copyFile(themePath, backupPath);
-        console.log(formatMessage(COLORS.FG_CYAN, `Backup created at '${backupPath}'.`));
+        console.log(formatMessage(COLORS.FG_CYAN, `备份文件在'${backupPath}'中.`));
     } catch (error) {
-        console.error(formatMessage(COLORS.FG_RED, `❌ Error creating backup for '${themePath}': ${error.message}`));
+        console.error(formatMessage(COLORS.FG_RED, `❌ '备份文件创建错误-${themePath}': ${error.message}`));
     }
 };
 

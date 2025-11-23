@@ -15,7 +15,7 @@ checkRecording() {
 # Function to start screen recording
 startRecording() {
     if checkRecording; then
-        echo "A recording is already in progress."
+        echo "录屏中，请稍后!"
         exit 1
     fi
 
@@ -27,12 +27,12 @@ startRecording() {
     elif [ "$target" == "region" ]; then
         outputDir="$3"
     else
-        echo "Usage: $0 start {screen <monitor_name> | region} <output_directory>"
+        echo "使用方法: $0 start {screen <monitor_name> | region} <output_directory>"
         exit 1
     fi
 
     # Set a default output directory if not provided
-    outputDir="${outputDir:-$HOME/Videos}"
+    outputDir="${outputDir:-$HOME/视频}"
 
     # Expand ~ to $HOME if present in outputDir
     outputDir="${outputDir/#\~/$HOME}"
@@ -40,28 +40,28 @@ startRecording() {
     # Ensure output directory exists
     if [ ! -d "$outputDir" ]; then
         mkdir -p "$outputDir"
-        echo "Created output directory: $outputDir"
+        echo "创建目录: $outputDir"
     fi
 
     # Generate output filename and path
-    outputFile="recording_$(date +%Y-%m-%d_%H-%M-%S).mp4"
+    outputFile="录屏_$(date +%Y-%m-%d_%H-%M-%S).mp4"
     outputPath="$outputDir/$outputFile"
 
-    echo "Target: $target"
-    echo "Monitor: ${monitor_name:-N/A}"
-    echo "Output dir: $outputDir"
-    echo "Output file: $outputPath"
+    echo "目标: $target"
+    echo "显示器: ${monitor_name:-N/A}"
+    echo "输出目录: $outputDir"
+    echo "输出文件: $outputPath"
 
     # Start screen recording
     if [ "$target" == "screen" ]; then
         if [ -z "$monitor_name" ]; then
-            echo "Error: Monitor name is required for screen recording."
+            echo "错误: 录屏时需要指定显示器名称."
             exit 1
         fi
 
         monitor_info=$(hyprctl -j monitors | jq -r ".[] | select(.name == \"$monitor_name\")")
         if [ -z "$monitor_info" ]; then
-            echo "Error: Monitor '$monitor_name' not found."
+            echo "错误: 未找到显示器 '$monitor_name'."
             exit 1
         fi
 
@@ -97,14 +97,14 @@ startRecording() {
     fi
 
     disown "$(jobs -p | tail -n 1)"
-    echo "Recording started. Saving to $outputPath"
+    echo "录屏开始. 录屏文件保存在$outputPath"
     echo "$outputPath" >/tmp/last_recording_path
 }
 
 # Function to stop screen recording
 stopRecording() {
     if ! checkRecording; then
-        echo "No recording in progress."
+        echo "未发现正在录屏."
         exit 1
     fi
 
@@ -114,7 +114,7 @@ stopRecording() {
     outputPath=$(cat /tmp/last_recording_path 2>/dev/null)
 
     if [ -z "$outputPath" ] || [ ! -f "$outputPath" ]; then
-        notify-send "Recording stopped" "No recent recording found." \
+        notify-send "停止录屏" "未发现最近录屏文件." \
             -i video-x-generic \
             -a "Screen Recorder" \
             -t 10000
@@ -139,13 +139,13 @@ stop)
     ;;
 status)
     if checkRecording; then
-        echo "recording"
+        echo "录屏中"
     else
-        echo "not recording"
+        echo "未录屏"
     fi
     ;;
 *)
-    echo "Usage: $0 {start [screen <monitor_name> | region] <output_directory> | stop | status}"
+    echo "使用方法: $0 {start [screen <monitor_name> | region] <output_directory> | stop | status}"
     exit 1
     ;;
 esac
