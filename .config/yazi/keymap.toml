@@ -470,12 +470,12 @@ keymap = [
     ], run = "cd ~", desc = "进入HOME目录" },
     { on = [
         "g",
-        "M",
+        "m",
     ], run = "cd ~/音乐", desc = "进入音乐目录" },
     { on = [
         "g",
-        "m",
-    ], run = "cd /media/数据/音乐/", desc = "进入音乐目录" },
+        "M",
+    ], run = "cd /run/media/xujian/", desc = "进入挂载磁盘" },
     { on = [
         "g",
         "p",
