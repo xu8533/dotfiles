@@ -152,10 +152,6 @@ export MANROFFOPT
 
 # bind -x '"\C-]": "nvims"'
 
-# 使用vi-astro作为默认编辑器
-export EDITOR=vi
-# export EDITOR="NVIM_APPNAME=AstroNvim vi"
-
 # >>> tmux快捷键 >>>
 # bind -x '"\C-[": "tmux"'
 # <<< tmux快捷键 <<<
@@ -202,4 +198,11 @@ fi
 # systemctl --user restart mpd
 
 # 加载自定义shell函数
-[ -f ~/.bash_func ] && source ~/.bash_func
+[ -f "${HOME}.bash_func" ] && source "${HOME}.bash_func"
+
+# 使用nvim作为默认编辑器
+export EDITOR=vi
+# export EDITOR="NVIM_APPNAME=AstroNvim vi"
+#
+export PERL_CPANM_HOME="${HOME}.cache/cpanminus"
+export PERL_CPANM_OPT="--prompt --local-lib=${HOME}.local/lib/perl5 --reinstall --mirror=http://mirrors.ustc.edu.cn/CPAN/"
