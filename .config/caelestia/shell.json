@@ -43,6 +43,10 @@
                 "mpv"
             ],
             "explorer": [
+                "kitty",
+                "--title=Yazi",
+                "sh",
+                "-c",
                 "yazi"
             ]
         },
@@ -215,6 +219,9 @@
                     "icon": "notebook"
                 }
             ]
+        },
+        "activeWindow": {
+            "inverted": false
         }
     },
     "border": {
@@ -417,7 +424,7 @@
     "services": {
         "audioIncrement": 0.1,
         "maxVolume": 1.0,
-        "defaultPlayer": "ncmpcpp",
+        "defaultPlayer": "cmus",
         "gpuType": "",
         "playerAliases": [
             {
