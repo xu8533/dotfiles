@@ -7,24 +7,24 @@
             "segments": [
                 {
                     "foreground": "#7eb8da",
-                    "properties": {
-                        "time_format": "01/02/2006 @ 3:04:05 PM MST"
-                    },
-                    "style": "diamond",
-                    "template": "[<#ffffff>\uf073</> {{ .CurrentDate | date .Format }}]",
-                    "type": "time"
-                },
-                {
-                    "foreground": "#7eb8da",
                     "style": "plain",
-                    "template": "[<#ffffff>\ueb99</> {{ .UserName }} :: <#ffffff>\uf108</> {{ .HostName }}]",
+                    "template": "[<#ffffff>\uedc5</> {{ .UserName }}   <#ffffff>\udb84\udd04</> {{ .HostName }}]",
                     "type": "session"
                 },
                 {
                     "foreground": "#be9ddf",
                     "style": "diamond",
-                    "template": "[<#ffffff>\ue266</> RAM: {{ (div ((sub .PhysicalTotalMemory .PhysicalAvailableMemory)|float64) 1073741824.0) }}/{{ (div .PhysicalTotalMemory 1073741824.0) }}GB]",
+                    "template": "[<#ffffff>\ue266</> 内存: {{ (div ((sub .PhysicalTotalMemory .PhysicalAvailableMemory)|float64) 1073741824.0) }}/{{ (div .PhysicalTotalMemory 1073741824.0) }}GB]",
                     "type": "sysinfo"
+                },
+                {
+                    "foreground": "#7eb8da",
+                    "properties": {
+                        "time_format": "2006-01-03 15:04:05"
+                    },
+                    "style": "diamond",
+                    "template": "[<#ffffff>\uf073</> {{ .CurrentDate | date .Format }}]",
+                    "type": "time"
                 },
                 {
                     "foreground": "#f36943",
@@ -110,7 +110,7 @@
                         "style": "full"
                     },
                     "style": "diamond",
-                    "template": "[<#ffffff>\uf115</> <#98bfad>{{ .Path }}</>]",
+                    "template": "[<#be9ddf>\uf115</> <#98bfad>{{ .Path }}</>]",
                     "type": "path"
                 },
                 {
@@ -120,7 +120,7 @@
                         "fetch_upstream_icon": true
                     },
                     "style": "plain",
-                    "template": "[<#ffffff>{{ .UpstreamIcon }} </>{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} <#ffffff>\uf044</> {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} <#ffffff>\uf046</> {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} <#ffffff>\ueb4b</> {{ .StashCount }}{{ end }}]",
+                    "template": "[<#98bfad>{{ .UpstreamIcon }} </>{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} <#ffffff>\uf044</> {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} <#ffffff>\uf046</> {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} <#ffffff>\ueb4b</> {{ .StashCount }}{{ end }}]",
                     "type": "git"
                 }
             ],
@@ -139,7 +139,7 @@
                 {
                     "foreground": "#ffa5d8",
                     "style": "diamond",
-                    "template": "[<#ffffff>\uea6c</> Error, check your command]",
+                    "template": "[<#ffffff>\uea6c</> 错误, 请检查您的命令!]",
                     "type": "status"
                 },
                 {
