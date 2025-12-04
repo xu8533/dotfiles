@@ -5,7 +5,7 @@ set preview true
 set previewer '~/.config/lf/previewer'
 set cleaner '~/.config/lf/cleaner'
 
-set promptfmt "\033[106m%u@%h\033[00m \033[40m%d%f\033[0m"
+set promptfmt "\033[40;36m%u@%h\033[00m \033[93m  \033[00m\033[40m%d%f\033[0m"
 set numberfmt "\033[95m"
 set borderfmt "\033[90m"
 set cursoractivefmt "\033[33;100m"
