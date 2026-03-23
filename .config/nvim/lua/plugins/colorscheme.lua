@@ -22,47 +22,17 @@ return {
     {
         "catppuccin/nvim",
         name = "catppuccin",
-        priority = 1000,
         lazy = true,
         opts = {
-            integrations = {
-                aerial = true,
-                alpha = true,
-                cmp = true,
-                dashboard = true,
-                flash = true,
-                fzf = true,
-                grug_far = true,
-                gitsigns = true,
-                headlines = true,
-                illuminate = true,
-                indent_blankline = { enabled = true },
-                leap = true,
-                lsp_trouble = true,
-                mason = true,
-                markdown = true,
-                mini = true,
-                native_lsp = {
-                    enabled = true,
-                    underlines = {
-                        errors = { "undercurl" },
-                        hints = { "undercurl" },
-                        warnings = { "undercurl" },
-                        information = { "undercurl" },
-                    },
+            lsp_styles = {
+                underlines = {
+                    errors = { "undercurl" },
+                    hints = { "undercurl" },
+                    warnings = { "undercurl" },
+                    information = { "undercurl" },
                 },
-                navic = { enabled = true, custom_bg = "lualine" },
-                neotest = true,
-                neotree = true,
-                noice = true,
-                notify = true,
-                semantic_tokens = true,
-                snacks = true,
-                telescope = true,
-                treesitter = true,
-                treesitter_context = true,
-                which_key = true,
             },
+            auto_intergrations = true
         },
         specs = {
             {
@@ -70,7 +40,7 @@ return {
                 optional = true,
                 opts = function(_, opts)
                     if (vim.g.colors_name or ""):find("catppuccin") then
-                        opts.highlights = require("catppuccin.groups.integrations.bufferline").get()
+                        opts.highlights = require("catppuccin.special.bufferline").get_theme()
                     end
                 end,
             },
@@ -78,7 +48,7 @@ return {
     },
     {
         "RRethy/base16-nvim",
-        enabled = false,
+        -- enabled = false,
         lazy = true
     },
     {
@@ -107,53 +77,11 @@ return {
                 dark = "wave", -- try "dragon" !
                 light = "lotus",
             },
-            --  transparent Floating Windows
-            overrides = function(colors)
-                local theme = colors.theme
-                -- Tint background of diagnostic messages with their foreground color
-                local makeDiagnosticColor = function(color)
-                    local c = require("kanagawa.lib.color")
-                    return { fg = color, bg = c(color):blend(theme.ui.bg, 0.95):to_hex() }
-                end
-                return {
-                    NormalFloat = { bg = "none" },
-                    FloatBorder = { bg = "none" },
-                    FloatTitle = { bg = "none" },
-
-                    -- Save an hlgroup with dark background and dimmed foreground
-                    -- so that you can use it where your still want darker windows.
-                    -- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
-                    NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
-
-                    -- Popular plugins that open floats will link to NormalFloat by default;
-                    -- set their background accordingly if you wish to keep them dark and borderless
-                    LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
-                    MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
-                    -- Block-like modern Telescope UI
-                    TelescopeTitle = { fg = theme.ui.special, bold = true },
-                    TelescopePromptNormal = { bg = theme.ui.bg_p1 },
-                    TelescopePromptBorder = { fg = theme.ui.bg_p1, bg = theme.ui.bg_p1 },
-                    TelescopeResultsNormal = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m1 },
-                    TelescopeResultsBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
-                    TelescopePreviewNormal = { bg = theme.ui.bg_dim },
-                    TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
-                    -- More uniform colors for the popup menu
-                    Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 }, -- add `blend = vim.o.pumblend` to enable transparency
-                    PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
-                    PmenuSbar = { bg = theme.ui.bg_m1 },
-                    PmenuThumb = { bg = theme.ui.bg_p2 },
-                    -- Tint background of diagnostic messages with their foreground color
-                    DiagnosticVirtualTextHint = makeDiagnosticColor(theme.diag.hint),
-                    DiagnosticVirtualTextInfo = makeDiagnosticColor(theme.diag.info),
-                    DiagnosticVirtualTextWarn = makeDiagnosticColor(theme.diag.warning),
-                    DiagnosticVirtualTextError = makeDiagnosticColor(theme.diag.error),
-                }
-            end,
         },
     },
     {
-        "sho-87/kanagawa-paper.nvim",
-        enabled = false,
+        "thesimonho/kanagawa-paper.nvim",
+        -- enabled = false,
         lazy = true,
         opts = {},
     },
@@ -450,14 +378,6 @@ return {
         end,
     },
     {
-        "NLKNguyen/papercolor-theme",
-        lazy = true,
-        config = function()
-            vim.cmd([[colorscheme PaperColor]])
-            vim.cmd([[set background=dark]])
-        end,
-    },
-    {
         "LazyVim/LazyVim",
         opts = {
             -- colorscheme = "bamboo",
@@ -467,6 +387,7 @@ return {
             -- colorscheme = "catppuccin-frappe",
             -- colorscheme = "catppuccin-macchiato",
             -- colorscheme = "catppuccin-mocha",
+            -- colorscheme = "catppuccin-latte",
             -- colorscheme = "dracula",
             -- colorscheme = "vscode",
             -- colorscheme = "gruvbox",
@@ -476,6 +397,8 @@ return {
             -- colorscheme = "kanagawa-lotus",
             -- colorscheme = "kanagawa-wave",
             -- colorscheme = "kanagawa-paper",
+            -- colorscheme = "kanagawa-paper-ink",
+            -- colorscheme = "kanagawa-paper-canvas",
             -- colorscheme = "carbonfox",
             -- colorscheme = "duskfox",
             -- colorscheme = "nightfox",
@@ -496,12 +419,11 @@ return {
             -- colorscheme = "onedark_vivid",
             -- colorscheme = "onedark_dark",
             -- colorscheme = "oxocarbon",
-            -- colorscheme = "PaperColor",
             -- colorscheme = "rose-pine-moon",
             -- colorscheme = "rose-pine-main",
             -- colorscheme = "tokyonight-day",
             -- colorscheme = "tokyonight",
-            colorscheme = "tokyonight-moon",
+            -- colorscheme = "tokyonight-moon",
             -- colorscheme = "tokyonight-night",
             -- colorscheme = "tokyonight-storm",
             -- colorscheme = "tokyodark",
@@ -518,6 +440,7 @@ return {
             -- colorscheme = "nordic",
             -- colorscheme = "dogrun",
             -- colorscheme = "nightfly",
+            colorscheme = "base16-papercolor-dark"
         },
     },
 }

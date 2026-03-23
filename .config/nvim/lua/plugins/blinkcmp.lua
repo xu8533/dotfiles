@@ -253,7 +253,7 @@ return {
                     "fallback",
                 },
                 ["<S-Tab>"] = { "snippet_backward", "fallback" },
-                ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
+                ["<A-k>"] = { "show_signature", "hide_signature", "fallback" },
             }
 
             opts.signature = {
