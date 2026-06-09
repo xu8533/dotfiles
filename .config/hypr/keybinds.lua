@@ -107,7 +107,7 @@ for i = 1, 10 do
         { description = "workspace: switch " .. arrowkey[i] })
 end
 
--- 工作区内操作窗口
+-- #工作区内操作窗口
 --#/# bind = SUPER + ←/↑/→/↓/h/k/l/j, -- Focus in direction
 for i = 1, 8 do
     local arrowkey = { "h", "l", "k", "j", "Left", "Right", "Up", "Down" }
@@ -120,15 +120,39 @@ for i = 1, 2 do
     local focusdir = { "l", "r" }
     hl.bind("SUPER + " .. arrowkey[i], hl.dsp.focus({ direction = focusdir[i] }))
 end
---#/# bind = SUPER + ALT, ←/↑/→/↓/h/k/l/j, -- Move in direction
-for i = 1, 8 do
-    local arrowkey = { "h", "l", "k", "j", "Left", "Right", "Up", "Down" }
-    local focusdir = { "l", "r", "u", "d", "l", "r", "u", "d" }
+--#/# bind = SUPER + ALT, ←/↑/→/↓, -- Move in direction
+for i = 1, 4 do
+    local arrowkey = { "Left", "Right", "Up", "Down" }
+    local focusdir = { "l", "r", "u", "d" }
     hl.bind("SUPER + ALT + " .. arrowkey[i], hl.dsp.window.move({ direction = focusdir[i] }),
         { description = "Window: Move " .. arrowkey[i] })
 end
+-- bind = SUPER + ALT, /h/k/l/j, -- Swap in direction
+for i = 1, 4 do
+    local arrowkey = { "h", "l", "k", "j" }
+    local focusdir = { "l", "r", "u", "d" }
+    hl.bind("SUPER + ALT + " .. arrowkey[i], hl.dsp.window.swap({ direction = focusdir[i] }),
+        { description = "Window: Swap " .. arrowkey[i] })
+end
 
--- 鼠标
+-- #调整窗口大小
+-- Switch to a submap called `resize`.
+hl.bind("ALT + R", hl.dsp.submap("resize"))
+
+-- Start a submap called "resize".
+hl.define_submap("resize", function()
+    -- Set repeating binds for resizing the active window.
+    hl.bind("right", hl.dsp.window.resize({ x = 10, y = 0, relative = true }), { repeating = true })
+    hl.bind("left", hl.dsp.window.resize({ x = -10, y = 0, relative = true }), { repeating = true })
+    hl.bind("up", hl.dsp.window.resize({ x = 0, y = 10, relative = true }), { repeating = true })
+    hl.bind("down", hl.dsp.window.resize({ x = 0, y = -10, relative = true }), { repeating = true })
+
+    -- Use `reset` to go back to the global submap
+    hl.bind("escape", hl.dsp.submap("reset"))
+end)
+
+
+-- #鼠标
 -- 切换工作区
 hl.bind("SUPER + mouse_down", hl.dsp.focus({ workspace = "e+1" }), { description = "切换到下一个工作区" })
 hl.bind("SUPER + mouse_up", hl.dsp.focus({ workspace = "e-1" }), { description = "切换到上一个工作区" })
