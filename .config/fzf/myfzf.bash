@@ -1,0 +1,428 @@
+#!/usr/bin/env bash
+# export FZF_DEFAULT_COMMAND='fd --type file'
+export FZF_DEFAULT_COMMAND='fd --type file --strip-cwd-prefix --follow'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# export FZF_CTRL_T_COMMAND="$FZF_CTRL_T_OPTS"
+export FZF_CTRL_T_OPTS="
+    --walker-skip .git,node_modules,go,target
+    --preview 'bat --color=always --style=numbers --line-range=:500 {}'
+"
+
+# 搜索历史命令使用ctrl+r
+export FZF_CTRL_R_OPTS="
+    --color=header:italic
+    --ghost=搜索历史命令
+    --preview 'echo {}' 
+    --preview-window down:10:hidden:wrap 
+"
+
+# 树形目录
+export FZF_ALT_C_OPTS="
+    --walker-skip .git,node_modules,target
+    --preview 'tree -C {}'
+    --ghost=搜索目录
+"
+
+# 这两个选项不能和preview一起工作
+# --select-1
+# --exit-0'"
+# 更改触发键为两个逗号，默认为两个星号
+export FZF_COMPLETION_TRIGGER=',,'
+
+# 启用双边框
+export FZF_COMPLETION_OPTS='
+    --border=double
+    --info=inline-right
+'
+
+export FZF_COMPLETION_PATH_OPTS='
+    --walker file,dir,follow,hidden
+'
+
+export FZF_COMPLETION_DIR_OPTS='
+    --walker dir,follow
+'
+# fzf默认选项，启用预览功能，默认为隐藏模式，使用ctrl+\切换
+# 使用?切换预览窗口位置
+# 预览程序为fzf-preview.sh, 可以预览图片
+# 预览程序为bat, bat的配置在~/.config/bat/config, 需要调整效果
+# 修改该文件即可
+#--pointer='󰞘 '
+# --preview='[[ $FZF_PROMPT =~ Files ]] && BAT_THEME=Dracula fzf-preview.sh {} || tree -C {}'
+# --bind='ctrl-t:transform:[[ ! $FZF_PROMPT =~ Files ]] && printf 'change-prompt(Files> )+reload(fd --type file)' || printf 'change-prompt(Directories> )+reload(fd --type directory))''
+label=$(echo FZF模糊搜索器 | lolcat -f -p 5.0 -F 0.3 --truecolor)
+export FZF_DEFAULT_OPTS="
+    --preview='BAT_THEME=Dracula fzf-preview.sh {}'
+    --preview-window=border-thinblock:right:46%:hidden:wrap
+    --bind='?:change-preview-window(down|right|)'
+    --bind='ctrl-\:toggle-preview'
+    --bind='ctrl-page-up:preview-page-up'
+    --bind='ctrl-page-down:preview-page-down'
+    --bind='scroll-up:up+up,scroll-down:down+down'
+    --bind='preview-scroll-up:preview-up+preview-up'
+    --bind='preview-scroll-down:preview-down+preview-down'
+    --bind='ctrl-x:exclude-multi'
+    --bind='ctrl-y:execute-silent(printf {} | cut -f 2- | wl-copy --trim-newline)'
+    --bind='ctrl-a:select-all,ctrl-v:deselect-all'
+    --bind='alt-r:toggle-raw'
+    --header='CTRL-T:切换目录/文件, CTRL-y将命令复制到剪切板'
+    --layout=reverse-list
+    --height=95%
+    --multi
+    --ansi
+    --info=inline-right
+    --border=sharp
+    --pointer='󱗆 '
+    --prompt=' '
+    --border-label='╢ ${label} ╟'
+    --color=label:italic:black,nomatch:dim:strip:strikethrough
+    --tabstop=4
+    --padding=1%
+    --margin=1%
+    --header-lines-border=bottom
+    --list-border=bottom
+    --style=full
+    --ghost=请输入
+"
+
+# fzf和tmux结合使用
+# export FZF_TMUX=1
+# export FZF_TMUX_OPTS='-p 80%,60%'
+
+#############重写部分默认函数#######################################
+# 使用fd替换find
+_fzf_compgen_path() {
+    fd --hidden --follow --exclude ".git" . "$1"
+}
+_fzf_compgen_dir() {
+    fd --type d --hidden --follow --exclude ".git" . "$1"
+}
+# Advanced customization of fzf options via _fzf_comprun function
+# - The first argument to the function is the name of the command.
+# - You should maje sure to pass the rest of the arguments to fzf.
+_fzf_comprun() {
+    local command=$1
+    shift
+
+    case "$command" in
+    cd) fzf --preview 'tree -C {} | head -200' "$@" ;;
+    export | unset) fzf --preview "eval 'echo \$'{}" "$@" ;;
+    ssh) fzf --preview 'dig {}' "$@" ;;
+    *) fzf --preview 'bat -n --color=always {}' "$@" ;;
+    esac
+}
+
+# To use for Ctrl-t for a floating menu from terminal
+__fzfmenu__() {
+    local cmd="fd -tf --max-depth=1"
+    eval "$cmd" | "$HOME"/.local/bin/fzfmenu
+    # eval "$cmd"
+}
+
+__fzf-menu__() {
+    local selected="$(__fzfmenu__)"
+    READLINE_LINE="${READLINE_LINE:0:$READLINE_POINT}$selected${READLINE_LINE:$READLINE_POINT}"
+    READLINE_POINT=$((READLINE_POINT + ${#selected}))
+}
+bind -x '"\C-t":"__fzf-menu__"'
+
+# CTRL-X-1 - Invoke Readline functions by name
+__fzf_readline() {
+    builtin eval "
+        builtin bind ' \
+            \"\C-x3\": $(
+        builtin bind -l | command fzf +s +m --toggle-sort=ctrl-r
+    ) \
+        '
+    "
+}
+
+builtin bind -x '"\C-x2": __fzf_readline'
+builtin bind '"\C-x1": "\C-x2\C-x3"'
+
+# Another CTRL-T script to select a directory and paste it into line
+# __fzf_select_dir() {
+#     builtin typeset READLINE_LINE_NEW="$(
+#         command find -L . \( -path '*/\.*' -o -fstype dev -o -fstype proc \) \
+#             -prune \
+#             -o -type f -print \
+#             -o -type d -print \
+#             -o -type l -print 2>/dev/null |
+#             command sed 1d |
+#             command cut -b3- |
+#             env fzf -m
+#     )"
+#
+#     if
+#         [[ -n $READLINE_LINE_NEW ]]
+#     then
+#         builtin bind '"\er": redraw-current-line'
+#         builtin bind '"\e^": magic-space'
+#         READLINE_LINE=${READLINE_LINE:+${READLINE_LINE:0:READLINE_POINT}}${READLINE_LINE_NEW}${READLINE_LINE:+${READLINE_LINE:READLINE_POINT}}
+#         READLINE_POINT=$((READLINE_POINT + ${#READLINE_LINE_NEW}))
+#     else
+#         builtin bind '"\er":'
+#         builtin bind '"\e^":'
+#     fi
+# }
+#
+# builtin bind -x '"\C-x1": __fzf_select_dir'
+# builtin bind '"\C-t": "\C-x1\e^\er"'
+
+# Another CTRL-R script to insert the selected command from history into the command line/region
+# bind '"\C-r": "\C-x1\e^\er"'
+# bind -x '"\C-x1": __fzf_history'
+#
+# __fzf_history() {
+#     __ehc $(history | fzf --tac --tiebreak=index | perl -ne 'm/^\s*([0-9]+)/ and print "!$1"')
+# }
+#
+# __ehc() {
+#     if
+#         [[ -n $1 ]]
+#     then
+#         bind '"\er": redraw-current-line'
+#         bind '"\e^": magic-space'
+#         READLINE_LINE=${READLINE_LINE:+${READLINE_LINE:0:READLINE_POINT}}${1}${READLINE_LINE:+${READLINE_LINE:READLINE_POINT}}
+#         READLINE_POINT=$((READLINE_POINT + ${#1}))
+#     else
+#         bind '"\er":'
+#         bind '"\e^":'
+#     fi
+# }
+
+#############社区提供的一些常用函数################################
+# fkill - 杀死进程- 只显示本账号可以kill的进程
+fkill() {
+    local pid
+    if [ "$UID" != "0" ]; then
+        pid=$(ps -f -u $UID | sed 1d | fzf -m | awk '{print $2}')
+    else
+        pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+    fi
+
+    if [ "x$pid" != "x" ]; then
+        echo $pid | xargs kill -${1:-9}
+    fi
+}
+
+# fman - 查看man手册
+man-find() {
+    f=$(fd . $MANPATH/man${1:-1} -t f -x echo {/.} | fzf) && man $f
+}
+
+fman() {
+    man -k . | fzf -q "$1" --prompt='man> ' --preview $'
+		echo {} | tr -d \'()\' | 
+		awk \'{printf "%s ", $2} {print $1}\' | 
+		xargs -r man | 
+		col -bx | 
+		bat -l man -p --color always
+		' | tr -d '()' |
+        awk '{printf "%s ", $2} {print $1}' |
+        xargs -r man
+}
+# Get the colors in the opened man page itself
+# export MANPAGER="sh -c 'col -bx | bat -l man -p --paging always'"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+# fo [FUZZY PATTERN] - Open the selected file with the default editor
+#   - Bypass fuzzy finder if there's only one match (--select-1)
+#   - Exit if there's no match (--exit-0)
+#   - CTRL-O to open with `open` command,
+#   - CTRL-E or Enter key to open with the $EDITOR
+fo() {
+    IFS=$'\n' out=("$(fzf-tmux --query="$1" --exit-0 --expect=ctrl-o,ctrl-e)")
+    key=$(head -1 <<<"$out")
+    file=$(head -2 <<<"$out" | tail -1)
+    if [ -n "$file" ]; then
+        [ "$key" = ctrl-o ] && open "$file" || ${EDITOR:-emacs} "$file"
+    fi
+}
+
+# fh - 重复历史命令
+runcmd() { perl -e 'ioctl STDOUT, 0x5412, $_ for split //, <>'; }
+fh() {
+    ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -re 's/^\s*[0-9]+\s*//' | runcmd
+}
+
+# fhe - 重复历史命令(允许修改命令)
+writecmd() { perl -e 'ioctl STDOUT, 0x5412, $_ for split //, do{ chomp($_ = <>); $_ }'; }
+fhe() {
+    ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -re 's/^\s*[0-9]+\s*//' | writecmd
+}
+
+# git集成
+# fbr - checkout git branch (including remote branches), sorted by most recent commit, limit 30 last branches
+fbr() {
+    local branches branch
+    branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
+        branch=$(echo "$branches" |
+            fzf-tmux -d $((2 + $(wc -l <<<"$branches"))) +m) &&
+        git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+# fco - checkout git branch/tag
+fco() {
+    local tags branches target
+    branches=$(
+        git --no-pager branch --all \
+            --format="%(if)%(HEAD)%(then)%(else)%(if:equals=HEAD)%(refname:strip=3)%(then)%(else)%1B[0;34;1mbranch%09%1B[m%(refname:short)%(end)%(end)" |
+            sed '/^$/d'
+    ) || return
+    tags=$(
+        git --no-pager tag | awk '{print "\x1b[35;1mtag\x1b[m\t" $1}'
+    ) || return
+    target=$(
+        (
+            echo "$branches"
+            echo "$tags"
+        ) |
+            fzf --no-hscroll --no-multi -n 2 \
+                --ansi
+    ) || return
+    git checkout $(awk '{print $2}' <<<"$target")
+}
+# fcoc - checkout git commit
+fcoc() {
+    local commits commit
+    commits=$(git log --pretty=oneline --abbrev-commit --reverse) &&
+        commit=$(echo "$commits" | fzf --tac +s +m -e) &&
+        git checkout $(echo "$commit" | sed "s/ .*//")
+}
+# fshow - git commit browser
+fshow() {
+    git log --graph --color=always \
+        --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
+        fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
+            --bind "ctrl-m:execute:
+              (grep -o '[a-f0-9]\{7\}' | head -1 |
+              xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
+              {}
+              FZF-EOF"
+}
+
+alias glNoGraph='git log --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr% C(auto)%an" "$@"'
+_gitLogLineToHash="echo {} | grep -o '[a-f0-9]\{7\}' | head -1"
+_viewGitLogLine="$_gitLogLineToHash | xargs -I % sh -c 'git show --color=always % | diff-so-fancy'"
+# fcoc_preview - checkout git commit with previews
+fcoc_preview() {
+    local commit
+    commit=$(glNoGraph |
+        fzf --no-sort --reverse --tiebreak=index --no-multi \
+            --ansi --preview="$_viewGitLogLine") &&
+        git checkout $(echo "$commit" | sed "s/ .*//")
+}
+# fshow_preview - git commit browser with previews
+fshow_preview() {
+    glNoGraph |
+        fzf --no-sort --reverse --tiebreak=index --no-multi \
+            --ansi --preview="$_viewGitLogLine" \
+            --header "enter to view, alt-y to copy hash" \
+            --bind "enter:execute:$_viewGitLogLine   | less -R" \
+            --bind "alt-y:execute:$_gitLogLineToHash | xclip"
+}
+# fstash - easier way to deal with stashes
+# type fstash to get a list of your stashes
+# enter shows you the contents of the stash
+# ctrl-d shows a diff of the stash against your current HEAD
+# ctrl-b checks the stash out as a branch, for easier merging
+fstash() {
+    local out q k sha
+    while out=$(
+        git stash list --pretty="%C(yellow)%h %>(14)%Cgreen%cr %C(blue)%gs" |
+            fzf --ansi --no-sort --query="$q" --print-query \
+                --expect=ctrl-d,ctrl-b
+    ); do
+        mapfile -t out <<<"$out"
+        q="${out[0]}"
+        k="${out[1]}"
+        sha="${out[-1]}"
+        sha="${sha%% *}"
+        [[ -z "$sha" ]] && continue
+        if [[ "$k" == 'ctrl-d' ]]; then
+            git diff $sha
+        elif [[ "$k" == 'ctrl-b' ]]; then
+            git stash branch "stash-$sha" $sha
+            break
+        else
+            git stash show -p $sha
+        fi
+    done
+}
+
+# gh-watch -- watch the current actions
+# gh-watch() {
+# 	gh run list \
+# 		--branch $(git rev-parse --abbrev-ref HEAD) \
+# 		--json status,name,databaseId |
+# 		jq -r '.[] | select(.status != "completed") | (.databaseId | tostring) + "\t" + (.name)' |
+# 		fzf -1 -0 | awk '{print $1}' | xargs gh run watch
+# }
+
+# ftags - search ctags with preview
+# only works if tags-file was generated with --excmd=number
+ftags() {
+    local line
+    [ -e tags ] &&
+        line=$(
+            awk 'BEGIN { FS="\t" } !/^!/ {print toupper($4)"\t"$1"\t"$2"\t"$3}' tags |
+                fzf \
+                    --nth=1,2 \
+                    --with-nth=2 \
+                    --preview-window="50%" \
+                    --preview="bat {3} --color=always | tail -n +\$(echo {4} | tr -d \";\\\"\")"
+        ) && ${EDITOR:-vim} $(cut -f3 <<<"$line") -c "set nocst" \
+        -c "silent tag $(cut -f2 <<<"$line")"
+}
+
+# conda集成
+fzf-conda-activate() {
+    choice=(
+        $"
+			conda env list |
+				sed 's/\*/ /;1,2d' |
+				xargs -I {} bash -c '
+                name_path=( {} );
+                py_version=( $(${name_path[1]}/bin/python --version) );
+                echo ${name_path[0]} ${py_version[1]} ${name_path[1]} 
+                ' |
+				column -t |
+				fzf --layout=reverse \
+					--info=inline \
+					--border=rounded \
+					--height=40 \
+					--preview-window="right:30%" \
+					--preview-label=" conda tree leaves " \
+					--preview=$'
+                    conda tree -p {3} leaves |
+                    perl -F\'[^\\w-_]\' -lae \'print for grep /./, @F;\' |
+                    sort
+                '
+		"
+    )
+    [[ -n "$choice" ]] && conda activate "$choice"
+}
+
+# fzf版本cd命令
+cd() {
+    # 修复直接使用cd命令不加参数时还是跳出目录选择菜单
+    if [[ "$#" != 0 ]]; then
+        builtin cd "$@" || return
+    elif [[ "$#" == 0 ]]; then
+        builtin cd
+        return
+    fi
+    while true; do
+        local lsd=$(echo ".." && ls -p | grep '/$' | sed 's;/$;;')
+        local dir="$(printf '%s\n' "${lsd[@]}" |
+            fzf --reverse --preview '
+                __cd_nxt="$(echo {})";
+                __cd_path="$(echo $(pwd)/${__cd_nxt} | sed "s;//;/;")";
+                echo $__cd_path;
+                echo;
+                ls -p --color=always "${__cd_path}";
+        ')"
+        [[ ${#dir} != 0 ]] || return 0
+        builtin cd "$dir" &>/dev/null || return
+    done
+}

@@ -1,0 +1,122 @@
+configuration {
+	/*---------- General setting ----------*/
+	modi: "drun,run,filebrowser,window,ssh,combi,keys";
+	case-sensitive: false;
+	cycle: true;
+	filter: "";
+	scroll-method: 0;
+	normalize-match: true;
+	show-icons: true;
+    /* icon-theme: "Papirus"; */
+    /* icon-theme: "Tela-circle-dracula-dark"; */
+    /* icon-theme: "Tela-circle-manjaro-dark"; */
+    /* icon-theme: "Tela-circle-pink-dark"; */
+    /* icon-theme: "Tela-circle-blue-dark"; */
+	  // icon-theme: "Papirus-Dark"; 
+	 icon-theme: "elementary";
+	/* icon-theme: "Crule"; */
+	/* icon-theme: "pop"; */
+/*	cache-dir: ;*/
+	steal-focus: false;
+	dpi: 0;
+
+	/*---------- Matching setting ----------*/
+	matching: "regex,normal,fuzzy";
+	tokenize: true;
+
+	/*---------- SSH settings ----------*/
+	ssh-client: "ssh";
+	ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";
+	parse-hosts: true;
+	parse-known-hosts: true;
+
+	/*---------- Drun settings ----------*/
+	drun-categories: "";
+	drun-match-fields: "name,generic,exec,categories,comment";
+	drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
+	drun-show-actions: false;
+	// drun-url-launcher: "xdg-open";
+	drun-url-launcher: "yazi";
+	drun-use-desktop-cache: false;
+	drun-reload-desktop-cache: false;
+	drun {
+		parse-user:   true;
+		parse-system: true;
+    }
+
+	/*---------- Run settings ----------*/
+	run-command: "{cmd}";
+	run-list-command: "";
+	run-shell-command: "{terminal} -e {cmd}";
+
+	/*---------- Fallback Icon ----------*/
+	run,drun {
+		fallback-icon: "application-x-addon";
+	}
+
+	/*---------- Window switcher settings ----------*/
+	window-match-fields: "all";
+	window-command: "wmctrl -i -R {window}";
+	window-format: "{w} - {c} - {t:0}";
+	window-thumbnail: false;
+
+	/*---------- Combi settings ----------*/
+	combi-modi: "window,run";
+	combi-hide-mode-prefix: false;
+	combi-display-format: "{mode} {text}";
+
+	/*---------- History and Sorting ----------*/
+	disable-history: false;
+	sorting-method: "normal";
+	max-history-size: 50;
+
+	/*---------- Display setting ----------*/
+	display-window: "窗口";
+	display-windowcd: "Window CD";
+	display-run: "运行";
+	display-ssh: "SSH";
+	display-drun: "应用程序";
+	display-combi: "Combi";
+	display-keys: "Keys";
+	display-filebrowser: "文件";
+
+	/*---------- Misc setting ----------*/
+	terminal: "rofi-sensible-terminal";
+	font: "Hack Nerd Font Mono 12";
+	sort: false;
+	threads: 0;
+	click-to-exit: true;
+/*	ignored-prefixes: "";*/
+/*	pid: "/run/user/1000/rofi.pid";*/
+
+	/*---------- File browser settings ----------*/
+    filebrowser {
+	  directory: "/home/xujian/";
+      directories-first: true;
+      sorting-method:    "name";
+      cmd: "yazi";
+    }
+
+	/*---------- Other settings ----------*/
+    timeout {
+      action: "kb-cancel";
+      delay:  0;
+    }
+    wayland-layer: "top";
+    pid: "/tmp/rofi.pid";
+}
+// @theme "themes/squared-everforest.rasi"
+// @theme "themes/windows11-list-dark.rasi"
+// @theme "themes/spotlight-dark.rasi"
+// @theme "themes/launchpad.rasi"
+@theme "themes/launchpad-v2.rasi"
+// @theme "fullscreen-preview.rasi"
+// @theme "sidebar-v2.rasi"
+// @theme "material.rasi"
+// @theme "gruvbox-light-soft.rasi"
+// @theme "fancy2.rasi"
+// @theme "docu.rasi"
+// @theme "arthur.rasi"
+// @theme "Arc-Dark.rasi"
+// @theme "Adapta-Nokto.rasi"
+// @theme "/usr/share/rofi/themes/gruvbox-dark-hard.rasi"

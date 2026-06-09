@@ -1,0 +1,36 @@
+output "eDP-1" {
+    // off
+    mode "2160x1440@60.00"
+    scale 1
+    // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
+    transform "normal"
+    position x=0 y=0
+    // focus-at-startup
+    hot-corners {
+        off
+ // top-left
+        // top-right
+        // bottom-left
+        // bottom-right
+    }
+}
+output "HDMI-A-1" {
+    // off
+    mode "2560x1440@59.951"
+    scale 1
+    transform "normal"
+    position x=0 y=-1440
+    // 只在window rule使用vrr时，启用自适应刷新率
+    variable-refresh-rate on-demand=true
+    focus-at-startup
+    // backdrop-color "#62697b"
+    backdrop-color "rgb(98, 105, 123)"
+    hot-corners {
+        off
+    }
+    layout {
+ // background-color "#d5ebe1"
+
+    }
+}
+

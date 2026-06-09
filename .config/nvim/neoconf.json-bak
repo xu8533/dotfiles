@@ -1,0 +1,29 @@
+{
+    "neoconf": {
+        "plugins": {
+            "lua_ls": {
+                "enabled": true
+            },
+            "jsonls": {
+                "enabled": true,
+                "configured_servers_only": false
+            }
+        }
+    },
+    "lspconfig": {
+        "lua_ls": {
+            "Lua": {
+                "format.enable": false,
+                "semantic.enable": false,
+                "workspace": {
+                    "maxPreload": 10000,
+                    "preloadFileSize": 10000
+                },
+                "telemetry": false
+            }
+        },
+        "jsonls": {
+            "json.format.enable": false
+        }
+    }
+}

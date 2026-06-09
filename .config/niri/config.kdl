@@ -1,0 +1,59 @@
+input {
+    keyboard {
+        xkb {
+            layout "us"
+        }
+        numlock
+    }
+    touchpad {
+        off
+ // tap
+        // dwt
+        // dwtp
+        // drag false
+        // drag-lock
+        // natural-scroll
+ // accel-speed .2
+        // accel-profile "kflatk"
+        // scroll-method "two-finger"
+        // disabled-on-external-mouse
+    }
+    mouse {
+ // off
+        // natural-scroll
+        // accel-speed 0.2
+        // accel-profile "flat"
+        // scroll-method "no-scroll"
+
+    }
+    trackpoint {
+        off
+    }
+    // 触摸屏
+    touch {
+        off
+        map-to-output "HDMI-A-1"
+ // calibration-matrix 1.0 0.0 0.0 0.0 1.0 0.0
+    }
+    // 光标自动移动到聚焦窗口
+    warp-mouse-to-focus
+    // 自动跟随鼠标聚焦
+    focus-follows-mouse max-scroll-amount="10%"
+ // disable-power-key-handling
+    // workspace-auto-back-and-forth
+
+    // mod-key "Super"
+    // mod-key-nested "Alt"
+}
+prefer-no-csd
+include "animation.kdl"
+include "keybinds.kdl"
+include "layer-rule.kdl"
+include "layout.kdl"
+include "misc.kdl"
+include "monitors.kdl"
+include "window-rule.kdl"
+include "workspace.kdl"
+include "startup.kdl"
+ // include "colors.kdl"
+

@@ -1,0 +1,31 @@
+/* ---- Load colors ---- */
+@theme "~/.config/rofi/themes/launchpad-v2-colors.rasi"
+
+/* ---- Configuration ---- */
+configuration {
+    // Available modes
+    modi: "run,drun,window";
+    
+    // Font settings
+    font: "Maple Mono NF CN 14";
+    
+    // Icon settings
+    show-icons: true;
+    icon-theme: "Papirus-Dark";
+    
+    // Basic settings
+    terminal: "kitty";
+    drun-display-format: "{icon} {name}";
+    location: 0;                              // Center position
+    disable-history: false;
+    hide-scrollbar: false;
+    
+    // Mode display names with Nerd Font icons
+    display-drun: " 应用";                    // Apps mode
+    display-run: "󰨡 运行";                      // Run mode
+    display-window: " 窗口切换";                // Window switcher
+    display-Network: "󰤨 网络";            // Network mode
+    
+    // Enable sidebar mode for switching modes
+    sidebar-mode: true;
+}

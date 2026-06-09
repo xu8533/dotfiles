@@ -1,0 +1,84 @@
+hotkey-overlay {
+    skip-at-startup
+}
+cursor {
+    xcursor-theme "Bibata-Modern-Ice"
+    xcursor-size 24
+    hide-when-typing
+    hide-after-inactive-ms 3000
+}
+// clipboard {
+//     disable-primary
+// }
+overview {
+    zoom 0.35
+ // backdrop-color "#26262650"
+    // backdrop-color "#62697b"
+    // backdrop-color "#777777"
+    // workspace-shadow {
+    //     off
+ // softness 40
+        // spread 10
+        // offset x=0 y=10
+        // color "#00000050"
+    // }
+}
+blur {
+    // off
+    // 通量
+    passes 2
+    // 偏移量
+    offset 4.0
+    noise 0.05
+    // 饱和度
+    saturation 1.8
+}
+environment {
+    QT_QPA_PLATFORMTHEME "qt6ct"
+    QT_QPA_PLATFORMTHEME_QT6 "qt6ct"
+    XDG_CURRENT_DESKTOP "niri"
+    QT_QPA_PLATFORM "wayland"
+}
+recent-windows {
+    // off
+    debounce-ms 750
+    open-delay-ms 150
+    highlight {
+        active-color "#62697bdf"
+        urgent-color "#ff9999df"
+        padding 30
+        corner-radius 12
+    }
+    previews {
+        max-height 480
+        max-scale 0.5
+    }
+    binds {
+        Alt+Tab {
+            next-window
+        }
+        Alt+Shift+Tab {
+            previous-window
+        }
+        Alt+grave {
+            next-window filter="app-id"
+        }
+        Alt+Shift+grave {
+            previous-window filter="app-id"
+        }
+        Mod+Tab {
+            next-window
+        }
+        Mod+Shift+Tab {
+            previous-window
+        }
+        Mod+grave {
+            next-window filter="app-id"
+        }
+        Mod+Shift+grave {
+            previous-window filter="app-id"
+        }
+    }
+}
+screenshot-path "~/图片/Screenshots/Screenshot_%Y-%m-%d_%H-%M-%S.png"
+

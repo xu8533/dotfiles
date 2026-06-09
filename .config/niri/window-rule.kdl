@@ -1,0 +1,44 @@
+window-rule {
+    geometry-corner-radius 20
+    clip-to-geometry true
+    opacity 0.8
+    draw-border-with-background false
+    background-effect {
+        blur true
+    }
+}
+window-rule {
+    match app-id="kitty"
+    default-column-width {
+        proportion 0.65
+    }
+    opacity 1.0
+ // background-effect {
+    //     blur true
+    // }
+}
+window-rule {
+    // match app-id="^qutebrowser$" title="^Picture-in-Picture$"
+    match app-id="^qutebrowser$"
+    open-floating true
+    popups {
+        // Matches the default libadwaita pop-up corner radius.
+        geometry-corner-radius 15
+        // Note: it'll look better to set background opacity
+        // through your GTK theme CSS and not here.
+        // This is just an example that makes it look obvious.
+        opacity 0.5
+        background-effect {
+            blur true
+        }
+    }
+}
+window-rule {
+    match is-floating=true
+ // background-effect {
+    //     blur true
+    //     xray false
+    // }
+}
+ //
+

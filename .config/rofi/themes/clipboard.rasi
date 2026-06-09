@@ -1,0 +1,142 @@
+// @import "~/.cache/matugen/rofi-colors.rasi"
+configuration {
+	show-icons: 		false;
+}
+
+* {
+    font:   "VictorMono Nerd Font Mono 13";
+
+    bg0:     #F5F5F5BF;
+    bg1:     #7E7E7E80;
+    bg2:     #0860F2E6;
+
+    fg0:     #242424;
+    fg1:     #FFFFFF;
+    fg2:     #24242480;
+
+    background-color:   transparent;
+    text-color:         @inverse-primary;
+    // text-color:         @fg0;
+
+    margin:     0;
+    padding:    0;
+    spacing:    0;
+}
+
+window {
+    enabled:                     true;
+    transparency:                "real";
+    location:                    center;
+    anchor:                      center;
+    fullscreen:                  false;
+
+    width:                       640;
+    border-radius:               8;
+    background-color:            @bg0;
+}
+
+mainbox {
+    enabled:                     true;
+    spacing:                     2px;
+    background-color:            transparent;
+    orientation:                 vertical;
+    children:                    [ "inputbar", "listview" ];
+}
+
+/*****----- Inputbar -----*****/
+inputbar {
+    font:   "iMWritingMono Nerd Font Mono 16";
+    enabled:                     true;
+    spacing:                     2px 24px 2px 2px;
+    background-color:            transparent;
+    text-color:                  @text-color;
+    orientation:                 horizontal;
+    children:                    ["textbox-prompt-colon", "dummy", "entry" ];
+}
+
+dummy {
+    background-color: 		 transparent;
+}
+
+entry {
+    enabled:                     true;
+    expand:                      false;
+    width:                       560px;
+    padding:                     12px 16px 12px 12px;
+    border-radius:               8px;
+    background-color:            @bg0;
+    text-color:                  inherit;
+    placeholder:                 "搜索...";
+    placeholder-color:           inherit;
+}
+
+scrollbar {
+    handle-width:            4px;
+    handle-color:            @fg2;
+    border-radius:           8px;
+    background-color:        rgba(255, 255, 255, 0.08);
+    margin:                  0px 0px 0px 2px;
+    padding:                 1px;
+}
+
+textbox-prompt-colon {
+    font:                        inherit;
+    enabled:                     true;
+    expand:                      false;
+    str:                         "";
+    padding:                     10px 14px 10px 14px;
+    border-radius:               6px;
+    background-color:            @bg2;
+    text-color:                  @fg1;
+}
+
+listview {
+    enabled:                     true;
+    columns:                     1;
+    lines:                       16;
+    cycle:                       true;
+    dynamic:                     true;
+    scrollbar:                   true;
+    layout:                      vertical;
+    reverse:                     false;
+    fixed-height:                true;
+    fixed-columns:               true;
+
+    spacing:                     2px;
+    border-radius: 		         8px;
+    background-color:            @bg0;
+    text-color:                  @fg0;
+}
+
+element {
+    padding:            12px 8px;
+    spacing:            16px;
+    border-radius:      8px;
+    background-color:   transparent;
+}
+
+element normal active {
+    text-color: @bg2;
+}
+
+element alternate active {
+    text-color: @bg2;
+}
+
+element selected normal, element selected active {
+    background-color:   @bg2;
+    text-color:         @fg1;
+}
+
+element-icon {
+    size:   1em;
+}
+
+element-text {
+    background-color:            transparent;
+    text-color:                  inherit;
+    cursor:                      inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0;
+}
+

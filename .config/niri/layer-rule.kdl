@@ -1,0 +1,38 @@
+layer-rule {
+    match namespace="^rofi$"
+    // opacity 1.0
+    background-effect {
+        blur true
+ // xray true
+    }
+ // 窗口上下移动
+ // baba-is-float true
+}
+// awww overview background
+// layer-rule {
+//     match namespace="^awww-daemon-overview$"
+//     place-within-backdrop true
+// }
+// swaybg overview background
+layer-rule {
+    match namespace="^wallpaper$"
+    place-within-backdrop true
+    background-effect {
+        blur true
+ // xray true
+        // noise 0.05
+        // saturation 3
+    }
+}
+// Enable blur behind the fuzzel launcher.
+layer-rule {
+    match namespace="^launcher$"
+    background-effect {
+        blur true
+        // xray true
+        noise 0.05
+        saturation 3
+    }
+    opacity 0.8
+}
+

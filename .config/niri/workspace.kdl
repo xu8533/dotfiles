@@ -1,0 +1,6 @@
+workspace "video" {
+    layout {
+        always-center-single-column false
+    }
+}
+

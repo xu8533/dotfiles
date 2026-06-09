@@ -1,0 +1,19 @@
+// 壁纸
+spawn-sh-at-startup "awww-daemon --no-cache & ${HOME}/.config/hypr/scripts/swww_randomize.sh ${HOME}/图片/Wallpapers/"
+// overview壁纸
+spawn-sh-at-startup "awww-daemon --no-cache --namespace -overview"
+spawn-sh-at-startup "sleep 3 & awww img --namespace=-overview /home/xujian/图片/Wallpapers/a_bird_flying_over_a_beach.jpg"
+// spawn-sh-at-startup "swaybg --image ${HOME}/图片/Wallpapers/a_bird_flying_over_a_beach.jpg"
+// 保留文本到剪贴板
+spawn-sh-at-startup "wl-paste --type text --watch cliphist store"
+// 保留图片到剪贴板
+spawn-sh-at-startup "wl-paste --type image --watch cliphist store"
+// hyprland官方认证程序
+spawn-sh-at-startup "systemctl --user start hyprpolkitagent"
+spawn-at-startup "kitty"
+spawn-at-startup "hypridle"
+ // 启动DankMaterialShell桌面
+// spawn-at-startup "dms" "restart"
+ // 自动配置显示器
+// spawn-sh-at-startup "${HOME}/.local/bin/monitor-auto.sh"
+
