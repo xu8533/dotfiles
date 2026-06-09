@@ -1,0 +1,7 @@
+require("variables")
+require("general")
+require("hardware")
+require("layout")
+require("animations")
+require("startup")
+require("keybinds")
