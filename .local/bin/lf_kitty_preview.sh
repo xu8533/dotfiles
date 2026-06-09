@@ -11,18 +11,19 @@ x=$4
 y=$5
 
 preview() {
-    if [[ "$CURRENT_TERM" == "alacritty" ]]; then
-        # If in Alacritty, open a new kitty terminal to show the preview.
-        kitty -e "kitty +kitten icat --silent --stdin no --transfer-mode file \"$1\""
-    else
-        # If in kitty or any other terminal, use the original method.
-        kitty +kitten icat --silent --stdin no --transfer-mode file --place "${w}x${h}@${x}x${y}" "$1" </dev/null >/dev/tty
-    fi
+    # if [[ "$CURRENT_TERM" == "alacritty" ]]; then
+    #     # If in Alacritty, open a new kitty terminal to show the preview.
+    #     kitty -e "kitty +kitten icat --silent --stdin no --transfer-mode file \"$1\""
+    # else
+    #     # If in kitty or any other terminal, use the original method.
+    #     kitten icat --silent --stdin no --transfer-mode file --place "${w}x${h}@${x}x${y}" "$1" </dev/null >/dev/tty
+    # fi
+    kitten icat --stdin no --transfer-mode memory --place "${w}x${h}@${x}x${y}" "$1" </dev/null >/dev/tty
     exit 1
 }
 
 case "$(file -Lb --mime-type -- "$file")" in
-image/*xcf | image/heic)
+image/{*xcf,heic})
     CACHE="$HOME/.cache/lf/$(stat --printf '%s%n%Y' "$(readlink -f "$1")" | shasum | cut -d' ' -f1)"
     [ -f "${CACHE}.jpg" ] || convert "$1" -flatten -quality 50 "${CACHE}.jpg"
     preview "${CACHE}.jpg"
