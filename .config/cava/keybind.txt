@@ -1,7 +1,0 @@
-Key 	Description
-up / down 	increase/decrease sensitivity
-left / right 	increase/decrease bar width
-f / b 	change foreground/background color
-r 	Reload configuration
-c 	Reload colors only
-q or CTRL-C 	Quit C.A.V.A.
