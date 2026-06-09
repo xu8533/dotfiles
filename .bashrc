@@ -108,7 +108,7 @@ if ! shopt -oq posix; then
     fi
 fi
 
-PATH=$PATH:~/.config/rofi/scripts:~/.local/bin
+PATH=$PATH:"$HOME"/.config/rofi/scripts:"$HOME"/.local/bin
 
 # fastfetch -l Scientific
 # fastfetch
@@ -160,6 +160,7 @@ export MANROFFOPT
 eval "$(fzf --bash)"
 [ -f "${HOME}.fzf.bash" ] && source "$HOME/.fzf.bash"
 [ -f "${HOME}.config/fzf/myfzf.bash" ] && source "$HOME/.config/fzf/myfzf.bash"
+[ -f "${HOME}.config/fzf/fzf-themes.sh" ] && source "$HOME/.config/fzf/fzf-themes.sh"
 [ -f "${HOME}.config/fzf/fzf-git.sh" ] && source "$HOME/.config/fzf/fzf-git.sh"
 
 # autojump
