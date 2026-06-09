@@ -5,15 +5,172 @@
                 "scale": 1
             }
         },
+        "deformScale": 1,
         "font": {
-            "family": {
-                "clock": "FirCode Nerd Font Mono",
-                "material": "Material Symbols Rounded",
-                "mono": "Maple Mono NF CN",
-                "sans": "Rubik"
+            "body": {
+                "family": "Maple Mono NF CN",
+                "large": {
+                    "italic": false,
+                    "size": 16,
+                    "vaxes": {
+                        "ROND": 25
+                    },
+                    "weight": 400
+                },
+                "medium": {
+                    "italic": false,
+                    "size": 14,
+                    "vaxes": {
+                        "ROND": 25
+                    },
+                    "weight": 400
+                },
+                "small": {
+                    "italic": false,
+                    "size": 12,
+                    "vaxes": {
+                        "ROND": 25
+                    },
+                    "weight": 400
+                }
             },
-            "size": {
-                "scale": 1.1
+            "clock": "Maple Mono NF CN",
+            "headline": {
+                "family": "CaskaydiaCove Nerd Font Mono",
+                "large": {
+                    "italic": false,
+                    "size": 32,
+                    "vaxes": {
+                        "ROND": 25
+                    },
+                    "weight": 500
+                },
+                "medium": {
+                    "italic": false,
+                    "size": 28,
+                    "vaxes": {
+                        "ROND": 25
+                    },
+                    "weight": 500
+                },
+                "small": {
+                    "italic": false,
+                    "size": 24,
+                    "vaxes": {
+                        "ROND": 25
+                    },
+                    "weight": 500
+                }
+            },
+            "icon": {
+                "extraLarge": {
+                    "italic": false,
+                    "size": 36,
+                    "vaxes": {
+                    },
+                    "weight": 400
+                },
+                "family": "Material Symbols Rounded",
+                "large": {
+                    "italic": false,
+                    "size": 24,
+                    "vaxes": {
+                    },
+                    "weight": 400
+                },
+                "medium": {
+                    "italic": false,
+                    "size": 18,
+                    "vaxes": {
+                    },
+                    "weight": 400
+                },
+                "small": {
+                    "italic": false,
+                    "size": 15,
+                    "vaxes": {
+                    },
+                    "weight": 400
+                }
+            },
+            "label": {
+                "family": "Sarasa Term SC",
+                "large": {
+                    "italic": false,
+                    "size": 14,
+                    "vaxes": {
+                        "ROND": 25
+                    },
+                    "weight": 500
+                },
+                "medium": {
+                    "italic": false,
+                    "size": 12,
+                    "vaxes": {
+                        "ROND": 25
+                    },
+                    "weight": 500
+                },
+                "small": {
+                    "italic": false,
+                    "size": 11,
+                    "vaxes": {
+                        "ROND": 25
+                    },
+                    "weight": 400
+                }
+            },
+            "mono": {
+                "family": "霞鹜文楷等宽",
+                "large": {
+                    "italic": false,
+                    "size": 16,
+                    "vaxes": {
+                    },
+                    "weight": 400
+                },
+                "medium": {
+                    "italic": false,
+                    "size": 14,
+                    "vaxes": {
+                    },
+                    "weight": 400
+                },
+                "small": {
+                    "italic": false,
+                    "size": 12,
+                    "vaxes": {
+                    },
+                    "weight": 400
+                }
+            },
+            "scale": 1,
+            "title": {
+                "family": "JetBrainsMono Nerd Font Mono",
+                "large": {
+                    "italic": false,
+                    "size": 22,
+                    "vaxes": {
+                        "ROND": 25
+                    },
+                    "weight": 500
+                },
+                "medium": {
+                    "italic": false,
+                    "size": 16,
+                    "vaxes": {
+                        "ROND": 25
+                    },
+                    "weight": 500
+                },
+                "small": {
+                    "italic": false,
+                    "size": 14,
+                    "vaxes": {
+                        "ROND": 25
+                    },
+                    "weight": 500
+                }
             }
         },
         "padding": {
@@ -23,135 +180,92 @@
             "scale": 1
         },
         "spacing": {
-            "scale": 0.5
+            "scale": 1
         },
         "transparency": {
+            "base": 0.85,
             "enabled": true,
-            "base": 0.89,
             "layers": 0.4
-        }
-    },
-    "general": {
-        "apps": {
-            "terminal": [
-                "kitty"
-            ],
-            "audio": [
-                "pavucontrol"
-            ],
-            "playback": [
-                "mpv"
-            ],
-            "explorer": [
-                "kitty",
-                "--title=Yazi",
-                "sh",
-                "-c",
-                "yazi"
-            ]
-        },
-        "battery": {
-            "warnLevels": [
-                {
-                    "level": 20,
-                    "title": "警告，电量低:(",
-                    "message": "请插入电源",
-                    "icon": "battery_android_frame_2"
-                },
-                {
-                    "level": 10,
-                    "title": "警告，电量极低:<",
-                    "message": "请迅速插入电源",
-                    "icon": "battery_android_frame_1"
-                },
-                {
-                    "level": 5,
-                    "title": "警告，电量异常低:<(",
-                    "message": "请立刻插入电源!!",
-                    "icon": "battery_android_alert",
-                    "critical": true
-                }
-            ],
-            "criticalLevel": 3
-        },
-        "idle": {
-            "lockBeforeSleep": true,
-            "inhibitWhenAudio": true,
-            "timeouts": [
-                {
-                    "timeout": 180,
-                    "idleAction": "lock"
-                },
-                {
-                    "timeout": 300,
-                    "idleAction": "dpms off",
-                    "returnAction": "dpms on"
-                },
-                {
-                    "timeout": 600,
-                    "idleAction": [
-                        "systemctl",
-                        "suspend-then-hibernate"
-                    ]
-                }
-            ]
         }
     },
     "background": {
         "desktopClock": {
-            "enabled": true
+            "background": {
+                "blur": true,
+                "enabled": false,
+                "opacity": 0.7
+            },
+            "enabled": true,
+            "invertColors": false,
+            "position": "bottom-right",
+            "scale": 1,
+            "shadow": {
+                "blur": 0.4,
+                "enabled": true,
+                "opacity": 0.7
+            }
         },
         "enabled": true,
         "visualiser": {
-            "blur": false,
-            "enabled": true,
             "autoHide": true,
+            "blur": true,
+            "enabled": true,
             "rounding": 1,
-            "spacing": 1
-        }
+            "spacing": 1.2
+        },
+        "wallpaperEnabled": true
     },
     "bar": {
+        "activeWindow": {
+            "compact": false,
+            "inverted": false,
+            "showOnHover": true
+        },
         "clock": {
+            "background": true,
+            "showDate": false,
             "showIcon": true
         },
         "dragThreshold": 20,
         "entries": [
             {
-                "id": "logo",
-                "enabled": true
+                "enabled": true,
+                "id": "logo"
             },
             {
-                "id": "workspaces",
-                "enabled": true
+                "enabled": true,
+                "id": "workspaces"
             },
             {
-                "id": "spacer",
-                "enabled": true
+                "enabled": true,
+                "id": "spacer"
             },
             {
-                "id": "activeWindow",
-                "enabled": true
+                "enabled": true,
+                "id": "activeWindow"
             },
             {
-                "id": "spacer",
-                "enabled": true
+                "enabled": true,
+                "id": "spacer"
             },
             {
-                "id": "tray",
-                "enabled": true
+                "enabled": true,
+                "id": "tray"
             },
             {
-                "id": "clock",
-                "enabled": true
+                "enabled": true,
+                "id": "clock"
             },
             {
-                "id": "statusIcons",
-                "enabled": true
+                "enabled": true,
+                "id": "statusIcons"
             },
             {
-                "id": "power",
-                "enabled": true
+                "enabled": true,
+                "id": "power"
             }
+        ],
+        "excludedScreens": [
         ],
         "persistent": true,
         "popouts": {
@@ -161,307 +275,417 @@
         },
         "scrollActions": {
             "brightness": true,
-            "workspaces": true,
-            "volume": true
+            "volume": true,
+            "workspaces": true
         },
         "showOnHover": true,
         "status": {
-            "showAudio": true,
+            "showAudio": false,
             "showBattery": true,
             "showBluetooth": true,
-            "showKbLayout": true,
+            "showKbLayout": false,
+            "showLockStatus": true,
             "showMicrophone": false,
             "showNetwork": true,
-            "showLockStatus": true
-        },
-        "sizes": {
-            "innerWidth": 36,
-            "windowPreviewSize": 400,
-            "trayMenuWidth": 300,
-            "batteryWidth": 280,
-            "networkWidth": 280
+            "showWifi": true
         },
         "tray": {
             "background": true,
-            "compact": true,
-            "iconSubs": [],
-            "recolour": false
+            "compact": false,
+            "hiddenIcons": [
+            ],
+            "iconSubs": [
+            ],
+            "recolour": true
         },
         "workspaces": {
             "activeIndicator": true,
             "activeLabel": "󰮯",
             "activeTrail": false,
+            "capitalisation": "preserve",
             "label": "  ",
+            "maxWindowIcons": 5,
             "occupiedBg": false,
             "occupiedLabel": "󰮯",
             "perMonitorWorkspaces": true,
             "showWindows": true,
+            "showWindowsOnSpecialWorkspaces": true,
             "shown": 5,
             "specialWorkspaceIcons": [
                 {
-                    "name": "music",
-                    "icon": "sports_esports"
-                },
+                    "icon": "sports_esports",
+                    "name": "steam"
+                }
+            ],
+            "windowIcons": [
                 {
-                    "name": "video",
-                    "icon": "video"
-                },
-                {
-                    "name": "media",
-                    "icon": "video"
-                },
-                {
-                    "name": "office",
-                    "icon": "office"
-                },
-                {
-                    "name": "note",
-                    "icon": "notebook"
+                    "icon": "sports_esports",
+                    "regex": "steam(_app_(default|[0-9]+))?"
                 }
             ]
-        },
-        "activeWindow": {
-            "inverted": false
         }
     },
     "border": {
         "rounding": 20,
-        "thickness": 8
+        "smoothing": 22,
+        "thickness": 4
     },
     "dashboard": {
-        "enabled": true,
         "dragThreshold": 50,
+        "enabled": true,
         "mediaUpdateInterval": 500,
-        "showOnHover": true
+        "performance": {
+            "showBattery": true,
+            "showCpu": true,
+            "showGpu": true,
+            "showMemory": true,
+            "showNetwork": true,
+            "showStorage": true
+        },
+        "resourceUpdateInterval": 1000,
+        "showDashboard": true,
+        "showMedia": true,
+        "showOnHover": true,
+        "showPerformance": true,
+        "showWeather": false
+    },
+    "enabled": true,
+    "general": {
+        "apps": {
+            "audio": [
+                "pavucontrol"
+            ],
+            "explorer": [
+                "kitty",
+                "--title=Yazi",
+                "sh",
+                "-c",
+                "yazi"
+            ],
+            "playback": [
+                "mpv"
+            ],
+            "terminal": [
+                "kitty"
+            ]
+        },
+        "battery": {
+            "criticalLevel": 3,
+            "warnLevels": [
+                {
+                    "icon": "battery_android_frame_2",
+                    "level": 20,
+                    "message": "请插入电源",
+                    "title": "警告，电量低:("
+                },
+                {
+                    "icon": "battery_android_frame_1",
+                    "level": 10,
+                    "message": "请迅速插入电源",
+                    "title": "警告，电量极低:<"
+                },
+                {
+                    "critical": true,
+                    "icon": "battery_android_alert",
+                    "level": 5,
+                    "message": "请立刻插入电源!!",
+                    "title": "警告，电量异常低:<("
+                }
+            ]
+        },
+        "idle": {
+            "inhibitWhenAudio": true,
+            "lockBeforeSleep": true,
+            "timeouts": [
+                {
+                    "idleAction": "lock",
+                    "timeout": 180
+                },
+                {
+                    "idleAction": "dpms off",
+                    "returnAction": "dpms on",
+                    "timeout": 300
+                },
+                {
+                    "idleAction": [
+                        "systemctl",
+                        "suspend-then-hibernate"
+                    ],
+                    "timeout": 600
+                }
+            ]
+        },
+        "logo": "caelestia",
+        "mediaGifSpeedAdjustment": 300,
+        "sessionGifSpeed": 0.7,
+        "showOverFullscreen": true
     },
     "launcher": {
         "actionPrefix": ">",
         "actions": [
             {
-                "name": "Calculator",
-                "icon": "calculate",
-                "description": "计算器",
                 "command": [
                     "autocomplete",
                     "calc"
                 ],
+                "dangerous": false,
+                "description": "计算器",
                 "enabled": true,
-                "dangerous": false
+                "icon": "calculate",
+                "name": "Calculator"
             },
             {
-                "name": "Scheme",
-                "icon": "palette",
-                "description": "更改当前配色方案",
                 "command": [
                     "autocomplete",
                     "scheme"
                 ],
+                "dangerous": false,
+                "description": "更改当前配色方案",
                 "enabled": true,
-                "dangerous": false
+                "icon": "palette",
+                "name": "Scheme"
             },
             {
-                "name": "Wallpaper",
-                "icon": "image",
-                "description": "更改当前壁纸",
                 "command": [
                     "autocomplete",
                     "wallpaper"
                 ],
+                "dangerous": false,
+                "description": "更改当前壁纸",
                 "enabled": true,
-                "dangerous": false
+                "icon": "image",
+                "name": "Wallpaper"
             },
             {
-                "name": "Variant",
-                "icon": "colors",
-                "description": "更改当前方案变体",
                 "command": [
                     "autocomplete",
                     "variant"
                 ],
+                "dangerous": false,
+                "description": "更改当前方案变体",
                 "enabled": true,
-                "dangerous": false
+                "icon": "colors",
+                "name": "Variant"
             },
             {
-                "name": "Transparency",
-                "icon": "opacity",
-                "description": "更改shell透明度",
                 "command": [
                     "autocomplete",
                     "transparency"
                 ],
+                "dangerous": false,
+                "description": "更改shell透明度",
                 "enabled": false,
-                "dangerous": false
+                "icon": "opacity",
+                "name": "Transparency"
             },
             {
-                "name": "Random",
-                "icon": "casino",
-                "description": "随机切换壁纸",
                 "command": [
                     "caelestia",
                     "wallpaper",
                     "-r"
                 ],
+                "dangerous": false,
+                "description": "随机切换壁纸",
                 "enabled": true,
-                "dangerous": false
+                "icon": "casino",
+                "name": "Random"
             },
             {
-                "name": "Light",
-                "icon": "light_mode",
-                "description": "将方案更改为亮模式",
                 "command": [
                     "setMode",
                     "light"
                 ],
+                "dangerous": false,
+                "description": "将方案更改为亮模式",
                 "enabled": true,
-                "dangerous": false
+                "icon": "light_mode",
+                "name": "Light"
             },
             {
-                "name": "Dark",
-                "icon": "dark_mode",
-                "description": "将方案更改为暗黑模式",
                 "command": [
                     "setMode",
                     "dark"
                 ],
+                "dangerous": false,
+                "description": "将方案更改为暗黑模式",
                 "enabled": true,
-                "dangerous": false
+                "icon": "dark_mode",
+                "name": "Dark"
             },
             {
-                "name": "Shutdown",
-                "icon": "power_settings_new",
-                "description": "关机",
                 "command": [
                     "systemctl",
                     "poweroff"
                 ],
+                "dangerous": true,
+                "description": "关机",
                 "enabled": true,
-                "dangerous": true
+                "icon": "power_settings_new",
+                "name": "Shutdown"
             },
             {
-                "name": "Reboot",
-                "icon": "cached",
-                "description": "重启",
                 "command": [
                     "systemctl",
                     "reboot"
                 ],
+                "dangerous": true,
+                "description": "重启",
                 "enabled": true,
-                "dangerous": true
+                "icon": "cached",
+                "name": "Reboot"
             },
             {
-                "name": "Logout",
-                "icon": "exit_to_app",
-                "description": "注销",
                 "command": [
-                    "hyprctl",
-                    "dispatch",
-                    "exit",
-                    "0"
+                    "loginctl",
+                    "terminate-user",
+                    ""
                 ],
+                "dangerous": true,
+                "description": "注销",
                 "enabled": true,
-                "dangerous": true
+                "icon": "exit_to_app",
+                "name": "Logout"
             },
             {
-                "name": "Lock",
-                "icon": "lock",
-                "description": "锁定会话",
                 "command": [
                     "loginctl",
                     "lock-session"
                 ],
+                "dangerous": false,
+                "description": "锁定会话",
                 "enabled": true,
-                "dangerous": false
+                "icon": "lock",
+                "name": "Lock"
             },
             {
-                "name": "Sleep",
-                "icon": "bedtime",
-                "description": "休眠",
                 "command": [
                     "systemctl",
                     "suspend-then-hibernate"
                 ],
+                "dangerous": false,
+                "description": "休眠",
                 "enabled": true,
-                "dangerous": false
+                "icon": "bedtime",
+                "name": "Sleep"
+            },
+            {
+                "command": [
+                    "caelestia",
+                    "shell",
+                    "nexus",
+                    "open"
+                ],
+                "dangerous": false,
+                "description": "配置caelestia shell",
+                "enabled": true,
+                "icon": "settings",
+                "name": "Settings"
             }
         ],
         "dragThreshold": 50,
-        "vimKeybinds": true,
         "enableDangerousActions": false,
+        "enabled": true,
+        "favouriteApps": [
+        ],
+        "hiddenApps": [
+        ],
         "maxShown": 7,
         "maxWallpapers": 9,
+        "showOnHover": false,
         "specialPrefix": "@",
         "useFuzzy": {
-            "apps": true,
             "actions": true,
+            "apps": true,
             "schemes": true,
             "variants": true,
             "wallpapers": true
         },
-        "showOnHover": false,
-        "hiddenApps": []
+        "vimKeybinds": true
     },
     "lock": {
+        "enableFprint": true,
+        "hideNotifs": false,
+        "maxFprintTries": 3,
         "recolourLogo": true
+    },
+    "nexus": {
+        "networkRescanInterval": 15000,
+        "wallpapersPerRow": 4
     },
     "notifs": {
         "actionOnClick": true,
         "clearThreshold": 0.3,
         "defaultExpireTimeout": 5000,
         "expandThreshold": 20,
-        "expire": true
+        "expire": true,
+        "fullscreen": "on",
+        "fullscreenExpireTimeout": 2000,
+        "groupPreviewNum": 3,
+        "openExpanded": false
     },
     "osd": {
-        "enabled": true,
         "enableBrightness": true,
         "enableMicrophone": false,
+        "enabled": true,
         "hideDelay": 2000
     },
     "paths": {
+        "lockNoNotifsPic": "root:/assets/dino.png",
+        "lyricsDir": "~/音乐/lyrics",
         "mediaGif": "root:/assets/bongocat.gif",
+        "noNotifsPic": "root:/assets/dino.png",
         "sessionGif": "root:/assets/kurukuru.gif",
         "wallpaperDir": "~/图片/Wallpapers/"
     },
     "services": {
         "audioIncrement": 0.1,
-        "maxVolume": 1.0,
+        "brightnessIncrement": 0.1,
         "defaultPlayer": "cmus",
         "gpuType": "",
+        "lyricsBackend": "Auto",
+        "maxVolume": 1,
         "playerAliases": [
             {
                 "from": "com.github.th_ch.youtube_music",
                 "to": "YT Music"
             }
         ],
-        "weatherLocation": "",
-        "useFahrenheit": false,
-        "useTwelveHourClock": false,
         "smartScheme": true,
-        "visualiserBars": 45
+        "useFahrenheit": false,
+        "useFahrenheitPerformance": false,
+        "useTwelveHourClock": false,
+        "visualiserBars": 60,
+        "weatherLocation": ""
     },
     "session": {
-        "dragThreshold": 30,
-        "enabled": true,
-        "vimKeybinds": false,
         "commands": {
-            "logout": [
-                "hyprctl",
-                "dispatch",
-                "exit",
-                "0"
-            ],
-            "shutdown": [
-                "systemctl",
-                "poweroff"
-            ],
             "hibernate": [
                 "systemctl",
                 "hibernate"
             ],
+            "logout": [
+                "hyprctl",
+                "dispatch",
+                "hl.dsp.exit()"
+            ],
             "reboot": [
                 "systemctl",
                 "reboot"
+            ],
+            "shutdown": [
+                "systemctl",
+                "poweroff"
             ]
-        }
+        },
+        "dragThreshold": 30,
+        "enabled": true,
+        "icons": {
+            "hibernate": "downloading",
+            "logout": "logout",
+            "reboot": "cached",
+            "shutdown": "power_settings_new"
+        },
+        "vimKeybinds": false
     },
     "sidebar": {
         "dragThreshold": 80,
@@ -470,6 +694,36 @@
     "utilities": {
         "enabled": true,
         "maxToasts": 4,
+        "quickToggles": [
+            {
+                "enabled": true,
+                "id": "wifi"
+            },
+            {
+                "enabled": true,
+                "id": "bluetooth"
+            },
+            {
+                "enabled": true,
+                "id": "mic"
+            },
+            {
+                "enabled": true,
+                "id": "settings"
+            },
+            {
+                "enabled": true,
+                "id": "gameMode"
+            },
+            {
+                "enabled": true,
+                "id": "dnd"
+            },
+            {
+                "enabled": false,
+                "id": "vpn"
+            }
+        ],
         "toasts": {
             "audioInputChanged": true,
             "audioOutputChanged": true,
@@ -477,11 +731,24 @@
             "chargingChanged": true,
             "configLoaded": true,
             "dndChanged": true,
+            "fullscreen": "off",
             "gameModeChanged": true,
             "kbLayoutChanged": true,
+            "kbLimit": true,
+            "nowPlaying": false,
             "numLockChanged": true,
-            "vpnChanged": true,
-            "nowPlaying": false
+            "vpnChanged": true
+        },
+        "vpn": {
+            "enabled": false,
+            "provider": [
+                {
+                    "displayName": "Wireguard (Your VPN)",
+                    "enabled": false,
+                    "interface": "your-connection-name",
+                    "name": "wireguard"
+                }
+            ]
         }
     }
 }
