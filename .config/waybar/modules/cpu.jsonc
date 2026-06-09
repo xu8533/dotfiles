@@ -1,7 +1,0 @@
-{
-  "cpu": {
-    "interval": 15,
-    "format": " {}%",
-    "max-length": 10
-  }
-}
