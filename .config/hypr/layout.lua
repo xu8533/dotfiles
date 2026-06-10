@@ -1,12 +1,13 @@
 hl.config {
     dwindle = {
         preserve_split      = true,
-        smart_split         = false,
+        smart_split         = true,
         smart_resizing      = true,
         force_split         = 2,
         default_split_ratio = 0.8,
         split_bias          = 0
     },
+
     master = {
         -- "left", "right", "top", "bottom" or "center"
         orientation = "center",
@@ -16,6 +17,7 @@ hl.config {
         mfact = 0.70,
         slave_count_for_center_master = 0
     },
+
     scrolling = {
         fullscreen_on_one_column = true,
         column_width = 0.7,

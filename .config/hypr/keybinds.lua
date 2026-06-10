@@ -16,13 +16,13 @@ hl.bind("SUPER + SHIFT + V",
     hl.dsp.exec_cmd(
         "pkill rofi || cliphist list | rofi -dmenu -config $rofi_path/themes/clipboard.rasi| cliphist decode | wl-copy"),
     { description = "粘贴复制,(rofi选择器)" })
-hl.bind("ALT_L + Return", hl.dsp.exec_cmd("ghostty"), { description = "App: Terminal(ghostty)" })
+hl.bind("ALT + Return", hl.dsp.exec_cmd("ghostty"), { description = "App: Terminal(ghostty)" })
 -- kitty快终端
 hl.bind("SUPER + F1", hl.dsp.exec_cmd("'pgrep -f kitty-quick-access | xargs kill' || kitten quick-access-terminal"))
 hl.bind("SUPER + F2", hl.dsp.exec_cmd("kitty kitten choose-files"),
     { description = "kitty快速选择文件" })
 
--- 截屏
+--# 截屏
 hl.bind("SUPER + F6", hl.dsp.exec_cmd("caelestia screenshot -f -r ||" .. scripts .. "/screenshots.sh --window"),
     { locked = true, description = "窗口截屏" })
 hl.bind("SUPER + F7", hl.dsp.exec_cmd("caelestia screenshot -r ||" .. scripts .. "/screenshots.sh --region"),
@@ -32,13 +32,13 @@ hl.bind("SUPER + F8", hl.dsp.exec_cmd("caelestia screenshot ||" .. scripts .. "/
 hl.bind("SUPER + F9", hl.dsp.exec_cmd(scripts .. "/screenshots.sh --preview"),
     { locked = true, description = "预览截屏" })
 
--- 录屏
+--# 录屏
 hl.bind("F6", hl.dsp.exec_cmd(scripts .. "/record.sh --fullscreen --sound"), { locked = true, description = "录屏(有声音)" })
 hl.bind("F7", hl.dsp.exec_cmd(scripts .. "/record.sh --fullscreen"), { locked = true, description = "录屏(无声音)" })
 hl.bind("F8", hl.dsp.exec_cmd(scripts .. "/record.sh"), { locked = true, description = "区域录屏" })
 hl.bind("SUPER + F10", hl.dsp.pass({ window = "class:^(com\\.obsproject\\.Studio)$" }))
 
--- 窗口和会话管理
+--# 窗口和会话管理
 -- hl.bind("SUPER + Q", hl.dsp.exec_cmd(scripts .. "/dontkillsteam.sh"))
 -- hl.bind("SUPER + C", hl.dsp.exec_cmd("$scripts/dontkillsteam.sh"))
 hl.bind("SUPER + Q", hl.dsp.window.close(), { description = "关闭窗口" })
@@ -50,7 +50,7 @@ hl.bind("CTRL + ALT + DELETE", hl.dsp.exec_cmd("sh -c ~/.config/rofi/scripts/pow
 hl.bind("CTRL + ALT + L", hl.dsp.exec_cmd("hyprlock"), { description = "锁屏" })
 
 
--- layout和窗口状态切换
+--# layout和窗口状态切换
 hl.bind("SUPER + P", hl.dsp.window.pin(), { description = "锁定窗口" })
 hl.bind("SUPER + V", hl.dsp.window.float({ action = "toggle" }), { description = "切换窗口状态: Float/Tile" })
 hl.bind("SUPER + G", hl.dsp.group.toggle(), { description = "切换窗口分组" })
@@ -107,7 +107,7 @@ for i = 1, 10 do
         { description = "workspace: switch " .. arrowkey[i] })
 end
 
--- #工作区内操作窗口
+--# 工作区内操作窗口
 --#/# bind = SUPER + ←/↑/→/↓/h/k/l/j, -- Focus in direction
 for i = 1, 8 do
     local arrowkey = { "h", "l", "k", "j", "Left", "Right", "Up", "Down" }
@@ -135,7 +135,7 @@ for i = 1, 4 do
         { description = "Window: Swap " .. arrowkey[i] })
 end
 
--- #调整窗口大小
+--# 调整窗口大小
 -- Switch to a submap called `resize`.
 hl.bind("ALT + R", hl.dsp.submap("resize"))
 
@@ -151,8 +151,7 @@ hl.define_submap("resize", function()
     hl.bind("escape", hl.dsp.submap("reset"))
 end)
 
-
--- #鼠标
+--# 鼠标
 -- 切换工作区
 hl.bind("SUPER + mouse_down", hl.dsp.focus({ workspace = "e+1" }), { description = "切换到下一个工作区" })
 hl.bind("SUPER + mouse_up", hl.dsp.focus({ workspace = "e-1" }), { description = "切换到上一个工作区" })
@@ -183,7 +182,7 @@ hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("caelestia shell brightness set +
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("caelestia shell brightness set 0.03- || brightnessctl s 5%-"),
     { locked = true, repeating = true })
 
--- 不同layout绑定相同快捷键
+--#  不同layout绑定相同快捷键
 local function layout_bind(bind_table)
     return function()
         local workspace = hl.get_active_special_workspace() or
@@ -229,6 +228,27 @@ local function zoomfunction(value)
 end
 hl.bind("SUPER + Minus", function() zoomfunction(-0.3) end, { repeating = true, description = "Screen: Zoom out" })
 hl.bind("SUPER + Equal", function() zoomfunction(0.3) end, { repeating = true, description = "Screen: Zoom in" })
+
+--# 切换当前工作区的layout
+hl.bind("SUPER + tab", function()
+    local layouts     = { "scrolling", "dwindle", "master", "monocle" }
+    local workspace   = hl.get_active_workspace()
+    local next_layout = "dwindle"
+
+    if not workspace then
+        return
+    end
+
+    for i = 1, #layouts do
+        if layouts[i] == workspace.tiled_layout then
+            local next_layout_idx = (i % #layouts) + 1
+            next_layout = layouts[next_layout_idx]
+            break
+        end
+    end
+
+    hl.workspace_rule({ workspace = workspace.name, layout = next_layout })
+end)
 
 --## Make window not amogus large
 hl.bind("CTRL + SUPER + Backslash", hl.dsp.window.resize({ x = 640, y = 480, "exact" }))
