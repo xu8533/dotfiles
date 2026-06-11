@@ -13,13 +13,14 @@ hl.config({
         gaps_in = 4,
         gaps_out = 5,
         gaps_workspaces = 50,
-        border_size = 1,
+        border_size = 2,
 
         col = {
-            -- active_border = { colors = { "rgba(ff000000)", "rgba(ffffffff)" }, angle = 45 },
+            active_border = { colors = { "rgba(128, 200, 255, 0.9)", "rgba(199,255,127, 0.9)" }, angle = 45 },
             -- active_border = { colors = { "0xff000000", "0xffffffff" }, angle = 45 },
-            active_border = "rgba(0DB7D455)",
-            inactive_border = "rgba(31313600)"
+            inactive_border = { colors = { "#505050", "#808080" }, angle = 45 },
+            -- active_border = "rgba(0DB7D455)",
+            -- inactive_border = "rgba(31313600)"
             -- inactive_border = "0x11707b7c"
         },
         resize_on_border = true,
@@ -34,9 +35,10 @@ hl.config({
         },
 
         -- 默认layout
-        layout = "dwindle",
+        -- layout = "dwindle",
         -- layout = "master",
         -- layout = "scrolling",
+        layout = "monocle",
         locale = "zh_CN"
 
     },
@@ -46,14 +48,15 @@ hl.config({
         rounding_power = 2.5,
         rounding = 18,
         inactive_opacity = 0.80,
+        border_part_of_window = true,
 
         blur = {
             enabled = true,
             xray = true,
             special = false,
             new_optimizations = true,
-            size = 10,
-            passes = 3,
+            size = 12,
+            passes = 2,
             brightness = 1,
             noise = 0.05,
             contrast = 0.89,
@@ -74,14 +77,16 @@ hl.config({
         },
         glow = {
             enabled = true,
+            range = 15,
             -- color = 0xefbfe523,
-            color = 0xbfd81918,
-            color_inactive = 0xee1a1a1a
+            -- color = 0xbfd81918,
+            -- color_inactive = 0xee1a1a1a
         },
         -- Dim
         dim_inactive = true,
-        dim_strength = 0.05,
-        dim_special = 0.2
+        dim_strength = 0.08,
+        dim_special = 0.2,
+        dim_around = 0.5,
     },
     animations = {
         enabled = true
