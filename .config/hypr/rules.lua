@@ -75,7 +75,7 @@ hl.window_rule({
 
 hl.window_rule({
     match = { tag = "file_manager" },
-    animation = "slide",
+    animation = "slide up",
     -- no_anim = true,
     -- no_shadow = true,
     center = true,
@@ -161,6 +161,7 @@ hl.window_rule({
 
 hl.window_rule({
     match = { tag = "im" },
+    no_anim = true,
     -- animation = "slide up",
     -- border_size = 0,
     -- center = true,
