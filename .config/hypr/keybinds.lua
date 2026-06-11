@@ -40,8 +40,6 @@ hl.bind("F8", hl.dsp.exec_cmd(scripts .. "/record.sh"), { locked = true, descrip
 hl.bind("SUPER + F10", hl.dsp.pass({ window = "class:^(com\\.obsproject\\.Studio)$" }))
 
 --# 窗口和会话管理
--- hl.bind("SUPER + Q", hl.dsp.exec_cmd(scripts .. "/dontkillsteam.sh"))
--- hl.bind("SUPER + C", hl.dsp.exec_cmd("$scripts/dontkillsteam.sh"))
 hl.bind("SUPER + Q", hl.dsp.window.close(), { description = "关闭窗口" })
 hl.bind("SUPER + C", hl.dsp.window.kill(), { description = "强制关闭窗口" })
 hl.bind("SUPER + SHIFT + ALT + Q", hl.dsp.exec_cmd("hyprctl kill"), { description = "鼠标点击关闭窗口" })
@@ -70,12 +68,6 @@ hl.bind("F10", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle"
     { description = "窗口全屏" })
 hl.bind("ALT + C", hl.dsp.window.center({ action = "toggle" }),
     { description = "窗口居中" })
-
--- To switch between windows in a floating workspace:
-hl.bind("ALT + Tab", function()
-    hl.dispatch(hl.dsp.window.cycle_next())   -- Change focus to another window
-    hl.dispatch(hl.dsp.window.bring_to_top()) -- Bring it to the top
-end)
 
 -- 切换工作区
 hl.bind("SUPER + U", hl.dsp.focus({ workspace = "r-1" }), { description = "切换到上一个工作区" })
@@ -196,23 +188,43 @@ local function layout_bind(bind_table)
         local layout = workspace.tiled_layout
 
         if bind_table[layout] then
-            hl.dispatch(bind_table[layout])
+            for i = 1, #bind_table[layout] do
+                hl.dispatch(bind_table[layout][i])
+            end
         end
     end
 end
 
+-- To switch between windows in a floating workspace:
+hl.bind("ALT + Tab", layout_bind({
+    scrolling = {
+        hl.dsp.window.cycle_next(), -- Change focus to another window
+    },
+    dwindle = {
+        hl.dsp.window.cycle_next(),  -- Change focus to another window
+        hl.dsp.window.bring_to_top() -- Bring it to the top
+    },
+    master = {
+        hl.dsp.layout("cyclenext"),     -- Change focus to another window
+        hl.dsp.layout("swapwithmaster") -- Bring it to the master
+    },
+    monocle = {
+        hl.dsp.layout("cyclenext")
+    },
+}))
+
 hl.bind("SUPER + A", layout_bind({
-    scrolling = hl.dsp.layout("swapcol l"), -- Scrolling: swap column with left one
-    dwindle   = hl.dsp.layout("swapsplit"), -- Dwindle: swap window split
-    monocle   = hl.dsp.layout("cycleprev"), -- Monocle and master: cycle prev window
-    master    = hl.dsp.layout("cycleprev"),
+    scrolling = { hl.dsp.layout("swapcol l") }, -- Scrolling: swap column with left one
+    dwindle   = { hl.dsp.layout("swapsplit") }, -- Dwindle: swap window split
+    monocle   = { hl.dsp.layout("cycleprev") }, -- Monocle and master: cycle prev window
+    master    = { hl.dsp.layout("cycleprev") },
 }))
 
 hl.bind("SUPER + D", layout_bind({
-    scrolling = hl.dsp.layout("swapcol r"),   -- Scrolling: swap column with right one
-    dwindle   = hl.dsp.layout("togglesplit"), -- Dwindle: toggle window split
-    monocle   = hl.dsp.layout("cyclenext"),   -- Monocle and master: cycle next window
-    master    = hl.dsp.layout("cyclenext"),
+    scrolling = { hl.dsp.layout("swapcol r") },   -- Scrolling: swap column with right one
+    dwindle   = { hl.dsp.layout("togglesplit") }, -- Dwindle: toggle window split
+    monocle   = { hl.dsp.layout("cyclenext") },   -- Monocle and master: cycle next window
+    master    = { hl.dsp.layout("cyclenext") },
 }))
 
 --##! Screen
@@ -249,6 +261,8 @@ hl.bind("SUPER + tab", function()
     end
 
     hl.workspace_rule({ workspace = workspace.name, layout = next_layout })
+    -- hl.exec_cmd("notify-send \"切换当前工作区的layout\" \"新layout是" .. next_layout .. "\" -a Hyprland")
+    os.execute("notify-send \"切换当前工作区的layout\" \"新layout是" .. next_layout .. "\" -a Hyprland")
 end)
 
 --## Make window not amogus large
