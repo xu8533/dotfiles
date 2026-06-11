@@ -32,6 +32,7 @@ hl.window_rule({ match = { class = "^(feh-preview)$" }, tag = "+viewer" })
 hl.window_rule({ match = { class = "^(imv-preview)$" }, tag = "+viewer" })
 hl.window_rule({ match = { class = "^(yazi-img-preview)$" }, tag = "+viewer" })
 hl.window_rule({ match = { class = "^(.*fcitx.*)$" }, tag = "+im" })
+hl.window_rule({ match = { class = "^(taskmanager)$" }, tag = "+taskmgr" })
 hl.window_rule({ match = { initial_class = "^(pavucontrol)$" }, tag = "+mgr" })
 hl.window_rule({ match = { initial_class = "^(blueman-manager)$" }, tag = "+mgr" })
 hl.window_rule({ match = { initial_class = "^(nm-applet)$" }, tag = "+mgr" })
@@ -84,11 +85,20 @@ hl.window_rule({
 })
 
 hl.window_rule({
+    match = { tag = "taskmgr" },
+    animation = "slide right",
+    -- no_anim = true,
+    -- no_shadow = true,
+    center = true,
+    dim_around = true,
+    float = true,
+    size = { "(monitor_w*0.90)", "(monitor_h*0.80)" },
+})
+
+hl.window_rule({
     match = { tag = "term" },
     animation = "gnomed",
-    dim_around = true,
     tile = true,
-    -- opacity = "1.0 override 0.90 override 0.99 override",
 })
 
 hl.window_rule({
@@ -162,6 +172,7 @@ hl.window_rule({
 
 -- 弹出窗口设置
 hl.window_rule({ match = { title = "^(.*打开捕获文件)$" }, float = true, center = true })
+hl.window_rule({ match = { class = "^(org.quickshell)$" }, animation = "slide left", float = true, center = true })
 
 
 

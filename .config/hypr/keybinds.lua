@@ -7,6 +7,7 @@ hl.bind("SUPER + Z", hl.dsp.exec_cmd("zen"), { description = "App: zen browser" 
 hl.bind("SUPER + E", hl.dsp.exec_cmd(fileManager), { description = "App: 文件管理器(lf)" })
 hl.bind("SUPER + R", hl.dsp.exec_cmd("pkill rofi || rofi -show drun -config $rofi_path/config.rasi"),
     { description = "Launcher: rofi" })
+hl.bind("SUPER + T", hl.dsp.exec_cmd(taskManager), { description = "App: 任务管理器(btop)" })
 hl.bind("SUPER + X", hl.dsp.exec_cmd("fuzzel"), { description = "Launcher: fuzzel" })
 hl.bind("SUPER + CTRL + V",
     hl.dsp.exec_cmd("pkill fuzzel || cliphist list | fuzzel --dmenu --with-nth 2 | cliphist decode | wl-copy"),
