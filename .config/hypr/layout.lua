@@ -28,5 +28,7 @@ hl.config {
         wrap_swapcol = true,
         -- "left", "right", "down", "up"
         direction = "right"
-    }
+    },
+
+    monocle = {}
 }
