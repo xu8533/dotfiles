@@ -68,7 +68,7 @@ run_cmd() {
         elif [[ $1 == '--logout' ]]; then
             if [[ "$XDG_CURRENT_DESKTOP" == 'Hyprland' ]]; then
                 hyprctl clients -j | jq -r '.[].pid' | xargs kill
-                hyprctl dispatch exit 0
+                hyprctl dispatch 'hl.dsp.exit()'
             elif [[ "$XDG_CURRENT_DESKTOP" == 'niri' ]]; then
                 niri msg --json windows | jq -r '.[].pid' | xargs kill
                 niri msg action quit --skip-confirmation
