@@ -5,7 +5,8 @@
 
 [mgr]
 ratio = [1, 4, 3]
-sort_by = "mtime"
+# sort_by = "mtime"
+sort_by = "natural"
 sort_sensitive = true
 sort_reverse = true
 sort_dir_first = true
@@ -13,7 +14,7 @@ linemode = "size_and_mtime"
 show_hidden = false
 show_symlink = true
 scrolloff = 8
-title_format = "{cwd} - Yazi"
+# title_format = "{cwd} - Yazi"
 
 [preview]
 tab_size = 4
@@ -33,7 +34,7 @@ download = [
 	{ run = "ya emit download %S",        desc = "下载" },
 ]
 edit = [
-    { run = "${EDITOR:-vi} %s", block = true, for = "unix" },
+    { run = "${EDITOR:-emacs} %s", block = true, for = "unix" },
     { run = "%EDITOR% %s", orphan = true, for = "windows" },
 ]
 extract = [
@@ -41,7 +42,7 @@ extract = [
     { run = 'ya pub extract --list %*', desc = "解压到这...", for = "windows" },
 ]
 image = [
-    { run = 'swayimg --class=yazi-img-preview %s', desc = "打开图片", for = "linux" },
+    { run = 'swayimg --appid=yazi-img-preview %s', desc = "打开图片", for = "linux" },
 ]
 open = [
     { run = "$EDITOR %s1", desc = "打开", for = "linux" },
@@ -49,7 +50,7 @@ open = [
 ]
 play = [
     { run = 'mpv --force-window %s', orphan = true, for = "unix" },
-    { run = 'mpv --force-window %s', orphan = true, for = "windows" },
+    { run = 'mpv.exe --force-window %s', orphan = true, for = "windows" },
     { run = "mediainfo %s1; echo '请按enter键退出'; read_", block = true, desc = "显示多媒体信息", for = "unix" },
     { run = "mediainfo %s1 & pause", block = true, desc = "显示多媒体信息", for = "windows" },
 ]
@@ -123,9 +124,7 @@ rules = [
 ]
 
 [tasks]
-micro_workers = 10
-macro_workers = 25
-bizarre_retry = 5
+bizarre_retry = 3
 image_alloc = 1073741824 # 1024MB
 image_bound = [0, 0]
 suppress_preload = false
@@ -249,66 +248,48 @@ append_previewers = [
 
 [input]
 cursor_blink = true
+origin = "top-center"
+offset = [0, 2, 50, 3]
 # cd
 cd_title = "切换目录:"
-cd_origin = "top-center"
-cd_offset = [0, 2, 50, 3]
 
 # create
 create_title = ["新建:", "新建文件夹:"]
-create_origin = "top-center"
-create_offset = [0, 2, 50, 3]
 
 # rename
 rename_title = "重命名:"
-rename_origin = "hovered"
-rename_offset = [0, 1, 50, 3]
 
 # filter
 filter_title = "过滤:"
-filter_origin = "top-center"
-filter_offset = [0, 2, 50, 3]
 
 # find
 find_title = ["查找下一个:", "查找上一个:"]
-find_origin = "top-center"
-find_offset = [0, 2, 50, 3]
 
 # search
 search_title = "搜索:"
-search_origin = "top-center"
-search_offset = [0, 2, 50, 3]
 
 # shell
 shell_title = ["Shell:", "Shell (block):"]
-shell_origin = "top-center"
-shell_offset = [0, 2, 50, 3]
 
 [confirm]
+origin = "hovered"
+offset = [0, 2, 50, 3]
 # trash
 trash_title = "将选择的文件移动到回收站? (y/N)"
-trash_origin = "top-center"
-trash_offset = [0, 2, 50, 3]
 
 # delete
 delete_title = "永久删除选择的文件? (y/N)"
-delete_origin = "top-center"
-delete_offset = [0, 2, 50, 3]
 
 # overwrite
 overwrite_title = "覆盖文件? (y/N)"
-overwrite_origin = "top-center"
-overwrite_offset = [0, 2, 50, 3]
 
 # quit
 quit_title = "有正在运行的任务, 确定退出? (y/N)"
-quit_origin = "top-center"
-quit_offset = [0, 2, 50, 3]
 
 [pick]
 open_title = "使用下列方式打开:"
-open_origin = "hovered"
-open_offset = [0, 1, 50, 7]
+origin = "hovered"
+offset = [0, 1, 50, 7]
 
 [which]
 sort_by = "key"
