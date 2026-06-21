@@ -16,7 +16,7 @@ hl.config({
         border_size = 2,
 
         col = {
-            active_border = { colors = { "rgba(128, 200, 255, 0.9)", "rgba(199,255,127, 0.9)" }, angle = 45 },
+            active_border = { colors = { "rgba(128, 200, 255, 1.0)", "rgba(199,255,127, 1.0)" }, angle = 45 },
             -- active_border = { colors = { "0xff000000", "0xffffffff" }, angle = 45 },
             inactive_border = { colors = { "#505050", "#808080" }, angle = 45 },
             -- active_border = "rgba(0DB7D455)",
@@ -35,10 +35,10 @@ hl.config({
         },
 
         -- 默认layout
-        -- layout = "dwindle",
+        layout = "dwindle",
         -- layout = "master",
         -- layout = "scrolling",
-        layout = "monocle",
+        -- layout = "monocle",
         locale = "zh_CN"
 
     },
@@ -72,7 +72,7 @@ hl.config({
             range = 20,
             offset = { 0, 2 },
             render_power = 10,
-            color = 0xffa7caff,
+            color = 0xbfa7caff,
             color_inactive = 0x11707b7c
         },
         glow = {
@@ -91,12 +91,48 @@ hl.config({
     animations = {
         enabled = true
     },
+    group = {
+        col = {
+            -- border_active = 0x66ffff00,
+            border_active = 0xff68935c,
+            border_inactive = 0x66777700,
+            border_locked_active = 0x66ff5500,
+            border_locked_inactive = 0x66775500
+        },
+        groupbar = {
+            enabled = true,
+            font_family = "霞鹜文楷等宽",
+            font_size = 15,
+            font_weight_active = "bold",
+            font_weight_inactive = "normal",
+            gradients = true,
+            height = 10,
+            indicator_gap = 0,
+            indicator_height = 1,
+            rounding = 1,
+            rounding_power = 10.0,
+            gradient_rounding = 10,
+            gradient_rounding_power = 3,
+            text_color = 0xbfd81918,
+            text_color_inactive = 0xee1a1a1a,
+            text_offset = 0,
+            text_padding = 50,
+            gaps_in = 3,
+            gaps_out = 1,
+            col = {
+                -- active = "#80c8ff",
+                -- inactive = "#bbddff",
+                active = { colors = { "rgba(128,200,255,1.0)", "rgba(187,221,255, 1.0)" } },
+                inactive = { colors = { "rgba(80,80, 80, 0.99)", "rgba(128,128,128, 1.0)" } }
+            }
+        }
+    },
 })
 
 hl.config {
     input = {
         kb_layout = "us",
-        numlock_by_default = true,
+        numlock_by_default = false,
         repeat_delay = 250,
         repeat_rate = 35,
 
@@ -165,5 +201,4 @@ hl.config {
     xwayland = {
         force_zero_scaling = true
     }
-
 }
