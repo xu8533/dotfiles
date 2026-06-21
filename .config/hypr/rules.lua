@@ -155,8 +155,8 @@ hl.window_rule({
     center = true,
     float = true,
     no_shadow = true,
-    min_size = { "(monitor_w*0.3)", "(monitor_h*0.2)" },
-    max_size = { "(monitor_w*0.9)", "(monitor_h*0.7)" },
+    min_size = { "(monitor_w*0.5)", "(monitor_h*0.5)" },
+    max_size = { "(monitor_w*1.0)", "(monitor_h*1.0)" },
 })
 
 hl.window_rule({
@@ -175,10 +175,15 @@ hl.window_rule({
 hl.window_rule({ match = { title = "^(.*打开捕获文件)$" }, float = true, center = true })
 hl.window_rule({ match = { class = "^(org.quickshell)$" }, animation = "slide left", float = true, center = true })
 
-
+-- group window 设置
+hl.window_rule({ match = { group = true }, no_shadow = true })
 
 -- ######## Workspace rules ########
 hl.workspace_rule({ workspace = "special:special", gaps_out = 30 })
+hl.workspace_rule({ workspace = "2", layout = "scrolling" })
+hl.workspace_rule({ workspace = "3", layout = "dwindle" })
+hl.workspace_rule({ workspace = "4", layout = "master" })
+hl.workspace_rule({ workspace = "5", layout = "monocle" })
 -- hl.workspace_rule({ workspace = "w[tv1]s[false]", gaps_out = 0, gaps_in = 0 })
 -- hl.workspace_rule({ workspace = "f[1]s[false]", gaps_out = 0, gaps_in = 0 })
 -- hl.window_rule({ match = { float = false, workspace = "w[tv1]s[false]" }, border_size = 0 })
