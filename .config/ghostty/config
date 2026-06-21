@@ -1,7 +1,7 @@
 title=ghostty
 window-theme=dark
-#theme=Gruvbox Material
-theme="Matugen"
+# theme=Gruvbox Material
+# theme="Matugen"
 term=xterm-ghostty
 mouse-hide-while-typing=true
 mouse-scroll-multiplier=4
@@ -21,7 +21,7 @@ confirm-close-surface=false
 quit-after-last-window-closed=true
 shell-integration=bash
 desktop-notifications=true
-custom-shader-animation = true
+notify-on-command-finish=unfocused
 #custom-shader = ./shaders/bloom.glsl
 custom-shader = ./shaders/cubes.glsl
 #custom-shader = ./shaders/dither.glsl
@@ -39,3 +39,8 @@ custom-shader = ./shaders/cubes.glsl
 #custom-shader = ./shaders/starfield.glsl
 #custom-shader = ./shaders/starfield-colors.glsl
 #custom-shader = ./shaders/underwater.glsl
+# custom-shader = ./shaders/blackhole.glsl
+custom-shader-animation = true
+#
+# keybind
+keybind = ctrl+q=quit
