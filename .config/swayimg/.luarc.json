@@ -1,0 +1,7 @@
+{
+    "workspace": {
+        "library": [
+            "/usr/share/swayimg/swayimg.lua"
+        ]
+    }
+}
