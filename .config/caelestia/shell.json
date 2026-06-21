@@ -291,7 +291,7 @@
         },
         "tray": {
             "background": true,
-            "compact": false,
+            "compact": true,
             "hiddenIcons": [
             ],
             "iconSubs": [
