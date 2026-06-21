@@ -266,7 +266,7 @@ return {
                 },
             }
             opts.sources = {
-                compat = { "codeium" },
+                -- compat = { "codeium" },
                 -- default = { "snippets", "buffer", "lsp", "path"  },
                 -- 定制默认源
                 default = function()
@@ -275,8 +275,8 @@ return {
                         return { "buffer" }
                     elseif vim.bo.filetype == "lua" then
                         return { "lsp", "path", "buffer" }
-                    elseif vim.bo.filetype == { "markdown" } then
-                        return { "lsp" }
+                        -- elseif vim.bo.filetype == { "markdown" } then
+                        --     return { "lsp" }
                         -- elseif vim.bo.filetype == { "kitty" } then
                         --   return { "lsp", "path", "buffer" }
                     else
@@ -313,11 +313,11 @@ return {
                             return 0
                         end,
                     },
-                    codeium = {
-                        kind = "Codeium",
-                        score_offset = 1000,
-                        async = true,
-                    },
+                    -- codeium = {
+                    --     kind = "Codeium",
+                    --     score_offset = 1000,
+                    --     async = true,
+                    -- },
                     lazydev = {
                         name = "LazyDev",
                         module = "lazydev.integrations.blink",
