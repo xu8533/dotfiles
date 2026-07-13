@@ -19,6 +19,7 @@ hl.bind("SUPER + SHIFT + V",
     { description = "粘贴复制,(rofi选择器)" })
 hl.bind("ALT + Return", hl.dsp.exec_cmd("ghostty"), { description = "App: Terminal(ghostty)" })
 hl.bind("ALT + ALT_L", hl.dsp.global("caelestia:launcher"), { description = "Launcher: caelestia launcher" })
+hl.bind("Menu", hl.dsp.global("caelestia:launcher"), { description = "Launcher: caelestia launcher" })
 
 --# kitty快终端
 hl.bind("SUPER + F1", hl.dsp.exec_cmd("'pgrep -f kitty-quick-access | xargs kill' || kitten quick-access-terminal"))
@@ -125,7 +126,7 @@ end
 
 --# 调整窗口大小
 -- Switch to a submap called `resize`.
-hl.bind("ALT + R", hl.dsp.submap("resize"), { description = "resize window with arrowkey" })
+hl.bind("ALT + R", hl.dsp.submap("resize"), { description = "使用方向键调整窗口" })
 
 hl.define_submap("resize", function()
     -- Set repeating binds for resizing the active window.
