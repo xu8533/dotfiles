@@ -78,6 +78,7 @@ hl.window_rule({
     animation = "slide up",
     -- no_anim = true,
     -- no_shadow = true,
+    opacity = "0.85",
     center = true,
     dim_around = true,
     float = true,
