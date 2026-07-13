@@ -8,8 +8,10 @@ apply_monitor_config() {
         # External monitor connected - disable laptop screen
         case "$wm" in
         Hyprland)
-            hyprctl keyword monitor "eDP-1, disable"
-            hyprctl keyword monitor ", preferred, auto-up, 1, "
+            # hyprctl keyword monitor "eDP-1, disable"
+            # hyprctl keyword monitor ", preferred, auto-up, 1, "
+            hyprctl eval 'hl.monitor({ output="eDP-1", disabled=true})'
+            hyprctl eval 'hl.monitor({ output = "", mode = "preferred", position = "auto-up", scale = 1})'
             ;;
         niri)
             niri msg output eDP-1 off
@@ -20,7 +22,8 @@ apply_monitor_config() {
         # No external monitor - enable laptop screen with specified resolution
         case "$wm" in
         Hyprland)
-            hyprctl keyword monitor "eDP-1, enable"
+            # hyprctl keyword monitor "eDP-1, enable"
+            hyprctl eval 'hl.monitor({ output="eDP-1", enabled=true})'
             ;;
         niri)
             niri msg output eDP-1 on
