@@ -51,14 +51,14 @@ return {
         -- enabled = false,
         lazy = true
     },
-    {
-        "Mofiqul/dracula.nvim",
-        lazy = true,
-    },
-    {
-        "projekt0n/github-nvim-theme",
-        lazy = true,
-    },
+    -- {
+    --     "Mofiqul/dracula.nvim",
+    --     lazy = true,
+    -- },
+    -- {
+    --     "projekt0n/github-nvim-theme",
+    --     lazy = true,
+    -- },
     {
         "ellisonleao/gruvbox.nvim",
         lazy = true,
@@ -228,10 +228,10 @@ return {
             },
         },
     },
-    {
-        "nyoom-engineering/oxocarbon.nvim",
-        lazy = true,
-    },
+    -- {
+    --     "nyoom-engineering/oxocarbon.nvim",
+    --     lazy = true,
+    -- },
     {
         "rose-pine/neovim",
         name = "rose-pine",
@@ -302,11 +302,11 @@ return {
             end,
         },
     },
-    {
-        "tiagovla/tokyodark.nvim",
-        enabled = false,
-        lazy = true,
-    },
+    -- {
+    --     "tiagovla/tokyodark.nvim",
+    --     enabled = false,
+    --     lazy = true,
+    -- },
     {
         "Mofiqul/vscode.nvim",
         enabled = false,
@@ -416,7 +416,7 @@ return {
             -- colorscheme = "night-owl",
             -- colorscheme = "onelight",
             -- colorscheme = "onedark",
-            colorscheme = "onedark_vivid",
+            -- colorscheme = "onedark_vivid",
             -- colorscheme = "onedark_dark",
             -- colorscheme = "oxocarbon",
             -- colorscheme = "rose-pine-moon",
@@ -440,8 +440,21 @@ return {
             -- colorscheme = "nordic",
             -- colorscheme = "dogrun",
             -- colorscheme = "nightfly",
-            -- colorscheme = "base16-papercolor-dark"
-            -- colorscheme = "base16-google-dark"
+            -- colorscheme = "base16-papercolor-dark",
+            -- colorscheme = "base16-google-dark",
+            -- colorscheme = "base16-oxocarbon-dark",
+            colorscheme = "base16-danqing",
+            -- colorscheme = "base16-darcula",
+            -- colorscheme = "base16-dracula",
+            -- colorscheme = "base16-codeschool",
+            -- colorscheme = "base16-monokai",
+            -- colorscheme = "base16-moonlight"
+            -- colorscheme = "base16-tokyo-city-dark"
+            -- colorscheme = "base16-tokyo-city-terminal-dark"
+            -- colorscheme = "base16-tomorrow-night"
+            -- colorscheme = "base16-tomorrow-night-eighties"
+            -- colorscheme = "base16-tokydark"
+            -- colorscheme = "base16-tokyodark-terminal"
         },
     },
 }
