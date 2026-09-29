@@ -1,4 +1,3 @@
--- put former exec-once commands inside the func and former exec commands outside
 hl.on("hyprland.start", function()
     hl.exec_cmd("systemctl --user start hyprpolkitagent")
     hl.exec_cmd("qs -c $qsConfig")

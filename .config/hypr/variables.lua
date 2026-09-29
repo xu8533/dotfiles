@@ -5,6 +5,7 @@ codeEditor = "nvim"
 fileManager = "foot --app-id=LF --title=FileMgr_LF dash -c lf"
 browser = "qutebrowser"
 taskManager = "command -v btop && kitty --class=taskmanager -1 dash -c btop"
+musicPlayer = "command -v cmus && kitty --class=music -1 dash -c cmus"
 
 -- 脚本路径
 scripts = "~/.config/hypr/scripts"

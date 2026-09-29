@@ -21,6 +21,8 @@ hl.bind("ALT + Return", hl.dsp.exec_cmd("ghostty"), { description = "App: Termin
 hl.bind("ALT + ALT_L", hl.dsp.global("caelestia:launcher"), { description = "Launcher: caelestia launcher" })
 hl.bind("Menu", hl.dsp.global("caelestia:launcher"), { description = "Launcher: caelestia launcher" })
 
+hl.bind("ALT + M", hl.dsp.exec_cmd(musicPlayer), { description = "App: 音乐播放器" })
+
 --# kitty快终端
 hl.bind("SUPER + F1", hl.dsp.exec_cmd("'pgrep -f kitty-quick-access | xargs kill' || kitten quick-access-terminal"))
 hl.bind("SUPER + F2", hl.dsp.exec_cmd("kitty kitten choose-files"),

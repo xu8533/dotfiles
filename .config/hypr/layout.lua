@@ -27,7 +27,8 @@ hl.config {
         wrap_focus = true,
         wrap_swapcol = true,
         -- "left", "right", "down", "up"
-        direction = "right"
+        direction = "right",
+        focus_fit_method = 0
     },
 
     monocle = {}
