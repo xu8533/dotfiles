@@ -16,7 +16,7 @@ hl.window_rule({ match = { initial_title = "^(ghostty)$" }, tag = "+term" })
 hl.window_rule({ match = { class = "^(mpv)$" }, tag = "+multi_media" })
 hl.window_rule({ match = { class = "^(MPlayer)$" }, tag = "+multi_media" })
 hl.window_rule({ match = { class = "^(bilibili)$" }, tag = "+multi_media" })
-hl.window_rule({ match = { class = "^(com.obsproject.Studio)$" }, tag = "+screen_share" })
+hl.window_rule({ match = { class = "^(com.obsproject.Studio)$" }, tag = "+screenshare" })
 hl.window_rule({ match = { class = "^(wps)$" }, tag = "+office" })
 hl.window_rule({ match = { class = "^(pdf)$" }, tag = "+office" })
 hl.window_rule({ match = { class = "^(wpp|et)$" }, tag = "+office" })
@@ -33,6 +33,8 @@ hl.window_rule({ match = { class = "^(imv-preview)$" }, tag = "+viewer" })
 hl.window_rule({ match = { class = "^(yazi-img-preview)$" }, tag = "+viewer" })
 hl.window_rule({ match = { class = "^(.*fcitx.*)$" }, tag = "+im" })
 hl.window_rule({ match = { class = "^(taskmanager)$" }, tag = "+taskmgr" })
+hl.window_rule({ match = { class = "^org.kde.kdenlive$" }, tag = "+videoeditor" })
+hl.window_rule({ match = { class = "^music$" }, tag = "+musicplayer" })
 hl.window_rule({ match = { initial_class = "^(pavucontrol)$" }, tag = "+mgr" })
 hl.window_rule({ match = { initial_class = "^(blueman-manager)$" }, tag = "+mgr" })
 hl.window_rule({ match = { initial_class = "^(nm-applet)$" }, tag = "+mgr" })
@@ -114,10 +116,21 @@ hl.window_rule({
 })
 
 hl.window_rule({
-    match = { tag = "screen_share" },
-    float = true,
+    match = { tag = "musicplayer" },
     maximize = true,
-    workspace = "name:screen-share",
+    idle_inhibit = "focus",
+    no_anim = false,
+    no_blur = true,
+    no_shadow = true,
+    tile = true,
+    workspace = "name:musicplayer",
+})
+
+hl.window_rule({
+    match = { tag = "screenshare" },
+    float = true,
+    -- maximize = true,
+    workspace = "name:screenshare",
 })
 
 hl.window_rule({
@@ -172,8 +185,26 @@ hl.window_rule({
     pseudo = true,
 })
 
+hl.window_rule({
+    match = { tag = "videoeditor" },
+    idle_inhibit = "always",
+    no_anim = true,
+    no_blur = true,
+    no_shadow = true,
+    xray = false,
+    decorate = false,
+    maximize = true,
+    workspace = "name:VideoEdit",
+})
+
 -- 弹出窗口设置
+hl.window_rule({ match = { modal = true }, float = true, center = true, size = { "window_w * 0.3", "window_h * 0.3" } })
 hl.window_rule({ match = { title = "^(.*打开捕获文件)$" }, float = true, center = true })
+hl.window_rule({
+    match = { title = "^(停止录制)(.*)$" },
+    center = true,
+    xray = false,
+})
 hl.window_rule({ match = { class = "^(org.quickshell)$" }, animation = "slide left", float = true, center = true })
 
 -- group window 设置
