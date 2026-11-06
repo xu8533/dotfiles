@@ -35,6 +35,7 @@ hl.window_rule({ match = { class = "^(.*fcitx.*)$" }, tag = "+im" })
 hl.window_rule({ match = { class = "^(taskmanager)$" }, tag = "+taskmgr" })
 hl.window_rule({ match = { class = "^org.kde.kdenlive$" }, tag = "+videoeditor" })
 hl.window_rule({ match = { class = "^music$" }, tag = "+musicplayer" })
+hl.window_rule({ match = { class = "^emacs$" }, tag = "+texteditor" })
 hl.window_rule({ match = { initial_class = "^(pavucontrol)$" }, tag = "+mgr" })
 hl.window_rule({ match = { initial_class = "^(blueman-manager)$" }, tag = "+mgr" })
 hl.window_rule({ match = { initial_class = "^(nm-applet)$" }, tag = "+mgr" })
@@ -102,6 +103,7 @@ hl.window_rule({
     match = { tag = "term" },
     animation = "gnomed",
     tile = true,
+    -- float = true,
 })
 
 hl.window_rule({
@@ -197,6 +199,16 @@ hl.window_rule({
     workspace = "name:VideoEdit",
 })
 
+hl.window_rule({
+    match = { tag = "texteditor" },
+    no_anim = true,
+    no_blur = true,
+    no_shadow = true,
+    xray = false,
+    decorate = false,
+    maximize = true,
+})
+
 -- 弹出窗口设置
 hl.window_rule({ match = { modal = true }, float = true, center = true, size = { "window_w * 0.3", "window_h * 0.3" } })
 hl.window_rule({ match = { title = "^(.*打开捕获文件)$" }, float = true, center = true })
@@ -216,12 +228,6 @@ hl.workspace_rule({ workspace = "2", layout = "scrolling" })
 hl.workspace_rule({ workspace = "3", layout = "dwindle" })
 hl.workspace_rule({ workspace = "4", layout = "master" })
 hl.workspace_rule({ workspace = "5", layout = "monocle" })
--- hl.workspace_rule({ workspace = "w[tv1]s[false]", gaps_out = 0, gaps_in = 0 })
--- hl.workspace_rule({ workspace = "f[1]s[false]", gaps_out = 0, gaps_in = 0 })
--- hl.window_rule({ match = { float = false, workspace = "w[tv1]s[false]" }, border_size = 0 })
--- hl.window_rule({ match = { float = false, workspace = "w[tv1]s[false]" }, rounding = 0 })
--- hl.window_rule({ match = { float = false, workspace = "f[1]s[false]" }, border_size = 0 })
--- hl.window_rule({ match = { float = false, workspace = "f[1]s[false]" }, rounding = 0 })
 
 -- ######## Layer rules ########
 hl.layer_rule({ match = { namespace = ".*" }, xray = true })
@@ -244,3 +250,11 @@ hl.layer_rule({ match = { namespace = "notifications" }, blur = true })
 hl.layer_rule({ match = { namespace = "notifications" }, ignore_alpha = 0.69 })
 
 hl.layer_rule({ match = { namespace = "gtk4-layer-shell" }, no_anim = true })
+
+-- Smart gaps
+-- hl.workspace_rule({ workspace = "w[tv1]s[false]", gaps_out = 0, gaps_in = 0 })
+-- hl.workspace_rule({ workspace = "f[1]s[false]", gaps_out = 0, gaps_in = 0 })
+-- hl.window_rule({ match = { float = false, workspace = "w[tv1]s[false]" }, border_size = 0 })
+-- hl.window_rule({ match = { float = false, workspace = "w[tv1]s[false]" }, rounding = 0 })
+-- hl.window_rule({ match = { float = false, workspace = "f[1]s[false]" }, border_size = 0 })
+-- hl.window_rule({ match = { float = false, workspace = "f[1]s[false]" }, rounding = 0 })

@@ -4,7 +4,7 @@ hl.config {
         smart_split         = true,
         smart_resizing      = true,
         force_split         = 2,
-        default_split_ratio = 0.8,
+        default_split_ratio = 0.5,
         split_bias          = 0
     },
 
@@ -19,16 +19,16 @@ hl.config {
     },
 
     scrolling = {
-        fullscreen_on_one_column = true,
-        column_width = 0.7,
-        follow_focus = true,
+        fullscreen_on_one_column = false,
+        column_width = 0.5,
+        follow_focus = 1,
         follow_min_visible = 0.4,
         explicit_column_widths = "0.333, 0.5, 0.667, 1.0",
         wrap_focus = true,
         wrap_swapcol = true,
         -- "left", "right", "down", "up"
         direction = "right",
-        focus_fit_method = 0
+        focus_fit_method = 1
     },
 
     monocle = {}

@@ -1,14 +1,11 @@
-require("variables")
-
 hl.bind("SUPER + Return", hl.dsp.exec_cmd(terminal), { description = "App: Terminal(kitty)" })
-hl.bind("SUPER + B", hl.dsp.exec_cmd("nyxt"), { description = "App: nyxt browser" })
 hl.bind("SUPER + F", hl.dsp.exec_cmd(browser), { description = "App: browser(qutebrowser)" })
 hl.bind("SUPER + Z", hl.dsp.exec_cmd("zen"), { description = "App: zen browser" })
 hl.bind("SUPER + E", hl.dsp.exec_cmd(fileManager), { description = "App: 文件管理器(lf)" })
-hl.bind("SUPER + R", hl.dsp.exec_cmd("pkill rofi || rofi -show drun -config $rofi_path/config.rasi"),
+hl.bind("SUPER + r", hl.dsp.exec_cmd("pkill rofi || rofi -show drun -config $rofi_path/config.rasi"),
     { description = "Launcher: rofi" })
 hl.bind("SUPER + T", hl.dsp.exec_cmd(taskManager), { description = "App: 任务管理器(btop)" })
-hl.bind("SUPER + X", hl.dsp.exec_cmd("fuzzel"), { description = "Launcher: fuzzel" })
+hl.bind("SUPER + X", hl.dsp.exec_cmd("fuzzel"), { long_press = true, description = "Launcher: fuzzel" })
 hl.bind("SUPER + CTRL + V",
     hl.dsp.exec_cmd("pkill fuzzel || cliphist list | fuzzel --dmenu --with-nth 2 | cliphist decode | wl-copy"),
     { description = "粘贴复制(fuzzel选择器)" })
@@ -18,7 +15,7 @@ hl.bind("SUPER + SHIFT + V",
         "pkill rofi || cliphist list | rofi -dmenu -config $rofi_path/themes/clipboard.rasi| cliphist decode | wl-copy"),
     { description = "粘贴复制,(rofi选择器)" })
 hl.bind("ALT + Return", hl.dsp.exec_cmd("ghostty"), { description = "App: Terminal(ghostty)" })
-hl.bind("ALT + ALT_L", hl.dsp.global("caelestia:launcher"), { description = "Launcher: caelestia launcher" })
+hl.bind("ALT_R", hl.dsp.global("caelestia:launcher"), { long_press = true, description = "Launcher: caelestia launcher" })
 hl.bind("Menu", hl.dsp.global("caelestia:launcher"), { description = "Launcher: caelestia launcher" })
 
 hl.bind("ALT + M", hl.dsp.exec_cmd(musicPlayer), { description = "App: 音乐播放器" })
@@ -54,13 +51,15 @@ hl.bind("CTRL + ALT + DELETE", hl.dsp.exec_cmd("sh -c ~/.config/rofi/scripts/pow
 hl.bind("CTRL + ALT + L", hl.dsp.exec_cmd("hyprlock"), { description = "锁屏" })
 
 --# layout和窗口状态切换
-hl.bind("SUPER + P", hl.dsp.window.pin(), { description = "锁定窗口" })
+-- hl.bind("SUPER + P", hl.dsp.window.pin(), { description = "锁定窗口" })
+hl.bind("SUPER + P", pin_nofocus_toggle())
+
 hl.bind("SUPER + V", hl.dsp.window.float({ action = "toggle" }), { description = "切换窗口状态: Float/Tile" })
 hl.bind("CTRL + SHIFT + F", hl.dsp.layout("preselect r"),
     { description = "l,r,u/t,d/b 切换当前窗口布局, 横屏和竖屏间切换, dwindle, master layout" })
 
 hl.bind("ALT + C", hl.dsp.window.center({ action = "toggle" }),
-    { description = "窗口居中" })
+    { float = true, description = "窗口居中" })
 hl.bind("ALT + F", hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" }),
     { description = "窗口最大化" })
 hl.bind("ALT + SHIFT + F", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }),
@@ -71,6 +70,9 @@ hl.bind("F9", hl.dsp.window.fullscreen_state({ internal = 0, client = 3, action 
     { description = "窗口内全屏" })
 hl.bind("F10", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }),
     { description = "窗口全屏" })
+hl.bind("SUPER + ALT + S",
+    hl.dsp.window.move({ workspace = "special:special", follow = false }), { description = "Window: Send to scratchpad" })
+hl.bind("CTRL + SUPER + S", hl.dsp.workspace.toggle_special("special"))
 
 -- 切换工作区
 hl.bind("SUPER + U", hl.dsp.focus({ workspace = "r-1" }), { description = "切换到上一个工作区" })
@@ -128,34 +130,34 @@ end
 
 --# 调整窗口大小
 -- Switch to a submap called `resize`.
-hl.bind("ALT + R", hl.dsp.submap("resize"), { description = "使用方向键调整窗口" })
+hl.bind("Shift + R", hl.dsp.submap("resize"), { description = "使用方向键调整窗口" })
 
 hl.define_submap("resize", function()
-    -- Set repeating binds for resizing the active window.
     hl.bind("right", hl.dsp.window.resize({ x = 10, y = 0, relative = true }), { repeating = true })
     hl.bind("left", hl.dsp.window.resize({ x = -10, y = 0, relative = true }), { repeating = true })
     hl.bind("up", hl.dsp.window.resize({ x = 0, y = 10, relative = true }), { repeating = true })
     hl.bind("down", hl.dsp.window.resize({ x = 0, y = -10, relative = true }), { repeating = true })
 
-    -- Use `reset` to go back to the global submap
     hl.bind("escape", hl.dsp.submap("reset"))
 end)
 
 -- group window
--- hl.bind("SUPER + G", hl.dsp.group.toggle(), { description = "切换窗口分组" })
-
-hl.bind("SUPER + G", hl.dsp.submap("group"), { description = "group window operate" })
-hl.define_submap("group", function()
-    hl.bind("SPACE", hl.dsp.group.toggle(), { description = "切换窗口分组" })
-    hl.bind("SUPER + Tab", hl.dsp.group.next(), { description = "分组内切换窗口" })
-    hl.bind("ALT + Tab", hl.dsp.window.cycle_next())
-    hl.bind("SUPER + h", hl.dsp.focus({ direction = "l" }))
-    hl.bind("SUPER + l", hl.dsp.focus({ direction = "r" }))
-    hl.bind("SUPER + BracketLeft", hl.dsp.window.move({ direction = "l", group_aware = true }))
-    hl.bind("SUPER + BracketRight", hl.dsp.window.move({ direction = "r", group_aware = true }))
-
-    hl.bind("escape", hl.dsp.submap("reset"))
-end)
+-- hl.bind("SUPER + CTRL + G", hl.dsp.group.toggle(), { description = "切换窗口分组" })
+--
+-- hl.bind("SUPER + G", hl.dsp.submap("group"), { description = "group window operate" })
+-- hl.define_submap("group", function()
+--     hl.bind("SPACE", hl.dsp.group.toggle(), { description = "切换窗口分组" })
+--     hl.bind("SUPER + Tab", hl.dsp.group.next(), { description = "分组内切换窗口" })
+--     hl.bind("SUPER + Shift + Tab", hl.dsp.group.prev(), { description = "分组内切换窗口" })
+--     hl.bind("ALT + Tab", hl.dsp.window.cycle_next())
+--     hl.bind("CTRL + L", hl.dsp.group.lock({ "activewindow", "toggle" }))
+--     hl.bind("SUPER + h", hl.dsp.focus({ direction = "l" }))
+--     hl.bind("SUPER + l", hl.dsp.focus({ direction = "r" }))
+--     hl.bind("SUPER + BracketLeft", hl.dsp.window.move({ direction = "l", group_aware = true }))
+--     hl.bind("SUPER + BracketRight", hl.dsp.window.move({ direction = "r", group_aware = true }))
+--
+--     hl.bind("escape", hl.dsp.submap("reset"))
+-- end)
 
 --# 鼠标
 -- 切换工作区
@@ -164,7 +166,9 @@ hl.bind("SUPER + mouse_up", hl.dsp.focus({ workspace = "e-1" }), { description =
 
 -- 鼠标控制窗口尺寸
 hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true, description = "Window: Move" })
-hl.bind("SUPER + mouse:274", hl.dsp.window.drag(), { mouse = true })
+-- hl.bind("SUPER + mouse:272", hl.dsp.window.float(),
+--     { mouse = true, click = true, description = "Floats a window by clicking" })
+-- hl.bind("SUPER + mouse:274", hl.dsp.window.drag(), { mouse = true })
 hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true, description = "Window: Resize" })
 
 -- 声音控制
@@ -188,46 +192,53 @@ hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("caelestia shell brightness set +
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("caelestia shell brightness set 0.03- || brightnessctl s 5%-"),
     { locked = true, repeating = true })
 
---#  不同layout绑定相同快捷键
-local function layout_bind(bind_table)
-    return function()
-        local workspace = hl.get_active_special_workspace() or
-            hl.get_active_workspace()
-
-        if not workspace then
-            return
-        end
-
-        local layout = workspace.tiled_layout
-
-        if bind_table[layout] then
-            for i = 1, #bind_table[layout] do
-                hl.dispatch(bind_table[layout][i])
-            end
-        end
-    end
-end
+hl.bind("ALT + Tab", function()
+    hl.dispatch(hl.dsp.window.cycle_next())
+    hl.dispatch(hl.dsp.window.alter_zorder({ mode = "top" }))
+end)
 
 -- To switch between windows in a floating workspace:
-hl.bind("ALT + Tab", layout_bind({
-    scrolling = {
-        hl.dsp.window.cycle_next(), -- Change focus to another window
-    },
-    dwindle = {
-        hl.dsp.window.cycle_next(),  -- Change focus to another window
-        hl.dsp.window.bring_to_top() -- Bring it to the top
-    },
-    master = {
-        hl.dsp.layout("cyclenext"),     -- Change focus to another window
-        hl.dsp.layout("swapwithmaster") -- Bring it to the master
-    },
-    monocle = {
-        hl.dsp.layout("cyclenext")
-    },
+-- hl.bind("ALT + Tab", layout_bind({
+--     scrolling = {
+--         hl.dsp.window.cycle_next(), -- Change focus to another window
+--     },
+--     dwindle = {
+--         hl.dsp.window.cycle_next(),  -- Change focus to another window
+--         hl.dsp.window.bring_to_top() -- Bring it to the top
+--     },
+--     master = {
+--         hl.dsp.layout("cyclenext"),     -- Change focus to another window
+--         hl.dsp.layout("swapwithmaster") -- Bring it to the master
+--     },
+--     monocle = {
+--         hl.dsp.layout("cyclenext")
+--     },
+-- }))
+
+hl.bind("ALT_L + R", layout_bind({
+    scrolling = { hl.dsp.layout("colresize +conf") }
+}))
+hl.bind("CTRL + ALT + R", layout_bind({
+    scrolling = { hl.dsp.layout("move +col") }
 }))
 
-hl.bind("ALT + ALT_R", layout_bind({
-    scrolling = { hl.dsp.layout("colresize +conf") }
+hl.bind("ALT + BracketLeft", layout_bind({
+    scrolling = { hl.dsp.layout("swapcol l") }
+}))
+hl.bind("ALT + BracketRight", layout_bind({
+    scrolling = { hl.dsp.layout("swapcol r") }
+}))
+hl.bind("SUPER + BracketLeft", layout_bind({
+    scrolling = { hl.dsp.layout("consume_or_expel prev") }
+}))
+hl.bind("SUPER + BracketRight", layout_bind({
+    scrolling = { hl.dsp.layout("consume_or_expel next") }
+}))
+hl.bind("SUPER + Comma", layout_bind({
+    scrolling = { hl.dsp.layout("consume") }
+}))
+hl.bind("SUPER + Period", layout_bind({
+    scrolling = { hl.dsp.layout("expel") }
 }))
 
 hl.bind("SUPER + A", layout_bind({
@@ -245,19 +256,15 @@ hl.bind("SUPER + D", layout_bind({
 }))
 
 --##! Screen
---# Zoom
-local function zoomfunction(value)
-    local zoomvalue = hl.get_config("cursor:zoom_factor")
-    if (zoomvalue + value) > 3.0 then
-        hl.config({ cursor = { zoom_factor = 3.0 } })
-    elseif (zoomvalue + value) < 1.0 then
-        hl.config({ cursor = { zoom_factor = 1.0 } })
-    else
-        hl.config({ cursor = { zoom_factor = zoomvalue + value } })
-    end
-end
-hl.bind("SUPER + Minus", function() zoomfunction(-0.3) end, { repeating = true, description = "Screen: Zoom out" })
-hl.bind("SUPER + Equal", function() zoomfunction(0.3) end, { repeating = true, description = "Screen: Zoom in" })
+-- hl.bind("SUPER + Minus", function() zoomfunction(-0.3) end, { repeating = true, description = "Screen: Zoom out" })
+-- hl.bind("SUPER + Equal", function() zoomfunction(0.3) end, { repeating = true, description = "Screen: Zoom in" })
+hl.bind("SUPER + Z", zoom)
+hl.bind("SUPER + Equal", function()
+    zoom(0.3)
+end)
+hl.bind("SUPER + minus", function()
+    zoom(-0.3)
+end)
 
 --# 切换当前工作区的layout
 hl.bind("SUPER + Tab", function()
@@ -279,17 +286,94 @@ hl.bind("SUPER + Tab", function()
 
     hl.workspace_rule({ workspace = workspace.name, layout = next_layout })
     -- hl.exec_cmd("notify-send \"切换当前工作区的layout\" \"新layout是" .. next_layout .. "\" -a Hyprland")
-    os.execute("notify-send \"切换当前工作区的layout\" \"新layout是" .. next_layout .. "\" -a Hyprland")
+    os.execute("notify-send \"当前工作区布局已切换\" \"新layout是" .. next_layout .. "\" -a Hyprland")
 end)
 
 --## Make window not amogus large
 hl.bind("CTRL + SUPER + Backslash", hl.dsp.window.resize({ x = 640, y = 480, "exact" }))
 
+-- 窗口最小化
+hl.bind("SUPER + X", function()
+    if hl.get_workspace("special:minimized") then
+        hl.dispatch(hl.dsp.window.move({ workspace = hl.get_active_workspace(), window = "tag:minimized" }))
+        hl.dispatch(hl.dsp.window.clear_tags({ window = "tag:minimized" }))
+    else
+        hl.dispatch(hl.dsp.window.tag({ tag = "minimized", window = hl.get_active_window() }))
+        hl.dispatch(hl.dsp.window.move({ workspace = "special:minimized", follow = false }))
+    end
+end)
 
--- scrolling layout keybind
-hl.bind("ALT + BracketLeft", hl.dsp.layout("swapcol l"))
-hl.bind("ALT + BracketRight", hl.dsp.layout("swapcol r"))
-hl.bind("SUPER + BracketLeft", hl.dsp.layout("consume_or_expel prev"))
-hl.bind("SUPER + BracketRight", hl.dsp.layout("consume_or_expel next"))
-hl.bind("SUPER + Comma", hl.dsp.layout("consume"), { description = "入列" })
-hl.bind("SUPER + Period", hl.dsp.layout("expel"), { description = "出列" })
+-- 禁用特效
+hl.bind("SUPER + CTRL + F1", function()
+    local game_mode = (hl.get_config("animations.enabled") == false)
+
+    if game_mode then
+        hl.exec_cmd("hyprctl reload")
+        return
+    end
+
+    hl.config({
+        general = {
+            gaps_in = 0,
+            gaps_out = 0, -- Disable gaps
+            border_size = 0,
+        },
+
+        animations = {
+            enabled = false, -- Disable animations
+        },
+
+        -- Disable blur, shadow and window rounding
+        decoration = {
+            shadow = { enabled = false },
+            blur = { enabled = false },
+            rounding = 0,
+        }
+    })
+end)
+
+-- 浮动和平铺窗口间切换
+hl.bind("CTRL + Tab", function()
+    local window = hl.get_active_window()
+    if not window then return end
+    hl.dispatch(hl.dsp.window.cycle_next({
+        floating = not window.floating,
+        tiled = window.floating,
+    }))
+end, { description = "Switch focus between tiled and floating windows" })
+
+
+-- group窗口管理
+hl.bind("SUPER + G", hl.dsp.submap("group_management"), { description = "Enter a group management submap" })
+
+local map = function(key, action, description)
+    hl.bind(key, function()
+        hl.dispatch(action)
+        hl.dispatch(hl.dsp.submap("reset"))
+    end, { description = description })
+end
+
+hl.define_submap("group_management", function()
+    map("SPACE", hl.dsp.group.toggle(), "Toggle window group")
+
+    map("h", hl.dsp.window.move({ into_group = "l" }), "Move window into a group on the left")
+    map("j", hl.dsp.window.move({ into_group = "d" }), "Move window into a group on the bottom")
+    map("k", hl.dsp.window.move({ into_group = "u" }), "Move window into a group on the top")
+    map("l", hl.dsp.window.move({ into_group = "r" }), "Move window into a group on the right")
+
+    map("e", hl.dsp.window.move({ out_of_group = true }), "Move window out of group")
+
+    map("n", hl.dsp.group.next(), "Next window in group")
+    map("p", hl.dsp.group.prev(), "Previous window in group")
+
+    map("f", hl.dsp.group.move_window(), "Move window forward in the group order")
+    map("b", hl.dsp.group.move_window({ forward = false }), "Move window backward in the group order")
+
+    hl.bind("t", hl.dsp.group.lock({ "activewindow", "toggle" }))
+
+    for i = 1, 10 do
+        map(tostring(i % 10), hl.dsp.group.active({ index = i }), "Focus window " .. i .. " in a group")
+    end
+
+    hl.bind("escape", hl.dsp.submap("reset"), { description = "Quit submap" })
+end)

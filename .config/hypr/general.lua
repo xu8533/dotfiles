@@ -1,22 +1,14 @@
 hl.config({
-    -- 触摸板手势
-    gestures = {
-        workspace_swipe_distance = 700,
-        workspace_swipe_cancel_ratio = 0.2,
-        workspace_swipe_min_speed_to_force = 5,
-        workspace_swipe_direction_lock = true,
-        workspace_swipe_direction_lock_threshold = 10,
-        workspace_swipe_create_new = true
-    },
     general = {
         -- Gaps and border
         gaps_in = 4,
         gaps_out = 5,
         gaps_workspaces = 50,
         border_size = 2,
+        float_gaps = 2,
 
         col = {
-            active_border = { colors = { "rgba(128, 200, 255, 1.0)", "rgba(199,255,127, 1.0)" }, angle = 45 },
+            active_border = { colors = { "rgba(128, 200, 255, 0.8)", "rgba(199,255,127, 1.0)" }, angle = 45 },
             -- active_border = { colors = { "0xff000000", "0xffffffff" }, angle = 45 },
             inactive_border = { colors = { "#505050", "#808080" }, angle = 45 },
             -- active_border = "rgba(0DB7D455)",
@@ -24,7 +16,7 @@ hl.config({
             -- inactive_border = "0x11707b7c"
         },
         resize_on_border = true,
-
+        resize_corner = 1,
         no_focus_fallback = true,
         allow_tearing = true, -- This just allows the `immediate` window rule to work
         snap = {
@@ -35,9 +27,9 @@ hl.config({
         },
 
         -- 默认layout
-        layout = "dwindle",
+        -- layout = "dwindle",
         -- layout = "master",
-        -- layout = "scrolling",
+        layout = "scrolling",
         -- layout = "monocle",
         locale = "zh_CN"
 
@@ -45,10 +37,16 @@ hl.config({
     decoration = {
         -- 2 = circle, higher = squircle, 4 = very obvious squircle
         -- Fuck clearly visible squircles. 100% Apple brainrot.
-        rounding_power = 2.5,
+        rounding_power = 3,
         rounding = 18,
         inactive_opacity = 0.80,
         border_part_of_window = true,
+
+        -- Dim
+        dim_inactive = true,
+        dim_strength = 0.08,
+        dim_special = 0.2,
+        dim_around = 0.5,
 
         blur = {
             enabled = true,
@@ -60,7 +58,21 @@ hl.config({
             brightness = 1,
             noise = 0.05,
             contrast = 0.89,
-            vibrancy = 0.5,
+            -- 特效
+            -- kawase - default
+            -- acrylic - similar to liquid glass
+            -- aurora - aurora-like light streaks
+            -- drops - rain on a window pane
+            -- fluid_jar - 2D fluid simulation
+            -- frost - cracked ice
+            -- haze - a different diffused effect
+            -- heat_shimmer - a small shimmer with aberration
+            -- prism - triangular refraction mask
+            -- ripple - ripple on click
+            -- water - ripple done with a heightmap
+
+            -- variant = "water",
+            vibrancy = 0.6,
             vibrancy_darkness = 0.5,
             popups = true,
             popups_ignorealpha = 0.6,
@@ -69,62 +81,73 @@ hl.config({
         },
         shadow = {
             enabled = true,
-            range = 20,
+            range = 15,
             offset = { 0, 2 },
-            render_power = 10,
-            color = 0xbfa7caff,
-            color_inactive = 0x11707b7c
+            render_power = 3,
+            color = "0xbfa7caff",
+            -- color = "rgba(bfa7caff)",
+            color_inactive = "0x11707b7c"
         },
         glow = {
             enabled = true,
-            range = 15,
-            -- color = 0xefbfe523,
-            -- color = 0xbfd81918,
-            -- color_inactive = 0xee1a1a1a
+            range = 13,
+            color = "0xefbfe523",
+            -- color = "0xbfd81918",
+            color_inactive = "0xee1a1a1a"
         },
-        -- Dim
-        dim_inactive = true,
-        dim_strength = 0.08,
-        dim_special = 0.2,
-        dim_around = 0.5,
+        motion_blur = {
+            enabled = true,
+            samples = 5
+        },
+        -- 窗口抖动特效
+        wobble = {
+            enabled = false,
+            mesh = 12,
+            stiffness = 200,
+            damping = 12,
+            mass = 1,
+            intensity = 0.2,
+            value_epsilon = 0.25,
+            velocity_epsilon = 2
+        }
     },
     animations = {
         enabled = true
     },
     group = {
         col = {
-            -- border_active = 0x66ffff00,
-            border_active = 0xff68935c,
-            border_inactive = 0x66777700,
-            border_locked_active = 0x66ff5500,
-            border_locked_inactive = 0x66775500
+            border_active = "0x66ffff00",
+            -- border_active = "0xff68935c",
+            border_inactive = "0x66777700",
+            border_locked_active = "0x66ff5500",
+            border_locked_inactive = "0x66775500"
         },
         groupbar = {
             enabled = true,
             font_family = "霞鹜文楷等宽",
-            font_size = 15,
+            font_size = 13,
             font_weight_active = "bold",
             font_weight_inactive = "normal",
             gradients = true,
-            height = 10,
+            height = 13,
             indicator_gap = 0,
-            indicator_height = 1,
-            rounding = 1,
+            indicator_height = 0,
+            rounding = 8,
             rounding_power = 10.0,
             gradient_rounding = 10,
             gradient_rounding_power = 3,
-            text_color = 0xbfd81918,
-            text_color_inactive = 0xee1a1a1a,
-            text_offset = 0,
-            text_padding = 50,
+            text_color = "0xbfd81918",
+            text_color_inactive = "0xee1a1a1a",
+            text_offset = 10,
+            text_padding = 5,
             gaps_in = 3,
             gaps_out = 1,
             col = {
-                -- active = "#80c8ff",
-                -- inactive = "#bbddff",
                 active = { colors = { "rgba(128,200,255,1.0)", "rgba(187,221,255, 1.0)" } },
                 inactive = { colors = { "rgba(80,80, 80, 0.99)", "rgba(128,128,128, 1.0)" } }
-            }
+            },
+            -- stacked = true,
+            disable_when_only = true
         }
     },
 })
@@ -149,6 +172,16 @@ hl.config {
             clickfinger_behavior = true,
             scroll_factor = 0.7
         }
+    },
+
+    -- 触摸板手势
+    gestures = {
+        workspace_swipe_distance = 700,
+        workspace_swipe_cancel_ratio = 0.2,
+        workspace_swipe_min_speed_to_force = 5,
+        workspace_swipe_direction_lock = true,
+        workspace_swipe_direction_lock_threshold = 10,
+        workspace_swipe_create_new = true
     },
 
     misc = {
@@ -177,6 +210,8 @@ hl.config {
     },
 
     binds = {
+        -- Fire a drag event only after dragging for more than 10px
+        drag_threshold = 10,
         scroll_event_delay = 0,
         hide_special_on_workspace_change = true
     },
@@ -193,7 +228,7 @@ hl.config {
         hide_on_touch = true,
 
         zoom_factor = 1,
-        zoom_rigid = false,
+        zoom_rigid = true,
         zoom_disable_aa = true,
         hotspot_padding = 1
     },

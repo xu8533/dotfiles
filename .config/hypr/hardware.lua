@@ -3,6 +3,8 @@ hl.monitor({
     output = "",
     mode = "preferred",
     position = "auto-up",
+    -- cm = "hdr",
+    bitdepth = 10,
     scale = 1
 })
 

@@ -1,3 +1,4 @@
+require("functions")
 require("env")
 require("variables")
 require("general")

@@ -27,5 +27,32 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("hyprctl setcursor Bibata-Modern-Turquoise 22")
 
     hl.exec_cmd("sleep 2 && kitty")
-    hl.exec_cmd("$HOME/.local/bin/monitor-auto.sh")
+    -- hl.exec_cmd(home_dir .. "/.local/bin/monitor-auto.sh")
+end)
+
+hl.on("monitor.added", function()
+    apply_monitor()
+    -- if hl.get_monitor("HDMI-A-1") ~= nil then
+    --     -- hl.monitor({ output = "eDP-1", disabled = true })
+    --     -- hl.monitor({ output = "", mode = "preferred", position = "auto-up", scale = 1 })
+    --     hl.exec_cmd("hyprctl eval 'hl.monitor({ output=\"eDP-1\", disabled=true})'")
+    --     hl.exec_cmd(
+    --         "hyprctl eval 'hl.monitor({ output = \"\", mode = \"preferred\", position = \"auto-up\", scale = 1})'")
+    -- end
+end)
+hl.on("monitor.removed", function()
+    apply_monitor()
+    -- if hl.get_monitor("HDMI-A-1") == nil then
+    --     -- hl.monitor({ output = "eDP-1", mode = "preferred", disabled = false, scale = 1 })
+    --     hl.exec_cmd("hyprctl eval 'hl.monitor({ output=\"eDP-1\", mode = \"preferred\", disabled=false, scale = 1})'")
+    -- end
+end)
+hl.on("config.reloaded", function()
+    apply_monitor()
+    -- hl.exec_cmd("hyprctl reload config-only")
+    -- if hl.get_monitor("HDMI-A-1") ~= nil then
+    --     hl.exec_cmd("hyprctl eval 'hl.monitor({ output=\"eDP-1\", disabled=true})'")
+    --     -- hl.monitor({ output = "eDP-1", disabled = true })
+    --     -- hl.monitor({ output = "", mode = "preferred", position = "auto-up", scale = 1 })
+    -- end
 end)
